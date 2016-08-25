@@ -1,0 +1,14 @@
+C:\WindowsProjects\PHCSolution\PHC\bin\Debug\PHC.DAInterfaces.dll
+C:\WindowsProjects\PHCSolution\PHC\bin\Debug\PHC.DAInterfaces.pdb
+C:\WindowsProjects\PHCSolution\PHC\bin\Debug\PHC.DataAccess.dll
+C:\WindowsProjects\PHCSolution\PHC\bin\Debug\PHC.DataAccess.pdb
+C:\WindowsProjects\PHCSolution\PHC\obj\Debug\PHC.DAInterfaces.csprojResolveAssemblyReference.cache
+C:\WindowsProjects\PHCSolution\PHC\obj\Debug\PHC.DAInterfaces.dll
+C:\WindowsProjects\PHCSolution\PHC\obj\Debug\PHC.DAInterfaces.pdb
+E:\PHCSolution\PHC\bin\Debug\PHC.DAInterfaces.dll
+E:\PHCSolution\PHC\bin\Debug\PHC.DAInterfaces.pdb
+E:\PHCSolution\PHC\bin\Debug\PHC.DataAccess.dll
+E:\PHCSolution\PHC\bin\Debug\PHC.DataAccess.pdb
+E:\PHCSolution\PHC\obj\Debug\PHC.DAInterfaces.csprojResolveAssemblyReference.cache
+E:\PHCSolution\PHC\obj\Debug\PHC.DAInterfaces.dll
+E:\PHCSolution\PHC\obj\Debug\PHC.DAInterfaces.pdb

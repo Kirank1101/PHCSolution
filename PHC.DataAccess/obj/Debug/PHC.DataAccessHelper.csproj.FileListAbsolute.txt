@@ -1,0 +1,10 @@
+C:\WindowsProjects\PHCSolution\PHC.DataAccess\bin\Debug\PHC.DataAccess.dll.config
+C:\WindowsProjects\PHCSolution\PHC.DataAccess\bin\Debug\PHC.DataAccess.dll
+C:\WindowsProjects\PHCSolution\PHC.DataAccess\bin\Debug\PHC.DataAccess.pdb
+C:\WindowsProjects\PHCSolution\PHC.DataAccess\obj\Debug\PHC.DataAccess.dll
+C:\WindowsProjects\PHCSolution\PHC.DataAccess\obj\Debug\PHC.DataAccess.pdb
+E:\PHCSolution\PHC.DataAccess\bin\Debug\PHC.DataAccess.dll.config
+E:\PHCSolution\PHC.DataAccess\bin\Debug\PHC.DataAccess.dll
+E:\PHCSolution\PHC.DataAccess\bin\Debug\PHC.DataAccess.pdb
+E:\PHCSolution\PHC.DataAccess\obj\Debug\PHC.DataAccess.dll
+E:\PHCSolution\PHC.DataAccess\obj\Debug\PHC.DataAccess.pdb

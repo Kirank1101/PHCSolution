@@ -1,0 +1,359 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PHCModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="PHCModelStoreContainer">
+    <EntitySet Name="DrugInfo" EntityType="PHCModel.Store.DrugInfo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LabReport" EntityType="PHCModel.Store.LabReport" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MDrugs" EntityType="PHCModel.Store.MDrugs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MedicationDetails" EntityType="PHCModel.Store.MedicationDetails" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MLabTest" EntityType="PHCModel.Store.MLabTest" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PatientInfo" EntityType="PHCModel.Store.PatientInfo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PHCInfo" EntityType="PHCModel.Store.PHCInfo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Prescription" EntityType="PHCModel.Store.Prescription" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="PHCModel.Store.Users" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_DrugInfo_MDrugs" Association="PHCModel.Store.FK_DrugInfo_MDrugs">
+      <End Role="MDrugs" EntitySet="MDrugs" />
+      <End Role="DrugInfo" EntitySet="DrugInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DrugInfo_PHCInfo" Association="PHCModel.Store.FK_DrugInfo_PHCInfo">
+      <End Role="PHCInfo" EntitySet="PHCInfo" />
+      <End Role="DrugInfo" EntitySet="DrugInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LabReport_MLabTest" Association="PHCModel.Store.FK_LabReport_MLabTest">
+      <End Role="MLabTest" EntitySet="MLabTest" />
+      <End Role="LabReport" EntitySet="LabReport" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LabReport_PHCInfo" Association="PHCModel.Store.FK_LabReport_PHCInfo">
+      <End Role="PHCInfo" EntitySet="PHCInfo" />
+      <End Role="LabReport" EntitySet="LabReport" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LabReport_Prescription" Association="PHCModel.Store.FK_LabReport_Prescription">
+      <End Role="Prescription" EntitySet="Prescription" />
+      <End Role="LabReport" EntitySet="LabReport" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MDrugs_PHCInfo" Association="PHCModel.Store.FK_MDrugs_PHCInfo">
+      <End Role="PHCInfo" EntitySet="PHCInfo" />
+      <End Role="MDrugs" EntitySet="MDrugs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MedicationDetails_MDrugs" Association="PHCModel.Store.FK_MedicationDetails_MDrugs">
+      <End Role="MDrugs" EntitySet="MDrugs" />
+      <End Role="MedicationDetails" EntitySet="MedicationDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MedicationDetails_PHCInfo" Association="PHCModel.Store.FK_MedicationDetails_PHCInfo">
+      <End Role="PHCInfo" EntitySet="PHCInfo" />
+      <End Role="MedicationDetails" EntitySet="MedicationDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MedicationDetails_Prescription" Association="PHCModel.Store.FK_MedicationDetails_Prescription">
+      <End Role="Prescription" EntitySet="Prescription" />
+      <End Role="MedicationDetails" EntitySet="MedicationDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MLabTest_PHCInfo" Association="PHCModel.Store.FK_MLabTest_PHCInfo">
+      <End Role="PHCInfo" EntitySet="PHCInfo" />
+      <End Role="MLabTest" EntitySet="MLabTest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PatientInfo_PHCInfo" Association="PHCModel.Store.FK_PatientInfo_PHCInfo">
+      <End Role="PHCInfo" EntitySet="PHCInfo" />
+      <End Role="PatientInfo" EntitySet="PatientInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Prescription_PatientInfo" Association="PHCModel.Store.FK_Prescription_PatientInfo">
+      <End Role="PatientInfo" EntitySet="PatientInfo" />
+      <End Role="Prescription" EntitySet="Prescription" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Prescription_PHCInfo" Association="PHCModel.Store.FK_Prescription_PHCInfo">
+      <End Role="PHCInfo" EntitySet="PHCInfo" />
+      <End Role="Prescription" EntitySet="Prescription" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_PHCInfo" Association="PHCModel.Store.FK_Users_PHCInfo">
+      <End Role="PHCInfo" EntitySet="PHCInfo" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="DrugInfo">
+    <Key>
+      <PropertyRef Name="DrugInfoID" />
+    </Key>
+    <Property Name="DrugInfoID" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="PHCID" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="DrugID" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Qty" Type="int" Nullable="false" />
+    <Property Name="MFDT" Type="date" Nullable="false" />
+    <Property Name="EXPDT" Type="date" Nullable="false" />
+    <Property Name="ObsInd" Type="char" Nullable="false" MaxLength="1" />
+    <Property Name="LastModifiedBy" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LabReport">
+    <Key>
+      <PropertyRef Name="LabReportID" />
+    </Key>
+    <Property Name="LabReportID" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="prescriptionID" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="PHCID" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="LabTestID" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Result" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="ObsInd" Type="char" Nullable="false" MaxLength="1" />
+    <Property Name="LastModifiedBy" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MDrugs">
+    <Key>
+      <PropertyRef Name="DrugID" />
+    </Key>
+    <Property Name="DrugID" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="PHCID" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="DrugName" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="ObsInd" Type="char" Nullable="false" MaxLength="1" />
+    <Property Name="LastModifiedBy" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MedicationDetails">
+    <Key>
+      <PropertyRef Name="MedicationID" />
+    </Key>
+    <Property Name="MedicationID" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="prescriptionID" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="PHCID" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="DrugID" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Qty" Type="int" Nullable="false" />
+    <Property Name="Dosage" Type="nvarchar" Nullable="false" MaxLength="3" />
+    <Property Name="ObsInd" Type="char" Nullable="false" MaxLength="1" />
+    <Property Name="LastModifiedBy" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MLabTest">
+    <Key>
+      <PropertyRef Name="LabTestID" />
+    </Key>
+    <Property Name="LabTestID" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="PHCID" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="TestType" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="MinValue" Type="nvarchar" MaxLength="10" />
+    <Property Name="MaxValue" Type="nvarchar" MaxLength="10" />
+    <Property Name="CountValue" Type="nvarchar" MaxLength="10" />
+    <Property Name="ObsInd" Type="char" Nullable="false" MaxLength="1" />
+    <Property Name="LastModifiedBy" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PatientInfo">
+    <Key>
+      <PropertyRef Name="PatientID" />
+    </Key>
+    <Property Name="PatientID" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="PHCID" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Age" Type="smallint" Nullable="false" />
+    <Property Name="Sex" Type="char" Nullable="false" MaxLength="1" />
+    <Property Name="ContactNo" Type="nvarchar" MaxLength="15" />
+    <Property Name="ObsInd" Type="char" Nullable="false" MaxLength="1" />
+    <Property Name="LastModifiedBy" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PHCInfo">
+    <Key>
+      <PropertyRef Name="PHCID" />
+    </Key>
+    <Property Name="PHCID" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="PHCName" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Address1" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Taluk" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="District" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="State" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="PinCode" Type="int" Nullable="false" />
+    <Property Name="ObsInd" Type="char" Nullable="false" MaxLength="1" />
+    <Property Name="LastModifiedBy" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Prescription">
+    <Key>
+      <PropertyRef Name="prescriptionID" />
+    </Key>
+    <Property Name="prescriptionID" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="PatientID" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="PHCID" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Diseases" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+    <Property Name="ObsInd" Type="char" Nullable="false" MaxLength="1" />
+    <Property Name="LastModifiedBy" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="PHCID" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="EmailID" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="ObsInd" Type="char" Nullable="false" MaxLength="1" />
+    <Property Name="LastModifiedBy" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_DrugInfo_MDrugs">
+    <End Role="MDrugs" Type="PHCModel.Store.MDrugs" Multiplicity="1" />
+    <End Role="DrugInfo" Type="PHCModel.Store.DrugInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MDrugs">
+        <PropertyRef Name="DrugID" />
+      </Principal>
+      <Dependent Role="DrugInfo">
+        <PropertyRef Name="DrugID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DrugInfo_PHCInfo">
+    <End Role="PHCInfo" Type="PHCModel.Store.PHCInfo" Multiplicity="1" />
+    <End Role="DrugInfo" Type="PHCModel.Store.DrugInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHCInfo">
+        <PropertyRef Name="PHCID" />
+      </Principal>
+      <Dependent Role="DrugInfo">
+        <PropertyRef Name="PHCID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LabReport_MLabTest">
+    <End Role="MLabTest" Type="PHCModel.Store.MLabTest" Multiplicity="1" />
+    <End Role="LabReport" Type="PHCModel.Store.LabReport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MLabTest">
+        <PropertyRef Name="LabTestID" />
+      </Principal>
+      <Dependent Role="LabReport">
+        <PropertyRef Name="LabTestID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LabReport_PHCInfo">
+    <End Role="PHCInfo" Type="PHCModel.Store.PHCInfo" Multiplicity="1" />
+    <End Role="LabReport" Type="PHCModel.Store.LabReport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHCInfo">
+        <PropertyRef Name="PHCID" />
+      </Principal>
+      <Dependent Role="LabReport">
+        <PropertyRef Name="PHCID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LabReport_Prescription">
+    <End Role="Prescription" Type="PHCModel.Store.Prescription" Multiplicity="1" />
+    <End Role="LabReport" Type="PHCModel.Store.LabReport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Prescription">
+        <PropertyRef Name="prescriptionID" />
+      </Principal>
+      <Dependent Role="LabReport">
+        <PropertyRef Name="prescriptionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MDrugs_PHCInfo">
+    <End Role="PHCInfo" Type="PHCModel.Store.PHCInfo" Multiplicity="1" />
+    <End Role="MDrugs" Type="PHCModel.Store.MDrugs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHCInfo">
+        <PropertyRef Name="PHCID" />
+      </Principal>
+      <Dependent Role="MDrugs">
+        <PropertyRef Name="PHCID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MedicationDetails_MDrugs">
+    <End Role="MDrugs" Type="PHCModel.Store.MDrugs" Multiplicity="1" />
+    <End Role="MedicationDetails" Type="PHCModel.Store.MedicationDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MDrugs">
+        <PropertyRef Name="DrugID" />
+      </Principal>
+      <Dependent Role="MedicationDetails">
+        <PropertyRef Name="DrugID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MedicationDetails_PHCInfo">
+    <End Role="PHCInfo" Type="PHCModel.Store.PHCInfo" Multiplicity="1" />
+    <End Role="MedicationDetails" Type="PHCModel.Store.MedicationDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHCInfo">
+        <PropertyRef Name="PHCID" />
+      </Principal>
+      <Dependent Role="MedicationDetails">
+        <PropertyRef Name="PHCID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MedicationDetails_Prescription">
+    <End Role="Prescription" Type="PHCModel.Store.Prescription" Multiplicity="1" />
+    <End Role="MedicationDetails" Type="PHCModel.Store.MedicationDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Prescription">
+        <PropertyRef Name="prescriptionID" />
+      </Principal>
+      <Dependent Role="MedicationDetails">
+        <PropertyRef Name="prescriptionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MLabTest_PHCInfo">
+    <End Role="PHCInfo" Type="PHCModel.Store.PHCInfo" Multiplicity="1" />
+    <End Role="MLabTest" Type="PHCModel.Store.MLabTest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHCInfo">
+        <PropertyRef Name="PHCID" />
+      </Principal>
+      <Dependent Role="MLabTest">
+        <PropertyRef Name="PHCID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PatientInfo_PHCInfo">
+    <End Role="PHCInfo" Type="PHCModel.Store.PHCInfo" Multiplicity="1" />
+    <End Role="PatientInfo" Type="PHCModel.Store.PatientInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHCInfo">
+        <PropertyRef Name="PHCID" />
+      </Principal>
+      <Dependent Role="PatientInfo">
+        <PropertyRef Name="PHCID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Prescription_PatientInfo">
+    <End Role="PatientInfo" Type="PHCModel.Store.PatientInfo" Multiplicity="1" />
+    <End Role="Prescription" Type="PHCModel.Store.Prescription" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PatientInfo">
+        <PropertyRef Name="PatientID" />
+      </Principal>
+      <Dependent Role="Prescription">
+        <PropertyRef Name="PatientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Prescription_PHCInfo">
+    <End Role="PHCInfo" Type="PHCModel.Store.PHCInfo" Multiplicity="1" />
+    <End Role="Prescription" Type="PHCModel.Store.Prescription" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHCInfo">
+        <PropertyRef Name="PHCID" />
+      </Principal>
+      <Dependent Role="Prescription">
+        <PropertyRef Name="PHCID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_PHCInfo">
+    <End Role="PHCInfo" Type="PHCModel.Store.PHCInfo" Multiplicity="1" />
+    <End Role="Users" Type="PHCModel.Store.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHCInfo">
+        <PropertyRef Name="PHCID" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="PHCID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

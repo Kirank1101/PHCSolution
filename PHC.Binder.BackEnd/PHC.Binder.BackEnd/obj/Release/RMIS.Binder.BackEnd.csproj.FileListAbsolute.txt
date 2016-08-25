@@ -1,0 +1,5 @@
+C:\Users\nagavardhan\Documents\Bin\Inhouse\Release\BackEnd\RMlS.Binder.BackEnd.dll
+C:\Users\nagavardhan\Documents\Bin\Inhouse\Release\BackEnd\RMlS.Binder.BackEnd.pdb
+C:\Users\nagavardhan\Documents\GitHub\RMIS\RMIS.Binder.BackEnd\RMIS.Binder.BackEnd\obj\Release\RMIS.Binder.BackEnd.csprojResolveAssemblyReference.cache
+C:\Users\nagavardhan\Documents\GitHub\RMIS\RMIS.Binder.BackEnd\RMIS.Binder.BackEnd\obj\Release\RMlS.Binder.BackEnd.dll
+C:\Users\nagavardhan\Documents\GitHub\RMIS\RMIS.Binder.BackEnd\RMIS.Binder.BackEnd\obj\Release\RMlS.Binder.BackEnd.pdb

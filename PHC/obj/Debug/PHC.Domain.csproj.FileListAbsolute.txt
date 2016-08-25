@@ -1,0 +1,4 @@
+C:\WindowsProjects\PHCSolution\PHC\bin\Debug\PHC.dll
+C:\WindowsProjects\PHCSolution\PHC\bin\Debug\PHC.pdb
+C:\WindowsProjects\PHCSolution\PHC\obj\Debug\PHC.dll
+C:\WindowsProjects\PHCSolution\PHC\obj\Debug\PHC.pdb

@@ -1,0 +1,5 @@
+C:\Users\nagavardhan\Documents\Bin\InHouse\Release\BackEnd\AllInOne.BootStrapper.BackEnd.dll
+C:\Users\nagavardhan\Documents\Bin\InHouse\Release\BackEnd\AllInOne.BootStrapper.BackEnd.pdb
+C:\Users\nagavardhan\Documents\GitHub\RMIS\AllInOne.Legal.BootStrapper.BackEnd\obj\Release\AllInOne.BootStrapper.BackEnd.csprojResolveAssemblyReference.cache
+C:\Users\nagavardhan\Documents\GitHub\RMIS\AllInOne.Legal.BootStrapper.BackEnd\obj\Release\AllInOne.BootStrapper.BackEnd.dll
+C:\Users\nagavardhan\Documents\GitHub\RMIS\AllInOne.Legal.BootStrapper.BackEnd\obj\Release\AllInOne.BootStrapper.BackEnd.pdb

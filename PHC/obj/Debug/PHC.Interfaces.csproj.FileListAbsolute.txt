@@ -1,0 +1,7 @@
+C:\WindowsProjects\PHCSolution\PHC\bin\Debug\PHC.Interfaces.dll
+C:\WindowsProjects\PHCSolution\PHC\bin\Debug\PHC.Interfaces.pdb
+C:\WindowsProjects\PHCSolution\PHC\obj\Debug\PHC.Interfaces.dll
+C:\WindowsProjects\PHCSolution\PHC\obj\Debug\PHC.Interfaces.pdb
+C:\WindowsProjects\PHCSolution\PHC\obj\Debug\PHC.Interfaces.csprojResolveAssemblyReference.cache
+C:\WindowsProjects\PHCSolution\PHC\bin\Debug\PHC.DataAccess.dll
+C:\WindowsProjects\PHCSolution\PHC\bin\Debug\PHC.DataAccess.pdb

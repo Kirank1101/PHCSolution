@@ -1,0 +1,10 @@
+C:\WindowsProjects\PHCSolution\PHC.Binder.BackEnd\PHC.Binder.BackEnd\obj\Debug\PHC.Binder.BackEnd.csprojResolveAssemblyReference.cache
+C:\WindowsProjects\PHCSolution\Bin\PHC.Binder.BackEnd.dll
+C:\WindowsProjects\PHCSolution\Bin\PHC.Binder.BackEnd.pdb
+C:\WindowsProjects\PHCSolution\PHC.Binder.BackEnd\PHC.Binder.BackEnd\obj\Debug\PHC.Binder.BackEnd.dll
+C:\WindowsProjects\PHCSolution\PHC.Binder.BackEnd\PHC.Binder.BackEnd\obj\Debug\PHC.Binder.BackEnd.pdb
+E:\PHCSolution\Bin\PHC.Binder.BackEnd.dll
+E:\PHCSolution\Bin\PHC.Binder.BackEnd.pdb
+E:\PHCSolution\PHC.Binder.BackEnd\PHC.Binder.BackEnd\obj\Debug\PHC.Binder.BackEnd.csprojResolveAssemblyReference.cache
+E:\PHCSolution\PHC.Binder.BackEnd\PHC.Binder.BackEnd\obj\Debug\PHC.Binder.BackEnd.dll
+E:\PHCSolution\PHC.Binder.BackEnd\PHC.Binder.BackEnd\obj\Debug\PHC.Binder.BackEnd.pdb

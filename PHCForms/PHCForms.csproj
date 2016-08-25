@@ -1,0 +1,280 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8AA50199-60EE-422B-AE72-52F949AFBE04}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PHCForms</RootNamespace>
+    <AssemblyName>PHCForms</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddLabTests.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddLabTests.Designer.cs">
+      <DependentUpon>AddLabTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AnualMaintainFee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AnualMaintainFee.Designer.cs">
+      <DependentUpon>AnualMaintainFee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ArogyaRakshaSamithi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ArogyaRakshaSamithi.Designer.cs">
+      <DependentUpon>ArogyaRakshaSamithi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PHCConstant.cs" />
+    <Compile Include="DrugInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DrugInfo.Designer.cs">
+      <DependentUpon>DrugInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities.cs" />
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MDIParent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MDIParent.Designer.cs">
+      <DependentUpon>MDIParent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PatientInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PatientInfo.Designer.cs">
+      <DependentUpon>PatientInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PatientInfoReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PatientInfoReport.Designer.cs">
+      <DependentUpon>PatientInfoReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PHCDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PHCDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="PHCInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PHCInfo.Designer.cs">
+      <DependentUpon>PHCInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Prasuthi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Prasuthi.Designer.cs">
+      <DependentUpon>Prasuthi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PrescriptionDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PrescriptionDetails.Designer.cs">
+      <DependentUpon>PrescriptionDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UntiedFund.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UntiedFund.Designer.cs">
+      <DependentUpon>UntiedFund.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserRegistration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserRegistration.Designer.cs">
+      <DependentUpon>UserRegistration.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AddLabTests.resx">
+      <DependentUpon>AddLabTests.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DrugInfo.resx">
+      <DependentUpon>DrugInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MDIParent.resx">
+      <DependentUpon>MDIParent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PatientInfo.resx">
+      <DependentUpon>PatientInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PatientInfoReport.resx">
+      <DependentUpon>PatientInfoReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PHCInfo.resx">
+      <DependentUpon>PHCInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrescriptionDetails.resx">
+      <DependentUpon>PrescriptionDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Report1.rdlc" />
+    <EmbeddedResource Include="UserRegistration.resx">
+      <DependentUpon>UserRegistration.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="PHCDataSet.xsc">
+      <DependentUpon>PHCDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="PHCDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PHCDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="PHCDataSet.xss">
+      <DependentUpon>PHCDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AllInOne.Common.Library\AllInOne.Common.Library\AllInOne.Common.Library.csproj">
+      <Project>{52CAFC75-5DB3-44C6-912A-ED87EB6CEB2E}</Project>
+      <Name>AllInOne.Common.Library</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AllInOne.Legal.BootStrapper.BackEnd\AllInOne.BootStrapper.BackEnd.csproj">
+      <Project>{A787EB43-1149-4FE8-994E-E31BD4681FFB}</Project>
+      <Name>AllInOne.BootStrapper.BackEnd</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PHC.BAInterfaces\PHC.BAInterfaces.csproj">
+      <Project>{E641ACEE-F35C-4BC4-B41E-044947EC52A4}</Project>
+      <Name>PHC.BAInterfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PHC.Binder.BackEnd\PHC.Binder.BackEnd\PHC.Binder.BackEnd.csproj">
+      <Project>{C0D852B7-9B69-43DD-AB12-1611E6D68F67}</Project>
+      <Name>PHC.Binder.BackEnd</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PHC.Business\PHC.Business.csproj">
+      <Project>{9518CF34-E87B-4A71-901B-504660982BC0}</Project>
+      <Name>PHC.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PHC.DataAccess\PHC.DataAccessHelper.csproj">
+      <Project>{986AE322-871D-4E22-B51F-357DF5A3BBD9}</Project>
+      <Name>PHC.DataAccessHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PHC\PHC.DAInterfaces.csproj">
+      <Project>{7BE84491-3068-4A93-8AD5-7E929505F357}</Project>
+      <Name>PHC.DAInterfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

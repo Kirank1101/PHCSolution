@@ -1,0 +1,392 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PHCModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DrugInfoes" EntityType="PHCModel.DrugInfo" />
+    <EntitySet Name="LabReports" EntityType="PHCModel.LabReport" />
+    <EntitySet Name="MDrugs" EntityType="PHCModel.MDrug" />
+    <EntitySet Name="MedicationDetails" EntityType="PHCModel.MedicationDetail" />
+    <EntitySet Name="MLabTests" EntityType="PHCModel.MLabTest" />
+    <EntitySet Name="PatientInfoes" EntityType="PHCModel.PatientInfo" />
+    <EntitySet Name="PHCInfoes" EntityType="PHCModel.PHCInfo" />
+    <EntitySet Name="Prescriptions" EntityType="PHCModel.Prescription" />
+    <EntitySet Name="Users" EntityType="PHCModel.User" />
+    <AssociationSet Name="FK_DrugInfo_MDrugs" Association="PHCModel.FK_DrugInfo_MDrugs">
+      <End Role="MDrugs" EntitySet="MDrugs" />
+      <End Role="DrugInfo" EntitySet="DrugInfoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DrugInfo_PHCInfo" Association="PHCModel.FK_DrugInfo_PHCInfo">
+      <End Role="PHCInfo" EntitySet="PHCInfoes" />
+      <End Role="DrugInfo" EntitySet="DrugInfoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LabReport_MLabTest" Association="PHCModel.FK_LabReport_MLabTest">
+      <End Role="MLabTest" EntitySet="MLabTests" />
+      <End Role="LabReport" EntitySet="LabReports" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LabReport_PHCInfo" Association="PHCModel.FK_LabReport_PHCInfo">
+      <End Role="PHCInfo" EntitySet="PHCInfoes" />
+      <End Role="LabReport" EntitySet="LabReports" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LabReport_Prescription" Association="PHCModel.FK_LabReport_Prescription">
+      <End Role="Prescription" EntitySet="Prescriptions" />
+      <End Role="LabReport" EntitySet="LabReports" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MDrugs_PHCInfo" Association="PHCModel.FK_MDrugs_PHCInfo">
+      <End Role="PHCInfo" EntitySet="PHCInfoes" />
+      <End Role="MDrugs" EntitySet="MDrugs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MedicationDetails_MDrugs" Association="PHCModel.FK_MedicationDetails_MDrugs">
+      <End Role="MDrugs" EntitySet="MDrugs" />
+      <End Role="MedicationDetails" EntitySet="MedicationDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MedicationDetails_PHCInfo" Association="PHCModel.FK_MedicationDetails_PHCInfo">
+      <End Role="PHCInfo" EntitySet="PHCInfoes" />
+      <End Role="MedicationDetails" EntitySet="MedicationDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MedicationDetails_Prescription" Association="PHCModel.FK_MedicationDetails_Prescription">
+      <End Role="Prescription" EntitySet="Prescriptions" />
+      <End Role="MedicationDetails" EntitySet="MedicationDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MLabTest_PHCInfo" Association="PHCModel.FK_MLabTest_PHCInfo">
+      <End Role="PHCInfo" EntitySet="PHCInfoes" />
+      <End Role="MLabTest" EntitySet="MLabTests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PatientInfo_PHCInfo" Association="PHCModel.FK_PatientInfo_PHCInfo">
+      <End Role="PHCInfo" EntitySet="PHCInfoes" />
+      <End Role="PatientInfo" EntitySet="PatientInfoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Prescription_PatientInfo" Association="PHCModel.FK_Prescription_PatientInfo">
+      <End Role="PatientInfo" EntitySet="PatientInfoes" />
+      <End Role="Prescription" EntitySet="Prescriptions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Prescription_PHCInfo" Association="PHCModel.FK_Prescription_PHCInfo">
+      <End Role="PHCInfo" EntitySet="PHCInfoes" />
+      <End Role="Prescription" EntitySet="Prescriptions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_PHCInfo" Association="PHCModel.FK_Users_PHCInfo">
+      <End Role="PHCInfo" EntitySet="PHCInfoes" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="DrugInfo">
+    <Key>
+      <PropertyRef Name="DrugInfoID" />
+    </Key>
+    <Property Name="DrugInfoID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="PHCID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="DrugID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Qty" Type="Int32" Nullable="false" />
+    <Property Name="MFDT" Type="DateTime" Nullable="false" />
+    <Property Name="EXPDT" Type="DateTime" Nullable="false" />
+    <Property Name="ObsInd" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+    <Property Name="LastModifiedBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="MDrug" Relationship="PHCModel.FK_DrugInfo_MDrugs" FromRole="DrugInfo" ToRole="MDrugs" />
+    <NavigationProperty Name="PHCInfo" Relationship="PHCModel.FK_DrugInfo_PHCInfo" FromRole="DrugInfo" ToRole="PHCInfo" />
+  </EntityType>
+  <EntityType Name="LabReport">
+    <Key>
+      <PropertyRef Name="LabReportID" />
+    </Key>
+    <Property Name="LabReportID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="prescriptionID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="PHCID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="LabTestID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Result" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="ObsInd" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+    <Property Name="LastModifiedBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="MLabTest" Relationship="PHCModel.FK_LabReport_MLabTest" FromRole="LabReport" ToRole="MLabTest" />
+    <NavigationProperty Name="PHCInfo" Relationship="PHCModel.FK_LabReport_PHCInfo" FromRole="LabReport" ToRole="PHCInfo" />
+    <NavigationProperty Name="Prescription" Relationship="PHCModel.FK_LabReport_Prescription" FromRole="LabReport" ToRole="Prescription" />
+  </EntityType>
+  <EntityType Name="MDrug">
+    <Key>
+      <PropertyRef Name="DrugID" />
+    </Key>
+    <Property Name="DrugID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="PHCID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="DrugName" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="ObsInd" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+    <Property Name="LastModifiedBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="DrugInfoes" Relationship="PHCModel.FK_DrugInfo_MDrugs" FromRole="MDrugs" ToRole="DrugInfo" />
+    <NavigationProperty Name="PHCInfo" Relationship="PHCModel.FK_MDrugs_PHCInfo" FromRole="MDrugs" ToRole="PHCInfo" />
+    <NavigationProperty Name="MedicationDetails" Relationship="PHCModel.FK_MedicationDetails_MDrugs" FromRole="MDrugs" ToRole="MedicationDetails" />
+  </EntityType>
+  <EntityType Name="MedicationDetail">
+    <Key>
+      <PropertyRef Name="MedicationID" />
+    </Key>
+    <Property Name="MedicationID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="prescriptionID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="PHCID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="DrugID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Qty" Type="Int32" Nullable="false" />
+    <Property Name="Dosage" Type="String" Nullable="false" MaxLength="3" Unicode="true" FixedLength="false" />
+    <Property Name="ObsInd" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+    <Property Name="LastModifiedBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="MDrug" Relationship="PHCModel.FK_MedicationDetails_MDrugs" FromRole="MedicationDetails" ToRole="MDrugs" />
+    <NavigationProperty Name="PHCInfo" Relationship="PHCModel.FK_MedicationDetails_PHCInfo" FromRole="MedicationDetails" ToRole="PHCInfo" />
+    <NavigationProperty Name="Prescription" Relationship="PHCModel.FK_MedicationDetails_Prescription" FromRole="MedicationDetails" ToRole="Prescription" />
+  </EntityType>
+  <EntityType Name="MLabTest">
+    <Key>
+      <PropertyRef Name="LabTestID" />
+    </Key>
+    <Property Name="LabTestID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="PHCID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="TestType" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="MinValue" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+    <Property Name="MaxValue" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+    <Property Name="CountValue" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+    <Property Name="ObsInd" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+    <Property Name="LastModifiedBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="LabReports" Relationship="PHCModel.FK_LabReport_MLabTest" FromRole="MLabTest" ToRole="LabReport" />
+    <NavigationProperty Name="PHCInfo" Relationship="PHCModel.FK_MLabTest_PHCInfo" FromRole="MLabTest" ToRole="PHCInfo" />
+  </EntityType>
+  <EntityType Name="PatientInfo">
+    <Key>
+      <PropertyRef Name="PatientID" />
+    </Key>
+    <Property Name="PatientID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="PHCID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Age" Type="Int16" Nullable="false" />
+    <Property Name="Sex" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+    <Property Name="ContactNo" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+    <Property Name="ObsInd" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+    <Property Name="LastModifiedBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" />
+    <Property Name="DOB" Type="DateTime" />
+    <Property Name="BloodGroup" Type="String" MaxLength="6" Unicode="false" FixedLength="false" />
+    <Property Name="PhotoPath" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="PHCInfo" Relationship="PHCModel.FK_PatientInfo_PHCInfo" FromRole="PatientInfo" ToRole="PHCInfo" />
+    <NavigationProperty Name="Prescriptions" Relationship="PHCModel.FK_Prescription_PatientInfo" FromRole="PatientInfo" ToRole="Prescription" />
+  </EntityType>
+  <EntityType Name="PHCInfo">
+    <Key>
+      <PropertyRef Name="PHCID" />
+    </Key>
+    <Property Name="PHCID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="PHCName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Address1" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Taluk" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="District" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="State" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="PinCode" Type="Int32" Nullable="false" />
+    <Property Name="ObsInd" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+    <Property Name="LastModifiedBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="DrugInfoes" Relationship="PHCModel.FK_DrugInfo_PHCInfo" FromRole="PHCInfo" ToRole="DrugInfo" />
+    <NavigationProperty Name="LabReports" Relationship="PHCModel.FK_LabReport_PHCInfo" FromRole="PHCInfo" ToRole="LabReport" />
+    <NavigationProperty Name="MDrugs" Relationship="PHCModel.FK_MDrugs_PHCInfo" FromRole="PHCInfo" ToRole="MDrugs" />
+    <NavigationProperty Name="MedicationDetails" Relationship="PHCModel.FK_MedicationDetails_PHCInfo" FromRole="PHCInfo" ToRole="MedicationDetails" />
+    <NavigationProperty Name="MLabTests" Relationship="PHCModel.FK_MLabTest_PHCInfo" FromRole="PHCInfo" ToRole="MLabTest" />
+    <NavigationProperty Name="PatientInfoes" Relationship="PHCModel.FK_PatientInfo_PHCInfo" FromRole="PHCInfo" ToRole="PatientInfo" />
+    <NavigationProperty Name="Prescriptions" Relationship="PHCModel.FK_Prescription_PHCInfo" FromRole="PHCInfo" ToRole="Prescription" />
+    <NavigationProperty Name="Users" Relationship="PHCModel.FK_Users_PHCInfo" FromRole="PHCInfo" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Prescription">
+    <Key>
+      <PropertyRef Name="prescriptionID" />
+    </Key>
+    <Property Name="prescriptionID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="PatientID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="PHCID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Diseases" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+    <Property Name="ObsInd" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+    <Property Name="LastModifiedBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="LabReports" Relationship="PHCModel.FK_LabReport_Prescription" FromRole="Prescription" ToRole="LabReport" />
+    <NavigationProperty Name="MedicationDetails" Relationship="PHCModel.FK_MedicationDetails_Prescription" FromRole="Prescription" ToRole="MedicationDetails" />
+    <NavigationProperty Name="PatientInfo" Relationship="PHCModel.FK_Prescription_PatientInfo" FromRole="Prescription" ToRole="PatientInfo" />
+    <NavigationProperty Name="PHCInfo" Relationship="PHCModel.FK_Prescription_PHCInfo" FromRole="Prescription" ToRole="PHCInfo" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="PHCID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="EmailID" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="ObsInd" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+    <Property Name="LastModifiedBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="PHCInfo" Relationship="PHCModel.FK_Users_PHCInfo" FromRole="Users" ToRole="PHCInfo" />
+    <Property Type="String" Name="ContactNo" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="LoginID" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_DrugInfo_MDrugs">
+    <End Role="MDrugs" Type="PHCModel.MDrug" Multiplicity="1" />
+    <End Role="DrugInfo" Type="PHCModel.DrugInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MDrugs">
+        <PropertyRef Name="DrugID" />
+      </Principal>
+      <Dependent Role="DrugInfo">
+        <PropertyRef Name="DrugID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DrugInfo_PHCInfo">
+    <End Role="PHCInfo" Type="PHCModel.PHCInfo" Multiplicity="1" />
+    <End Role="DrugInfo" Type="PHCModel.DrugInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHCInfo">
+        <PropertyRef Name="PHCID" />
+      </Principal>
+      <Dependent Role="DrugInfo">
+        <PropertyRef Name="PHCID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LabReport_MLabTest">
+    <End Role="MLabTest" Type="PHCModel.MLabTest" Multiplicity="1" />
+    <End Role="LabReport" Type="PHCModel.LabReport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MLabTest">
+        <PropertyRef Name="LabTestID" />
+      </Principal>
+      <Dependent Role="LabReport">
+        <PropertyRef Name="LabTestID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LabReport_PHCInfo">
+    <End Role="PHCInfo" Type="PHCModel.PHCInfo" Multiplicity="1" />
+    <End Role="LabReport" Type="PHCModel.LabReport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHCInfo">
+        <PropertyRef Name="PHCID" />
+      </Principal>
+      <Dependent Role="LabReport">
+        <PropertyRef Name="PHCID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LabReport_Prescription">
+    <End Role="Prescription" Type="PHCModel.Prescription" Multiplicity="1" />
+    <End Role="LabReport" Type="PHCModel.LabReport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Prescription">
+        <PropertyRef Name="prescriptionID" />
+      </Principal>
+      <Dependent Role="LabReport">
+        <PropertyRef Name="prescriptionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MDrugs_PHCInfo">
+    <End Role="PHCInfo" Type="PHCModel.PHCInfo" Multiplicity="1" />
+    <End Role="MDrugs" Type="PHCModel.MDrug" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHCInfo">
+        <PropertyRef Name="PHCID" />
+      </Principal>
+      <Dependent Role="MDrugs">
+        <PropertyRef Name="PHCID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MedicationDetails_MDrugs">
+    <End Role="MDrugs" Type="PHCModel.MDrug" Multiplicity="1" />
+    <End Role="MedicationDetails" Type="PHCModel.MedicationDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MDrugs">
+        <PropertyRef Name="DrugID" />
+      </Principal>
+      <Dependent Role="MedicationDetails">
+        <PropertyRef Name="DrugID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MedicationDetails_PHCInfo">
+    <End Role="PHCInfo" Type="PHCModel.PHCInfo" Multiplicity="1" />
+    <End Role="MedicationDetails" Type="PHCModel.MedicationDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHCInfo">
+        <PropertyRef Name="PHCID" />
+      </Principal>
+      <Dependent Role="MedicationDetails">
+        <PropertyRef Name="PHCID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MedicationDetails_Prescription">
+    <End Role="Prescription" Type="PHCModel.Prescription" Multiplicity="1" />
+    <End Role="MedicationDetails" Type="PHCModel.MedicationDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Prescription">
+        <PropertyRef Name="prescriptionID" />
+      </Principal>
+      <Dependent Role="MedicationDetails">
+        <PropertyRef Name="prescriptionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MLabTest_PHCInfo">
+    <End Role="PHCInfo" Type="PHCModel.PHCInfo" Multiplicity="1" />
+    <End Role="MLabTest" Type="PHCModel.MLabTest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHCInfo">
+        <PropertyRef Name="PHCID" />
+      </Principal>
+      <Dependent Role="MLabTest">
+        <PropertyRef Name="PHCID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PatientInfo_PHCInfo">
+    <End Role="PHCInfo" Type="PHCModel.PHCInfo" Multiplicity="1" />
+    <End Role="PatientInfo" Type="PHCModel.PatientInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHCInfo">
+        <PropertyRef Name="PHCID" />
+      </Principal>
+      <Dependent Role="PatientInfo">
+        <PropertyRef Name="PHCID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Prescription_PatientInfo">
+    <End Role="PatientInfo" Type="PHCModel.PatientInfo" Multiplicity="1" />
+    <End Role="Prescription" Type="PHCModel.Prescription" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PatientInfo">
+        <PropertyRef Name="PatientID" />
+      </Principal>
+      <Dependent Role="Prescription">
+        <PropertyRef Name="PatientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Prescription_PHCInfo">
+    <End Role="PHCInfo" Type="PHCModel.PHCInfo" Multiplicity="1" />
+    <End Role="Prescription" Type="PHCModel.Prescription" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHCInfo">
+        <PropertyRef Name="PHCID" />
+      </Principal>
+      <Dependent Role="Prescription">
+        <PropertyRef Name="PHCID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_PHCInfo">
+    <End Role="PHCInfo" Type="PHCModel.PHCInfo" Multiplicity="1" />
+    <End Role="Users" Type="PHCModel.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHCInfo">
+        <PropertyRef Name="PHCID" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="PHCID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

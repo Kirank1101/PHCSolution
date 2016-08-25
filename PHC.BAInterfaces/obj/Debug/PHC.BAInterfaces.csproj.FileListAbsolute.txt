@@ -1,0 +1,14 @@
+C:\WindowsProjects\PHCSolution\PHC.BAInterfaces\bin\Debug\PHC.BAInterfaces.dll
+C:\WindowsProjects\PHCSolution\PHC.BAInterfaces\bin\Debug\PHC.BAInterfaces.pdb
+C:\WindowsProjects\PHCSolution\PHC.BAInterfaces\bin\Debug\PHC.DataAccess.dll
+C:\WindowsProjects\PHCSolution\PHC.BAInterfaces\bin\Debug\PHC.DataAccess.pdb
+C:\WindowsProjects\PHCSolution\PHC.BAInterfaces\obj\Debug\PHC.BAInterfaces.csprojResolveAssemblyReference.cache
+C:\WindowsProjects\PHCSolution\PHC.BAInterfaces\obj\Debug\PHC.BAInterfaces.dll
+C:\WindowsProjects\PHCSolution\PHC.BAInterfaces\obj\Debug\PHC.BAInterfaces.pdb
+E:\PHCSolution\PHC.BAInterfaces\bin\Debug\PHC.BAInterfaces.dll
+E:\PHCSolution\PHC.BAInterfaces\bin\Debug\PHC.BAInterfaces.pdb
+E:\PHCSolution\PHC.BAInterfaces\bin\Debug\PHC.DataAccess.dll
+E:\PHCSolution\PHC.BAInterfaces\bin\Debug\PHC.DataAccess.pdb
+E:\PHCSolution\PHC.BAInterfaces\obj\Debug\PHC.BAInterfaces.csprojResolveAssemblyReference.cache
+E:\PHCSolution\PHC.BAInterfaces\obj\Debug\PHC.BAInterfaces.dll
+E:\PHCSolution\PHC.BAInterfaces\obj\Debug\PHC.BAInterfaces.pdb
