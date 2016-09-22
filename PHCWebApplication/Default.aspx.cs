@@ -14,6 +14,7 @@ namespace PHCWebApplication
         protected void Page_Load(object sender, EventArgs e)
         {
             ITransactionBusiness business = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
+            
         }
     }
 }

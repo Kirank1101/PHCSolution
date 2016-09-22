@@ -55,8 +55,3 @@ E:\PHCSolution\Bin\AllInOne.BootStrapper.BackEnd.pdb
 E:\PHCSolution\AllInOne.Legal.BootStrapper.BackEnd\obj\Debug\AllInOne.BootStrapper.BackEnd.csprojResolveAssemblyReference.cache
 E:\PHCSolution\AllInOne.Legal.BootStrapper.BackEnd\obj\Debug\AllInOne.BootStrapper.BackEnd.dll
 E:\PHCSolution\AllInOne.Legal.BootStrapper.BackEnd\obj\Debug\AllInOne.BootStrapper.BackEnd.pdb
-C:\Users\Nagavardhan\Documents\GitHub\PHCSolution\Bin\AllInOne.BootStrapper.BackEnd.dll
-C:\Users\Nagavardhan\Documents\GitHub\PHCSolution\Bin\AllInOne.BootStrapper.BackEnd.pdb
-C:\Users\Nagavardhan\Documents\GitHub\PHCSolution\AllInOne.Legal.BootStrapper.BackEnd\obj\Debug\AllInOne.BootStrapper.BackEnd.csprojResolveAssemblyReference.cache
-C:\Users\Nagavardhan\Documents\GitHub\PHCSolution\AllInOne.Legal.BootStrapper.BackEnd\obj\Debug\AllInOne.BootStrapper.BackEnd.dll
-C:\Users\Nagavardhan\Documents\GitHub\PHCSolution\AllInOne.Legal.BootStrapper.BackEnd\obj\Debug\AllInOne.BootStrapper.BackEnd.pdb
