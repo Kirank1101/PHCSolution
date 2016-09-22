@@ -31,7 +31,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
@@ -43,23 +47,104 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DrugsIssued.cs">
+      <DependentUpon>PHCModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="GenericRepository.cs" />
     <Compile Include="GetUOW.cs" />
     <Compile Include="IGenericRepository.cs" />
     <Compile Include="IUnitOfWork.cs" />
+    <Compile Include="LabTestDetail.cs">
+      <DependentUpon>PHCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MDisease.cs">
+      <DependentUpon>PHCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MDistrict.cs">
+      <DependentUpon>PHCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MDrug.cs">
+      <DependentUpon>PHCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MLabTest.cs">
+      <DependentUpon>PHCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MPHC.cs">
+      <DependentUpon>PHCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MState.cs">
+      <DependentUpon>PHCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MTaluk.cs">
+      <DependentUpon>PHCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MVillage.cs">
+      <DependentUpon>PHCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PatientAddress.cs">
+      <DependentUpon>PHCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PatientDetail.cs">
+      <DependentUpon>PHCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PatientEC.cs">
+      <DependentUpon>PHCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PatientMC.cs">
+      <DependentUpon>PHCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PatientPrescription.cs">
+      <DependentUpon>PHCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PHCModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PHCModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PHCModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PHCModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="PHCModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PHCModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User.cs">
+      <DependentUpon>PHCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserDetail.cs">
+      <DependentUpon>PHCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserMap.cs">
+      <DependentUpon>PHCModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
+    <None Include="packages.config" />
     <EntityDeploy Include="PHCModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>PHCModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="PHCModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PHCModel.edmx</DependentUpon>
+      <LastGenOutput>PHCModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="PHCModel.edmx.diagram">
+      <DependentUpon>PHCModel.edmx</DependentUpon>
+    </None>
+    <None Include="PHCModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PHCModel.edmx</DependentUpon>
+      <LastGenOutput>PHCModel.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

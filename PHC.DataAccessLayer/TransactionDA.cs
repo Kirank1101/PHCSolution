@@ -23,12 +23,12 @@ namespace PHC.DataAccessLayer
             //ObjectContext
             //var objectContext = ((IObjectContextAdapter)myDbContextObject).ObjectContext;
         }
-        public bool AddPatientInfo(PatientInfo obj)
+        public bool AddPatientInfo(PatientDetail  obj)
         {
             IUnitOfWork work = null;
             using (work = GetUOW.GetUOWInstance)
             {
-                new GenericRepository<PatientInfo>(work).Add(obj);              
+                new GenericRepository<PatientDetail>(work).Add(obj);              
                 work.Save();
             }
             return true;

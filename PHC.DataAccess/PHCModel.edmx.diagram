@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bfe466cea468407cad22fc38251e15fd" Name="Diagram1">
+        <EntityTypeShape EntityType="PHCSolutionsModel.DrugsIssued" Width="1.5" PointX="17.25" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="PHCSolutionsModel.LabTestDetail" Width="1.5" PointX="17.25" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PHCSolutionsModel.MDisease" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PHCSolutionsModel.MDistrict" Width="1.5" PointX="3" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PHCSolutionsModel.MDrug" Width="1.5" PointX="15" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="PHCSolutionsModel.MLabTest" Width="1.5" PointX="3" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PHCSolutionsModel.MPHC" Width="1.5" PointX="7.5" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="PHCSolutionsModel.MState" Width="1.5" PointX="0.75" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PHCSolutionsModel.MTaluk" Width="1.5" PointX="5.25" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PHCSolutionsModel.MVillage" Width="1.5" PointX="9.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="PHCSolutionsModel.PatientAddress" Width="1.5" PointX="12" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PHCSolutionsModel.PatientDetail" Width="1.5" PointX="9.75" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PHCSolutionsModel.PatientEC" Width="1.5" PointX="12" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="PHCSolutionsModel.PatientMC" Width="1.5" PointX="14.25" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PHCSolutionsModel.PatientPrescription" Width="1.5" PointX="12" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PHCSolutionsModel.UserDetail" Width="1.5" PointX="15" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PHCSolutionsModel.UserMap" Width="1.5" PointX="15" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PHCSolutionsModel.User" Width="1.5" PointX="12.75" PointY="4" IsExpanded="true" />
+        <AssociationConnector Association="PHCSolutionsModel.FK__DrugsIssu__DrugI__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="PHCSolutionsModel.FK__DrugsIssu__Presc__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="PHCSolutionsModel.FK_DrugsIssued_MPHC" ManuallyRouted="false" />
+        <AssociationConnector Association="PHCSolutionsModel.FK_LabTestDetails_MLabTest" ManuallyRouted="false" />
+        <AssociationConnector Association="PHCSolutionsModel.FK_LabTestDetails_MPHC" ManuallyRouted="false" />
+        <AssociationConnector Association="PHCSolutionsModel.FK_LabTestDetails_PatientPrescription" ManuallyRouted="false" />
+        <AssociationConnector Association="PHCSolutionsModel.FK__PatientPr__Disea__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="PHCSolutionsModel.FK_MDisease_MState" ManuallyRouted="false" />
+        <AssociationConnector Association="PHCSolutionsModel.FK_MDistrict_MState" ManuallyRouted="false" />
+        <AssociationConnector Association="PHCSolutionsModel.FK_MTaluk_MDistrict" ManuallyRouted="false" />
+        <AssociationConnector Association="PHCSolutionsModel.FK_UserMap_MDistrict" ManuallyRouted="false" />
+        <AssociationConnector Association="PHCSolutionsModel.FK_MLabTest_MState" ManuallyRouted="false" />
+        <AssociationConnector Association="PHCSolutionsModel.FK_MPHC_MTaluk" ManuallyRouted="false" />
+        <AssociationConnector Association="PHCSolutionsModel.FK_MVillage_MPHC" ManuallyRouted="false" />
+        <AssociationConnector Association="PHCSolutionsModel.FK_PatientDetails_MPHC" ManuallyRouted="false" />
+        <AssociationConnector Association="PHCSolutionsModel.FK_PatientPrescription_MPHC" ManuallyRouted="false" />
+        <AssociationConnector Association="PHCSolutionsModel.FK_UserMap_MPHC" ManuallyRouted="false" />
+        <AssociationConnector Association="PHCSolutionsModel.FK_UserMap_MState" ManuallyRouted="false" />
+        <AssociationConnector Association="PHCSolutionsModel.FK_UserMap_MTaluk" ManuallyRouted="false" />
+        <AssociationConnector Association="PHCSolutionsModel.FK_UserMap_MVillage" ManuallyRouted="false" />
+        <AssociationConnector Association="PHCSolutionsModel.FK_PatientAddress_PatientDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="PHCSolutionsModel.FK_PatientEC_PatientDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="PHCSolutionsModel.FK_PatientMC_PatientDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="PHCSolutionsModel.FK_PatientPrescription_PatientDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="PHCSolutionsModel.FK_PatientMC_PatientEC" ManuallyRouted="false" />
+        <AssociationConnector Association="PHCSolutionsModel.FK_UserDetails_UserDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="PHCSolutionsModel.FK_UserMap_Users" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

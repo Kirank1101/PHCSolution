@@ -13,7 +13,7 @@ namespace PHC.DataAccess
            get
            {
                lock (lockUOW)
-                  return new Entities();
+                   return new PHCSolutions();
 
            }
        }

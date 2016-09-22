@@ -8,3 +8,10 @@ E:\PHCSolution\PHC.DataAccess\bin\Debug\PHC.DataAccess.dll
 E:\PHCSolution\PHC.DataAccess\bin\Debug\PHC.DataAccess.pdb
 E:\PHCSolution\PHC.DataAccess\obj\Debug\PHC.DataAccess.dll
 E:\PHCSolution\PHC.DataAccess\obj\Debug\PHC.DataAccess.pdb
+C:\Users\Nagavardhan\Documents\GitHub\PHCSolution\PHC.DataAccess\bin\Debug\PHC.DataAccess.dll.config
+C:\Users\Nagavardhan\Documents\GitHub\PHCSolution\PHC.DataAccess\bin\Debug\PHC.DataAccess.dll
+C:\Users\Nagavardhan\Documents\GitHub\PHCSolution\PHC.DataAccess\bin\Debug\PHC.DataAccess.pdb
+C:\Users\Nagavardhan\Documents\GitHub\PHCSolution\PHC.DataAccess\obj\Debug\PHC.DataAccess.dll
+C:\Users\Nagavardhan\Documents\GitHub\PHCSolution\PHC.DataAccess\obj\Debug\PHC.DataAccess.pdb
+C:\Users\Nagavardhan\Documents\GitHub\PHCSolution\PHC.DataAccess\bin\Debug\EntityFramework.dll
+C:\Users\Nagavardhan\Documents\GitHub\PHCSolution\PHC.DataAccess\bin\Debug\EntityFramework.xml
