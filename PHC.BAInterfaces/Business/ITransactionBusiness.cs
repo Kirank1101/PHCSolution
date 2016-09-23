@@ -20,5 +20,9 @@ namespace PHC.BAInterfaces.Business
         List<MDiseaseDTO> GetMDiseases();
 
         ResultDTO SaveMdisease(string DiseaseID, string DiseaseName);
+
+        ResultDTO UpdateMdisease(string DiseaseID, string DiseaseName);
+
+        ResultDTO DeleteMdisease(string DiseaseID);
     }
 }

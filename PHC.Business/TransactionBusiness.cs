@@ -108,5 +108,28 @@ namespace PHC.Business
             else
                 return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Saved." };
         }
+
+
+        public ResultDTO UpdateMdisease(string DiseaseID, string DiseaseName)
+        {
+            MDisease Disease = new MDisease();
+            Disease.DiseaseID = DiseaseID;
+            Disease.Name = DiseaseName;
+            if (objDA.UpdateMDisease(Disease))
+                return new ResultDTO() { IsSuccess = true, Message = "Successfully Updated." };
+            else
+                return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Updated." };
+        }
+
+
+        public ResultDTO DeleteMdisease(string DiseaseID)
+        {
+            MDisease Disease = new MDisease();
+            Disease.DiseaseID = DiseaseID;
+            if (objDA.DeleteMDisease(Disease))
+                return new ResultDTO() { IsSuccess = true, Message = "Successfully Deleted." };
+            else
+                return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Deleted." };
+        }
     }
 }

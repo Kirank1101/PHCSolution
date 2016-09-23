@@ -17,5 +17,9 @@ namespace PHC.DAInterfaces.DataAccess
 
         List<MDisease> GetMDiseases();
         bool AddMDisease(MDisease Disease);
+
+        bool UpdateMDisease(MDisease Disease);
+
+        bool DeleteMDisease(MDisease Disease);
     }
 }

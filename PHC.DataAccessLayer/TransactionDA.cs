@@ -119,5 +119,29 @@ namespace PHC.DataAccessLayer
             }
             return true;            
         }
+
+
+        public bool UpdateMDisease(MDisease Disease)
+        {
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                new GenericRepository<MDisease>(work).Edit(Disease);
+                work.Save();
+            }
+            return true;            
+        }
+
+
+        public bool DeleteMDisease(MDisease Disease)
+        {
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                new GenericRepository<MDisease>(work).Delete(Disease);
+                work.Save();
+            }
+            return true;            
+        }
     }
 }
