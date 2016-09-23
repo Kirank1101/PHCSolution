@@ -21,5 +21,17 @@ namespace PHC.DAInterfaces.DataAccess
         bool UpdateMDisease(MDisease Disease);
 
         bool DeleteMDisease(MDisease Disease);
+
+        MDisease GetMDiseases(string DiseaseName);
+
+        List<MDrug> GetMDrugs();
+
+        MDrug GetMdrug(string DrugName);
+
+        bool AddMDrug(MDrug Drug);
+
+        bool UpdateMDrug(MDrug Drug);
+
+        bool DeleteMDrug(MDrug Drug);
     }
 }

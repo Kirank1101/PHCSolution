@@ -49,11 +49,11 @@ namespace PHC.BAInterfaces.DataTransfer
     public class MDrugsDTO
     {
         public string DrugID { get; set; }
-        public string Name { get; set; }
+        public string DrugName { get; set; }
         public int Quantity { get; set; }
         public string BatchNo { get; set; }
-        public DateTime manufactureDate { get; set; }
-        public DateTime ExpiryDate { get; set; }
+        public DateTime MfDate { get; set; }
+        public DateTime ExpDate { get; set; }
         public DateTime PurchaseDate { get; set; }
     }
     public class MLabTestDTO

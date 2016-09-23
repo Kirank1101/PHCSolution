@@ -3,6 +3,7 @@
 <%@ Register TagPrefix="FriendlyUrls" Namespace="Microsoft.AspNet.FriendlyUrls" %>
 
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
+
     <script type="text/javascript">
         function WebForm_OnSubmit() {
             if (typeof (ValidatorOnSubmit) == "function" && ValidatorOnSubmit() == false) {
@@ -26,6 +27,12 @@
             border-color: #b94a48;
         }
     </style>
+
+    <asp:Panel ID="pnlstatus" runat="server">
+        <asp:Label ID="lblstatus" runat="server"></asp:Label>
+    </asp:Panel>
+    <br />
+
     <h3>Diseases</h3>
     <br />
 
@@ -42,13 +49,14 @@
                     </div>
                 </td>
                 <td>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
                         ErrorMessage="Disease required" ControlToValidate="txtnewDiseaseName">*</asp:RequiredFieldValidator></td>
                 <td style="width: 136px">
                     <asp:Button ID="btnAdd" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btnAdd_Click" />
                 </td>
             </tr>
-        </table>d
+        </table>
+        
         <br />
         <br />
         <table>

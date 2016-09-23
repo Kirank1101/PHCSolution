@@ -1,4 +1,5 @@
 ﻿using PHC.BAInterfaces.Business;
+using PHC.BAInterfaces.Constants;
 using PHC.BAInterfaces.DataTransfer;
 using PHC.Binder.BackEnd;
 using System;
@@ -23,33 +24,18 @@ namespace WebApplication5
             ResultDTO resultDTO = objITransactionBusiness.SaveMdisease(DateTime.Now.ToLongTimeString(), txtnewDiseaseName.Text);
             if (resultDTO.IsSuccess)
             {
-                //pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessBackGroundColor);
-                //lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessForeColor);
-                //lblstatus.Text = resultDTO.Message;
+                pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessBackGroundColor);
+                lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessForeColor);
+                lblstatus.Text = resultDTO.Message;
             }
             else
             {
-                //pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorBackGroundColor);
-                //lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorForeColor);
-                //lblstatus.Text = resultDTO.Message;
+                pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorBackGroundColor);
+                lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorForeColor);
+                lblstatus.Text = resultDTO.Message;
             }
             this.PopulateData();
         }
-        const string VSDiseaseNames = "VSDiseases";
-        public List<DiseaseClass> ViewstateDiseaseNames
-        {
-            get
-            {
-                if (ViewState[VSDiseaseNames] == null)
-                    ViewState[VSDiseaseNames] = new List<DiseaseClass>();
-                return (List<DiseaseClass>)ViewState[VSDiseaseNames];
-            }
-            set
-            {
-                ViewState[VSDiseaseNames] = value;
-            }
-        }
-
         private void PopulateData()
         {
             List<MDiseaseDTO> lstdisease = new List<MDiseaseDTO>();
@@ -59,8 +45,10 @@ namespace WebApplication5
                 ListView1.DataSource = lstdisease;
                 ListView1.DataBind();
             }
+            else { 
+            
+            }
         }
-
         protected void EditRecord(object sender, ListViewEditEventArgs e)
         {
             ListView1.EditIndex = e.NewEditIndex;
@@ -100,25 +88,18 @@ namespace WebApplication5
         {
 
             string DiseaseID = ListView1.DataKeys[e.ItemIndex].Value.ToString();
-            List<DiseaseClass> lstvst = null;
-            lstvst = ViewstateDiseaseNames;
-            DiseaseClass tst = lstvst.Where(t => t.DiseaseID == DiseaseID).SingleOrDefault();
-            lstvst.Remove(tst);
-            ViewstateDiseaseNames = lstvst;
-            //lblMessage.Text = "Record delete successfully !";
-            // repopulate the data
             ResultDTO resultDTO = objITransactionBusiness.DeleteMdisease(DiseaseID);
             if (resultDTO.IsSuccess)
             {
-                //pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessBackGroundColor);
-                //lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessForeColor);
-                //lblstatus.Text = resultDTO.Message;
+                pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessBackGroundColor);
+                lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessForeColor);
+                lblstatus.Text = resultDTO.Message;
             }
             else
             {
-                //pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorBackGroundColor);
-                //lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorForeColor);
-                //lblstatus.Text = resultDTO.Message;
+                pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorBackGroundColor);
+                lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorForeColor);
+                lblstatus.Text = resultDTO.Message;
             }
             this.PopulateData();
         }
@@ -129,10 +110,5 @@ namespace WebApplication5
         }
 
     }
-    [Serializable]
-    public class DiseaseClass
-    {
-        public string DiseaseID { get; set; }
-        public string DiseaseName { get; set; }
-    }
+    
 }

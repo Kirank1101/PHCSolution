@@ -24,5 +24,13 @@ namespace PHC.BAInterfaces.Business
         ResultDTO UpdateMdisease(string DiseaseID, string DiseaseName);
 
         ResultDTO DeleteMdisease(string DiseaseID);
+
+        List<MDrugsDTO> GetMDrugs();
+
+        ResultDTO SaveMDrug(string DrugName, int Quantity, string BatchNo, DateTime MfDate, DateTime ExpDate, DateTime PurchaseDate);
+
+        ResultDTO UpdateMDrug(string DrugID, string DrugName, int Quantity, string BatchNo, DateTime MfDate, DateTime ExpDate, DateTime PurchaseDate);
+
+        ResultDTO DeleteMDrug(string DrugID);
     }
 }

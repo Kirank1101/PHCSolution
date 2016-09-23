@@ -92,8 +92,6 @@ namespace PHC.Business
                 }
             return lstDiseaseDTO;
         }
-
-
         public ResultDTO SaveMdisease(string DiseaseID, string DiseaseName)
         {
             MDisease Disease = new MDisease();
@@ -103,13 +101,17 @@ namespace PHC.Business
             Disease.LastModifiedBy = "System";
             Disease.LastModifiedDate = DateTime.Now;
             Disease.ObsInd = "N";
-            if (objDA.AddMDisease(Disease))
-                return new ResultDTO() { IsSuccess = true, Message = "Successfully Saved." };
+            MDisease checkdisease = objDA.GetMDiseases(DiseaseName);
+            if (checkdisease != null)
+            {
+                if (objDA.AddMDisease(Disease))
+                    return new ResultDTO() { IsSuccess = true, Message = "Successfully Saved." };
+                else
+                    return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Saved." };
+            }
             else
-                return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Saved." };
+                return new ResultDTO() { IsSuccess = false, Message = "DiseaseName already exist." };
         }
-
-
         public ResultDTO UpdateMdisease(string DiseaseID, string DiseaseName)
         {
             MDisease Disease = new MDisease();
@@ -120,13 +122,81 @@ namespace PHC.Business
             else
                 return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Updated." };
         }
-
-
         public ResultDTO DeleteMdisease(string DiseaseID)
         {
             MDisease Disease = new MDisease();
             Disease.DiseaseID = DiseaseID;
             if (objDA.DeleteMDisease(Disease))
+                return new ResultDTO() { IsSuccess = true, Message = "Successfully Deleted." };
+            else
+                return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Deleted." };
+        }
+        public List<MDrugsDTO> GetMDrugs()
+        {
+            List<MDrug> lstDrug = objDA.GetMDrugs();
+            List<MDrugsDTO> lstDrugDTO = new List<MDrugsDTO>();
+            if (lstDrug != null)
+                foreach (MDrug Drug in lstDrug)
+                {
+                    MDrugsDTO DrugDTO = new MDrugsDTO();
+                    DrugDTO.DrugID = Drug.DrugID;
+                    DrugDTO.DrugName = Drug.Name;
+                    DrugDTO.Quantity = Drug.Quantity;
+                    DrugDTO.MfDate = Drug.manufactureDate;
+                    DrugDTO.ExpDate = Drug.ExpiryDate;
+                    DrugDTO.PurchaseDate = Drug.PurchaseDate;
+                    lstDrugDTO.Add(DrugDTO);
+                }
+            return lstDrugDTO;
+        }
+        public ResultDTO SaveMDrug(string DrugName, int Quantity, string BatchNo, DateTime MfDate, DateTime ExpDate, DateTime PurchaseDate)
+        {
+
+            MDrug Drug = new MDrug();
+            Drug.DrugID = "DrugID";
+            Drug.Name = DrugName;
+            Drug.Quantity = Quantity;
+            Drug.BatchNo = BatchNo;
+            Drug.manufactureDate = MfDate;
+            Drug.ExpiryDate = ExpDate;
+            Drug.PurchaseDate = PurchaseDate;
+            Drug.LastModifiedBy = "System";
+            Drug.LastModifiedDate = DateTime.Now;
+            Drug.ObsInd = "N";
+            MDrug checkdrug = objDA.GetMdrug(DrugName);
+            if (checkdrug != null)
+            {
+                if (objDA.AddMDrug(Drug))
+                    return new ResultDTO() { IsSuccess = true, Message = "Successfully Saved." };
+                else
+                    return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Saved." };
+            }
+            else
+                return new ResultDTO() { IsSuccess = false, Message = "DiseaseName already exist." };
+        }
+        public ResultDTO UpdateMDrug(string DrugID, string DrugName, int Quantity, string BatchNo, DateTime MfDate, DateTime ExpDate, DateTime PurchaseDate)
+        {
+            MDrug Drug = new MDrug();
+            Drug.DrugID = DrugID;
+            Drug.Name = DrugName;
+            Drug.BatchNo = BatchNo;
+            Drug.Quantity = Quantity;
+            Drug.manufactureDate = MfDate;
+            Drug.ExpiryDate = ExpDate;
+            Drug.PurchaseDate = PurchaseDate;
+            Drug.LastModifiedBy = "System";
+            Drug.LastModifiedDate = DateTime.Now;
+            Drug.ObsInd = "N";
+            if (objDA.UpdateMDrug(Drug))
+                return new ResultDTO() { IsSuccess = true, Message = "Successfully Updated." };
+            else
+                return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Updated." };
+        }
+        public ResultDTO DeleteMDrug(string DrugID)
+        {
+            MDrug Drug = new MDrug();
+            Drug.DrugID = DrugID;
+            if (objDA.DeleteMDrug(Drug))
                 return new ResultDTO() { IsSuccess = true, Message = "Successfully Deleted." };
             else
                 return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Deleted." };
