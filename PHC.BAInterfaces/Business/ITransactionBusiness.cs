@@ -17,5 +17,8 @@ namespace PHC.BAInterfaces.Business
         //UserDTO GetUsers(string UserId);
 
         //ResultDTO AuthenticateUser(string UserName, string Password);
+        List<MDiseaseDTO> GetMDiseases();
+
+        ResultDTO SaveMdisease(string DiseaseID, string DiseaseName);
     }
 }

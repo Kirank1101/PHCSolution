@@ -14,5 +14,8 @@ namespace PHC.DAInterfaces.DataAccess
         bool SaveUserRegistration(User obj);
         User GetUsers(string UserId);
         User GetUsers(string UserName, string Password);
+
+        List<MDisease> GetMDiseases();
+        bool AddMDisease(MDisease Disease);
     }
 }

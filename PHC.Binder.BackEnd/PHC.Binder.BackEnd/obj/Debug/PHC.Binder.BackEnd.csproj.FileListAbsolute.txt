@@ -8,3 +8,8 @@ E:\PHCSolution\Bin\PHC.Binder.BackEnd.pdb
 E:\PHCSolution\PHC.Binder.BackEnd\PHC.Binder.BackEnd\obj\Debug\PHC.Binder.BackEnd.csprojResolveAssemblyReference.cache
 E:\PHCSolution\PHC.Binder.BackEnd\PHC.Binder.BackEnd\obj\Debug\PHC.Binder.BackEnd.dll
 E:\PHCSolution\PHC.Binder.BackEnd\PHC.Binder.BackEnd\obj\Debug\PHC.Binder.BackEnd.pdb
+C:\Users\Nagavardhan\Documents\GitHub\PHCSolution\Bin\PHC.Binder.BackEnd.dll
+C:\Users\Nagavardhan\Documents\GitHub\PHCSolution\Bin\PHC.Binder.BackEnd.pdb
+C:\Users\Nagavardhan\Documents\GitHub\PHCSolution\PHC.Binder.BackEnd\PHC.Binder.BackEnd\obj\Debug\PHC.Binder.BackEnd.csprojResolveAssemblyReference.cache
+C:\Users\Nagavardhan\Documents\GitHub\PHCSolution\PHC.Binder.BackEnd\PHC.Binder.BackEnd\obj\Debug\PHC.Binder.BackEnd.dll
+C:\Users\Nagavardhan\Documents\GitHub\PHCSolution\PHC.Binder.BackEnd\PHC.Binder.BackEnd\obj\Debug\PHC.Binder.BackEnd.pdb

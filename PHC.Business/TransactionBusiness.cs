@@ -77,5 +77,36 @@ namespace PHC.Business
         //    else
         //        return new ResultDTO() { IsSuccess = false, Message = "Invalid Username and Password." };
         //}
+
+        public List<MDiseaseDTO> GetMDiseases()
+        {
+            List<MDisease> lstdisease = objDA.GetMDiseases();
+            List<MDiseaseDTO> lstDiseaseDTO = new List<MDiseaseDTO>();
+            if (lstdisease != null)
+                foreach (MDisease Disease in lstdisease)
+                {
+                    MDiseaseDTO DiseaseDTO = new MDiseaseDTO();
+                    DiseaseDTO.DiseaseID = Disease.DiseaseID;
+                    DiseaseDTO.DiseaseName = Disease.Name;
+                    lstDiseaseDTO.Add(DiseaseDTO);
+                }
+            return lstDiseaseDTO;
+        }
+
+
+        public ResultDTO SaveMdisease(string DiseaseID, string DiseaseName)
+        {
+            MDisease Disease = new MDisease();
+            Disease.DiseaseID = DiseaseID;
+            Disease.Name = DiseaseName;
+            Disease.StateID = "Karnataka";
+            Disease.LastModifiedBy = "System";
+            Disease.LastModifiedDate = DateTime.Now;
+            Disease.ObsInd = "N";
+            if (objDA.AddMDisease(Disease))
+                return new ResultDTO() { IsSuccess = true, Message = "Successfully Saved." };
+            else
+                return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Saved." };
+        }
     }
 }

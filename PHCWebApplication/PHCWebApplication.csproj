@@ -161,6 +161,13 @@
     <Content Include="Account\ResetPasswordConfirmation.aspx" />
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
+    <Content Include="AddDiseases.aspx" />
+    <Content Include="AddDrugs.aspx" />
+    <Content Include="AddLabTests.aspx" />
+    <Content Include="AddPatientDetails.aspx" />
+    <Content Include="AddPHC.aspx" />
+    <Content Include="AddTaluk.aspx" />
+    <Content Include="AddVillages.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -346,6 +353,55 @@
     </Compile>
     <Compile Include="Account\VerifyPhoneNumber.aspx.designer.cs">
       <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddDiseases.aspx.cs">
+      <DependentUpon>AddDiseases.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddDiseases.aspx.designer.cs">
+      <DependentUpon>AddDiseases.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddDrugs.aspx.cs">
+      <DependentUpon>AddDrugs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddDrugs.aspx.designer.cs">
+      <DependentUpon>AddDrugs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddLabTests.aspx.cs">
+      <DependentUpon>AddLabTests.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddLabTests.aspx.designer.cs">
+      <DependentUpon>AddLabTests.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddPatientDetails.aspx.cs">
+      <DependentUpon>AddPatientDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddPatientDetails.aspx.designer.cs">
+      <DependentUpon>AddPatientDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddPHC.aspx.cs">
+      <DependentUpon>AddPHC.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddPHC.aspx.designer.cs">
+      <DependentUpon>AddPHC.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddTaluk.aspx.cs">
+      <DependentUpon>AddTaluk.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddTaluk.aspx.designer.cs">
+      <DependentUpon>AddTaluk.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddVillages.aspx.cs">
+      <DependentUpon>AddVillages.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddVillages.aspx.designer.cs">
+      <DependentUpon>AddVillages.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">

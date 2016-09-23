@@ -89,5 +89,35 @@ namespace PHC.DataAccessLayer
                 }
             }
         }
+
+
+        public List<MDisease> GetMDiseases()
+        {
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                try
+                {
+                    return new GenericRepository<MDisease>(work).GetAll().Where(p => p.ObsInd=="N").ToList();
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                    throw ex;
+                }
+            }
+        }
+
+
+        public bool AddMDisease(MDisease Disease)
+        {
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                new GenericRepository<MDisease>(work).Add(Disease);
+                work.Save();
+            }
+            return true;            
+        }
     }
 }
