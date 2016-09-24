@@ -114,7 +114,7 @@ namespace PHC.DataAccessLayer
             {
                 try
                 {
-                    return new GenericRepository<MDisease>(work).GetAll().Where(p => p.Name == DiseaseName).SingleOrDefault();
+                    return new GenericRepository<MDisease>(work).FindBy(n => n.Name == DiseaseName && n.ObsInd == No).FirstOrDefault();                        
                 }
                 catch (Exception ex)
                 {
@@ -135,13 +135,25 @@ namespace PHC.DataAccessLayer
         }
         public bool UpdateMDisease(MDisease Disease)
         {
+
             IUnitOfWork work = null;
             using (work = GetUOW.GetUOWInstance)
             {
-                new GenericRepository<MDisease>(work).Edit(Disease);
-                work.Save();
+                MDisease mDisease = new GenericRepository<MDisease>(work).FindBy(n => n.DiseaseID == Disease.DiseaseID).FirstOrDefault();
+
+                if (mDisease != null)
+                {
+                    //con.Edit(empobj);
+                    mDisease.Name = Disease.Name;
+                    mDisease.LastModifiedBy = "System";
+                    mDisease.LastModifiedDate = DateTime.Now;
+                    work.Save();
+
+                    return true;
+                }
+                else
+                    return false;
             }
-            return true;
         }
         public bool DeleteMDisease(MDisease Disease)
         {
@@ -176,7 +188,7 @@ namespace PHC.DataAccessLayer
             {
                 try
                 {
-                    return new GenericRepository<MDrug>(work).GetAll().Where(p => p.Name == DrugName).SingleOrDefault();
+                    return new GenericRepository<MDrug>(work).FindBy(n => n.Name == DrugName && n.ObsInd == No).FirstOrDefault();
                 }
                 catch (Exception ex)
                 {
@@ -197,14 +209,24 @@ namespace PHC.DataAccessLayer
         }
         public bool UpdateMDrug(MDrug Drug)
         {
-
             IUnitOfWork work = null;
             using (work = GetUOW.GetUOWInstance)
             {
-                new GenericRepository<MDrug>(work).Edit(Drug);
-                work.Save();
+                MDrug mDrug = new GenericRepository<MDrug>(work).FindBy(n => n.DrugID == Drug.DrugID).FirstOrDefault();
+
+                if (mDrug != null)
+                {
+                    //con.Edit(empobj);
+                    mDrug.Name = Drug.Name;
+                    mDrug.LastModifiedBy = "System";
+                    mDrug.LastModifiedDate = DateTime.Now;
+                    work.Save();
+
+                    return true;
+                }
+                else
+                    return false;
             }
-            return true;
         }
         public bool DeleteMDrug(MDrug Drug)
         {
@@ -268,13 +290,16 @@ namespace PHC.DataAccessLayer
                 if (labtest != null)
                 {
                     //con.Edit(empobj);
-                    labtest.Name=LabTest.Name;
-                    labtest.LastModifiedBy = LabTest.LastModifiedBy;
+                    labtest.Name = LabTest.Name;
+                    labtest.LastModifiedBy = "System";
                     labtest.LastModifiedDate = DateTime.Now;
                     work.Save();
+
+                    return true;
                 }
+                else
+                    return false;
             }
-            return true;
         }
         public bool DeleteMLabTest(MLabTest LabTest)
         {
