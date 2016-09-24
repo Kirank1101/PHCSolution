@@ -21,3 +21,12 @@ C:\Users\Nagavardhan\Documents\GitHub\PHCSolution\PHC\bin\Debug\EntityFramework.
 C:\Users\Nagavardhan\Documents\GitHub\PHCSolution\PHC\obj\Debug\PHC.DAInterfaces.csprojResolveAssemblyReference.cache
 C:\Users\Nagavardhan\Documents\GitHub\PHCSolution\PHC\obj\Debug\PHC.DAInterfaces.dll
 C:\Users\Nagavardhan\Documents\GitHub\PHCSolution\PHC\obj\Debug\PHC.DAInterfaces.pdb
+C:\Users\kirank\Documents\GitHub\PHCSolution\PHCSolution\PHC\bin\Debug\PHC.DAInterfaces.dll
+C:\Users\kirank\Documents\GitHub\PHCSolution\PHCSolution\PHC\bin\Debug\PHC.DAInterfaces.pdb
+C:\Users\kirank\Documents\GitHub\PHCSolution\PHCSolution\PHC\bin\Debug\PHC.DataAccess.dll
+C:\Users\kirank\Documents\GitHub\PHCSolution\PHCSolution\PHC\bin\Debug\EntityFramework.dll
+C:\Users\kirank\Documents\GitHub\PHCSolution\PHCSolution\PHC\bin\Debug\PHC.DataAccess.pdb
+C:\Users\kirank\Documents\GitHub\PHCSolution\PHCSolution\PHC\bin\Debug\EntityFramework.xml
+C:\Users\kirank\Documents\GitHub\PHCSolution\PHCSolution\PHC\obj\Debug\PHC.DAInterfaces.csprojResolveAssemblyReference.cache
+C:\Users\kirank\Documents\GitHub\PHCSolution\PHCSolution\PHC\obj\Debug\PHC.DAInterfaces.dll
+C:\Users\kirank\Documents\GitHub\PHCSolution\PHCSolution\PHC\obj\Debug\PHC.DAInterfaces.pdb

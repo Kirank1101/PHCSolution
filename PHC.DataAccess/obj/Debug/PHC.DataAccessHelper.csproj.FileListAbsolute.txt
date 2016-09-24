@@ -16,3 +16,11 @@ C:\Users\Nagavardhan\Documents\GitHub\PHCSolution\PHC.DataAccess\bin\Debug\Entit
 C:\Users\Nagavardhan\Documents\GitHub\PHCSolution\PHC.DataAccess\obj\Debug\PHC.DataAccessHelper.csprojResolveAssemblyReference.cache
 C:\Users\Nagavardhan\Documents\GitHub\PHCSolution\PHC.DataAccess\obj\Debug\PHC.DataAccess.dll
 C:\Users\Nagavardhan\Documents\GitHub\PHCSolution\PHC.DataAccess\obj\Debug\PHC.DataAccess.pdb
+C:\Users\kirank\Documents\GitHub\PHCSolution\PHCSolution\PHC.DataAccess\bin\Debug\PHC.DataAccess.dll.config
+C:\Users\kirank\Documents\GitHub\PHCSolution\PHCSolution\PHC.DataAccess\bin\Debug\PHC.DataAccess.dll
+C:\Users\kirank\Documents\GitHub\PHCSolution\PHCSolution\PHC.DataAccess\bin\Debug\PHC.DataAccess.pdb
+C:\Users\kirank\Documents\GitHub\PHCSolution\PHCSolution\PHC.DataAccess\bin\Debug\EntityFramework.dll
+C:\Users\kirank\Documents\GitHub\PHCSolution\PHCSolution\PHC.DataAccess\bin\Debug\EntityFramework.xml
+C:\Users\kirank\Documents\GitHub\PHCSolution\PHCSolution\PHC.DataAccess\obj\Debug\PHC.DataAccessHelper.csprojResolveAssemblyReference.cache
+C:\Users\kirank\Documents\GitHub\PHCSolution\PHCSolution\PHC.DataAccess\obj\Debug\PHC.DataAccess.dll
+C:\Users\kirank\Documents\GitHub\PHCSolution\PHCSolution\PHC.DataAccess\obj\Debug\PHC.DataAccess.pdb

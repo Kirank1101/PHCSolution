@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data.Objects;
 using System.Linq.Expressions;
+using System.Data.Entity;
 
 namespace PHC.DataAccess
 {
@@ -12,15 +13,15 @@ namespace PHC.DataAccess
     IGenericRepository<T>
         where T : class
     {
-        ObjectContext _entities = null;
+        DbContext _entities = null;
         public GenericRepository(IUnitOfWork _entitiesObj)
         {
-            this._entities = _entitiesObj as ObjectContext;
+            this._entities = _entitiesObj as DbContext;
         }
 
         public virtual IQueryable<T> GetAll()
         {
-            IQueryable<T> query = _entities.CreateObjectSet<T>();
+            IQueryable<T> query = _entities.Set<T>();
             return query;
         }
 
@@ -42,24 +43,25 @@ namespace PHC.DataAccess
 
         public IQueryable<T> FindBy(System.Linq.Expressions.Expression<Func<T, bool>> predicate)
         {
-            IQueryable<T> query = _entities.CreateObjectSet<T>().Where(predicate);
+            IQueryable<T> query = _entities.Set<T>().Where(predicate);
             return query;
         }
 
         public virtual void Add(T entity)
         {
-            _entities.CreateObjectSet<T>().AddObject(entity);
+            _entities.Set<T>().Add  (entity);
         }
 
         public virtual void Delete(T entity)
         {
-            _entities.CreateObjectSet<T>().DeleteObject(entity);
+            _entities.Set<T>().Remove(entity);
         }
 
         public virtual void Edit(T entity)
         {
             //_entities.Attach(entity);
-            _entities.ObjectStateManager.ChangeObjectState(entity, System.Data.EntityState.Modified);
+            _entities.Entry(entity).State = System.Data.EntityState.Modified;   
+           // _entities.(entity, System.Data.EntityState.Modified);
         }
 
         public T GetSingleById(Expression<Func<T, bool>> predicateId)

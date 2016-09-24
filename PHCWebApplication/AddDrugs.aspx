@@ -127,7 +127,7 @@
                         <legend>Drug Details</legend>
 
                         <asp:ListView ID="ListView1" runat="server" ItemPlaceholderID="itemPlaceHolder1"
-                            OnItemEditing="EditRecord" OnItemCanceling="CancelEditRecord" DataKeyNames="DiseaseId"
+                            OnItemEditing="EditRecord" OnItemCanceling="CancelEditRecord" DataKeyNames="DrugID"
                             OnItemUpdating="UpdateRecord"
                             OnItemDeleting="DeleteRecord" OnPagePropertiesChanging="ListView1_PagePropertiesChanging">
                             <EmptyDataTemplate>
@@ -138,7 +138,7 @@
                                     <thead>
                                         <tr>
                                             <th style="color: #428bca">
-                                                <asp:LinkButton Text="Drug Name" CommandName="Sort" CommandArgument="DiseaseName" runat="Server" />
+                                                <asp:LinkButton Text="Drug Name" CommandName="Sort" CommandArgument="DrugName" runat="Server" />
                                             </th>
                                             <th style="color: #428bca">
                                                 <asp:LinkButton Text="Quantity" CommandName="Sort" CommandArgument="Quantity" runat="Server" />
