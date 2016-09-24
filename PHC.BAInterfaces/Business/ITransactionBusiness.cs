@@ -32,5 +32,11 @@ namespace PHC.BAInterfaces.Business
         ResultDTO UpdateMDrug(string DrugID, string DrugName);
 
         ResultDTO DeleteMDrug(string DrugID);
+
+        List<MLabTestDTO> GetMLabTest();
+        ResultDTO SaveMLabTest(string LabTestName);       
+        ResultDTO UpdateMLabTest(string LabTestID, string LabTestName);
+
+        ResultDTO DeleteMLabTest(string LabTestID);
     }
 }

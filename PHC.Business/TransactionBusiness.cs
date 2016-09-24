@@ -141,18 +141,12 @@ namespace PHC.Business
                     MDrugsDTO DrugDTO = new MDrugsDTO();
                     DrugDTO.DrugID = Drug.DrugID;
                     DrugDTO.DrugName = Drug.Name;
-                    DrugDTO.BatchNo = Drug.BatchNo;
-                    DrugDTO.Quantity = Drug.Quantity;
-                    DrugDTO.MfDate = Drug.manufactureDate;
-                    DrugDTO.ExpDate = Drug.ExpiryDate;
-                    DrugDTO.PurchaseDate = Drug.PurchaseDate;
                     lstDrugDTO.Add(DrugDTO);
                 }
             return lstDrugDTO;
         }
         public ResultDTO SaveMDrug(string DrugName)
         {
-
             MDrug Drug = new MDrug();
             Drug.DrugID = "DrugID1";
             Drug.Name = DrugName;
@@ -188,6 +182,62 @@ namespace PHC.Business
             MDrug Drug = new MDrug();
             Drug.DrugID = DrugID;
             if (objDA.DeleteMDrug(Drug))
+                return new ResultDTO() { IsSuccess = true, Message = "Successfully Deleted." };
+            else
+                return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Deleted." };
+        }
+        public List<MLabTestDTO> GetMLabTest()
+        {
+            List<MLabTest> lstLabTest = objDA.GetMLabTests();
+            List<MLabTestDTO> lstLabTestDTO = new List<MLabTestDTO>();
+            if (lstLabTest != null)
+                foreach (MLabTest labtest in lstLabTest)
+                {
+                    MLabTestDTO LabTestDTO = new MLabTestDTO();
+                    LabTestDTO.LabTestID = labtest.LabTestID;
+                    LabTestDTO.LabTestName = labtest.Name;
+                    lstLabTestDTO.Add(LabTestDTO);
+                }
+            return lstLabTestDTO;
+        }
+        public ResultDTO SaveMLabTest(string LabTestName)
+        {
+            MLabTest LabTest = new MLabTest();
+            LabTest.LabTestID = "LabTestID1";
+            LabTest.StateID = "Karnataka";
+            LabTest.Name = LabTestName;
+            LabTest.LastModifiedBy = "System";
+            LabTest.LastModifiedDate = DateTime.Now;
+            LabTest.ObsInd = "N";
+            MLabTest checkLabTest = objDA.GetMLabTests(LabTestName);
+            if (checkLabTest == null)
+            {
+                if (objDA.AddMLabTest(LabTest))
+                    return new ResultDTO() { IsSuccess = true, Message = "Successfully Saved." };
+                else
+                    return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Saved." };
+            }
+            else
+                return new ResultDTO() { IsSuccess = false, Message = "DiseaseName already exist." };
+        }
+        public ResultDTO UpdateMLabTest(string LabTestID, string LabTestName)
+        {
+            MLabTest LabTest = new MLabTest();
+            LabTest.LabTestID = LabTestID;
+            LabTest.Name = LabTestName;
+            LabTest.LastModifiedBy = "System";
+            LabTest.LastModifiedDate = DateTime.Now;
+            LabTest.ObsInd = "N";
+            if (objDA.UpdateMLabTest(LabTest))
+                return new ResultDTO() { IsSuccess = true, Message = "Successfully Updated." };
+            else
+                return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Updated." };
+        }
+        public ResultDTO DeleteMLabTest(string LabTestID)
+        {
+            MLabTest LabTest = new MLabTest();
+            LabTest.LabTestID = LabTestID;
+            if (objDA.DeleteMLabTest(LabTest))
                 return new ResultDTO() { IsSuccess = true, Message = "Successfully Deleted." };
             else
                 return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Deleted." };

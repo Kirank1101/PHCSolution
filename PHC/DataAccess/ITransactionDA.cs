@@ -33,5 +33,15 @@ namespace PHC.DAInterfaces.DataAccess
         bool UpdateMDrug(MDrug Drug);
 
         bool DeleteMDrug(MDrug Drug);
+
+        List<MLabTest> GetMLabTests();
+
+        MLabTest GetMLabTests(string LabTestName);
+
+        bool AddMLabTest(MLabTest LabTest);
+
+        bool UpdateMLabTest(MLabTest LabTest);
+
+        bool DeleteMLabTest(MLabTest LabTest);
     }
 }

@@ -48,9 +48,9 @@
                 </td>
                 <td>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
-                        ErrorMessage="Disease required" ControlToValidate="txtLabTestName">*</asp:RequiredFieldValidator></td>
+                        ErrorMessage="Disease required" ControlToValidate="txtLabTestName" ValidationGroup="LabTestValidation">*</asp:RequiredFieldValidator></td>
                 <td style="width: 136px">
-                    <asp:Button ID="btnSave" runat="server" Text="Save" CssClass="btn btn-default" OnClick="btnSave_Click" />
+                    <asp:Button ID="btnSave" runat="server" Text="Save" CssClass="btn btn-default" OnClick="btnSave_Click"  ValidationGroup="LabTestValidation"/>
                 </td>
             </tr>
         </table>
@@ -63,10 +63,10 @@
                     <fieldset>
                         <legend>LabTest Details</legend>
 
-                        <asp:ListView ID="ListView1" runat="server" ItemPlaceholderID="itemPlaceHolder1"
+                        <asp:ListView ID="LVLabTest" runat="server" ItemPlaceholderID="itemPlaceHolder1"
                             OnItemEditing="EditRecord" OnItemCanceling="CancelEditRecord" DataKeyNames="LabTestID"
                             OnItemUpdating="UpdateRecord"
-                            OnItemDeleting="DeleteRecord" OnPagePropertiesChanging="ListView1_PagePropertiesChanging">
+                            OnItemDeleting="DeleteRecord" OnPagePropertiesChanging="LVLabTest_PagePropertiesChanging">
                             <EmptyDataTemplate>
                                 There are no entries found for MDrugs
                             </EmptyDataTemplate>
@@ -113,7 +113,7 @@
                             </EditItemTemplate>
                         </asp:ListView>
 
-                        <asp:DataPager ID="DPLV1" PageSize="5" runat="server" PagedControlID="ListView1">
+                        <asp:DataPager ID="DPLV1" PageSize="5" runat="server" PagedControlID="LVLabTest">
                             <Fields>
                                 <asp:NextPreviousPagerField ShowLastPageButton="False" ShowNextPageButton="False" ButtonType="Button" ButtonCssClass="btn" />
                                 <asp:NumericPagerField ButtonType="Button" NumericButtonCssClass="btn" CurrentPageLabelCssClass="btn disabled" NextPreviousButtonCssClass="btn" />

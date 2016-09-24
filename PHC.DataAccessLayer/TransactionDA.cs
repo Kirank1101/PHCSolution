@@ -11,6 +11,8 @@ namespace PHC.DataAccessLayer
 {
     public class TransactionDA : ITransactionDA
     {
+        const string yes = "Y";
+        const string No = "N";
         public List<User> GetUsers()
         {
             IUnitOfWork work = null;
@@ -153,7 +155,6 @@ namespace PHC.DataAccessLayer
         }
         public List<MDrug> GetMDrugs()
         {
-
             IUnitOfWork work = null;
             using (work = GetUOW.GetUOWInstance)
             {
@@ -170,7 +171,6 @@ namespace PHC.DataAccessLayer
         }
         public MDrug GetMdrug(string DrugName)
         {
-
             IUnitOfWork work = null;
             using (work = GetUOW.GetUOWInstance)
             {
@@ -216,8 +216,75 @@ namespace PHC.DataAccessLayer
             }
             return true;
         }
+        public List<MLabTest> GetMLabTests()
+        {
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                try
+                {
+                    return new GenericRepository<MLabTest>(work).GetAll().Where(p => p.ObsInd == "N").ToList();
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                    throw ex;
+                }
+            }
+        }
+        public MLabTest GetMLabTests(string LabTestName)
+        {
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                try
+                {
+                    return new GenericRepository<MLabTest>(work).FindBy(d => d.Name == LabTestName && d.ObsInd == No).SingleOrDefault();
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                    throw ex;
+                }
+            }
+        }
+        public bool AddMLabTest(MLabTest LabTest)
+        {
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                new GenericRepository<MLabTest>(work).Add(LabTest);
+                work.Save();
+            }
+            return true;
+        }
+        public bool UpdateMLabTest(MLabTest LabTest)
+        {
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                MLabTest labtest = new GenericRepository<MLabTest>(work).FindBy(n=>n.LabTestID==LabTest.LabTestID).FirstOrDefault();
 
-
-
+                if (labtest != null)
+                {
+                    //con.Edit(empobj);
+                    labtest.Name=LabTest.Name;
+                    labtest.LastModifiedBy = LabTest.LastModifiedBy;
+                    labtest.LastModifiedDate = DateTime.Now;
+                    work.Save();
+                }
+            }
+            return true;
+        }
+        public bool DeleteMLabTest(MLabTest LabTest)
+        {
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                new GenericRepository<MLabTest>(work).Delete(LabTest);
+                work.Save();
+            }
+            return true;
+        }
     }
 }
