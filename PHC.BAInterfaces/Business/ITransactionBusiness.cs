@@ -27,9 +27,9 @@ namespace PHC.BAInterfaces.Business
 
         List<MDrugsDTO> GetMDrugs();
 
-        ResultDTO SaveMDrug(string DrugName, int Quantity, string BatchNo, DateTime MfDate, DateTime ExpDate, DateTime PurchaseDate);
+        ResultDTO SaveMDrug(string DrugName);
 
-        ResultDTO UpdateMDrug(string DrugID, string DrugName, int Quantity, string BatchNo, DateTime MfDate, DateTime ExpDate, DateTime PurchaseDate);
+        ResultDTO UpdateMDrug(string DrugID, string DrugName);
 
         ResultDTO DeleteMDrug(string DrugID);
     }

@@ -141,6 +141,7 @@ namespace PHC.Business
                     MDrugsDTO DrugDTO = new MDrugsDTO();
                     DrugDTO.DrugID = Drug.DrugID;
                     DrugDTO.DrugName = Drug.Name;
+                    DrugDTO.BatchNo = Drug.BatchNo;
                     DrugDTO.Quantity = Drug.Quantity;
                     DrugDTO.MfDate = Drug.manufactureDate;
                     DrugDTO.ExpDate = Drug.ExpiryDate;
@@ -149,22 +150,17 @@ namespace PHC.Business
                 }
             return lstDrugDTO;
         }
-        public ResultDTO SaveMDrug(string DrugName, int Quantity, string BatchNo, DateTime MfDate, DateTime ExpDate, DateTime PurchaseDate)
+        public ResultDTO SaveMDrug(string DrugName)
         {
 
             MDrug Drug = new MDrug();
-            Drug.DrugID = "DrugID";
+            Drug.DrugID = "DrugID1";
             Drug.Name = DrugName;
-            Drug.Quantity = Quantity;
-            Drug.BatchNo = BatchNo;
-            Drug.manufactureDate = MfDate;
-            Drug.ExpiryDate = ExpDate;
-            Drug.PurchaseDate = PurchaseDate;
             Drug.LastModifiedBy = "System";
             Drug.LastModifiedDate = DateTime.Now;
             Drug.ObsInd = "N";
             MDrug checkdrug = objDA.GetMdrug(DrugName);
-            if (checkdrug != null)
+            if (checkdrug == null)
             {
                 if (objDA.AddMDrug(Drug))
                     return new ResultDTO() { IsSuccess = true, Message = "Successfully Saved." };
@@ -174,16 +170,11 @@ namespace PHC.Business
             else
                 return new ResultDTO() { IsSuccess = false, Message = "DiseaseName already exist." };
         }
-        public ResultDTO UpdateMDrug(string DrugID, string DrugName, int Quantity, string BatchNo, DateTime MfDate, DateTime ExpDate, DateTime PurchaseDate)
+        public ResultDTO UpdateMDrug(string DrugID, string DrugName)
         {
             MDrug Drug = new MDrug();
             Drug.DrugID = DrugID;
             Drug.Name = DrugName;
-            Drug.BatchNo = BatchNo;
-            Drug.Quantity = Quantity;
-            Drug.manufactureDate = MfDate;
-            Drug.ExpiryDate = ExpDate;
-            Drug.PurchaseDate = PurchaseDate;
             Drug.LastModifiedBy = "System";
             Drug.LastModifiedDate = DateTime.Now;
             Drug.ObsInd = "N";
