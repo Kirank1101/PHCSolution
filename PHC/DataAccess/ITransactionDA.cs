@@ -20,7 +20,7 @@ namespace PHC.DAInterfaces.DataAccess
 
         bool UpdateMDisease(MDisease Disease);
 
-        bool DeleteMDisease(MDisease Disease);
+        bool DeleteMDisease(String DiseaseID);
 
         MDisease GetMDiseases(string DiseaseName);
 
@@ -32,7 +32,7 @@ namespace PHC.DAInterfaces.DataAccess
 
         bool UpdateMDrug(MDrug Drug);
 
-        bool DeleteMDrug(MDrug Drug);
+        bool DeleteMDrug(string DrugID);
 
         List<MLabTest> GetMLabTests();
 
@@ -42,6 +42,6 @@ namespace PHC.DAInterfaces.DataAccess
 
         bool UpdateMLabTest(MLabTest LabTest);
 
-        bool DeleteMLabTest(MLabTest LabTest);
+        bool DeleteMLabTest(string LabTestID);
     }
 }

@@ -50,9 +50,9 @@
                 </td>
                 <td>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
-                        ErrorMessage="Disease required" ControlToValidate="txtnewDiseaseName">*</asp:RequiredFieldValidator></td>
+                        ErrorMessage="Disease required" ControlToValidate="txtnewDiseaseName" ValidationGroup="DisesaseValidationgroup">*</asp:RequiredFieldValidator></td>
                 <td style="width: 136px">
-                    <asp:Button ID="btnAdd" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btnAdd_Click" />
+                    <asp:Button ID="btnAdd" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btnAdd_Click" ValidationGroup="DisesaseValidationgroup"/>
                 </td>
             </tr>
         </table>

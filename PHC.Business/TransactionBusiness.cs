@@ -124,9 +124,7 @@ namespace PHC.Business
         }
         public ResultDTO DeleteMdisease(string DiseaseID)
         {
-            MDisease Disease = new MDisease();
-            Disease.DiseaseID = DiseaseID;
-            if (objDA.DeleteMDisease(Disease))
+            if (objDA.DeleteMDisease(DiseaseID))
                 return new ResultDTO() { IsSuccess = true, Message = "Successfully Deleted." };
             else
                 return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Deleted." };
@@ -179,9 +177,7 @@ namespace PHC.Business
         }
         public ResultDTO DeleteMDrug(string DrugID)
         {
-            MDrug Drug = new MDrug();
-            Drug.DrugID = DrugID;
-            if (objDA.DeleteMDrug(Drug))
+            if (objDA.DeleteMDrug(DrugID))
                 return new ResultDTO() { IsSuccess = true, Message = "Successfully Deleted." };
             else
                 return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Deleted." };
@@ -235,9 +231,7 @@ namespace PHC.Business
         }
         public ResultDTO DeleteMLabTest(string LabTestID)
         {
-            MLabTest LabTest = new MLabTest();
-            LabTest.LabTestID = LabTestID;
-            if (objDA.DeleteMLabTest(LabTest))
+            if (objDA.DeleteMLabTest(LabTestID))
                 return new ResultDTO() { IsSuccess = true, Message = "Successfully Deleted." };
             else
                 return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Deleted." };

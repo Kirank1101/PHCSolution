@@ -17,7 +17,9 @@ namespace WebApplication5
             
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack) { 
             this.PopulateData();
+            }
         }
         protected void btnAdd_Click(object sender, EventArgs e)
         {

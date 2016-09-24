@@ -155,12 +155,16 @@ namespace PHC.DataAccessLayer
                     return false;
             }
         }
-        public bool DeleteMDisease(MDisease Disease)
+        public bool DeleteMDisease(String DiseaseID)
         {
             IUnitOfWork work = null;
             using (work = GetUOW.GetUOWInstance)
             {
-                new GenericRepository<MDisease>(work).Delete(Disease);
+                MDisease mDisease = new GenericRepository<MDisease>(work).FindBy(n => n.DiseaseID == DiseaseID).FirstOrDefault();
+                if (mDisease != null)
+                {
+                    new GenericRepository<MDisease>(work).Delete(mDisease);
+                }
                 work.Save();
             }
             return true;
@@ -228,13 +232,17 @@ namespace PHC.DataAccessLayer
                     return false;
             }
         }
-        public bool DeleteMDrug(MDrug Drug)
+        public bool DeleteMDrug(string DrugID)
         {
             IUnitOfWork work = null;
             using (work = GetUOW.GetUOWInstance)
             {
-                new GenericRepository<MDrug>(work).Delete(Drug);
-                work.Save();
+                MDrug mDrug= new GenericRepository<MDrug>(work).FindBy(n=>n.DrugID==DrugID).FirstOrDefault();
+                if (mDrug != null) {
+                    new GenericRepository<MDrug>(work).Delete(mDrug);
+                    work.Save();
+                }
+                
             }
             return true;
         }
@@ -301,13 +309,18 @@ namespace PHC.DataAccessLayer
                     return false;
             }
         }
-        public bool DeleteMLabTest(MLabTest LabTest)
+        public bool DeleteMLabTest(string LabTestID)
         {
             IUnitOfWork work = null;
             using (work = GetUOW.GetUOWInstance)
             {
-                new GenericRepository<MLabTest>(work).Delete(LabTest);
-                work.Save();
+                MLabTest mLabTest = new GenericRepository<MLabTest>(work).FindBy(n => n.LabTestID == LabTestID).FirstOrDefault();
+                if (mLabTest != null)
+                {
+                    new GenericRepository<MLabTest>(work).Delete(mLabTest);
+
+                    work.Save();   
+                }
             }
             return true;
         }

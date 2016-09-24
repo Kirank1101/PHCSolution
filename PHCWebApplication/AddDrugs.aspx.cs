@@ -17,7 +17,10 @@ namespace WebApplication5
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.PopulateData();
+            if (!IsPostBack)
+            {
+                this.PopulateData();
+            }
         }
         protected void btnSave_Click(object sender, EventArgs e)
         {
@@ -60,7 +63,7 @@ namespace WebApplication5
             string DrugID = ListView1.DataKeys[e.ItemIndex].Value.ToString();
             ListViewItem item = ListView1.Items[e.ItemIndex];
             TextBox txtedrugname = (TextBox)item.FindControl("txteDrugName");
-            
+
             ResultDTO resultDTO = objITransactionBusiness.UpdateMDrug(DrugID, txtedrugname.Text);
             if (resultDTO.IsSuccess)
             {
