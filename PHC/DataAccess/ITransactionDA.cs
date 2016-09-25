@@ -46,7 +46,7 @@ namespace PHC.DAInterfaces.DataAccess
 
         List<MTaluk> GetMTaluks();
 
-        string GetDistrictName(string p);
+        string GetDistrictName(string DistrictID);
 
         MTaluk GetMTaluk(string TalukName);
 

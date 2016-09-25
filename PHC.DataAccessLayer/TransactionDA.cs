@@ -324,41 +324,116 @@ namespace PHC.DataAccessLayer
             }
             return true;
         }
-
-
         public List<MTaluk> GetMTaluks()
         {
-            throw new NotImplementedException();
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                try
+                {
+                    return new GenericRepository<MTaluk>(work).GetAll().Where(p => p.ObsInd == "N").ToList();
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                    throw ex;
+                }
+            }
         }
-
-        public string GetDistrictName(string p)
+        public string GetDistrictName(string DistrictID)
         {
-            throw new NotImplementedException();
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                try
+                {
+                    MDistrict district= new GenericRepository<MDistrict>(work).FindBy(d => d.DistrictID == DistrictID && d.ObsInd == No).SingleOrDefault();
+                    return district.Name;
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                    throw ex;
+                }
+            }
         }
-
         public MTaluk GetMTaluk(string TalukName)
         {
-            throw new NotImplementedException();
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                try
+                {
+                    return new GenericRepository<MTaluk>(work).FindBy(d => d.Name == TalukName && d.ObsInd == No).SingleOrDefault();
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                    throw ex;
+                }
+            }
         }
-
         public bool AddMTaluk(MTaluk MTaluk)
         {
-            throw new NotImplementedException();
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                new GenericRepository<MTaluk>(work).Add(MTaluk);
+                work.Save();
+            }
+            return true;
         }
-
         public bool UpdateMTaluk(MTaluk Taluk)
         {
-            throw new NotImplementedException();
-        }
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                MTaluk MTaluk = new GenericRepository<MTaluk>(work).FindBy(n => n.TalukID == Taluk.TalukID).FirstOrDefault();
 
+                if (MTaluk != null)
+                {
+                    //con.Edit(empobj);
+                    MTaluk.Name = Taluk.Name;
+                    MTaluk.DistrictID = Taluk.DistrictID;
+                    MTaluk.LastModifiedBy = "System";
+                    MTaluk.LastModifiedDate = DateTime.Now;
+                    work.Save();
+
+                    return true;
+                }
+                else
+                    return false;
+            }
+        }
         public bool DeleteMTaluk(string TalukID)
         {
-            throw new NotImplementedException();
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                MTaluk mTaluk = new GenericRepository<MTaluk>(work).FindBy(n => n.TalukID == TalukID).FirstOrDefault();
+                if (mTaluk != null)
+                {
+                    new GenericRepository<MTaluk>(work).Delete(mTaluk);
+                    work.Save();
+                }
+            }
+            return true;
         }
-
         public List<MDistrict> GetMDistrict()
         {
-            throw new NotImplementedException();
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                try
+                {
+                    return new GenericRepository<MDistrict>(work).GetAll().Where(p => p.ObsInd == "N").ToList();
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                    throw ex;
+                }
+            }
         }
     }
 }
