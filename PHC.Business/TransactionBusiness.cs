@@ -236,5 +236,77 @@ namespace PHC.Business
             else
                 return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Deleted." };
         }
+        public List<MTalukDTO> GetMTaluk()
+        {
+            List<MTaluk> lstTaluk = objDA.GetMTaluks();
+            List<MTalukDTO> lstTalukDTO = new List<MTalukDTO>();
+            if (lstTaluk != null)
+                foreach (MTaluk Taluk in lstTaluk)
+                {
+                    MTalukDTO TalukDTO = new MTalukDTO();
+                    TalukDTO.TalukID = Taluk.TalukID;
+                    TalukDTO.TalukName = Taluk.Name;
+                    TalukDTO.DistrictID = Taluk.DistrictID;
+                    string DistrictName = objDA.GetDistrictName(TalukDTO.DistrictID);
+                    TalukDTO.DistrictName = DistrictName;
+                    lstTalukDTO.Add(TalukDTO);
+                }
+            return lstTalukDTO;
+        }
+        public ResultDTO SaveMTaluk(string DistrictID, string TalukName)
+        {
+            MTaluk MTaluk = new MTaluk();
+            MTaluk.TalukID = "LabTestID1";
+            MTaluk.DistrictID = DistrictID;
+            MTaluk.Name = TalukName;
+            MTaluk.LastModifiedBy = "System";
+            MTaluk.LastModifiedDate = DateTime.Now;
+            MTaluk.ObsInd = "N";
+            MTaluk checkTaluk = objDA.GetMTaluk(TalukName);
+            if (checkTaluk == null)
+            {
+                if (objDA.AddMTaluk(MTaluk))
+                    return new ResultDTO() { IsSuccess = true, Message = "Successfully Saved." };
+                else
+                    return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Saved." };
+            }
+            else
+                return new ResultDTO() { IsSuccess = false, Message = "DiseaseName already exist." };
+        }
+        public ResultDTO UpdateMTaluk(string TalukID, string DistrictID, string TalukName)
+        {
+            MTaluk Taluk = new MTaluk();
+            Taluk.TalukID = TalukID;
+            Taluk.Name = TalukName;
+            Taluk.DistrictID = DistrictID;
+            Taluk.LastModifiedBy = "System";
+            Taluk.LastModifiedDate = DateTime.Now;
+            Taluk.ObsInd = "N";
+            if (objDA.UpdateMTaluk(Taluk))
+                return new ResultDTO() { IsSuccess = true, Message = "Successfully Updated." };
+            else
+                return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Updated." };
+        }
+        public ResultDTO DeleteMTaluk(string TalukID)
+        {
+            if (objDA.DeleteMTaluk(TalukID))
+                return new ResultDTO() { IsSuccess = true, Message = "Successfully Deleted." };
+            else
+                return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Deleted." };
+        }
+        public List<MDistrictDTO> GetMDistricts()
+        {
+            List<MDistrict> lstDistrict = objDA.GetMDistrict();
+            List<MDistrictDTO> lstDistrictDTO = new List<MDistrictDTO>();
+            if (lstDistrict != null)
+                foreach (MDistrict District in lstDistrict)
+                {
+                    MDistrictDTO DistrictDTO = new MDistrictDTO();
+                    DistrictDTO.DistrictID = District.DistrictID;
+                    DistrictDTO.DistrictName = District.Name;
+                    lstDistrictDTO.Add(DistrictDTO);
+                }
+            return lstDistrictDTO;
+        }
     }
 }

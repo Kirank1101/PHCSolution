@@ -43,5 +43,19 @@ namespace PHC.DAInterfaces.DataAccess
         bool UpdateMLabTest(MLabTest LabTest);
 
         bool DeleteMLabTest(string LabTestID);
+
+        List<MTaluk> GetMTaluks();
+
+        string GetDistrictName(string p);
+
+        MTaluk GetMTaluk(string TalukName);
+
+        bool AddMTaluk(MTaluk MTaluk);
+
+        bool UpdateMTaluk(MTaluk Taluk);
+
+        bool DeleteMTaluk(string TalukID);
+
+        List<MDistrict> GetMDistrict();
     }
 }

@@ -14,23 +14,25 @@ namespace PHC.BAInterfaces.DataTransfer
     public class MDistrictDTO
     {
         public string DistrictID { get; set; }
-        public string Name { get; set; }
+        public string DistrictName { get; set; }
 
     }
     public class MTalukDTO
     {
         public string TalukID { get; set; }
-        public string Name { get; set; }
+        public string DistrictID { get; set; }
+        public string TalukName { get; set; }
+        public string DistrictName { get; set; }
     }
     public class MPHCDTO
     {
         public string PHCID { get; set; }
-        public string Name { get; set; }
+        public string PHCName { get; set; }
     }
     public class MVillageDTO
     {
         public string VillageID { get; set; }
-        public string Name { get; set; }
+        public string VillageName { get; set; }
     }
     public class UserDTO
     {

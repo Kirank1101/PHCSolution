@@ -324,5 +324,41 @@ namespace PHC.DataAccessLayer
             }
             return true;
         }
+
+
+        public List<MTaluk> GetMTaluks()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetDistrictName(string p)
+        {
+            throw new NotImplementedException();
+        }
+
+        public MTaluk GetMTaluk(string TalukName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool AddMTaluk(MTaluk MTaluk)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool UpdateMTaluk(MTaluk Taluk)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool DeleteMTaluk(string TalukID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<MDistrict> GetMDistrict()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

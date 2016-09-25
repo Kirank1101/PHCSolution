@@ -38,5 +38,15 @@ namespace PHC.BAInterfaces.Business
         ResultDTO UpdateMLabTest(string LabTestID, string LabTestName);
 
         ResultDTO DeleteMLabTest(string LabTestID);
+
+        List<MTalukDTO> GetMTaluk();
+
+        ResultDTO UpdateMTaluk(string TalukID, string p1, string p2);
+
+        ResultDTO DeleteMTaluk(string TalukID);
+
+        List<MDistrictDTO> GetMDistricts();
+
+        ResultDTO SaveMTaluk(string p1, string p2);
     }
 }
