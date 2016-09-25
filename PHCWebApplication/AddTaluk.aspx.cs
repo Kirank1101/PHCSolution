@@ -30,7 +30,7 @@ namespace WebApplication5
             if (lstdistrict != null && lstdistrict.Count > 0) {
                 ddlDistrictNames.DataSource = lstdistrict;
                 ddlDistrictNames.DataBind();
-                ddlDistrictNames.Items.Insert(-1, "---Select---");
+                ddlDistrictNames.Items.Insert(0, "---Select---");
             }
         }
         private void PopulateData()

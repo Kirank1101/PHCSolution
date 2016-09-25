@@ -46,6 +46,7 @@
                     <div style="width: 250px">
                         <asp:DropDownList ID="ddlDistrictNames" DataTextField="DistrictName" DataValueField="DistrictID"
                              runat="server"></asp:DropDownList>
+
                     </div>
                 </td>
                 <td>
@@ -80,7 +81,7 @@
                         <legend>Taluk Details</legend>
 
                         <asp:ListView ID="LVTalukDetails" runat="server" ItemPlaceholderID="itemPlaceHolder1"
-                            OnItemEditing="EditRecord" OnItemCanceling="CancelEditRecord" DataKeyNames="DrugID"
+                            OnItemEditing="EditRecord" OnItemCanceling="CancelEditRecord" DataKeyNames="TalukID"
                             OnItemUpdating="UpdateRecord"
                             OnItemDeleting="DeleteRecord" OnPagePropertiesChanging="LVTalukDetails_PagePropertiesChanging">
                             <EmptyDataTemplate>
