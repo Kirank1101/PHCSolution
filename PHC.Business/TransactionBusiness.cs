@@ -6,6 +6,7 @@ using PHC.BAInterfaces.Business;
 using PHC.DAInterfaces.DataAccess;
 using PHC.DataAccess;
 using PHC.BAInterfaces.DataTransfer;
+using AllInOne.Common.Library.Util;
 namespace PHC.Business
 {
     public class TransactionBusiness : ITransactionBusiness
@@ -315,9 +316,25 @@ namespace PHC.Business
             throw new NotImplementedException();
         }
 
-        public ResultDTO SaveMPHC(string DistrictID, string TalukID, string PHCName)
+        public ResultDTO SaveMPHC(string TalukID, string PHCName)
         {
-            throw new NotImplementedException();
+            MPHC MPHC = new MPHC();
+            MPHC.PHCID = CommonUtil.CreateUniqueID(PHCName);
+            MPHC.TalukID = TalukID;
+            MPHC.Name = PHCName;
+            MPHC.LastModifiedBy = "System";
+            MPHC.LastModifiedDate = DateTime.Now;
+            MPHC.ObsInd = "N";
+            MPHC checkPHC = objDA.GetMPHC(PHCName);
+            if (checkPHC == null)
+            {
+                if (objDA.AddMPHC(MPHC))
+                    return new ResultDTO() { IsSuccess = true, Message = "Successfully Saved." };
+                else
+                    return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Saved." };
+            }
+            else
+                return new ResultDTO() { IsSuccess = false, Message = "DiseaseName already exist." };
         }
 
         public ResultDTO DeleteMPHC(string PHCID)

@@ -49,7 +49,7 @@ namespace WebApplication5
         }
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            ResultDTO resultDTO = objITransactionBusiness.SaveMPHC(ddlDistrictNames.SelectedValue, ddlTalukNames.SelectedValue, txtPHCName.Text);
+            ResultDTO resultDTO = objITransactionBusiness.SaveMPHC(ddlTalukNames.SelectedValue, txtPHCName.Text);
             if (resultDTO.IsSuccess)
             {
                 pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessBackGroundColor);

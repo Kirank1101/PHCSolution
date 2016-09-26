@@ -59,5 +59,9 @@ namespace PHC.DAInterfaces.DataAccess
         List<MDistrict> GetMDistrict();
 
         List<MTaluk> GetMTaluks(string DistrictID);
+
+        MPHC GetMPHC(string PHCName);
+
+        bool AddMPHC(MPHC MPHC);
     }
 }

@@ -437,8 +437,6 @@ namespace PHC.DataAccessLayer
                 }
             }
         }
-
-
         public List<MTaluk> GetMTaluks(string DistrictID)
         {
             IUnitOfWork work = null;
@@ -454,6 +452,33 @@ namespace PHC.DataAccessLayer
                     throw ex;
                 }
             }            
+        }
+        public MPHC GetMPHC(string PHCName)
+        {
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                try
+                {
+                    return new GenericRepository<MPHC>(work).FindBy(d => d.Name == PHCName && d.ObsInd == No).FirstOrDefault();
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                    throw ex;
+                }
+            }
+        }
+
+        public bool AddMPHC(MPHC MPHC)
+        {
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                new GenericRepository<MPHC>(work).Add(MPHC);
+                work.Save();
+            }
+            return true;
         }
     }
 }
