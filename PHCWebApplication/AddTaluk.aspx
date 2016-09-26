@@ -44,8 +44,9 @@
                     <asp:Label runat="server" CssClass="control-label" Text="District Name"></asp:Label></td>
                 <td>
                     <div style="width: 250px">
-                        <asp:DropDownList ID="ddlDistrictNames" DataTextField="DistrictName" DataValueField="DistrictID"
-                             runat="server"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlDistrictNames" DataTextField="DistrictName" DataValueField="DistrictID"  CssClass="form-control"
+                            runat="server">
+                        </asp:DropDownList>
 
                     </div>
                 </td>
@@ -80,7 +81,7 @@
                     <fieldset>
                         <legend>Taluk Details</legend>
 
-                        <asp:ListView ID="LVTalukDetails" runat="server" ItemPlaceholderID="itemPlaceHolder1"
+                        <asp:ListView ID="LVTalukDetails" runat="server" ItemPlaceholderID="itemPlaceHolder1" OnItemDataBound="OnItemDataBound"
                             OnItemEditing="EditRecord" OnItemCanceling="CancelEditRecord" DataKeyNames="TalukID"
                             OnItemUpdating="UpdateRecord"
                             OnItemDeleting="DeleteRecord" OnPagePropertiesChanging="LVTalukDetails_PagePropertiesChanging">
@@ -126,9 +127,9 @@
                             <EditItemTemplate>
                                 <tr style="background-color: #efefef;">
                                     <td>
-                                        <asp:DropDownList ID="ddlDistrict" runat="server" DataTextField="DistrictName" DataValueField="DistrictID"
-                                            SelectedValue='<%# Eval("DistrictID") %>'>
+                                        <asp:DropDownList ID="ddlDistrict" runat="server" DataTextField="DistrictName" DataValueField="DistrictID">
                                         </asp:DropDownList>
+                                        <asp:Label ID="lblDistrictName" runat="server" Text='<%# Eval("DistrictName") %>' Visible="false"></asp:Label>
 
                                     </td>
                                     <td>

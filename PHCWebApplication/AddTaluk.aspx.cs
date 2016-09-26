@@ -30,7 +30,7 @@ namespace WebApplication5
             if (lstdistrict != null && lstdistrict.Count > 0) {
                 ddlDistrictNames.DataSource = lstdistrict;
                 ddlDistrictNames.DataBind();
-                ddlDistrictNames.Items.Insert(0, "---Select---");
+                ddlDistrictNames.Items.Insert(0, "Select District");
             }
         }
         private void PopulateData()
@@ -118,6 +118,22 @@ namespace WebApplication5
                 //lblstatus.Text = resultDTO.Message;
             }
             this.PopulateData();
+        }
+        protected void OnItemDataBound(object sender, ListViewItemEventArgs e)
+        {
+            if (LVTalukDetails.EditIndex == (e.Item as ListViewDataItem).DataItemIndex)
+            {
+                DropDownList ddlDistrict = (e.Item.FindControl("ddlDistrict") as DropDownList);
+
+                List<MDistrictDTO> lstdistrict = new List<MDistrictDTO>();
+                lstdistrict = objITransactionBusiness.GetMDistricts();
+
+                ddlDistrict.DataSource = lstdistrict;
+                ddlDistrict.DataBind();
+                ddlDistrict.Items.Insert(0, new ListItem("Select District", "0"));
+                Label lblDistrictName = (e.Item.FindControl("lblDistrictName") as Label);
+                ddlDistrict.Items.FindByText(lblDistrictName.Text).Selected = true;
+            }
         }
         protected void LVTalukDetails_PagePropertiesChanging(object sender, PagePropertiesChangingEventArgs e)
         {
