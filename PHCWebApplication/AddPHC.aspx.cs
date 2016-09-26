@@ -20,6 +20,8 @@ namespace WebApplication5
             if (!IsPostBack)
             {
                 this.BindDistricts();
+
+                this.PopulateData();
             }
         }
         private void BindDistricts()
@@ -31,6 +33,7 @@ namespace WebApplication5
                 ddlDistrictNames.DataSource = lstdistrict;
                 ddlDistrictNames.DataBind();
                 ddlDistrictNames.Items.Insert(0, "Select District");
+                ddlTalukNames.Items.Insert(0, "Select Taluk");
             }
         }
         private void PopulateData()

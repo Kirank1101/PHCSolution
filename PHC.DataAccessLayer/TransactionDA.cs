@@ -469,7 +469,6 @@ namespace PHC.DataAccessLayer
                 }
             }
         }
-
         public bool AddMPHC(MPHC MPHC)
         {
             IUnitOfWork work = null;
@@ -480,16 +479,39 @@ namespace PHC.DataAccessLayer
             }
             return true;
         }
-
-
         public List<MPHC> GetMPHCList()
         {
-            throw new NotImplementedException();
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                try
+                {
+                    return new GenericRepository<MPHC>(work).GetAll().OrderByDescending
+                        (p => p.LastModifiedDate).Where(n => n.ObsInd == "N")
+                        .Take(5).ToList();
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                    throw ex;
+                }
+            }
         }
-
         public MTaluk GetMTalukOnID(string TalukID)
         {
-            throw new NotImplementedException();
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                try
+                {
+                    return new GenericRepository<MTaluk>(work).FindBy(d => d.TalukID == TalukID && d.ObsInd == No).SingleOrDefault();
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                    throw ex;
+                }
+            }
         }
     }
 }

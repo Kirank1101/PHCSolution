@@ -321,9 +321,12 @@ namespace PHC.Business
                     MPHCDTO PHCDTO = new MPHCDTO();
                     PHCDTO.PHCID = PHC.PHCID;
                     PHCDTO.PHCName = PHC.Name;
+                    PHCDTO.TalukID = PHC.TalukID;
                     MTaluk mtaluk =objDA.GetMTalukOnID(PHCDTO.TalukID);
-                    string DistrictName = objDA.GetDistrictName(mtaluk.DistrictID);
-                    PHCDTO.DistrictName = DistrictName;
+                    PHCDTO.TalukName = mtaluk.Name;
+                    PHCDTO.DistrictID = mtaluk.DistrictID;
+                    PHCDTO.DistrictName = objDA.GetDistrictName(mtaluk.DistrictID);
+                    
                     lstPHCDTO.Add(PHCDTO);
                 }
             return lstPHCDTO;
