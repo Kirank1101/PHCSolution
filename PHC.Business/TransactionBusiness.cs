@@ -313,7 +313,20 @@ namespace PHC.Business
 
         public List<MPHCDTO> GetMPHC()
         {
-            throw new NotImplementedException();
+            List<MPHC> lstPHC = objDA.GetMPHCList();
+            List<MPHCDTO> lstPHCDTO = new List<MPHCDTO>();
+            if (lstPHC != null)
+                foreach (MPHC PHC in lstPHC)
+                {
+                    MPHCDTO PHCDTO = new MPHCDTO();
+                    PHCDTO.PHCID = PHC.PHCID;
+                    PHCDTO.PHCName = PHC.Name;
+                    MTaluk mtaluk =objDA.GetMTalukOnID(PHCDTO.TalukID);
+                    string DistrictName = objDA.GetDistrictName(mtaluk.DistrictID);
+                    PHCDTO.DistrictName = DistrictName;
+                    lstPHCDTO.Add(PHCDTO);
+                }
+            return lstPHCDTO;
         }
 
         public ResultDTO SaveMPHC(string TalukID, string PHCName)

@@ -480,5 +480,16 @@ namespace PHC.DataAccessLayer
             }
             return true;
         }
+
+
+        public List<MPHC> GetMPHCList()
+        {
+            throw new NotImplementedException();
+        }
+
+        public MTaluk GetMTalukOnID(string TalukID)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

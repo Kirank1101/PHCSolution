@@ -28,6 +28,10 @@ namespace PHC.BAInterfaces.DataTransfer
     {
         public string PHCID { get; set; }
         public string PHCName { get; set; }
+        public string TalukID { get; set; }
+        public string TalukName { get; set; }
+        public string DistrictID { get; set; }
+        public string DistrictName { get; set; }
     }
     public class MVillageDTO
     {

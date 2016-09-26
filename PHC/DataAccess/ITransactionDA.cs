@@ -63,5 +63,10 @@ namespace PHC.DAInterfaces.DataAccess
         MPHC GetMPHC(string PHCName);
 
         bool AddMPHC(MPHC MPHC);
+
+        List<MPHC> GetMPHCList();
+
+
+        MTaluk GetMTalukOnID(string TalukID);
     }
 }
