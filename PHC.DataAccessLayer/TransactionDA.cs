@@ -331,7 +331,9 @@ namespace PHC.DataAccessLayer
             {
                 try
                 {
-                    return new GenericRepository<MTaluk>(work).GetAll().Where(p => p.ObsInd == "N").ToList();
+                    return new GenericRepository<MTaluk>(work).GetAll().OrderByDescending
+                        (p => p.LastModifiedDate).Where(n=>n.ObsInd=="N")
+                        .Take(5).ToList();
                 }
                 catch (Exception ex)
                 {

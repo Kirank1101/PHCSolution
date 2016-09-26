@@ -127,7 +127,7 @@
                             <EditItemTemplate>
                                 <tr style="background-color: #efefef;">
                                     <td>
-                                        <asp:DropDownList ID="ddlDistrict" runat="server" DataTextField="DistrictName" DataValueField="DistrictID">
+                                        <asp:DropDownList ID="ddlDistrict" runat="server" DataTextField="DistrictName" DataValueField="DistrictID"  CssClass="form-control">
                                         </asp:DropDownList>
                                         <asp:Label ID="lblDistrictName" runat="server" Text='<%# Eval("DistrictName") %>' Visible="false"></asp:Label>
 
