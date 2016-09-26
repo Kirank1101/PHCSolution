@@ -52,7 +52,7 @@
                 </td>
                 <td>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ValidationGroup="DrugSave"
-                        ErrorMessage="DrugName required" InitialValue="-1" ControlToValidate="ddlDistrictNames">*</asp:RequiredFieldValidator></td>
+                        ErrorMessage="DrugName required" InitialValue="Select District" ControlToValidate="ddlDistrictNames">*</asp:RequiredFieldValidator></td>
             </tr>
             <tr>
                 <td style="width: 103px">

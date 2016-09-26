@@ -57,5 +57,7 @@ namespace PHC.DAInterfaces.DataAccess
         bool DeleteMTaluk(string TalukID);
 
         List<MDistrict> GetMDistrict();
+
+        List<MTaluk> GetMTaluks(string DistrictID);
     }
 }

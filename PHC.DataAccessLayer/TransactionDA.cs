@@ -437,5 +437,23 @@ namespace PHC.DataAccessLayer
                 }
             }
         }
+
+
+        public List<MTaluk> GetMTaluks(string DistrictID)
+        {
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                try
+                {
+                    return new GenericRepository<MTaluk>(work).GetAll().Where(n => n.ObsInd == "N" && n.DistrictID == DistrictID).ToList();
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                    throw ex;
+                }
+            }            
+        }
     }
 }

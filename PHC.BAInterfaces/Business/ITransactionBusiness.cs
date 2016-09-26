@@ -48,5 +48,13 @@ namespace PHC.BAInterfaces.Business
         List<MDistrictDTO> GetMDistricts();
 
         ResultDTO SaveMTaluk(string p1, string p2);
+
+        List<MPHCDTO> GetMPHC();
+
+        ResultDTO SaveMPHC(string p1, string p2, string p3);
+
+        ResultDTO DeleteMPHC(string PHCID);
+
+        List<MTalukDTO> GetMTalukNames(string DistrictID);
     }
 }

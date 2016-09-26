@@ -308,5 +308,38 @@ namespace PHC.Business
                 }
             return lstDistrictDTO;
         }
+
+
+        public List<MPHCDTO> GetMPHC()
+        {
+            throw new NotImplementedException();
+        }
+
+        public ResultDTO SaveMPHC(string DistrictID, string TalukID, string PHCName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ResultDTO DeleteMPHC(string PHCID)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public List<MTalukDTO> GetMTalukNames(string DistrictID)
+        {
+            List<MTaluk> lstTaluk = objDA.GetMTaluks(DistrictID);
+            List<MTalukDTO> lstTalukDTO = new List<MTalukDTO>();
+            if (lstTaluk != null)
+                foreach (MTaluk Taluk in lstTaluk)
+                {
+                    MTalukDTO TalukDTO = new MTalukDTO();
+                    TalukDTO.TalukID = Taluk.TalukID;
+                    TalukDTO.TalukName = Taluk.Name;
+                    TalukDTO.DistrictID = Taluk.DistrictID;
+                    lstTalukDTO.Add(TalukDTO);
+                }
+            return lstTalukDTO;
+        }
     }
 }
