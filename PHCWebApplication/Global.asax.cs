@@ -16,6 +16,12 @@ namespace PHCWebApplication
             // Code that runs on application startup
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            AllInOne.BootStrapper.BackEnd.Global.Application_Start();
+        }
+
+        void Application_End(object sender, EventArgs e)
+        {
+            AllInOne.BootStrapper.BackEnd.Global.Application_End();
         }
     }
 }

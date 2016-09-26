@@ -30,3 +30,12 @@ C:\Users\Nagavardhan\Documents\GitHub\PHCSolution\PHC.BAInterfaces\bin\Debug\Ent
 C:\Users\Nagavardhan\Documents\GitHub\PHCSolution\PHC.BAInterfaces\obj\Debug\PHC.BAInterfaces.csprojResolveAssemblyReference.cache
 C:\Users\Nagavardhan\Documents\GitHub\PHCSolution\PHC.BAInterfaces\obj\Debug\PHC.BAInterfaces.dll
 C:\Users\Nagavardhan\Documents\GitHub\PHCSolution\PHC.BAInterfaces\obj\Debug\PHC.BAInterfaces.pdb
+C:\Users\kirank\Documents\GitHub\PHCSolution\PHC.BAInterfaces\bin\Debug\PHC.BAInterfaces.dll
+C:\Users\kirank\Documents\GitHub\PHCSolution\PHC.BAInterfaces\bin\Debug\PHC.BAInterfaces.pdb
+C:\Users\kirank\Documents\GitHub\PHCSolution\PHC.BAInterfaces\bin\Debug\PHC.DataAccess.dll
+C:\Users\kirank\Documents\GitHub\PHCSolution\PHC.BAInterfaces\bin\Debug\EntityFramework.dll
+C:\Users\kirank\Documents\GitHub\PHCSolution\PHC.BAInterfaces\bin\Debug\PHC.DataAccess.pdb
+C:\Users\kirank\Documents\GitHub\PHCSolution\PHC.BAInterfaces\bin\Debug\EntityFramework.xml
+C:\Users\kirank\Documents\GitHub\PHCSolution\PHC.BAInterfaces\obj\Debug\PHC.BAInterfaces.csprojResolveAssemblyReference.cache
+C:\Users\kirank\Documents\GitHub\PHCSolution\PHC.BAInterfaces\obj\Debug\PHC.BAInterfaces.dll
+C:\Users\kirank\Documents\GitHub\PHCSolution\PHC.BAInterfaces\obj\Debug\PHC.BAInterfaces.pdb

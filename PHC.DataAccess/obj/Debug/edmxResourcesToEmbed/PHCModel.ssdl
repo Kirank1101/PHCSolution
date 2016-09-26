@@ -241,7 +241,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__DrugsIssu__Presc__3D5E1FD2">
+  <Association Name="FK__DrugsIssu__Presc__398D8EEE">
     <End Role="PatientPrescription" Type="Self.PatientPrescription" Multiplicity="1" />
     <End Role="DrugsIssued" Type="Self.DrugsIssued" Multiplicity="*" />
     <ReferentialConstraint>
@@ -253,7 +253,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__PatientPr__Disea__4316F928">
+  <Association Name="FK__PatientPr__Disea__30F848ED">
     <End Role="MDisease" Type="Self.MDisease" Multiplicity="1" />
     <End Role="PatientPrescription" Type="Self.PatientPrescription" Multiplicity="*" />
     <ReferentialConstraint>
@@ -576,11 +576,11 @@
       <End Role="MDrugs" EntitySet="MDrugs" />
       <End Role="DrugsIssued" EntitySet="DrugsIssued" />
     </AssociationSet>
-    <AssociationSet Name="FK__DrugsIssu__Presc__3D5E1FD2" Association="Self.FK__DrugsIssu__Presc__3D5E1FD2">
+    <AssociationSet Name="FK__DrugsIssu__Presc__398D8EEE" Association="Self.FK__DrugsIssu__Presc__398D8EEE">
       <End Role="PatientPrescription" EntitySet="PatientPrescription" />
       <End Role="DrugsIssued" EntitySet="DrugsIssued" />
     </AssociationSet>
-    <AssociationSet Name="FK__PatientPr__Disea__4316F928" Association="Self.FK__PatientPr__Disea__4316F928">
+    <AssociationSet Name="FK__PatientPr__Disea__30F848ED" Association="Self.FK__PatientPr__Disea__30F848ED">
       <End Role="MDisease" EntitySet="MDisease" />
       <End Role="PatientPrescription" EntitySet="PatientPrescription" />
     </AssociationSet>
