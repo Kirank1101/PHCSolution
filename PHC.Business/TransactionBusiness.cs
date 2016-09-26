@@ -161,7 +161,7 @@ namespace PHC.Business
                     return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Saved." };
             }
             else
-                return new ResultDTO() { IsSuccess = false, Message = "DiseaseName already exist." };
+                return new ResultDTO() { IsSuccess = false, Message = "Drug already exist." };
         }
         public ResultDTO UpdateMDrug(string DrugID, string DrugName)
         {
@@ -215,7 +215,7 @@ namespace PHC.Business
                     return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Saved." };
             }
             else
-                return new ResultDTO() { IsSuccess = false, Message = "DiseaseName already exist." };
+                return new ResultDTO() { IsSuccess = false, Message = "LabTest already exist." };
         }
         public ResultDTO UpdateMLabTest(string LabTestID, string LabTestName)
         {
@@ -272,7 +272,7 @@ namespace PHC.Business
                     return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Saved." };
             }
             else
-                return new ResultDTO() { IsSuccess = false, Message = "DiseaseName already exist." };
+                return new ResultDTO() { IsSuccess = false, Message = "Taluk already exist." };
         }
         public ResultDTO UpdateMTaluk(string TalukID, string DistrictID, string TalukName)
         {
@@ -350,7 +350,7 @@ namespace PHC.Business
                     return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Saved." };
             }
             else
-                return new ResultDTO() { IsSuccess = false, Message = "DiseaseName already exist." };
+                return new ResultDTO() { IsSuccess = false, Message = "PHC already exist." };
         }
 
         public ResultDTO DeleteMPHC(string PHCID)

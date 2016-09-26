@@ -504,7 +504,7 @@ namespace PHC.DataAccessLayer
             {
                 try
                 {
-                    return new GenericRepository<MTaluk>(work).FindBy(d => d.TalukID == TalukID && d.ObsInd == No).SingleOrDefault();
+                    return new GenericRepository<MTaluk>(work).FindBy(d => d.TalukID == TalukID && d.ObsInd == No).SingleOrDefault();                    
                 }
                 catch (Exception ex)
                 {
