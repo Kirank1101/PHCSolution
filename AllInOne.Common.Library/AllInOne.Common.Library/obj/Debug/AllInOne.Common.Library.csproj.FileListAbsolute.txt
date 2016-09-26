@@ -60,3 +60,8 @@ C:\Users\Nagavardhan\Documents\GitHub\PHCSolution\Bin\AllInOne.Common.Library.pd
 C:\Users\Nagavardhan\Documents\GitHub\PHCSolution\AllInOne.Common.Library\AllInOne.Common.Library\obj\Debug\AllInOne.Common.Library.dll
 C:\Users\Nagavardhan\Documents\GitHub\PHCSolution\AllInOne.Common.Library\AllInOne.Common.Library\obj\Debug\AllInOne.Common.Library.pdb
 C:\Users\Nagavardhan\Documents\GitHub\PHCSolution\AllInOne.Common.Library\AllInOne.Common.Library\obj\Debug\AllInOne.Common.Library.csprojResolveAssemblyReference.cache
+C:\Users\kirank\Documents\GitHub\PHCSolution\Bin\AllInOne.Common.Library.dll
+C:\Users\kirank\Documents\GitHub\PHCSolution\Bin\AllInOne.Common.Library.pdb
+C:\Users\kirank\Documents\GitHub\PHCSolution\AllInOne.Common.Library\AllInOne.Common.Library\obj\Debug\AllInOne.Common.Library.csprojResolveAssemblyReference.cache
+C:\Users\kirank\Documents\GitHub\PHCSolution\AllInOne.Common.Library\AllInOne.Common.Library\obj\Debug\AllInOne.Common.Library.dll
+C:\Users\kirank\Documents\GitHub\PHCSolution\AllInOne.Common.Library\AllInOne.Common.Library\obj\Debug\AllInOne.Common.Library.pdb

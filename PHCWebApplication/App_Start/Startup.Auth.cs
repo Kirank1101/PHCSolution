@@ -21,6 +21,10 @@ namespace PHCWebApplication
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
             app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
 
+            // Add our custom managers
+            app.CreatePerOwinContext<CustomUserManager>(CustomUserManager.Create);
+            app.CreatePerOwinContext<CustomSignInManager>(CustomSignInManager.Create);
+
             // Enable the application to use a cookie to store information for the signed in user
             // and to use a cookie to temporarily store information about a user logging in with a third party login provider
             // Configure the sign in cookie

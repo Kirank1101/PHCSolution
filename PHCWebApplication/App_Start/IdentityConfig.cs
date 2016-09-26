@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using PHCWebApplication.Models;
+using PHC.DataAccess;
 
 namespace PHCWebApplication
 {
@@ -27,6 +28,89 @@ namespace PHCWebApplication
             return Task.FromResult(0);
         }
     }
+
+
+    public class CustomUser : IUser<string>
+    {
+        public string Id { get; set; }
+
+        public string UserName { get; set; }
+    }
+
+    public class CustomUserManager : UserManager<CustomUser>
+    {
+        public CustomUserManager(IUserStore<CustomUser> store)
+            : base(store)
+        {
+        }
+
+        public static CustomUserManager Create()
+        {
+            var manager = new CustomUserManager(new CustomUserStore());
+            return manager;
+        }
+    }
+
+    public class CustomSignInManager : SignInManager<CustomUser, string>
+    {
+        public CustomSignInManager(CustomUserManager userManager, IAuthenticationManager authenticationManager)
+            : base(userManager, authenticationManager)
+        {
+        }
+
+        public static CustomSignInManager Create(IdentityFactoryOptions<CustomSignInManager> options, IOwinContext context)
+        {
+            return new CustomSignInManager(context.GetUserManager<CustomUserManager>(), context.Authentication);
+        }
+    }
+
+    public class CustomUserStore : IUserStore<CustomUser>
+    {
+        //private PHCSolutions database;
+
+        public CustomUserStore()
+        {
+            // this.database = new PHCSolutions();
+        }
+
+        public void Dispose()
+        {
+            //this.database.Dispose();
+        }
+
+        public Task CreateAsync(CustomUser user)
+        {
+            // TODO
+            throw new NotImplementedException();
+        }
+
+        public Task UpdateAsync(CustomUser user)
+        {
+            // TODO
+            throw new NotImplementedException();
+        }
+
+        public Task DeleteAsync(CustomUser user)
+        {
+            // TODO
+            throw new NotImplementedException();
+        }
+
+        public async Task<CustomUser> FindByIdAsync(string userId)
+        {
+            CustomUser user = null; //await this.database.Where(c => c.UserId == userId).FirstOrDefaultAsync();
+            return user;
+        }
+
+        public async Task<CustomUser> FindByNameAsync(string userName)
+        {
+            CustomUser user = null;// await this.database.CustomUsers.Where(c => c.UserName == userName).FirstOrDefaultAsync();
+            return user;
+        }
+    }
+
+
+
 
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
     public class ApplicationUserManager : UserManager<ApplicationUser>
