@@ -184,13 +184,13 @@
                                         <asp:Label runat="server" ID="lblBatchNo" Text='<%# Eval("BatchNo") %>'></asp:Label>
                                     </td>
                                     <td>
-                                        <asp:Label runat="server" ID="lblMfDate" Text='<%# Eval("MfDate") %>'></asp:Label>
+                                        <asp:Label runat="server" ID="lblMfDate" Text='<%# Eval("MfDate", "{0:MM/dd/yyyy}") %>'></asp:Label>
                                     </td>
                                     <td>
-                                        <asp:Label runat="server" ID="lblExpDate" Text='<%# Eval("ExpDate") %>'></asp:Label>
+                                        <asp:Label runat="server" ID="lblExpDate" Text='<%# Eval("ExpDate", "{0:MM/dd/yyyy}") %>'></asp:Label>
                                     </td>
                                     <td>
-                                        <asp:Label runat="server" ID="lblPurchaseDate" Text='<%# Eval("PurchaseDate") %>'></asp:Label>
+                                        <asp:Label runat="server" ID="lblPurchaseDate" Text='<%# Eval("PurchaseDate", "{0:MM/dd/yyyy}") %>'></asp:Label>
                                     </td>
                                     <td>
                                         <asp:LinkButton ID="lnkEditData" runat="server" Text="Edit" CommandName="EditData" />
