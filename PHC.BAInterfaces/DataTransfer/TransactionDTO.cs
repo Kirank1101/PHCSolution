@@ -53,6 +53,7 @@ namespace PHC.BAInterfaces.DataTransfer
         public string DiseaseID { get; set; }
         public string DiseaseName { get; set; }
     }
+    [Serializable]
     public class MDrugsDTO
     {
         public string DrugID { get; set; }
@@ -74,5 +75,17 @@ namespace PHC.BAInterfaces.DataTransfer
         public string PhoneNo { get; set; }
         public string ECNumber { get; set; }
         public string MCNumber { get; set; }
+    }
+    public class DrugStockDTO
+    {
+        public string DrugStockID { get; set; }
+        public string PHCID { get; set; }
+        public string DrugID { get; set; }
+        public string DrugName { get; set; }
+        public Int32 Quantity { get; set; }
+        public string BatchNo { get; set; }
+        public DateTime MfDate { get; set; }
+        public DateTime ExpDate { get; set; }
+        public DateTime PurchaseDate { get; set; }
     }
 }

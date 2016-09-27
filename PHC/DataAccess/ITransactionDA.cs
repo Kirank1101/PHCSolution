@@ -72,5 +72,13 @@ namespace PHC.DAInterfaces.DataAccess
         bool DeleteMPHC(string PHCID);
 
         bool UpdateMPHC(MPHC PHC);
+
+        List<DrugStockDetail> GetDrugPurchaseDetail(string PHCID);
+
+        string GetDrugName(string DrugID);
+
+        bool AddDrugStock(DrugStockDetail DrugStockDetail);
+
+        bool UpdateDrugStock(DrugStockDetail DrugStockDetail);
     }
 }

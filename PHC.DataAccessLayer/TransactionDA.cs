@@ -98,7 +98,7 @@ namespace PHC.DataAccessLayer
             {
                 try
                 {
-                    return new GenericRepository<MDisease>(work).GetAll().Where(p => p.ObsInd == "N").ToList();
+                    return new GenericRepository<MDisease>(work).GetAll().Where(p => p.ObsInd == No).ToList();
                 }
                 catch (Exception ex)
                 {
@@ -176,7 +176,7 @@ namespace PHC.DataAccessLayer
             {
                 try
                 {
-                    return new GenericRepository<MDrug>(work).GetAll().Where(p => p.ObsInd == "N").ToList();
+                    return new GenericRepository<MDrug>(work).GetAll().Where(p => p.ObsInd == No).ToList();
                 }
                 catch (Exception ex)
                 {
@@ -254,7 +254,7 @@ namespace PHC.DataAccessLayer
             {
                 try
                 {
-                    return new GenericRepository<MLabTest>(work).GetAll().Where(p => p.ObsInd == "N").ToList();
+                    return new GenericRepository<MLabTest>(work).GetAll().Where(p => p.ObsInd == No).ToList();
                 }
                 catch (Exception ex)
                 {
@@ -333,7 +333,7 @@ namespace PHC.DataAccessLayer
                 try
                 {
                     return new GenericRepository<MTaluk>(work).GetAll().OrderByDescending
-                        (p => p.LastModifiedDate).Where(n => n.ObsInd == "N")
+                        (p => p.LastModifiedDate).Where(n => n.ObsInd == No)
                         .Take(5).ToList();
                 }
                 catch (Exception ex)
@@ -429,7 +429,7 @@ namespace PHC.DataAccessLayer
             {
                 try
                 {
-                    return new GenericRepository<MDistrict>(work).GetAll().Where(p => p.ObsInd == "N").ToList();
+                    return new GenericRepository<MDistrict>(work).GetAll().Where(p => p.ObsInd == No).ToList();
                 }
                 catch (Exception ex)
                 {
@@ -445,7 +445,7 @@ namespace PHC.DataAccessLayer
             {
                 try
                 {
-                    return new GenericRepository<MTaluk>(work).GetAll().Where(n => n.ObsInd == "N" && n.DistrictID == DistrictID).ToList();
+                    return new GenericRepository<MTaluk>(work).GetAll().Where(n => n.ObsInd == No && n.DistrictID == DistrictID).ToList();
                 }
                 catch (Exception ex)
                 {
@@ -488,7 +488,7 @@ namespace PHC.DataAccessLayer
                 try
                 {
                     return new GenericRepository<MPHC>(work).GetAll().OrderByDescending
-                        (p => p.LastModifiedDate).Where(n => n.ObsInd == "N")
+                        (p => p.LastModifiedDate).Where(n => n.ObsInd == No)
                         .Take(5).ToList();
                 }
                 catch (Exception ex)
@@ -528,8 +528,6 @@ namespace PHC.DataAccessLayer
             }
             return true;
         }
-
-
         public bool UpdateMPHC(MPHC PHC)
         {
             IUnitOfWork work = null;
@@ -543,6 +541,80 @@ namespace PHC.DataAccessLayer
                     MPHC.Name = PHC.Name;
                     MPHC.LastModifiedBy = "System";
                     MPHC.LastModifiedDate = DateTime.Now;
+                    work.Save();
+
+                    return true;
+                }
+                else
+                    return false;
+            }
+        }
+        public List<DrugStockDetail> GetDrugPurchaseDetail(string PHCID)
+        {
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                try
+                {
+                    return new GenericRepository<DrugStockDetail>(work).GetAll().OrderByDescending
+                        (p => p.LastModifiedDate).Where(n => n.ObsInd == No && n.PHCID == PHCID)
+                        .Take(50).ToList();
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                    throw ex;
+                }
+            }
+        }
+        public string GetDrugName(string DrugID)
+        {
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                try
+                {
+                    MDrug mDrug = new GenericRepository<MDrug>(work).FindBy(d => d.DrugID == DrugID && d.ObsInd == No).SingleOrDefault();
+                    return mDrug.Name;
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                    throw ex;
+                }
+            }
+        }
+
+        public bool AddDrugStock(DrugStockDetail DrugStockDetail)
+        {
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                new GenericRepository<DrugStockDetail>(work).Add(DrugStockDetail);
+                work.Save();
+            }
+            return true;
+        }
+
+        public bool UpdateDrugStock(DrugStockDetail DrugStockDetail)
+        {
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                DrugStockDetail drugstock = new GenericRepository<DrugStockDetail>(work).FindBy(n => n.DrugStockID== DrugStockDetail.DrugStockID).FirstOrDefault();
+
+                if (drugstock != null)
+                {
+                    //con.Edit(empobj);
+                    drugstock.DrugID = DrugStockDetail.DrugID;
+                    drugstock.PHCID = DrugStockDetail.PHCID;
+                    drugstock.Quantity = DrugStockDetail.Quantity;
+                    drugstock.BatchNo = DrugStockDetail.BatchNo;
+                    drugstock.ManufactureDate = DrugStockDetail.ManufactureDate;
+                    drugstock.ExpiryDate = DrugStockDetail.ExpiryDate;
+                    drugstock.PurchaseDate = DrugStockDetail.PurchaseDate;
+                    drugstock.LastModifiedBy = "System";
+                    drugstock.LastModifiedDate = DateTime.Now;
                     work.Save();
 
                     return true;

@@ -11,6 +11,7 @@ namespace PHC.Business
 {
     public class TransactionBusiness : ITransactionBusiness
     {
+        const string StateIDConstant = "KARNATAKA";
         ITransactionDA objDA;
         public TransactionBusiness(ITransactionDA iDA)
         {
@@ -147,7 +148,8 @@ namespace PHC.Business
         public ResultDTO SaveMDrug(string DrugName)
         {
             MDrug Drug = new MDrug();
-            Drug.DrugID = "DrugID1";
+            Drug.DrugID = CommonUtil.CreateUniqueID("MD");
+            Drug.StateID = StateIDConstant;
             Drug.Name = DrugName;
             Drug.LastModifiedBy = "System";
             Drug.LastModifiedDate = DateTime.Now;
@@ -168,9 +170,6 @@ namespace PHC.Business
             MDrug Drug = new MDrug();
             Drug.DrugID = DrugID;
             Drug.Name = DrugName;
-            Drug.LastModifiedBy = "System";
-            Drug.LastModifiedDate = DateTime.Now;
-            Drug.ObsInd = "N";
             if (objDA.UpdateMDrug(Drug))
                 return new ResultDTO() { IsSuccess = true, Message = "Successfully Updated." };
             else
@@ -385,6 +384,74 @@ namespace PHC.Business
                 return new ResultDTO() { IsSuccess = true, Message = "Successfully Updated." };
             else
                 return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Updated." };
+        }
+
+
+        public List<DrugStockDTO> GetDrugPurchaseDetail(string PHCID)
+        {
+            List<DrugStockDetail> lstDrugStockDetail = objDA.GetDrugPurchaseDetail(PHCID);
+            List<DrugStockDTO> lstDrugStockDTO = new List<DrugStockDTO>();
+            if (lstDrugStockDetail != null)
+                foreach (DrugStockDetail DrugStock in lstDrugStockDetail)
+                {
+                    DrugStockDTO DrugStockDTO = new DrugStockDTO();
+                    DrugStockDTO.DrugStockID = DrugStock.DrugStockID;
+                    DrugStockDTO.PHCID = DrugStock.PHCID;
+                    DrugStockDTO.DrugID = DrugStock.DrugID;
+                    string DrugName = objDA.GetDrugName(DrugStockDTO.DrugID);
+                    DrugStockDTO.DrugName = DrugName;
+                    DrugStockDTO.Quantity = DrugStock.Quantity;
+                    DrugStockDTO.BatchNo= DrugStock.BatchNo; 
+                    DrugStockDTO.MfDate = DrugStock.ManufactureDate;
+                    DrugStockDTO.ExpDate = DrugStock.ExpiryDate;
+                    DrugStockDTO.PurchaseDate= DrugStock.PurchaseDate;
+                    
+                    lstDrugStockDTO.Add(DrugStockDTO);
+                }
+            return lstDrugStockDTO;
+        }
+
+        public ResultDTO SaveDrugStock(string DrugID, string PHCID, Int16 Quantity, string BatchNo, string MfDate, string ExpDate, string PurchaseDate)
+        {
+            DrugStockDetail DrugStockDetail = new DrugStockDetail();
+            DrugStockDetail.DrugStockID = CommonUtil.CreateUniqueID("D");
+            DrugStockDetail.PHCID = PHCID;
+            DrugStockDetail.DrugID = DrugID;
+            DrugStockDetail.Quantity= Quantity;
+            DrugStockDetail.BatchNo= BatchNo;
+            DrugStockDetail.ManufactureDate= MfDate.ConvertToDate();
+            DrugStockDetail.ExpiryDate = ExpDate.ConvertToDate();
+            DrugStockDetail.PurchaseDate= PurchaseDate.ConvertToDate();
+            DrugStockDetail.LastModifiedBy = "System";
+            DrugStockDetail.LastModifiedDate = DateTime.Now;
+            DrugStockDetail.ObsInd = "N";
+                if (objDA.AddDrugStock(DrugStockDetail))
+                    return new ResultDTO() { IsSuccess = true, Message = "Successfully Saved." };
+                else
+                    return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Saved." };     
+        }
+
+        public ResultDTO UpdateDrugStock(string DrugStockID, string DrugID, string PHCID, Int16 Quantity, string BatchNo, string MfDate, string ExpDate, string PurchaseDate)
+        {
+            DrugStockDetail DrugStockDetail = new DrugStockDetail();
+            DrugStockDetail.DrugStockID = DrugStockID;
+            DrugStockDetail.PHCID = PHCID;
+            DrugStockDetail.DrugID = DrugID;
+            DrugStockDetail.Quantity = Quantity;
+            DrugStockDetail.BatchNo = BatchNo;
+            DrugStockDetail.ManufactureDate = MfDate.ConvertToDate();
+            DrugStockDetail.ExpiryDate = ExpDate.ConvertToDate();
+            DrugStockDetail.PurchaseDate = PurchaseDate.ConvertToDate();
+            DrugStockDetail.LastModifiedBy = "System";
+            if (objDA.UpdateDrugStock(DrugStockDetail))
+                return new ResultDTO() { IsSuccess = true, Message = "Successfully Updated." };
+            else
+                return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Updated." };
+        }
+
+        public ResultDTO DeleteDrugStock(string DrugStockID)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -58,5 +58,13 @@ namespace PHC.BAInterfaces.Business
         List<MTalukDTO> GetMTalukNames(string DistrictID);
 
         ResultDTO UpdateMPHC(string PHCID, string PHCName);
+
+        List<DrugStockDTO> GetDrugPurchaseDetail(string PHCID);
+
+        ResultDTO SaveDrugStock(string DrugID, string PHCID, Int16 Quantity, string BatchNo, string MfDate, string ExpDate, string PurchaseDate);
+
+        ResultDTO UpdateDrugStock(string DrugStockID, string DrugID, string PHCID, Int16 Quantity, string BatchNo, string MfDate, string ExpDate, string PurchaseDate);
+
+        ResultDTO DeleteDrugStock(string DrugStockID);
     }
 }

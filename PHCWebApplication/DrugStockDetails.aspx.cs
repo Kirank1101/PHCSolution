@@ -1,5 +1,4 @@
 ﻿using PHC.BAInterfaces.Business;
-using PHC.BAInterfaces.Constants;
 using PHC.BAInterfaces.DataTransfer;
 using PHC.Binder.BackEnd;
 using System;
@@ -8,13 +7,14 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
-namespace WebApplication5
+using AllInOne.Common.Library.Util;
+using PHC.BAInterfaces.Constants;
+namespace PHCWebApplication
 {
-    public partial class AddPHC : System.Web.UI.Page
+    public partial class DrugStockDetails : System.Web.UI.Page
     {
         ITransactionBusiness objITransactionBusiness = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-
+        string PHCID = "MATTIKOTE20160927ceef73446a4d6c";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -23,60 +23,61 @@ namespace WebApplication5
                 this.PopulateData();
             }
         }
-
         private void PageReset()
         {
-            this.BindDistricts();
-            txtPHCName.Text = string.Empty;
+            this.BindDrugs();
+            txtQuantity.Text = string.Empty;
+            txtBatchNo.Text = string.Empty;
+            txtManufactureDate.Text = string.Empty;
+            txtExpiryDate.Text = string.Empty;
+            txtPurchaseDate.Text = string.Empty;
             btnUpdate.Visible = false;
             btnSave.Visible = true;
-            ddlDistrictNames.Enabled = true;
-            ddlTalukNames.Enabled = true;
         }
-        private void BindDistricts()
+
+        private void BindDrugs()
         {
-            List<MDistrictDTO> lstdistrict = ViewstateDistricts;
-            if (lstdistrict != null && lstdistrict.Count > 0)
+            List<MDrugsDTO> lstMDrugsDTO = ViewstateDrugNames;
+            if (lstMDrugsDTO != null && lstMDrugsDTO.Count > 0)
             {
-                ddlDistrictNames.DataSource = lstdistrict;
-                ddlDistrictNames.DataBind();
-                ddlDistrictNames.Items.Insert(0, "Select District");
-                ddlTalukNames.Items.Clear();
-                ddlTalukNames.Items.Insert(0, "Select Taluk");
+                ddlDrugNames.DataSource = lstMDrugsDTO;
+                ddlDrugNames.DataBind();
+                ddlDrugNames.Items.Insert(0, "Select Drug");
             }
         }
         private void PopulateData()
         {
-            List<MPHCDTO> lstMPHC = new List<MPHCDTO>();
-            lstMPHC = objITransactionBusiness.GetMPHC();
-            if (lstMPHC != null && lstMPHC.Count > 0)
+
+            List<DrugStockDTO> lstDrugStockDTO = new List<DrugStockDTO>();
+            lstDrugStockDTO = objITransactionBusiness.GetDrugPurchaseDetail(PHCID);
+            if (lstDrugStockDTO != null && lstDrugStockDTO.Count > 0)
             {
-                LVPHCDetails.DataSource = lstMPHC;
-                LVPHCDetails.DataBind();
+                LVDrugsStockDetails.DataSource = lstDrugStockDTO;
+                LVDrugsStockDetails.DataBind();
             }
             else
             {
 
             }
         }
-        const string VSDistrict = "VSDistrict";
-        public List<MDistrictDTO> ViewstateDistricts
+        const string VSDrugName = "VSDrugName";
+        public List<MDrugsDTO> ViewstateDrugNames
         {
             get
             {
-                if (ViewState[VSDistrict] == null)
+                if (ViewState[VSDrugName] == null)
                 {
-                    List<MDistrictDTO> lstdistrict = new List<MDistrictDTO>();
-                    lstdistrict = objITransactionBusiness.GetMDistricts();
+                    List<MDrugsDTO> lstMDrugsDTO = new List<MDrugsDTO>();
+                    lstMDrugsDTO = objITransactionBusiness.GetMDrugs();
 
-                    ViewState[VSDistrict] = lstdistrict;
+                    ViewState[VSDrugName] = lstMDrugsDTO;
                 }
-                return (List<MDistrictDTO>)ViewState[VSDistrict];
+                return (List<MDrugsDTO>)ViewState[VSDrugName];
             }
         }
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            ResultDTO resultDTO = objITransactionBusiness.SaveMPHC(ddlTalukNames.SelectedValue, txtPHCName.Text);
+            ResultDTO resultDTO = objITransactionBusiness.SaveDrugStock(ddlDrugNames.SelectedValue, PHCID, Convert.ToInt16(txtQuantity.Text), txtBatchNo.Text, txtManufactureDate.Text, txtExpiryDate.Text, txtPurchaseDate.Text);
             if (resultDTO.IsSuccess)
             {
                 pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessBackGroundColor);
@@ -93,8 +94,8 @@ namespace WebApplication5
         }
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
-            string PHCID = ViewState["PHCID"].ToString();
-            ResultDTO resultDTO = objITransactionBusiness.UpdateMPHC(PHCID, txtPHCName.Text);
+            string DrugStockID = ViewState["DrugStockID"].ToString();
+            ResultDTO resultDTO = objITransactionBusiness.UpdateDrugStock(DrugStockID, ddlDrugNames.SelectedValue, PHCID, Convert.ToInt16(txtQuantity.Text), txtBatchNo.Text, txtManufactureDate.Text, txtExpiryDate.Text, txtPurchaseDate.Text);
 
             if (resultDTO.IsSuccess)
             {
@@ -118,8 +119,8 @@ namespace WebApplication5
         protected void DeleteRecord(object sender, ListViewDeleteEventArgs e)
         {
             PageReset();
-            string PHCID = LVPHCDetails.DataKeys[e.ItemIndex].Value.ToString();
-            ResultDTO resultDTO = objITransactionBusiness.DeleteMPHC(PHCID);
+            string DrugStockID = LVDrugsStockDetails.DataKeys[e.ItemIndex].Value.ToString();
+            ResultDTO resultDTO = objITransactionBusiness.DeleteDrugStock(DrugStockID);
             if (resultDTO.IsSuccess)
             {
                 //pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessBackGroundColor);
@@ -134,58 +135,38 @@ namespace WebApplication5
             }
             this.PopulateData();
         }
-        protected void LVPHCDetails_PagePropertiesChanging(object sender, PagePropertiesChangingEventArgs e)
+        protected void LVDrugsStockDetails_PagePropertiesChanging(object sender, PagePropertiesChangingEventArgs e)
         {
             this.DPLV1.SetPageProperties(e.StartRowIndex, e.MaximumRows, false);
             PopulateData();
         }
-        private void BindTaluks(string DistrictID)
-        {
-            List<MTalukDTO> lstTaluk = new List<MTalukDTO>();
-            lstTaluk = objITransactionBusiness.GetMTalukNames(DistrictID);
-            if (lstTaluk != null && lstTaluk.Count > 0)
-            {
-                ddlTalukNames.DataSource = lstTaluk;
-                ddlTalukNames.DataBind();
-                ddlTalukNames.Items.Insert(0, "Select Taluk");
-            }
-        }
-        protected void LVPHCDetails_ItemCommand(object sender, ListViewCommandEventArgs e)
+        protected void LVDrugsStockDetails_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
             if (e.CommandName == "EditData")
             {
-                PageReset();
+                //PageReset();
                 Label lblPHCID = (Label)e.Item.FindControl("lblPHCID");
-                Label lblDistrictID = (Label)e.Item.FindControl("lblDistrictID");
-                Label lblTalukID = (Label)e.Item.FindControl("lblTalukID");
+                Label lblDrugStockID = (Label)e.Item.FindControl("lblDrugStockID");
+                Label lblDrugID = (Label)e.Item.FindControl("lblDrugID");
                 Label lblPHCName = (Label)e.Item.FindControl("lblPHCName");
+                Label lblQuantity = (Label)e.Item.FindControl("lblQuantity");
+                Label lblBatchNo = (Label)e.Item.FindControl("lblBatchNo");
+                Label lblMfDate = (Label)e.Item.FindControl("lblMfDate");
+                Label lblExpDate = (Label)e.Item.FindControl("lblExpDate");
+                Label lblPurchaseDate = (Label)e.Item.FindControl("lblPurchaseDate");
 
-                string PHCID = lblPHCID.Text;
+                string DrugStockID = lblDrugStockID.Text;
                 btnSave.Visible = false;
                 btnUpdate.Visible = true;
-                ddlDistrictNames.SelectedValue = lblDistrictID.Text;
-                BindTaluks(lblDistrictID.Text);
-                ddlTalukNames.SelectedValue = lblTalukID.Text;
-                txtPHCName.Text = lblPHCName.Text;
-                ddlDistrictNames.Enabled = false;
-                ddlTalukNames.Enabled = false;
-                ViewState["PHCID"] = PHCID;
+                ddlDrugNames.SelectedValue = lblDrugID.Text;
+                txtQuantity.Text = lblQuantity.Text;
+                txtBatchNo.Text = lblBatchNo.Text;
+                txtManufactureDate.Text = lblMfDate.Text;
+                txtExpiryDate.Text = lblExpDate.Text;
+                txtPurchaseDate.Text = lblPurchaseDate.Text;
+                ViewState["DrugStockID"] = DrugStockID;
             }
         }
-        protected void ddlDistrictNames_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (ddlDistrictNames.SelectedIndex > 0)
-            {
-                BindTaluks(ddlDistrictNames.SelectedValue);
-            }
-            else
-            {
-                ddlTalukNames.Items.Clear();
-                ddlTalukNames.DataSource = null;
-                ddlTalukNames.DataBind();
-                ddlTalukNames.Items.Insert(0, "Select Taluk");
-            }
-        }
-        
+
     }
 }
