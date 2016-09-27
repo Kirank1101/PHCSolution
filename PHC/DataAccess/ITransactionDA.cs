@@ -68,5 +68,9 @@ namespace PHC.DAInterfaces.DataAccess
 
 
         MTaluk GetMTalukOnID(string TalukID);
+
+        bool DeleteMPHC(string PHCID);
+
+        bool UpdateMPHC(MPHC PHC);
     }
 }

@@ -43,7 +43,7 @@
                     <asp:Label runat="server" CssClass="control-label" Text="District Name"></asp:Label></td>
                 <td>
                     <div style="width: 250px">
-                        <asp:DropDownList ID="ddlDistrictNames" DataTextField="DistrictName" DataValueField="DistrictID" CssClass="form-control" 
+                        <asp:DropDownList ID="ddlDistrictNames" DataTextField="DistrictName" DataValueField="DistrictID" CssClass="form-control"
                             runat="server" OnSelectedIndexChanged="ddlDistrictNames_SelectedIndexChanged" AutoPostBack="true">
                         </asp:DropDownList>
 
@@ -81,8 +81,11 @@
                         ErrorMessage="PHC Name required" ControlToValidate="txtPHCName">*</asp:RequiredFieldValidator></td>
             </tr>
             <tr>
-                <td style="width: 136px">
-                    <asp:Button ID="btnAdd" runat="server" Text="Save" CssClass="btn btn-default" OnClick="btnSave_Click" ValidationGroup="PHCSave" />
+                <td colspan="3">
+                    <asp:Button ID="btnSave" runat="server" Text="Save" CssClass="btn btn-default" OnClick="btnSave_Click" ValidationGroup="PHCSave" />
+                    <asp:Button ID="btnUpdate" runat="server" Text="Update" CssClass="btn btn-default" OnClick="btnUpdate_Click" ValidationGroup="PHCSave" />
+
+                    <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="btn btn-default" OnClick="btnCancel_Click" />
                 </td>
             </tr>
         </table>
@@ -95,10 +98,9 @@
                     <fieldset>
                         <legend>PHC Details</legend>
 
-                        <asp:ListView ID="LVPHCDetails" runat="server" ItemPlaceholderID="itemPlaceHolder1" OnItemDataBound="OnItemDataBound" 
-                            OnItemEditing="EditRecord" OnItemCanceling="CancelEditRecord" DataKeyNames="PHCID"
-                            OnItemUpdating="UpdateRecord"
-                            OnItemDeleting="DeleteRecord" OnPagePropertiesChanging="LVPHCDetails_PagePropertiesChanging">
+                        <asp:ListView ID="LVPHCDetails" runat="server" ItemPlaceholderID="itemPlaceHolder1" DataKeyNames="PHCID"
+                            OnItemDeleting="DeleteRecord" OnItemCommand="LVPHCDetails_ItemCommand"
+                            OnPagePropertiesChanging="LVPHCDetails_PagePropertiesChanging">
                             <EmptyDataTemplate>
                                 There are no entries found for MDrugs
                             </EmptyDataTemplate>
@@ -107,13 +109,13 @@
                                     <thead>
                                         <tr>
                                             <th style="color: #428bca">
-                                                <asp:LinkButton Text="District Name" CommandName="Sort" CommandArgument="DistrictName" runat="Server" />
+                                                District Name
                                             </th>
                                             <th style="color: #428bca">
-                                                <asp:LinkButton Text="Taluk Name" CommandName="Sort" CommandArgument="TalukName" runat="Server" />
+                                                Taluk Name
                                             </th>
                                             <th style="color: #428bca">
-                                                <asp:LinkButton Text="PHC Name" CommandName="Sort" CommandArgument="PHCName" runat="Server" />
+                                                PHC Name
                                             </th>
                                             <th style="color: #428bca">Action
                                             </th>
@@ -126,17 +128,21 @@
                             </LayoutTemplate>
                             <ItemTemplate>
                                 <tr>
+
                                     <td>
+                                        <asp:Label runat="server" ID="lblPHCID" Text='<%# Eval("PHCID") %>' Visible="false"></asp:Label>
+                                        <asp:Label runat="server" ID="lblDistrictID" Text='<%# Eval("DistrictID") %>' Visible="false"></asp:Label>
+                                        <asp:Label runat="server" ID="lblTalukID" Text='<%# Eval("TalukID") %>' Visible="false"></asp:Label>
                                         <%# Eval("DistrictName") %>
                                     </td>
                                     <td>
                                         <%# Eval("TalukName") %>
                                     </td>
                                     <td>
-                                        <%# Eval("PHCName") %>
+                                        <asp:Label runat="server" ID="lblPHCName" Text='<%# Eval("PHCName") %>'></asp:Label>
                                     </td>
                                     <td>
-                                        <asp:LinkButton ID="lnkEdit" runat="server" Text="Edit" CommandName="Edit" />
+                                        <asp:LinkButton ID="lnkEditData" runat="server" Text="Edit" CommandName="EditData" />
 
                                         <span onclick="return confirm('Are you sure to delete?')">
                                             <asp:LinkButton ID="lnkDel" runat="server" Text="Delete" CommandName="Delete" />
@@ -144,27 +150,6 @@
                                     </td>
                                 </tr>
                             </ItemTemplate>
-                            <EditItemTemplate>
-                                <tr style="background-color: #efefef;">
-                                    <td>
-                                        <asp:DropDownList ID="ddlDistrict" runat="server" DataTextField="DistrictName" DataValueField="DistrictID" CssClass="form-control">
-                                        </asp:DropDownList>
-                                        <asp:Label ID="lblDistrictName" runat="server" Text='<%# Eval("DistrictName") %>' Visible="false"></asp:Label>
-                                    </td>
-                                    <td>
-                                        <asp:DropDownList ID="ddleTaluk" runat="server" DataTextField="TalukName" DataValueField="TalukID" CssClass="form-control">
-                                        </asp:DropDownList>
-                                        <asp:Label ID="lblTalukName" runat="server" Text='<%# Eval("TalukName") %>' Visible="false"></asp:Label>
-                                    </td>
-                                    <td>
-                                        <asp:TextBox ID="txtePHCName" runat="server" Text='<%# Eval("PHCName") %>' CssClass="form-control" />
-                                    </td>
-                                    <td>
-                                        <asp:LinkButton ID="lnkUpdate" runat="server" Text="Update" CommandName="Update" ValidationGroup="Add2" />
-                                        <asp:LinkButton ID="lnkCancel" runat="server" Text="Cancel" CommandName="Cancel" />
-                                    </td>
-                                </tr>
-                            </EditItemTemplate>
                         </asp:ListView>
 
                         <asp:DataPager ID="DPLV1" PageSize="5" runat="server" PagedControlID="LVPHCDetails">

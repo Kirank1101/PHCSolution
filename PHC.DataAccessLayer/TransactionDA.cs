@@ -114,7 +114,7 @@ namespace PHC.DataAccessLayer
             {
                 try
                 {
-                    return new GenericRepository<MDisease>(work).FindBy(n => n.Name == DiseaseName && n.ObsInd == No).FirstOrDefault();                        
+                    return new GenericRepository<MDisease>(work).FindBy(n => n.Name == DiseaseName && n.ObsInd == No).FirstOrDefault();
                 }
                 catch (Exception ex)
                 {
@@ -237,12 +237,13 @@ namespace PHC.DataAccessLayer
             IUnitOfWork work = null;
             using (work = GetUOW.GetUOWInstance)
             {
-                MDrug mDrug= new GenericRepository<MDrug>(work).FindBy(n=>n.DrugID==DrugID).FirstOrDefault();
-                if (mDrug != null) {
+                MDrug mDrug = new GenericRepository<MDrug>(work).FindBy(n => n.DrugID == DrugID).FirstOrDefault();
+                if (mDrug != null)
+                {
                     new GenericRepository<MDrug>(work).Delete(mDrug);
                     work.Save();
                 }
-                
+
             }
             return true;
         }
@@ -293,7 +294,7 @@ namespace PHC.DataAccessLayer
             IUnitOfWork work = null;
             using (work = GetUOW.GetUOWInstance)
             {
-                MLabTest labtest = new GenericRepository<MLabTest>(work).FindBy(n=>n.LabTestID==LabTest.LabTestID).FirstOrDefault();
+                MLabTest labtest = new GenericRepository<MLabTest>(work).FindBy(n => n.LabTestID == LabTest.LabTestID).FirstOrDefault();
 
                 if (labtest != null)
                 {
@@ -319,7 +320,7 @@ namespace PHC.DataAccessLayer
                 {
                     new GenericRepository<MLabTest>(work).Delete(mLabTest);
 
-                    work.Save();   
+                    work.Save();
                 }
             }
             return true;
@@ -332,7 +333,7 @@ namespace PHC.DataAccessLayer
                 try
                 {
                     return new GenericRepository<MTaluk>(work).GetAll().OrderByDescending
-                        (p => p.LastModifiedDate).Where(n=>n.ObsInd=="N")
+                        (p => p.LastModifiedDate).Where(n => n.ObsInd == "N")
                         .Take(5).ToList();
                 }
                 catch (Exception ex)
@@ -349,7 +350,7 @@ namespace PHC.DataAccessLayer
             {
                 try
                 {
-                    MDistrict district= new GenericRepository<MDistrict>(work).FindBy(d => d.DistrictID == DistrictID && d.ObsInd == No).SingleOrDefault();
+                    MDistrict district = new GenericRepository<MDistrict>(work).FindBy(d => d.DistrictID == DistrictID && d.ObsInd == No).SingleOrDefault();
                     return district.Name;
                 }
                 catch (Exception ex)
@@ -451,7 +452,7 @@ namespace PHC.DataAccessLayer
                     return null;
                     throw ex;
                 }
-            }            
+            }
         }
         public MPHC GetMPHC(string PHCName)
         {
@@ -504,13 +505,50 @@ namespace PHC.DataAccessLayer
             {
                 try
                 {
-                    return new GenericRepository<MTaluk>(work).FindBy(d => d.TalukID == TalukID && d.ObsInd == No).SingleOrDefault();                    
+                    return new GenericRepository<MTaluk>(work).FindBy(d => d.TalukID == TalukID && d.ObsInd == No).SingleOrDefault();
                 }
                 catch (Exception ex)
                 {
                     return null;
                     throw ex;
                 }
+            }
+        }
+        public bool DeleteMPHC(string PHCID)
+        {
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                MPHC mPHC = new GenericRepository<MPHC>(work).FindBy(n => n.PHCID == PHCID).FirstOrDefault();
+                if (mPHC != null)
+                {
+                    new GenericRepository<MPHC>(work).Delete(mPHC);
+                    work.Save();
+                }
+            }
+            return true;
+        }
+
+
+        public bool UpdateMPHC(MPHC PHC)
+        {
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                MPHC MPHC = new GenericRepository<MPHC>(work).FindBy(n => n.PHCID == PHC.PHCID).FirstOrDefault();
+
+                if (MPHC != null)
+                {
+                    //con.Edit(empobj);
+                    MPHC.Name = PHC.Name;
+                    MPHC.LastModifiedBy = "System";
+                    MPHC.LastModifiedDate = DateTime.Now;
+                    work.Save();
+
+                    return true;
+                }
+                else
+                    return false;
             }
         }
     }

@@ -19,10 +19,19 @@ namespace WebApplication5
         {
             if (!IsPostBack)
             {
-                this.BindDistricts();
-
-                this.PopulateData();
+                PageReset();
             }
+        }
+
+        private void PageReset()
+        {
+            this.BindDistricts();
+            this.PopulateData();
+            txtPHCName.Text = string.Empty;
+            btnUpdate.Visible = false;
+            btnSave.Visible = true;
+            ddlDistrictNames.Enabled = true;
+            ddlTalukNames.Enabled = true;
         }
         private void BindDistricts()
         {
@@ -67,35 +76,28 @@ namespace WebApplication5
             }
             this.PopulateData();
         }
-        protected void EditRecord(object sender, ListViewEditEventArgs e)
+
+        protected void btnUpdate_Click(object sender, EventArgs e)
         {
-            LVPHCDetails.EditIndex = e.NewEditIndex;
+            string PHCID = ViewState["PHCID"].ToString();
+            ResultDTO resultDTO = objITransactionBusiness.UpdateMPHC(PHCID, txtPHCName.Text);
+            if (resultDTO.IsSuccess)
+            {
+                //pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessBackGroundColor);
+                //lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessForeColor);
+                //lblstatus.Text = resultDTO.Message;
+            }
+            else
+            {
+                //pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorBackGroundColor);
+                //lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorForeColor);
+                //lblstatus.Text = resultDTO.Message;
+            }
             this.PopulateData();
         }
-        protected void UpdateRecord(object sender, ListViewUpdateEventArgs e)
+        protected void btnCancel_Click(object sender, EventArgs e)
         {
-            string PHCID = LVPHCDetails.DataKeys[e.ItemIndex].Value.ToString();
-            ListViewItem item = LVPHCDetails.Items[e.ItemIndex];
-            TextBox txtePHCName = (TextBox)item.FindControl("txtePHCName");
-            DropDownList ddlDistrict = (DropDownList)item.FindControl("ddlDistrict");
-
-            //ResultDTO resultDTO = objITransactionBusiness.UpdateMPHC(PHCID, ddlDistrict.SelectedValue, ddleTaluk.SelectedValue, txtePHCName.Text);
-            //if (resultDTO.IsSuccess)
-            //{
-            //    //pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessBackGroundColor);
-            //    //lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessForeColor);
-            //    //lblstatus.Text = resultDTO.Message;
-            //}
-            //else
-            //{
-            //    //pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorBackGroundColor);
-            //    //lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorForeColor);
-            //    //lblstatus.Text = resultDTO.Message;
-            //}
-            //lblMessage.Text = "Record updated successfully !";
-            LVPHCDetails.EditIndex = -1;
-            // repopulate the data
-            this.PopulateData();
+            PageReset();
         }
         protected void CancelEditRecord(object sender, ListViewCancelEventArgs e)
         {
@@ -105,7 +107,6 @@ namespace WebApplication5
         }
         protected void DeleteRecord(object sender, ListViewDeleteEventArgs e)
         {
-
             string PHCID = LVPHCDetails.DataKeys[e.ItemIndex].Value.ToString();
             ResultDTO resultDTO = objITransactionBusiness.DeleteMPHC(PHCID);
             if (resultDTO.IsSuccess)
@@ -168,6 +169,29 @@ namespace WebApplication5
                 ddlTalukNames.DataSource = lstTaluk;
                 ddlTalukNames.DataBind();
                 ddlTalukNames.Items.Insert(0, "Select Taluk");
+            }
+        }
+
+        protected void LVPHCDetails_ItemCommand(object sender, ListViewCommandEventArgs e)
+        {
+            if (e.CommandName == "EditData")
+            {
+                PageReset();
+                Label lblPHCID = (Label)e.Item.FindControl("lblPHCID");
+                Label lblDistrictID = (Label)e.Item.FindControl("lblDistrictID");
+                Label lblTalukID = (Label)e.Item.FindControl("lblTalukID");
+                Label lblPHCName = (Label)e.Item.FindControl("lblPHCName");
+
+                string PHCID = lblPHCID.Text;
+                btnSave.Visible = false;
+                btnUpdate.Visible = true;
+                ddlDistrictNames.SelectedValue = lblDistrictID.Text;
+                BindTaluks(lblDistrictID.Text);
+                ddlTalukNames.SelectedValue = lblTalukID.Text;
+                txtPHCName.Text = lblPHCName.Text;
+                ddlDistrictNames.Enabled = false;
+                ddlTalukNames.Enabled = false;
+                ViewState["PHCID"] = PHCID;
             }
         }
 

@@ -56,5 +56,7 @@ namespace PHC.BAInterfaces.Business
         ResultDTO DeleteMPHC(string PHCID);
 
         List<MTalukDTO> GetMTalukNames(string DistrictID);
+
+        ResultDTO UpdateMPHC(string PHCID, string PHCName);
     }
 }

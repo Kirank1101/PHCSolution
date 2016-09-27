@@ -309,8 +309,6 @@ namespace PHC.Business
                 }
             return lstDistrictDTO;
         }
-
-
         public List<MPHCDTO> GetMPHC()
         {
             List<MPHC> lstPHC = objDA.GetMPHCList();
@@ -331,7 +329,6 @@ namespace PHC.Business
                 }
             return lstPHCDTO;
         }
-
         public ResultDTO SaveMPHC(string TalukID, string PHCName)
         {
             MPHC MPHC = new MPHC();
@@ -352,13 +349,13 @@ namespace PHC.Business
             else
                 return new ResultDTO() { IsSuccess = false, Message = "PHC already exist." };
         }
-
         public ResultDTO DeleteMPHC(string PHCID)
         {
-            throw new NotImplementedException();
+            if (objDA.DeleteMPHC(PHCID))
+                return new ResultDTO() { IsSuccess = true, Message = "Successfully Deleted." };
+            else
+                return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Deleted." };
         }
-
-
         public List<MTalukDTO> GetMTalukNames(string DistrictID)
         {
             List<MTaluk> lstTaluk = objDA.GetMTaluks(DistrictID);
@@ -373,6 +370,21 @@ namespace PHC.Business
                     lstTalukDTO.Add(TalukDTO);
                 }
             return lstTalukDTO;
+        }
+
+
+        public ResultDTO UpdateMPHC(string PHCID, string PHCName)
+        {
+            MPHC PHC = new MPHC();
+            PHC.PHCID = PHCID;
+            PHC.Name = PHCName;
+            PHC.LastModifiedBy = "System";
+            PHC.LastModifiedDate = DateTime.Now;
+            PHC.ObsInd = "N";
+            if (objDA.UpdateMPHC(PHC))
+                return new ResultDTO() { IsSuccess = true, Message = "Successfully Updated." };
+            else
+                return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Updated." };
         }
     }
 }
