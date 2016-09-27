@@ -43,6 +43,12 @@ namespace PHC.DataAccess
         public DbSet<UserDetail> UserDetails { get; set; }
         public DbSet<UserMap> UserMaps { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
+        public DbSet<AspNetRole> AspNetRoles { get; set; }
+        public DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
+        public DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
+        public DbSet<AspNetUser> AspNetUsers { get; set; }
+        public DbSet<DrugStockDetail> DrugStockDetails { get; set; }
 
         public void Save()
         {

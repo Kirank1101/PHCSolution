@@ -50,6 +50,18 @@
         <AssociationConnector Association="PHCSolutionsModel.FK_PatientMC_PatientEC" ManuallyRouted="false" />
         <AssociationConnector Association="PHCSolutionsModel.FK_UserDetails_UserDetails" ManuallyRouted="false" />
         <AssociationConnector Association="PHCSolutionsModel.FK_UserMap_Users" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="PHCSolutionsModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="PHCSolutionsModel.AspNetRole" Width="1.5" PointX="17.75" PointY="2.5" />
+        <EntityTypeShape EntityType="PHCSolutionsModel.AspNetUserClaim" Width="1.5" PointX="22.25" PointY="1" />
+        <EntityTypeShape EntityType="PHCSolutionsModel.AspNetUserLogin" Width="1.5" PointX="22.25" PointY="3.75" />
+        <EntityTypeShape EntityType="PHCSolutionsModel.AspNetUser" Width="1.5" PointX="20" PointY="1.375" />
+        <EntityTypeShape EntityType="PHCSolutionsModel.DrugStockDetail" Width="1.5" PointX="20.625" PointY="9.125" />
+        <AssociationConnector Association="PHCSolutionsModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="PHCSolutionsModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="PHCSolutionsModel.FK_DrugStockDetails_MDrugs" />
+        <AssociationConnector Association="PHCSolutionsModel.FK_DrugStockDetails_MPHC" />
+        <AssociationConnector Association="PHCSolutionsModel.FK__MDrugs__StateID__571DF1D5" />
+        <AssociationConnector Association="PHCSolutionsModel.AspNetUserRoles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

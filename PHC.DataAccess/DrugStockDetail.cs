@@ -12,23 +12,21 @@ namespace PHC.DataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class MDrug
+    public partial class DrugStockDetail
     {
-        public MDrug()
-        {
-            this.DrugsIssueds = new HashSet<DrugsIssued>();
-            this.DrugStockDetails = new HashSet<DrugStockDetail>();
-        }
-    
+        public string DrugStockID { get; set; }
         public string DrugID { get; set; }
-        public string Name { get; set; }
+        public string PHCID { get; set; }
+        public short Quantity { get; set; }
+        public string BatchNo { get; set; }
+        public System.DateTime ManufactureDate { get; set; }
+        public System.DateTime ExpiryDate { get; set; }
+        public System.DateTime PurchaseDate { get; set; }
         public string LastModifiedBy { get; set; }
         public System.DateTime LastModifiedDate { get; set; }
         public string ObsInd { get; set; }
-        public string StateID { get; set; }
     
-        public virtual ICollection<DrugsIssued> DrugsIssueds { get; set; }
-        public virtual ICollection<DrugStockDetail> DrugStockDetails { get; set; }
-        public virtual MState MState { get; set; }
+        public virtual MDrug MDrug { get; set; }
+        public virtual MPHC MPHC { get; set; }
     }
 }

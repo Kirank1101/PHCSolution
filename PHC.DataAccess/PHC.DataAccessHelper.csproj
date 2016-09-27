@@ -47,7 +47,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AspNetRole.cs">
+      <DependentUpon>PHCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUser.cs">
+      <DependentUpon>PHCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserClaim.cs">
+      <DependentUpon>PHCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserLogin.cs">
+      <DependentUpon>PHCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C__MigrationHistory.cs">
+      <DependentUpon>PHCModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DrugsIssued.cs">
+      <DependentUpon>PHCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DrugStockDetail.cs">
       <DependentUpon>PHCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="GenericRepository.cs" />

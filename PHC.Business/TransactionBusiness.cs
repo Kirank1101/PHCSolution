@@ -140,7 +140,7 @@ namespace PHC.Business
                     MDrugsDTO DrugDTO = new MDrugsDTO();
                     DrugDTO.DrugID = Drug.DrugID;
                     DrugDTO.DrugName = Drug.Name;
-                    lstDrugDTO.Add(DrugDTO);
+                    lstDrugDTO.Add(DrugDTO);                    
                 }
             return lstDrugDTO;
         }

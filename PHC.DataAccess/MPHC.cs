@@ -22,6 +22,7 @@ namespace PHC.DataAccess
             this.PatientDetails = new HashSet<PatientDetail>();
             this.PatientPrescriptions = new HashSet<PatientPrescription>();
             this.UserMaps = new HashSet<UserMap>();
+            this.DrugStockDetails = new HashSet<DrugStockDetail>();
         }
     
         public string PHCID { get; set; }
@@ -38,5 +39,6 @@ namespace PHC.DataAccess
         public virtual ICollection<PatientDetail> PatientDetails { get; set; }
         public virtual ICollection<PatientPrescription> PatientPrescriptions { get; set; }
         public virtual ICollection<UserMap> UserMaps { get; set; }
+        public virtual ICollection<DrugStockDetail> DrugStockDetails { get; set; }
     }
 }

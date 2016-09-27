@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AddLabTests.aspx.cs" Inherits="WebApplication5.AddLabTests" MasterPageFile="~/Site.Master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AddLabTests.aspx.cs" MasterPageFile="~/Site.Master"
+    Inherits="WebApplication5.AddLabTests"  %>
 
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
 

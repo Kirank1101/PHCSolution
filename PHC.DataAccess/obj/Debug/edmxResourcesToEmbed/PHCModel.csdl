@@ -67,16 +67,13 @@
     </Key>
     <Property Name="DrugID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Quantity" Type="Int32" Nullable="false" />
-    <Property Name="BatchNo" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="manufactureDate" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="ExpiryDate" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="PurchaseDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="LastModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="ObsInd" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
-    <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="DrugsIssueds" Relationship="Self.FK__DrugsIssu__DrugI__38996AB5" FromRole="MDrugs" ToRole="DrugsIssued" />
+    <Property Name="StateID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DrugStockDetails" Relationship="PHCSolutionsModel.FK_DrugStockDetails_MDrugs" FromRole="MDrug" ToRole="DrugStockDetail" />
+    <NavigationProperty Name="MState" Relationship="PHCSolutionsModel.FK__MDrugs__StateID__571DF1D5" FromRole="MDrug" ToRole="MState" />
   </EntityType>
   <EntityType Name="MLabTest">
     <Key>
@@ -108,6 +105,7 @@
     <NavigationProperty Name="PatientDetails" Relationship="Self.FK_PatientDetails_MPHC" FromRole="MPHC" ToRole="PatientDetails" />
     <NavigationProperty Name="PatientPrescriptions" Relationship="Self.FK_PatientPrescription_MPHC" FromRole="MPHC" ToRole="PatientPrescription" />
     <NavigationProperty Name="UserMaps" Relationship="Self.FK_UserMap_MPHC" FromRole="MPHC" ToRole="UserMap" />
+    <NavigationProperty Name="DrugStockDetails" Relationship="PHCSolutionsModel.FK_DrugStockDetails_MPHC" FromRole="MPHC" ToRole="DrugStockDetail" />
   </EntityType>
   <EntityType Name="MState">
     <Key>
@@ -122,6 +120,7 @@
     <NavigationProperty Name="MDistricts" Relationship="Self.FK_MDistrict_MState" FromRole="MState" ToRole="MDistrict" />
     <NavigationProperty Name="MLabTests" Relationship="Self.FK_MLabTest_MState" FromRole="MState" ToRole="MLabTest" />
     <NavigationProperty Name="UserMaps" Relationship="Self.FK_UserMap_MState" FromRole="MState" ToRole="UserMap" />
+    <NavigationProperty Name="MDrugs" Relationship="PHCSolutionsModel.FK__MDrugs__StateID__571DF1D5" FromRole="MState" ToRole="MDrug" />
   </EntityType>
   <EntityType Name="MTaluk">
     <Key>
@@ -734,5 +733,180 @@
       <End Role="Users" EntitySet="Users" />
       <End Role="UserMap" EntitySet="UserMaps" />
     </AssociationSet>
+    <EntitySet Name="C__MigrationHistory" EntityType="PHCSolutionsModel.C__MigrationHistory" />
+    <EntitySet Name="AspNetRoles" EntityType="PHCSolutionsModel.AspNetRole" />
+    <EntitySet Name="AspNetUserClaims" EntityType="PHCSolutionsModel.AspNetUserClaim" />
+    <EntitySet Name="AspNetUserLogins" EntityType="PHCSolutionsModel.AspNetUserLogin" />
+    <EntitySet Name="AspNetUsers" EntityType="PHCSolutionsModel.AspNetUser" />
+    <EntitySet Name="DrugStockDetails" EntityType="PHCSolutionsModel.DrugStockDetail" />
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="PHCSolutionsModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="PHCSolutionsModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DrugStockDetails_MDrugs" Association="PHCSolutionsModel.FK_DrugStockDetails_MDrugs">
+      <End Role="MDrug" EntitySet="MDrugs" />
+      <End Role="DrugStockDetail" EntitySet="DrugStockDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DrugStockDetails_MPHC" Association="PHCSolutionsModel.FK_DrugStockDetails_MPHC">
+      <End Role="MPHC" EntitySet="MPHCs" />
+      <End Role="DrugStockDetail" EntitySet="DrugStockDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MDrugs__StateID__571DF1D5" Association="PHCSolutionsModel.FK__MDrugs__StateID__571DF1D5">
+      <End Role="MState" EntitySet="MStates" />
+      <End Role="MDrug" EntitySet="MDrugs" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="PHCSolutionsModel.AspNetUserRoles">
+      <End Role="AspNetRole" EntitySet="AspNetRoles" />
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="AspNetRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="PHCSolutionsModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="PHCSolutionsModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogin">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="PHCSolutionsModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="PHCSolutionsModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="PHCSolutionsModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
+    <NavigationProperty Name="AspNetRoles" Relationship="PHCSolutionsModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+  </EntityType>
+  <EntityType Name="DrugStockDetail">
+    <Key>
+      <PropertyRef Name="DrugStockID" />
+    </Key>
+    <Property Name="DrugStockID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DrugID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PHCID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Quantity" Type="Int16" Nullable="false" />
+    <Property Name="BatchNo" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ManufactureDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ExpiryDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="PurchaseDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LastModifiedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ObsInd" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="MDrug" Relationship="PHCSolutionsModel.FK_DrugStockDetails_MDrugs" FromRole="DrugStockDetail" ToRole="MDrug" />
+    <NavigationProperty Name="MPHC" Relationship="PHCSolutionsModel.FK_DrugStockDetails_MPHC" FromRole="DrugStockDetail" ToRole="MPHC" />
+  </EntityType>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Type="PHCSolutionsModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="PHCSolutionsModel.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaim">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Type="PHCSolutionsModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="PHCSolutionsModel.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogin">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DrugStockDetails_MDrugs">
+    <End Type="PHCSolutionsModel.MDrug" Role="MDrug" Multiplicity="1" />
+    <End Type="PHCSolutionsModel.DrugStockDetail" Role="DrugStockDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MDrug">
+        <PropertyRef Name="DrugID" />
+      </Principal>
+      <Dependent Role="DrugStockDetail">
+        <PropertyRef Name="DrugID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DrugStockDetails_MPHC">
+    <End Type="PHCSolutionsModel.MPHC" Role="MPHC" Multiplicity="1" />
+    <End Type="PHCSolutionsModel.DrugStockDetail" Role="DrugStockDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MPHC">
+        <PropertyRef Name="PHCID" />
+      </Principal>
+      <Dependent Role="DrugStockDetail">
+        <PropertyRef Name="PHCID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MDrugs__StateID__571DF1D5">
+    <End Type="PHCSolutionsModel.MState" Role="MState" Multiplicity="1" />
+    <End Type="PHCSolutionsModel.MDrug" Role="MDrug" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MState">
+        <PropertyRef Name="StateID" />
+      </Principal>
+      <Dependent Role="MDrug">
+        <PropertyRef Name="StateID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Type="PHCSolutionsModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+    <End Type="PHCSolutionsModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+  </Association>
 </Schema>
