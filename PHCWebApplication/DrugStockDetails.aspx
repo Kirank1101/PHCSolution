@@ -37,9 +37,9 @@
     <div id="divAddDrugsStock" runat="server">
 
         <asp:ValidationSummary ID="DrugsStockValidation" runat="server" CssClass="alert alert-danger" />
-        <table>
+        <table >
             <tr>
-                <td style="width: 103px">
+                <td >
                     <asp:Label runat="server" CssClass="control-label" Text="Drug Name"></asp:Label></td>
                 <td>
                     <div style="width: 250px">
@@ -53,7 +53,7 @@
                         ErrorMessage="Please Select Drug" InitialValue="Select Drugs" ControlToValidate="ddlDrugNames">*</asp:RequiredFieldValidator></td>
             </tr>
             <tr>
-                <td style="width: 103px">
+                <td >
                     <asp:Label runat="server" CssClass="control-label" Text="Quantity"></asp:Label></td>
                 <td>
                     <div style="width: 250px">
@@ -66,8 +66,8 @@
                         ErrorMessage="Please enter Quantity" ControlToValidate="txtQuantity">*</asp:RequiredFieldValidator></td>
             </tr>
             <tr>
-                <td style="width: 103px">
-                    <asp:Label runat="server" CssClass="control-label" Text="PHC Name"></asp:Label></td>
+                <td >
+                    <asp:Label runat="server" CssClass="control-label" Text="Batch Number"></asp:Label></td>
                 <td>
                     <div style="width: 250px">
                         <asp:TextBox ID="txtBatchNo" runat="server" CssClass="form-control"></asp:TextBox>
@@ -76,8 +76,8 @@
             </tr>
 
             <tr>
-                <td style="width: 103px">
-                    <asp:Label runat="server" CssClass="control-label" Text="Quantity"></asp:Label></td>
+                <td  style="padding-right:13px" >
+                    <asp:Label runat="server" CssClass="control-label" Text="Manufacture Date"></asp:Label></td>
                 <td>
                     <div style="width: 250px">
                         <asp:TextBox ID="txtManufactureDate" runat="server" CssClass="form-control"></asp:TextBox>
@@ -89,8 +89,8 @@
                         ErrorMessage="Please Manufacture Date" ControlToValidate="txtManufactureDate">*</asp:RequiredFieldValidator></td>
             </tr>
             <tr>
-                <td style="width: 103px">
-                    <asp:Label runat="server" CssClass="control-label" Text="Quantity"></asp:Label></td>
+                <td >
+                    <asp:Label runat="server" CssClass="control-label" Text="Expiry Date"></asp:Label></td>
                 <td>
                     <div style="width: 250px">
                         <asp:TextBox ID="txtExpiryDate" runat="server" CssClass="form-control"></asp:TextBox>
@@ -102,8 +102,8 @@
                         ErrorMessage="Please Expiry Date" ControlToValidate="txtExpiryDate">*</asp:RequiredFieldValidator></td>
             </tr>
             <tr>
-                <td style="width: 103px">
-                    <asp:Label runat="server" CssClass="control-label" Text="Quantity"></asp:Label></td>
+                <td >
+                    <asp:Label runat="server" CssClass="control-label" Text="Purchase Date"></asp:Label></td>
                 <td>
                     <div style="width: 250px">
                         <asp:TextBox ID="txtPurchaseDate" runat="server" CssClass="form-control"></asp:TextBox>
