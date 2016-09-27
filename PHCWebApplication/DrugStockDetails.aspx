@@ -1,5 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DrugStockDetails.aspx.cs" Inherits="PHCWebApplication.DrugStockDetails" MasterPageFile="~/Site.Master" %>
 
+<%@ Register Namespace="AjaxControlToolkit" Assembly="AjaxControlToolkit" TagPrefix="ajax" %>
+
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
 
     <script type="text/javascript">
@@ -37,9 +39,9 @@
     <div id="divAddDrugsStock" runat="server">
 
         <asp:ValidationSummary ID="DrugsStockValidation" runat="server" CssClass="alert alert-danger" />
-        <table >
+        <table>
             <tr>
-                <td >
+                <td>
                     <asp:Label runat="server" CssClass="control-label" Text="Drug Name"></asp:Label></td>
                 <td>
                     <div style="width: 250px">
@@ -53,7 +55,7 @@
                         ErrorMessage="Please Select Drug" InitialValue="Select Drugs" ControlToValidate="ddlDrugNames">*</asp:RequiredFieldValidator></td>
             </tr>
             <tr>
-                <td >
+                <td>
                     <asp:Label runat="server" CssClass="control-label" Text="Quantity"></asp:Label></td>
                 <td>
                     <div style="width: 250px">
@@ -66,7 +68,7 @@
                         ErrorMessage="Please enter Quantity" ControlToValidate="txtQuantity">*</asp:RequiredFieldValidator></td>
             </tr>
             <tr>
-                <td >
+                <td>
                     <asp:Label runat="server" CssClass="control-label" Text="Batch Number"></asp:Label></td>
                 <td>
                     <div style="width: 250px">
@@ -76,11 +78,13 @@
             </tr>
 
             <tr>
-                <td  style="padding-right:13px" >
+                <td style="padding-right: 13px">
                     <asp:Label runat="server" CssClass="control-label" Text="Manufacture Date"></asp:Label></td>
                 <td>
                     <div style="width: 250px">
                         <asp:TextBox ID="txtManufactureDate" runat="server" CssClass="form-control"></asp:TextBox>
+
+                        <ajax:CalendarExtender ID="CalendarExtender2" TargetControlID="txtManufactureDate" runat="server" Format="dd-MMM-yyyy" />
 
                     </div>
                 </td>
@@ -89,12 +93,13 @@
                         ErrorMessage="Please Manufacture Date" ControlToValidate="txtManufactureDate">*</asp:RequiredFieldValidator></td>
             </tr>
             <tr>
-                <td >
+                <td>
                     <asp:Label runat="server" CssClass="control-label" Text="Expiry Date"></asp:Label></td>
                 <td>
                     <div style="width: 250px">
                         <asp:TextBox ID="txtExpiryDate" runat="server" CssClass="form-control"></asp:TextBox>
-
+                        
+                        <ajax:CalendarExtender ID="CalendarExtender1" TargetControlID="txtExpiryDate" runat="server" Format="dd-MMM-yyyy" />
                     </div>
                 </td>
                 <td>
@@ -102,12 +107,13 @@
                         ErrorMessage="Please Expiry Date" ControlToValidate="txtExpiryDate">*</asp:RequiredFieldValidator></td>
             </tr>
             <tr>
-                <td >
+                <td>
                     <asp:Label runat="server" CssClass="control-label" Text="Purchase Date"></asp:Label></td>
                 <td>
                     <div style="width: 250px">
                         <asp:TextBox ID="txtPurchaseDate" runat="server" CssClass="form-control"></asp:TextBox>
-
+                        
+                        <ajax:CalendarExtender ID="CalendarExtender3" TargetControlID="txtPurchaseDate" runat="server" Format="dd-MMM-yyyy" />
                     </div>
                 </td>
                 <td>
@@ -169,7 +175,7 @@
                                         <asp:Label runat="server" ID="lblPHCID" Text='<%# Eval("PHCID") %>' Visible="false"></asp:Label>
                                         <asp:Label runat="server" ID="lblDrugStockID" Text='<%# Eval("DrugStockID") %>' Visible="false"></asp:Label>
                                         <asp:Label runat="server" ID="lblDrugID" Text='<%# Eval("DrugID") %>' Visible="false"></asp:Label>
-                                        <asp:Label runat="server" ID="lblDrugName" Text='<%# Eval("DrugName") %>' ></asp:Label>
+                                        <asp:Label runat="server" ID="lblDrugName" Text='<%# Eval("DrugName") %>'></asp:Label>
                                     </td>
                                     <td>
                                         <asp:Label runat="server" ID="lblQuantity" Text='<%# Eval("Quantity") %>'></asp:Label>
