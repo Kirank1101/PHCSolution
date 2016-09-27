@@ -35,8 +35,7 @@ namespace WebApplication5
         }
         private void BindDistricts()
         {
-            List<MDistrictDTO> lstdistrict = new List<MDistrictDTO>();
-            lstdistrict = objITransactionBusiness.GetMDistricts();
+            List<MDistrictDTO> lstdistrict = ViewstateDistricts;
             if (lstdistrict != null && lstdistrict.Count > 0)
             {
                 ddlDistrictNames.DataSource = lstdistrict;
@@ -59,6 +58,22 @@ namespace WebApplication5
 
             }
         }
+        const string VSDistrict = "VSDistrict";
+        public List<MDistrictDTO> ViewstateDistricts
+        {
+            get
+            {
+                if (ViewState[VSDistrict] == null)
+                {
+                    List<MDistrictDTO> lstdistrict = new List<MDistrictDTO>();
+                    lstdistrict = objITransactionBusiness.GetMDistricts();
+
+                    ViewState[VSDistrict] = lstdistrict;
+                }
+                return (List<MDistrictDTO>)ViewState[VSDistrict];
+            }
+        }
+        
         protected void btnSave_Click(object sender, EventArgs e)
         {
             ResultDTO resultDTO = objITransactionBusiness.SaveMPHC(ddlTalukNames.SelectedValue, txtPHCName.Text);
@@ -81,8 +96,10 @@ namespace WebApplication5
         {
             string PHCID = ViewState["PHCID"].ToString();
             ResultDTO resultDTO = objITransactionBusiness.UpdateMPHC(PHCID, txtPHCName.Text);
+
             if (resultDTO.IsSuccess)
             {
+                ViewState["PHCID"] = null;
                 //pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessBackGroundColor);
                 //lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessForeColor);
                 //lblstatus.Text = resultDTO.Message;
@@ -107,6 +124,7 @@ namespace WebApplication5
         }
         protected void DeleteRecord(object sender, ListViewDeleteEventArgs e)
         {
+            PageReset();
             string PHCID = LVPHCDetails.DataKeys[e.ItemIndex].Value.ToString();
             ResultDTO resultDTO = objITransactionBusiness.DeleteMPHC(PHCID);
             if (resultDTO.IsSuccess)

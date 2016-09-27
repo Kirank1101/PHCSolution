@@ -5,12 +5,13 @@ using System.Text;
 
 namespace PHC.BAInterfaces.DataTransfer
 {
-
+    [Serializable]
     public class MStateDTO
     {
         public string StateID { get; set; }
         public string Name { get; set; }
     }
+    [Serializable]
     public class MDistrictDTO
     {
         public string DistrictID { get; set; }
