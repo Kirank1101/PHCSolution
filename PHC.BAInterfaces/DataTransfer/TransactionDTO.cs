@@ -88,4 +88,9 @@ namespace PHC.BAInterfaces.DataTransfer
         public DateTime ExpDate { get; set; }
         public DateTime PurchaseDate { get; set; }
     }
+    public class BloodGroupDTO
+    {
+        public string BloodGroupID { get; set; }
+        public string BloodGroupName { get; set; }
+    }
 }

@@ -15,5 +15,9 @@ namespace PHC.BAInterfaces.Constants
         public const string ErrorForeColor = "#D8000C";
         public const string WarningBackGroundColor = "#FEEFB3";
         public const string WarningForeColor = "#9F6000";
+        public const string PHCID = "MATTIKOTE20160927ceef73446a4d6c";
+        public const string Male = "M";
+        public const string FeMale = "F";
+        public const string VSVillages = "VSVillages";
     }
 }

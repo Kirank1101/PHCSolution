@@ -623,5 +623,21 @@ namespace PHC.DataAccessLayer
                     return false;
             }
         }
+
+
+        public bool DeleteDrugStock(string DrugStockID)
+        {
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                DrugStockDetail DrugStockDetail = new GenericRepository<DrugStockDetail>(work).FindBy(n => n.DrugStockID == DrugStockID).FirstOrDefault();
+                if (DrugStockDetail != null)
+                {
+                    new GenericRepository<DrugStockDetail>(work).Delete(DrugStockDetail);
+                    work.Save();
+                }
+            }
+            return true;
+        }
     }
 }

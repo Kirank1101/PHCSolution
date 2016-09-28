@@ -66,5 +66,17 @@ namespace PHC.BAInterfaces.Business
         ResultDTO UpdateDrugStock(string DrugStockID, string DrugID, string PHCID, Int16 Quantity, string BatchNo, string MfDate, string ExpDate, string PurchaseDate);
 
         ResultDTO DeleteDrugStock(string DrugStockID);
+
+        ResultDTO SavePatientDetails(string PatientName, string ECNumber, short Age, string DOB, string Gender, string BloodGroup, string Village, string ContactNo, string PhoneNo);
+
+        ResultDTO UpdatePatientDetail(string PatientID, string PatientName, string ECNumber, short Age, string DOB, string Gender, string BloodGroup, string Village, string ContactNo, string PhoneNo);
+
+        ResultDTO DeletePatientDetail(string PatientID);
+
+        List<PatientDetailDTO> GetPatientDetail(string PHCID);
+
+        List<MVillageDTO> GetMVillages(string PHCID);
+
+        List<BloodGroupDTO> GetBloodGroup();
     }
 }

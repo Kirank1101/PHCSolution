@@ -451,7 +451,97 @@ namespace PHC.Business
 
         public ResultDTO DeleteDrugStock(string DrugStockID)
         {
+            if (objDA.DeleteDrugStock(DrugStockID))
+                return new ResultDTO() { IsSuccess = true, Message = "Successfully Deleted." };
+            else
+                return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Deleted." };
+        }
+
+
+        public ResultDTO SavePatientDetails(string PatientName, string ECNumber, short Age, string DOB, string Gender, string BloodGroup, string Village, string ContactNo, string PhoneNo)
+        {
             throw new NotImplementedException();
+        }
+
+        public ResultDTO UpdatePatientDetail(string PatientID, string PatientName, string ECNumber, short Age, string DOB, string Gender, string BloodGroup, string Village, string ContactNo, string PhoneNo)
+        {
+            PatientDetail PatientDetail = new PatientDetail();
+            PatientDetail.PatientID = PatientID;
+            PatientDetail.Name = PatientName;
+            PatientDetail.age = Age;
+            PatientDetail.DOB = DOB.ConvertToDate();
+            PatientDetail.Sex = Gender;
+            PatientDetail.BloodGroup = BloodGroup;
+            PatientDetail.LastModifiedBy = "System";
+            PatientAddress PatientAddress = new DataAccess.PatientAddress();
+            PatientAddress.PatientID = PatientID;
+
+            //PatientDetail.DrugStockID = DrugStockID;
+            //PatientDetail.PHCID = PHCID;
+            //PatientDetail.DrugID = DrugID;
+            //PatientDetail.Quantity = Quantity;
+            //PatientDetail.BatchNo = BatchNo;
+            //PatientDetail.ManufactureDate = MfDate.ConvertToDate();
+            //PatientDetail.ExpiryDate = ExpDate.ConvertToDate();
+            //PatientDetail.PurchaseDate = PurchaseDate.ConvertToDate();
+            //PatientDetail.LastModifiedBy = "System";
+            //if (objDA.UpdateDrugStock(PatientDetail))
+                return new ResultDTO() { IsSuccess = true, Message = "Successfully Updated." };
+            //else
+            //    return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Updated." };
+        }
+
+        public ResultDTO DeletePatientDetail(string PatientID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<PatientDetailDTO> GetPatientDetail(string PHCID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<MVillageDTO> GetMVillages(string PHCID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<BloodGroupDTO> GetBloodGroup()
+        {
+            List<BloodGroupDTO> lstBloodGroup = new List<BloodGroupDTO>();
+            BloodGroupDTO bg = new BloodGroupDTO();
+            bg.BloodGroupID = "A+";
+            bg.BloodGroupName = "A+";
+            lstBloodGroup.Add(bg);
+            BloodGroupDTO bg1 = new BloodGroupDTO();
+            bg1.BloodGroupID = "A-";
+            bg1.BloodGroupName = "A-";
+            lstBloodGroup.Add(bg1);
+            BloodGroupDTO bg2 = new BloodGroupDTO();
+            bg2.BloodGroupID = "B+";
+            bg2.BloodGroupName = "B+";
+            lstBloodGroup.Add(bg2);
+            BloodGroupDTO bg3 = new BloodGroupDTO();
+            bg3.BloodGroupID = "B-";
+            bg3.BloodGroupName = "B-";
+            lstBloodGroup.Add(bg3);
+            BloodGroupDTO bg4 = new BloodGroupDTO();
+            bg4.BloodGroupID = "AB+";
+            bg4.BloodGroupName = "AB+";
+            lstBloodGroup.Add(bg4);
+            BloodGroupDTO bg5 = new BloodGroupDTO();
+            bg5.BloodGroupID = "AB-";
+            bg5.BloodGroupName = "AB+";
+            lstBloodGroup.Add(bg5);
+            BloodGroupDTO bg6 = new BloodGroupDTO();
+            bg6.BloodGroupID = "O+";
+            bg6.BloodGroupName = "O+";
+            lstBloodGroup.Add(bg6);
+            BloodGroupDTO bg7 = new BloodGroupDTO();
+            bg7.BloodGroupID = "O-";
+            bg7.BloodGroupName = "O-";
+            lstBloodGroup.Add(bg7);
+            return lstBloodGroup;
         }
     }
 }

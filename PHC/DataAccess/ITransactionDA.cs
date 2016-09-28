@@ -80,5 +80,7 @@ namespace PHC.DAInterfaces.DataAccess
         bool AddDrugStock(DrugStockDetail DrugStockDetail);
 
         bool UpdateDrugStock(DrugStockDetail DrugStockDetail);
+
+        bool DeleteDrugStock(string DrugStockID);
     }
 }

@@ -14,7 +14,6 @@ namespace PHCWebApplication
     public partial class DrugStockDetails : System.Web.UI.Page
     {
         ITransactionBusiness objITransactionBusiness = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-        string PHCID = "MATTIKOTE20160927ceef73446a4d6c";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -49,7 +48,7 @@ namespace PHCWebApplication
         {
 
             List<DrugStockDTO> lstDrugStockDTO = new List<DrugStockDTO>();
-            lstDrugStockDTO = objITransactionBusiness.GetDrugPurchaseDetail(PHCID);
+            lstDrugStockDTO = objITransactionBusiness.GetDrugPurchaseDetail(PHCConstatnt.PHCID);
             if (lstDrugStockDTO != null && lstDrugStockDTO.Count > 0)
             {
                 LVDrugsStockDetails.DataSource = lstDrugStockDTO;
@@ -77,7 +76,7 @@ namespace PHCWebApplication
         }
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            ResultDTO resultDTO = objITransactionBusiness.SaveDrugStock(ddlDrugNames.SelectedValue, PHCID, Convert.ToInt16(txtQuantity.Text), txtBatchNo.Text, txtManufactureDate.Text, txtExpiryDate.Text, txtPurchaseDate.Text);
+            ResultDTO resultDTO = objITransactionBusiness.SaveDrugStock(ddlDrugNames.SelectedValue,PHCConstatnt.PHCID, Convert.ToInt16(txtQuantity.Text), txtBatchNo.Text, txtManufactureDate.Text, txtExpiryDate.Text, txtPurchaseDate.Text);
             if (resultDTO.IsSuccess)
             {
                 pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessBackGroundColor);
@@ -95,11 +94,11 @@ namespace PHCWebApplication
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
             string DrugStockID = ViewState["DrugStockID"].ToString();
-            ResultDTO resultDTO = objITransactionBusiness.UpdateDrugStock(DrugStockID, ddlDrugNames.SelectedValue, PHCID, Convert.ToInt16(txtQuantity.Text), txtBatchNo.Text, txtManufactureDate.Text, txtExpiryDate.Text, txtPurchaseDate.Text);
+            ResultDTO resultDTO = objITransactionBusiness.UpdateDrugStock(DrugStockID, ddlDrugNames.SelectedValue,PHCConstatnt.PHCID, Convert.ToInt16(txtQuantity.Text), txtBatchNo.Text, txtManufactureDate.Text, txtExpiryDate.Text, txtPurchaseDate.Text);
 
             if (resultDTO.IsSuccess)
             {
-                ViewState["PHCID"] = null;
+                ViewState["DrugStockID"] = null;
                 //pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessBackGroundColor);
                 //lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessForeColor);
                 //lblstatus.Text = resultDTO.Message;

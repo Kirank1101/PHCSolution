@@ -46,7 +46,7 @@
                 <td>
                     <div style="width: 250px">
                         <asp:DropDownList ID="ddlDrugNames" DataTextField="DrugName" DataValueField="DrugID" CssClass="form-control"
-                            runat="server" AutoPostBack="true">
+                            runat="server">
                         </asp:DropDownList>
                     </div>
                 </td>
