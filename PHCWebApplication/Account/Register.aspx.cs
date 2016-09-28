@@ -6,16 +6,44 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Owin;
 using PHCWebApplication.Models;
+using PHC.BAInterfaces.Business;
+using PHC.Binder.BackEnd;
+using PHC.BAInterfaces.DataTransfer;
+using System.Collections.Generic;
 
 namespace PHCWebApplication.Account
 {
     public partial class Register : Page
     {
+
+        ITransactionBusiness objITransactionBusiness = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                BindDistricts();
+                
+            }
+        }
+
+        private void BindDistricts()
+        {
+            List<MDistrictDTO> lstdistrict = new List<MDistrictDTO>();
+            lstdistrict = objITransactionBusiness.GetMDistricts();
+            if (lstdistrict != null && lstdistrict.Count > 0)
+            {
+                ddlDistrictNames.DataSource = lstdistrict;
+                ddlDistrictNames.DataBind();
+                ddlDistrictNames.Items.Insert(0, "Select District");
+            }
+        }
+       
         protected void CreateUser_Click(object sender, EventArgs e)
         {
-            var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
-            var user = new ApplicationUser() { UserName = Email.Text, Email = Email.Text };
+            var manager = Context.GetOwinContext().GetUserManager<CustomUserManager>();
+            var signInManager = Context.GetOwinContext().Get<CustomSignInManager>();
+            var user = new CustomUser() { UserName = Email.Text, EmailId = Email.Text };
             IdentityResult result = manager.Create(user, Password.Text);
             if (result.Succeeded)
             {
@@ -30,6 +58,18 @@ namespace PHCWebApplication.Account
             else 
             {
                 ErrorMessage.Text = result.Errors.FirstOrDefault();
+            }
+        }
+
+        protected void ddlDistrictNames_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            List<MTalukDTO> lstdistrict = objITransactionBusiness.GetMTaluk().FindAll(A=>A.DistrictID==ddlDistrictNames.SelectedValue);
+            if (lstdistrict != null && lstdistrict.Count > 0)
+            {
+                ddlTaluk.DataSource = lstdistrict;
+                ddlTaluk.DataBind();
+                ddlTaluk.Items.Insert(0, "Select Taluk");
             }
         }
     }

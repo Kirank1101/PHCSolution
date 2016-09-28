@@ -8,6 +8,8 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using PHCWebApplication.Models;
 using PHC.DataAccess;
+using PHC.BAInterfaces.Business;
+using PHC.Binder.BackEnd;
 
 namespace PHCWebApplication
 {
@@ -35,6 +37,15 @@ namespace PHCWebApplication
         public string Id { get; set; }
 
         public string UserName { get; set; }
+
+        public string EmailId { get; set; }
+
+        public string Password { get; set; }
+
+        public string StateId { get; set; }
+        public string TalukId { get; set; }
+        public string DistrictId { get; set; }
+        public string VillageId { get; set; }
     }
 
     public class CustomUserManager : UserManager<CustomUser>
@@ -64,10 +75,10 @@ namespace PHCWebApplication
         }
     }
 
-    public class CustomUserStore : IUserStore<CustomUser>
+    public class CustomUserStore : IUserStore<CustomUser>, IUserPasswordStore<CustomUser>
     {
         //private PHCSolutions database;
-
+        ITransactionBusiness objITransactionBusiness = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
         public CustomUserStore()
         {
             // this.database = new PHCSolutions();
@@ -106,6 +117,166 @@ namespace PHCWebApplication
         {
             CustomUser user = null;// await this.database.CustomUsers.Where(c => c.UserName == userName).FirstOrDefaultAsync();
             return user;
+        }
+
+        public Task<string> GetPasswordHashAsync(CustomUser user)
+        {
+            var identityUser = ToIdentityUser(user);
+            var task = userStore.GetPasswordHashAsync(identityUser);
+            SetApplicationUser(user, identityUser);
+            return task;
+        }
+        UserStore<IdentityUser> userStore = new UserStore<IdentityUser>(new ApplicationDbContext());
+
+        public Task<bool> HasPasswordAsync(CustomUser user)
+        {
+            var identityUser = ToIdentityUser(user);
+            var task = userStore.HasPasswordAsync(identityUser);
+            SetApplicationUser(user, identityUser);
+            return task;
+
+        }
+
+        private static void SetApplicationUser(CustomUser user, IdentityUser identityUser)
+        {
+
+
+
+            user.Id = identityUser.Id;
+
+            user.UserName = identityUser.UserName;
+
+        }
+
+        private IdentityUser ToIdentityUser(CustomUser user)
+        {
+
+            return new IdentityUser
+
+            {
+
+                Id = user.Id,
+
+
+
+                UserName = user.UserName
+
+            };
+
+        }
+
+
+
+
+        public Task<string> GetPasswordHashAsync(ApplicationUser user)
+        {
+
+            var identityUser = ToIdentityUser(user);
+
+            var task = userStore.GetPasswordHashAsync(identityUser);
+
+            SetApplicationUser(user, identityUser);
+
+            return task;
+
+        }
+
+        public Task<bool> HasPasswordAsync(ApplicationUser user)
+        {
+
+            var identityUser = ToIdentityUser(user);
+
+            var task = userStore.HasPasswordAsync(identityUser);
+
+            SetApplicationUser(user, identityUser);
+
+            return task;
+
+        }
+
+        public Task SetPasswordHashAsync(ApplicationUser user, string passwordHash)
+        {
+
+            var identityUser = ToIdentityUser(user);
+
+            var task = userStore.SetPasswordHashAsync(identityUser, passwordHash);
+
+            SetApplicationUser(user, identityUser);
+
+            return task;
+
+        }
+
+        public Task<string> GetSecurityStampAsync(ApplicationUser user)
+        {
+
+            var identityUser = ToIdentityUser(user);
+
+            var task = userStore.GetSecurityStampAsync(identityUser);
+
+            SetApplicationUser(user, identityUser);
+
+            return task;
+
+        }
+
+        public Task SetSecurityStampAsync(ApplicationUser user, string stamp)
+        {
+
+            var identityUser = ToIdentityUser(user);
+
+            var task = userStore.SetSecurityStampAsync(identityUser, stamp);
+
+            SetApplicationUser(user, identityUser);
+
+            return task;
+
+        }
+
+        private static void SetApplicationUser(ApplicationUser user, IdentityUser identityUser)
+        {
+
+            user.PasswordHash = identityUser.PasswordHash;
+
+            user.SecurityStamp = identityUser.SecurityStamp;
+
+            user.Id = identityUser.Id;
+
+            user.UserName = identityUser.UserName;
+
+        }
+
+        private IdentityUser ToIdentityUser(ApplicationUser user)
+        {
+
+            return new IdentityUser
+
+            {
+
+                Id = user.Id,
+
+                PasswordHash = user.PasswordHash,
+
+                SecurityStamp = user.SecurityStamp,
+
+                UserName = user.UserName
+
+            };
+
+        }
+
+
+
+        public Task SetPasswordHashAsync(CustomUser user, string passwordHash)
+        {
+            var identityUser = ToIdentityUser(user);
+
+            var task = userStore.SetPasswordHashAsync(identityUser, passwordHash);
+
+            SetApplicationUser(user, identityUser);
+
+            return task;
+
         }
     }
 

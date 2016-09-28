@@ -42,7 +42,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Business\ITransactionBusiness.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="Constants\PHCConstatnt.cs" />
     <Compile Include="DataTransfer\ResultDTO.cs" />
     <Compile Include="DataTransfer\TransactionDTO.cs" />

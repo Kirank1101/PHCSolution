@@ -78,5 +78,7 @@ namespace PHC.BAInterfaces.Business
         List<MVillageDTO> GetMVillages(string PHCID);
 
         List<BloodGroupDTO> GetBloodGroup();
+
+
     }
 }
