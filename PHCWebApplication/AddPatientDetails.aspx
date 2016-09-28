@@ -131,6 +131,16 @@
             </tr>
             <tr>
                 <td>
+                    <asp:Label runat="server" CssClass="control-label" Text="Address"></asp:Label></td>
+                <td>
+                    <div style="width: 250px">
+                        <asp:TextBox ID="txtAddress" runat="server" MaxLength="50" CssClass="form-control"></asp:TextBox>
+
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <asp:Label runat="server" CssClass="control-label" Text="Contact No"></asp:Label></td>
                 <td>
                     <div style="width: 250px">
@@ -190,6 +200,8 @@
                                             </th>
                                             <th style="color: #428bca">Place
                                             </th>
+                                            <th style="color: #428bca">Address
+                                            </th>
                                             <th style="color: #428bca">Contact No
                                             </th>
                                             <th style="color: #428bca">Alt Contact No
@@ -226,6 +238,9 @@
                                     </td>
                                     <td>
                                         <asp:Label runat="server" ID="lblPlace" Text='<%# Eval("Place") %>'></asp:Label>
+                                    </td>
+                                    <td>
+                                        <asp:Label runat="server" ID="lblAddress" Text='<%# Eval("Address") %>'></asp:Label>
                                     </td>
                                     <td>
                                         <asp:Label runat="server" ID="lblContactNo" Text='<%# Eval("ContactNo") %>'></asp:Label>

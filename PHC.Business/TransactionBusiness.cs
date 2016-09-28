@@ -141,7 +141,7 @@ namespace PHC.Business
                     MDrugsDTO DrugDTO = new MDrugsDTO();
                     DrugDTO.DrugID = Drug.DrugID;
                     DrugDTO.DrugName = Drug.Name;
-                    lstDrugDTO.Add(DrugDTO);                    
+                    lstDrugDTO.Add(DrugDTO);
                 }
             return lstDrugDTO;
         }
@@ -319,11 +319,11 @@ namespace PHC.Business
                     PHCDTO.PHCID = PHC.PHCID;
                     PHCDTO.PHCName = PHC.Name;
                     PHCDTO.TalukID = PHC.TalukID;
-                    MTaluk mtaluk =objDA.GetMTalukOnID(PHCDTO.TalukID);
+                    MTaluk mtaluk = objDA.GetMTalukOnID(PHCDTO.TalukID);
                     PHCDTO.TalukName = mtaluk.Name;
                     PHCDTO.DistrictID = mtaluk.DistrictID;
                     PHCDTO.DistrictName = objDA.GetDistrictName(mtaluk.DistrictID);
-                    
+
                     lstPHCDTO.Add(PHCDTO);
                 }
             return lstPHCDTO;
@@ -401,11 +401,11 @@ namespace PHC.Business
                     string DrugName = objDA.GetDrugName(DrugStockDTO.DrugID);
                     DrugStockDTO.DrugName = DrugName;
                     DrugStockDTO.Quantity = DrugStock.Quantity;
-                    DrugStockDTO.BatchNo= DrugStock.BatchNo; 
+                    DrugStockDTO.BatchNo = DrugStock.BatchNo;
                     DrugStockDTO.MfDate = DrugStock.ManufactureDate;
                     DrugStockDTO.ExpDate = DrugStock.ExpiryDate;
-                    DrugStockDTO.PurchaseDate= DrugStock.PurchaseDate;
-                    
+                    DrugStockDTO.PurchaseDate = DrugStock.PurchaseDate;
+
                     lstDrugStockDTO.Add(DrugStockDTO);
                 }
             return lstDrugStockDTO;
@@ -417,18 +417,18 @@ namespace PHC.Business
             DrugStockDetail.DrugStockID = CommonUtil.CreateUniqueID("D");
             DrugStockDetail.PHCID = PHCID;
             DrugStockDetail.DrugID = DrugID;
-            DrugStockDetail.Quantity= Quantity;
-            DrugStockDetail.BatchNo= BatchNo;
-            DrugStockDetail.ManufactureDate= MfDate.ConvertToDate();
+            DrugStockDetail.Quantity = Quantity;
+            DrugStockDetail.BatchNo = BatchNo;
+            DrugStockDetail.ManufactureDate = MfDate.ConvertToDate();
             DrugStockDetail.ExpiryDate = ExpDate.ConvertToDate();
-            DrugStockDetail.PurchaseDate= PurchaseDate.ConvertToDate();
+            DrugStockDetail.PurchaseDate = PurchaseDate.ConvertToDate();
             DrugStockDetail.LastModifiedBy = "System";
             DrugStockDetail.LastModifiedDate = DateTime.Now;
             DrugStockDetail.ObsInd = "N";
-                if (objDA.AddDrugStock(DrugStockDetail))
-                    return new ResultDTO() { IsSuccess = true, Message = "Successfully Saved." };
-                else
-                    return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Saved." };     
+            if (objDA.AddDrugStock(DrugStockDetail))
+                return new ResultDTO() { IsSuccess = true, Message = "Successfully Saved." };
+            else
+                return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Saved." };
         }
 
         public ResultDTO UpdateDrugStock(string DrugStockID, string DrugID, string PHCID, Int16 Quantity, string BatchNo, string MfDate, string ExpDate, string PurchaseDate)
@@ -458,52 +458,135 @@ namespace PHC.Business
         }
 
 
-        public ResultDTO SavePatientDetails(string PatientName, string ECNumber, short Age, string DOB, string Gender, string BloodGroup, string Village, string ContactNo, string PhoneNo)
-        {
-            throw new NotImplementedException();
-        }
-
-        public ResultDTO UpdatePatientDetail(string PatientID, string PatientName, string ECNumber, short Age, string DOB, string Gender, string BloodGroup, string Village, string ContactNo, string PhoneNo)
+        public ResultDTO SavePatientDetails(string PHCID,string PatientName, string ECNumber, short Age, string DOB, string Gender, string BloodGroup, string VillageID, string Address, string ContactNo, string PhoneNo)
         {
             PatientDetail PatientDetail = new PatientDetail();
-            PatientDetail.PatientID = PatientID;
+            PatientDetail.PatientID = CommonUtil.CreateUniqueID("P");
+            PatientDetail.PHCID = PHCID;
             PatientDetail.Name = PatientName;
             PatientDetail.age = Age;
             PatientDetail.DOB = DOB.ConvertToDate();
             PatientDetail.Sex = Gender;
             PatientDetail.BloodGroup = BloodGroup;
             PatientDetail.LastModifiedBy = "System";
-            PatientAddress PatientAddress = new DataAccess.PatientAddress();
-            PatientAddress.PatientID = PatientID;
+            PatientDetail.LastModifiedDate = DateTime.Now;
+            PatientDetail.ObsInd = "N";
+            PatientAddress PatientAddres = new DataAccess.PatientAddress();
+            PatientAddres.PatientAddressID = CommonUtil.CreateUniqueID("PADRS");
+            PatientAddres.PatientID = PatientDetail.PatientID;
+            PatientAddres.VillageID = VillageID;
+            PatientAddres.Address = Address;
+            PatientAddres.ContactNo = ContactNo;
+            PatientAddres.PhoneNo = PhoneNo;
+            PatientAddres.LastModifiedBy = "System";
+            PatientAddres.LastModifiedDate = DateTime.Now;
+            PatientAddres.ObsInd = "N";
+            PatientDetail.PatientAddresses.Add(PatientAddres);
+            if (!string.IsNullOrEmpty(ECNumber))
+            {
+                PatientEC patientec = new PatientEC();
+                patientec.PatientECID = CommonUtil.CreateUniqueID("PEC");
+                patientec.PatientID = PatientDetail.PatientID;
+                patientec.ECNumber = ECNumber;
+                patientec.LastModifiedBy = "System";
+                patientec.LastModifiedDate = DateTime.Now;
+                patientec.ObsInd = "N";
+                PatientDetail.PatientECs.Add(patientec);
+            }
 
-            //PatientDetail.DrugStockID = DrugStockID;
-            //PatientDetail.PHCID = PHCID;
-            //PatientDetail.DrugID = DrugID;
-            //PatientDetail.Quantity = Quantity;
-            //PatientDetail.BatchNo = BatchNo;
-            //PatientDetail.ManufactureDate = MfDate.ConvertToDate();
-            //PatientDetail.ExpiryDate = ExpDate.ConvertToDate();
-            //PatientDetail.PurchaseDate = PurchaseDate.ConvertToDate();
-            //PatientDetail.LastModifiedBy = "System";
-            //if (objDA.UpdateDrugStock(PatientDetail))
+            if (objDA.AddPatientDetails(PatientDetail))
+                return new ResultDTO() { IsSuccess = true, Message = "Successfully Saved." };
+            else
+                return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Saved." };
+        }
+
+        public ResultDTO UpdatePatientDetail(string PHCID, string PatientID, string PatientName, string ECNumber, short Age, string DOB, string Gender, string BloodGroup, string VillageID, string Address, string ContactNo, string PhoneNo)
+        {
+            PatientDetail PatientDetail = new PatientDetail();
+            PatientDetail.PatientID = PatientID;
+            PatientDetail.PHCID = PHCID;
+            PatientDetail.Name = PatientName;
+            PatientDetail.age = Age;
+            PatientDetail.DOB = DOB.ConvertToDate();
+            PatientDetail.Sex = Gender;
+            PatientDetail.BloodGroup = BloodGroup;
+            PatientDetail.LastModifiedBy = "System";
+            PatientAddress PatientAddres = new DataAccess.PatientAddress();
+            PatientAddres.PatientID = PatientID;
+            PatientAddres.VillageID = VillageID;
+            PatientAddres.Address = Address;
+            PatientAddres.ContactNo = ContactNo;
+            PatientAddres.PhoneNo = PhoneNo;
+            PatientAddres.LastModifiedBy = "System";
+            PatientDetail.PatientAddresses.Add(PatientAddres);
+            if (!string.IsNullOrEmpty(ECNumber))
+            {
+                PatientEC patientec = new PatientEC();
+                patientec.PatientID = PatientID;
+                patientec.ECNumber = ECNumber;
+                patientec.LastModifiedBy = "System";
+                PatientDetail.PatientECs.Add(patientec);
+            }
+
+            if (objDA.UpdatePatientDetail(PatientDetail))
                 return new ResultDTO() { IsSuccess = true, Message = "Successfully Updated." };
-            //else
-            //    return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Updated." };
+            else
+                return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Updated." };
         }
 
         public ResultDTO DeletePatientDetail(string PatientID)
         {
-            throw new NotImplementedException();
+            if (objDA.DeleteDrugStock(PatientID))
+                return new ResultDTO() { IsSuccess = true, Message = "Successfully Deleted." };
+            else
+                return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Deleted." };
         }
 
         public List<PatientDetailDTO> GetPatientDetail(string PHCID)
         {
-            throw new NotImplementedException();
+
+            List<PatientDetail> lstPatientDetail = objDA.GetPatientDetail(PHCID);
+            List<PatientDetailDTO> lstPatientDetailDTO = new List<PatientDetailDTO>();
+            if (lstPatientDetail != null)
+                foreach (PatientDetail PatientDetail in lstPatientDetail)
+                {
+                    PatientDetailDTO patientDetailDTO = new PatientDetailDTO();
+                    patientDetailDTO.PatientID = PatientDetail.PatientID;
+                    patientDetailDTO.PHCID = PatientDetail.PHCID;
+                    patientDetailDTO.PatientName = PatientDetail.Name;
+                    patientDetailDTO.Age = PatientDetail.age;
+                    patientDetailDTO.DOB = PatientDetail.DOB;
+                    patientDetailDTO.Gender = PatientDetail.Sex;
+                    patientDetailDTO.BloodGroup = PatientDetail.BloodGroup;
+                    PatientAddress PA = new PatientAddress();
+                    PA = PatientDetail.PatientAddresses.FirstOrDefault();
+                    patientDetailDTO.Address = PA.Address;
+                    patientDetailDTO.RefPhoneNo = PA.PhoneNo;
+                    patientDetailDTO.ContactNo = PA.ContactNo;
+                    patientDetailDTO.VillageID = PA.VillageID;
+                    patientDetailDTO.Place = objDA.GetVillageName(patientDetailDTO.VillageID);
+                    PatientEC PEC = new PatientEC();
+                    PEC = PatientDetail.PatientECs.FirstOrDefault();
+                    patientDetailDTO.ECNumber = PEC.ECNumber;
+
+                    lstPatientDetailDTO.Add(patientDetailDTO);
+                }
+            return lstPatientDetailDTO;            
         }
 
         public List<MVillageDTO> GetMVillages(string PHCID)
         {
-            throw new NotImplementedException();
+            List<MVillage> lstMVillage = objDA.getMVillage(PHCID);
+            List<MVillageDTO> lstMVillageDTO = new List<MVillageDTO>();
+            if (lstMVillage != null)
+                foreach (MVillage Village in lstMVillage)
+                {
+                    MVillageDTO MVillageDTO = new MVillageDTO();
+                    MVillageDTO.VillageID = Village.VillageID;
+                    MVillageDTO.VillageName= Village.Name;
+                    lstMVillageDTO.Add(MVillageDTO);
+                }
+            return lstMVillageDTO;
         }
 
         public List<BloodGroupDTO> GetBloodGroup()

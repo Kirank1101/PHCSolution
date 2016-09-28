@@ -17,6 +17,7 @@ namespace PHC.DataAccess
         public MVillage()
         {
             this.UserMaps = new HashSet<UserMap>();
+            this.PatientAddresses = new HashSet<PatientAddress>();
         }
     
         public string VillageID { get; set; }
@@ -28,5 +29,6 @@ namespace PHC.DataAccess
     
         public virtual MPHC MPHC { get; set; }
         public virtual ICollection<UserMap> UserMaps { get; set; }
+        public virtual ICollection<PatientAddress> PatientAddresses { get; set; }
     }
 }

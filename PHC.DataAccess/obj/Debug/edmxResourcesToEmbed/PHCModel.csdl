@@ -148,6 +148,7 @@
     <Property Name="ObsInd" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
     <NavigationProperty Name="MPHC" Relationship="Self.FK_MVillage_MPHC" FromRole="MVillage" ToRole="MPHC" />
     <NavigationProperty Name="UserMaps" Relationship="Self.FK_UserMap_MVillage" FromRole="MVillage" ToRole="UserMap" />
+    <NavigationProperty Name="PatientAddresses" Relationship="PHCSolutionsModel.FK__PatientAd__Villa__5812160E" FromRole="MVillage" ToRole="PatientAddress" />
   </EntityType>
   <EntityType Name="PatientAddress">
     <Key>
@@ -155,7 +156,6 @@
     </Key>
     <Property Name="PatientAddressID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="PatientID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Village" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="PhoneNo" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
     <Property Name="ContactNo" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
@@ -163,6 +163,8 @@
     <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="ObsInd" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
     <NavigationProperty Name="PatientDetail" Relationship="Self.FK_PatientAddress_PatientDetails" FromRole="PatientAddress" ToRole="PatientDetails" />
+    <Property Name="VillageID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="MVillage" Relationship="PHCSolutionsModel.FK__PatientAd__Villa__5812160E" FromRole="PatientAddress" ToRole="MVillage" />
   </EntityType>
   <EntityType Name="PatientDetail">
     <Key>
@@ -763,6 +765,10 @@
       <End Role="AspNetRole" EntitySet="AspNetRoles" />
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
     </AssociationSet>
+    <AssociationSet Name="FK__PatientAd__Villa__5812160E" Association="PHCSolutionsModel.FK__PatientAd__Villa__5812160E">
+      <End Role="MVillage" EntitySet="MVillages" />
+      <End Role="PatientAddress" EntitySet="PatientAddresses" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="C__MigrationHistory">
     <Key>
@@ -908,5 +914,17 @@
   <Association Name="AspNetUserRoles">
     <End Type="PHCSolutionsModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
     <End Type="PHCSolutionsModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+  </Association>
+  <Association Name="FK__PatientAd__Villa__5812160E">
+    <End Type="PHCSolutionsModel.MVillage" Role="MVillage" Multiplicity="1" />
+    <End Type="PHCSolutionsModel.PatientAddress" Role="PatientAddress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MVillage">
+        <PropertyRef Name="VillageID" />
+      </Principal>
+      <Dependent Role="PatientAddress">
+        <PropertyRef Name="VillageID" />
+      </Dependent>
+    </ReferentialConstraint>
   </Association>
 </Schema>

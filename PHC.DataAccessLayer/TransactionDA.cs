@@ -639,5 +639,85 @@ namespace PHC.DataAccessLayer
             }
             return true;
         }
+
+
+        public bool UpdatePatientDetail(PatientDetail PatientDetail)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool AddPatientDetails(PatientDetail PatientDetail)
+        {
+
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                new GenericRepository<PatientDetail>(work).Add(PatientDetail);
+                work.Save();
+            }
+            return true;
+        }
+
+        public List<PatientDetail> GetPatientDetail(string PHCID)
+        {
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                try
+                {
+                    return new GenericRepository<PatientDetail>(work)
+                        .FindBy(d=>d.PHCID==PHCID)
+                        .OrderByDescending(p=>p.LastModifiedDate)
+                        .Take(50)
+                        .ToList();
+                    
+                    
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                    throw ex;
+                }
+            }
+        }
+
+        public string GetVillageName(string VillageID)
+        {
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                try
+                {
+                    MVillage mVillage = new GenericRepository<MVillage>(work).FindBy(d => d.VillageID == VillageID && d.ObsInd == No).FirstOrDefault();
+                    return mVillage.Name;
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                    throw ex;
+                }
+            }
+        }
+
+
+        public List<MVillage> getMVillage(string PHCID)
+        {
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                try
+                {
+                    return new GenericRepository<MVillage>(work)
+                        .FindBy(d => d.PHCID == PHCID)
+                        .OrderByDescending(p => p.LastModifiedDate)
+                        .ToList();
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                    throw ex;
+                }
+            }            
+        }
     }
 }

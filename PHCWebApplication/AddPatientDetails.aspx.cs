@@ -63,6 +63,10 @@ namespace WebApplication5
                 ddlVillage.DataBind();
                 ddlVillage.Items.Insert(0, "Select Village");
             }
+            else
+                ddlVillage.Items.Insert(0, "Select Village");
+
+
         }
 
         private void BindBloodGroup()
@@ -70,7 +74,7 @@ namespace WebApplication5
             List<BloodGroupDTO> lstbloodgroup = objITransactionBusiness.GetBloodGroup();
             ddlBloodGroup.DataSource = lstbloodgroup;
             ddlBloodGroup.DataBind();
-            ddlVillage.Items.Insert(0, "Select BloodGroup");
+            ddlBloodGroup.Items.Insert(0, "Select BloodGroup");
         }
         const string VSVillages = PHCConstatnt.VSVillages;
         public List<MVillageDTO> ViewstateVillages
@@ -88,7 +92,7 @@ namespace WebApplication5
         }
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            ResultDTO resultDTO = objITransactionBusiness.SavePatientDetails(txtPatientName.Text, txtECNo.Text, Convert.ToInt16(txtAge.Text), txtDOB.Text, GetGender(), ddlBloodGroup.SelectedItem.Text, ddlVillage.SelectedValue, txtContactNo.Text, txtPhoneNo.Text);
+            ResultDTO resultDTO = objITransactionBusiness.SavePatientDetails(PHCConstatnt.PHCID, txtPatientName.Text, txtECNo.Text, Convert.ToInt16(txtAge.Text), txtDOB.Text, GetGender(), ddlBloodGroup.SelectedItem.Text, ddlVillage.SelectedValue,txtAddress.Text, txtContactNo.Text, txtPhoneNo.Text);
             if (resultDTO.IsSuccess)
             {
                 pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessBackGroundColor);
@@ -117,7 +121,7 @@ namespace WebApplication5
         {
             string PatientID = ViewState["PatientID"].ToString();
 
-            ResultDTO resultDTO = objITransactionBusiness.UpdatePatientDetail(PatientID, txtPatientName.Text, txtECNo.Text, Convert.ToInt16(txtAge.Text), txtDOB.Text, GetGender(), ddlBloodGroup.SelectedItem.Text, ddlVillage.SelectedValue, txtContactNo.Text, txtPhoneNo.Text);
+            ResultDTO resultDTO = objITransactionBusiness.UpdatePatientDetail(PHCConstatnt.PHCID, PatientID, txtPatientName.Text, txtECNo.Text, Convert.ToInt16(txtAge.Text), txtDOB.Text, GetGender(), ddlBloodGroup.SelectedItem.Text, ddlVillage.SelectedValue, txtAddress.Text, txtContactNo.Text, txtPhoneNo.Text);
 
             if (resultDTO.IsSuccess)
             {
@@ -158,12 +162,12 @@ namespace WebApplication5
             }
             this.PopulateData();
         }
-        protected void LVDrugsStockDetails_PagePropertiesChanging(object sender, PagePropertiesChangingEventArgs e)
+        protected void LVPatientDetailDetails_PagePropertiesChanging(object sender, PagePropertiesChangingEventArgs e)
         {
             this.DPLV1.SetPageProperties(e.StartRowIndex, e.MaximumRows, false);
             PopulateData();
         }
-        protected void LVDrugsStockDetails_ItemCommand(object sender, ListViewCommandEventArgs e)
+        protected void LVPatientDetailDetails_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
             if (e.CommandName == "EditData")
             {

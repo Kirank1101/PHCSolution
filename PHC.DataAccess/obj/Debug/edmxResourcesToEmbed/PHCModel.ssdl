@@ -198,13 +198,13 @@
     </Key>
     <Property Name="PatientAddressID" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="PatientID" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Village" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="Address" Type="nvarchar" MaxLength="50" />
     <Property Name="PhoneNo" Type="nvarchar" MaxLength="13" />
     <Property Name="ContactNo" Type="nvarchar" MaxLength="13" />
     <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
     <Property Name="ObsInd" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="VillageID" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="PatientDetails">
     <Key>
@@ -334,6 +334,18 @@
       </Principal>
       <Dependent Role="MDrugs">
         <PropertyRef Name="StateID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PatientAd__Villa__5812160E">
+    <End Role="MVillage" Type="Self.MVillage" Multiplicity="1" />
+    <End Role="PatientAddress" Type="Self.PatientAddress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MVillage">
+        <PropertyRef Name="VillageID" />
+      </Principal>
+      <Dependent Role="PatientAddress">
+        <PropertyRef Name="VillageID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -754,6 +766,10 @@
     <AssociationSet Name="FK__MDrugs__StateID__571DF1D5" Association="Self.FK__MDrugs__StateID__571DF1D5">
       <End Role="MState" EntitySet="MState" />
       <End Role="MDrugs" EntitySet="MDrugs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PatientAd__Villa__5812160E" Association="Self.FK__PatientAd__Villa__5812160E">
+      <End Role="MVillage" EntitySet="MVillage" />
+      <End Role="PatientAddress" EntitySet="PatientAddress" />
     </AssociationSet>
     <AssociationSet Name="FK__PatientPr__Disea__4316F928" Association="Self.FK__PatientPr__Disea__4316F928">
       <End Role="MDisease" EntitySet="MDisease" />

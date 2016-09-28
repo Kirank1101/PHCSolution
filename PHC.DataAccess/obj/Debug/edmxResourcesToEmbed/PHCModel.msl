@@ -129,9 +129,9 @@
     <EntitySetMapping Name="PatientAddresses">
       <EntityTypeMapping TypeName="PHCSolutionsModel.PatientAddress">
         <MappingFragment StoreEntitySet="PatientAddress">
+          <ScalarProperty Name="VillageID" ColumnName="VillageID" />
           <ScalarProperty Name="PatientAddressID" ColumnName="PatientAddressID" />
           <ScalarProperty Name="PatientID" ColumnName="PatientID" />
-          <ScalarProperty Name="Village" ColumnName="Village" />
           <ScalarProperty Name="Address" ColumnName="Address" />
           <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
           <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />

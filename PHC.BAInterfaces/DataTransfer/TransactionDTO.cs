@@ -34,6 +34,7 @@ namespace PHC.BAInterfaces.DataTransfer
         public string DistrictID { get; set; }
         public string DistrictName { get; set; }
     }
+    [Serializable]
     public class MVillageDTO
     {
         public string VillageID { get; set; }
@@ -67,14 +68,18 @@ namespace PHC.BAInterfaces.DataTransfer
     public class PatientDetailDTO
     {
         public string PatientID { get; set; }
-        public string Name { get; set; }
+        public string PHCID { get; set; }
+        public string PatientName { get; set; }
         public Int16 Age { get; set; }
-        public DateTime DOB { get; set; }
+        public DateTime? DOB { get; set; }
+        public string Gender { get; set; }
+        public string BloodGroup { get; set; }
         public string Place { get; set; }
+        public string VillageID { get; set; }
         public string Address { get; set; }
-        public string PhoneNo { get; set; }
+        public string RefPhoneNo { get; set; }
+        public string ContactNo { get; set; }
         public string ECNumber { get; set; }
-        public string MCNumber { get; set; }
     }
     public class DrugStockDTO
     {

@@ -82,5 +82,15 @@ namespace PHC.DAInterfaces.DataAccess
         bool UpdateDrugStock(DrugStockDetail DrugStockDetail);
 
         bool DeleteDrugStock(string DrugStockID);
+
+        bool UpdatePatientDetail(PatientDetail PatientDetail);
+
+        bool AddPatientDetails(PatientDetail PatientDetail);
+
+        List<PatientDetail> GetPatientDetail(string PHCID);
+
+        string GetVillageName(string VillageID);
+
+        List<MVillage> getMVillage(string PHCID);
     }
 }
