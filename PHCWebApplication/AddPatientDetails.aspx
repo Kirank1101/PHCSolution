@@ -177,7 +177,7 @@
                     <fieldset>
                         <legend>Patient Detail</legend>
 
-                        <asp:ListView ID="LVPatientDetailDetails" runat="server" ItemPlaceholderID="itemPlaceHolder1" DataKeyNames="DrugStockID"
+                        <asp:ListView ID="LVPatientDetailDetails" runat="server" ItemPlaceholderID="itemPlaceHolder1" DataKeyNames="PatientID"
                             OnItemDeleting="DeleteRecord" OnItemCommand="LVPatientDetailDetails_ItemCommand" OnPagePropertiesChanging="LVPatientDetailDetails_PagePropertiesChanging">
                             <EmptyDataTemplate>
                                 There are no entries found for MDrugs
@@ -219,6 +219,7 @@
                                     <td>
                                         <asp:Label runat="server" ID="lblPHCID" Text='<%# Eval("PHCID") %>' Visible="false"></asp:Label>
                                         <asp:Label runat="server" ID="lblPatientID" Text='<%# Eval("PatientID") %>' Visible="false"></asp:Label>
+                                        <asp:Label runat="server" ID="lblVillageID" Text='<%# Eval("VillageID") %>' Visible="false"></asp:Label>
                                         <asp:Label runat="server" ID="lblPatientName" Text='<%# Eval("PatientName") %>'></asp:Label>
                                     </td>
                                     <td>

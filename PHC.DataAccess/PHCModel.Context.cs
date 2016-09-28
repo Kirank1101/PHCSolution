@@ -18,6 +18,8 @@ namespace PHC.DataAccess
         public PHCSolutions()
             : base("name=PHCSolutions")
         {
+            this.Configuration.LazyLoadingEnabled = true;
+            this.Configuration.ProxyCreationEnabled = true;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

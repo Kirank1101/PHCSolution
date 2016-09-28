@@ -92,5 +92,6 @@ namespace PHC.DAInterfaces.DataAccess
         string GetVillageName(string VillageID);
 
         List<MVillage> getMVillage(string PHCID);
+        PatientEC GetPatientEC(string PatientID);
     }
 }

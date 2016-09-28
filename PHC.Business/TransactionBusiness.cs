@@ -458,7 +458,7 @@ namespace PHC.Business
         }
 
 
-        public ResultDTO SavePatientDetails(string PHCID,string PatientName, string ECNumber, short Age, string DOB, string Gender, string BloodGroup, string VillageID, string Address, string ContactNo, string PhoneNo)
+        public ResultDTO SavePatientDetails(string PHCID, string PatientName, string ECNumber, short Age, string DOB, string Gender, string BloodGroup, string VillageID, string Address, string ContactNo, string PhoneNo)
         {
             PatientDetail PatientDetail = new PatientDetail();
             PatientDetail.PatientID = CommonUtil.CreateUniqueID("P");
@@ -519,12 +519,24 @@ namespace PHC.Business
             PatientAddres.PhoneNo = PhoneNo;
             PatientAddres.LastModifiedBy = "System";
             PatientDetail.PatientAddresses.Add(PatientAddres);
-            if (!string.IsNullOrEmpty(ECNumber))
+            PatientEC pec = objDA.GetPatientEC(PatientID);
+            if (pec != null && !string.IsNullOrEmpty(ECNumber))
             {
                 PatientEC patientec = new PatientEC();
                 patientec.PatientID = PatientID;
                 patientec.ECNumber = ECNumber;
                 patientec.LastModifiedBy = "System";
+                PatientDetail.PatientECs.Add(patientec);
+            }
+            else if (pec == null && !string.IsNullOrEmpty(ECNumber))
+            {
+                PatientEC patientec = new PatientEC();
+                patientec.PatientECID = CommonUtil.CreateUniqueID("PEC");
+                patientec.PatientID = PatientDetail.PatientID;
+                patientec.ECNumber = ECNumber;
+                patientec.LastModifiedBy = "System";
+                patientec.LastModifiedDate = DateTime.Now;
+                patientec.ObsInd = "N";
                 PatientDetail.PatientECs.Add(patientec);
             }
 
@@ -533,7 +545,6 @@ namespace PHC.Business
             else
                 return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Updated." };
         }
-
         public ResultDTO DeletePatientDetail(string PatientID)
         {
             if (objDA.DeleteDrugStock(PatientID))
@@ -565,13 +576,16 @@ namespace PHC.Business
                     patientDetailDTO.ContactNo = PA.ContactNo;
                     patientDetailDTO.VillageID = PA.VillageID;
                     patientDetailDTO.Place = objDA.GetVillageName(patientDetailDTO.VillageID);
-                    PatientEC PEC = new PatientEC();
-                    PEC = PatientDetail.PatientECs.FirstOrDefault();
-                    patientDetailDTO.ECNumber = PEC.ECNumber;
 
+                    if (PatientDetail.PatientECs != null && PatientDetail.PatientECs.Count > 0)
+                    {
+                        PatientEC PEC = new PatientEC();
+                        PEC = PatientDetail.PatientECs.FirstOrDefault();
+                        patientDetailDTO.ECNumber = PEC.ECNumber;
+                    }
                     lstPatientDetailDTO.Add(patientDetailDTO);
                 }
-            return lstPatientDetailDTO;            
+            return lstPatientDetailDTO;
         }
 
         public List<MVillageDTO> GetMVillages(string PHCID)
@@ -583,7 +597,7 @@ namespace PHC.Business
                 {
                     MVillageDTO MVillageDTO = new MVillageDTO();
                     MVillageDTO.VillageID = Village.VillageID;
-                    MVillageDTO.VillageName= Village.Name;
+                    MVillageDTO.VillageName = Village.Name;
                     lstMVillageDTO.Add(MVillageDTO);
                 }
             return lstMVillageDTO;
@@ -626,5 +640,6 @@ namespace PHC.Business
             lstBloodGroup.Add(bg7);
             return lstBloodGroup;
         }
+
     }
 }

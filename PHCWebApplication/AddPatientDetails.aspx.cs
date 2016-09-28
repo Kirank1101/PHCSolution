@@ -183,7 +183,9 @@ namespace WebApplication5
                 Label lblPlace = (Label)e.Item.FindControl("lblPlace");
                 Label lblContactNo= (Label)e.Item.FindControl("lblContactNo");
                 Label lblRefPhoneNo = (Label)e.Item.FindControl("lblRefPhoneNo");
-                
+                Label lblAddress = (Label)e.Item.FindControl("lblAddress");
+                Label lblVillageID = (Label)e.Item.FindControl("lblVillageID");
+               
                     
                 string PatientID = lblPatientID.Text;
                 btnSave.Visible = false;
@@ -198,12 +200,16 @@ namespace WebApplication5
 
                 txtAge.Text = lblAge.Text;
                 txtDOB.Text = lblDOB.Text;
-                ddlVillage.SelectedValue = lblPlace.Text;
+                BindVillages();
+                ddlVillage.SelectedValue = lblVillageID.Text;
+                txtAddress.Text = lblAddress.Text;
+
                 txtContactNo.Text = lblContactNo.Text;
                 txtPhoneNo.Text = lblRefPhoneNo.Text;
                 ViewState["PatientID"] = PatientID;
             }
         }
+
 
     }
 }

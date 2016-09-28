@@ -643,8 +643,58 @@ namespace PHC.DataAccessLayer
 
         public bool UpdatePatientDetail(PatientDetail PatientDetail)
         {
-            throw new NotImplementedException();
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                PatientDetail PD = new GenericRepository<PatientDetail>(work).FindBy(n => n.PatientID == PatientDetail.PatientID).FirstOrDefault();
+
+                if (PD != null)
+                {
+                    //con.Edit(empobj);
+                    PD.Name = PatientDetail.Name;
+                    PD.age = PatientDetail.age;
+                    PD.DOB = PatientDetail.DOB;
+                    PD.Sex = PatientDetail.Sex;
+                    PD.BloodGroup = PatientDetail.BloodGroup;
+                    PD.LastModifiedBy = "System";
+                    PD.LastModifiedDate = DateTime.Now;
+                    PatientAddress PA = PD.PatientAddresses.FirstOrDefault();
+                    PatientAddress PatientAddres = PatientDetail.PatientAddresses.FirstOrDefault();
+                    PA.VillageID = PatientAddres.VillageID;
+                    PA.Address = PatientAddres.Address;
+                    PA.ContactNo = PatientAddres.ContactNo;
+                    PA.PhoneNo = PatientAddres.PhoneNo;
+                    PA.LastModifiedBy = "System";
+                    PA.LastModifiedDate = DateTime.Now;
+                    //PatientDetail.PatientAddresses.Add(PA);
+                    if (PatientDetail.PatientECs != null && PatientDetail.PatientECs.Count > 0)
+                    {
+                        PatientEC PatientEC = PatientDetail.PatientECs.FirstOrDefault();
+                        if (PD.PatientECs.Count == 0)
+                        {
+                            PatientEC PECnew = new PatientEC();
+                            PECnew = PatientEC;
+                            PD.PatientECs.Add(PECnew);
+                        }
+                        else
+                        {
+                            PatientEC PEC = PD.PatientECs.FirstOrDefault();
+                            PEC.ECNumber = PatientEC.ECNumber;
+                            PEC.LastModifiedBy = "System";
+                            PEC.LastModifiedDate = DateTime.Now;
+                            //PatientDetail.PatientECs.Add(PEC);
+                        }
+                    }
+
+                    work.Save();
+
+                    return true;
+                }
+                else
+                    return false;
+            }
         }
+
 
         public bool AddPatientDetails(PatientDetail PatientDetail)
         {
@@ -661,7 +711,7 @@ namespace PHC.DataAccessLayer
         public List<PatientDetail> GetPatientDetail(string PHCID)
         {
             IUnitOfWork work = null;
-            using (work = GetUOW.GetUOWInstance)
+            work = GetUOW.GetUOWInstance;
             {
                 try
                 {
@@ -719,5 +769,24 @@ namespace PHC.DataAccessLayer
                 }
             }            
         }
+
+
+        public PatientEC GetPatientEC(string PatientID)
+        {
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                try
+                {
+                    return new GenericRepository<PatientEC>(work).FindBy(d => d.PatientID == PatientID && d.ObsInd == No).SingleOrDefault();
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                    throw ex;
+                }
+            }
+        }
+
     }
 }
