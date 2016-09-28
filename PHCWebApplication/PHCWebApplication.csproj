@@ -167,14 +167,19 @@
     <Content Include="AddDiseases.aspx" />
     <Content Include="AddDrugs.aspx" />
     <Content Include="AddLabTests.aspx" />
+    <Content Include="AddMC.aspx" />
     <Content Include="AddPatientDetails.aspx" />
     <Content Include="AddPHC.aspx" />
     <Content Include="AddTaluk.aspx" />
+    <Content Include="AddUsers.aspx" />
+    <Content Include="AddVaccination.aspx" />
     <Content Include="AddVillages.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="DiseaseReport.aspx" />
+    <Content Include="DrugsReport.aspx" />
     <Content Include="DrugStockDetails.aspx" />
     <Content Include="DynamicData\FieldTemplates\Boolean.ascx" />
     <Content Include="DynamicData\FieldTemplates\Boolean_Edit.ascx" />
@@ -206,6 +211,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Account\Web.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="PatientPrescription.aspx" />
+    <Content Include="PatientReport.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -379,6 +386,13 @@
     <Compile Include="AddLabTests.aspx.designer.cs">
       <DependentUpon>AddLabTests.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AddMC.aspx.cs">
+      <DependentUpon>AddMC.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddMC.aspx.designer.cs">
+      <DependentUpon>AddMC.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AddPatientDetails.aspx.cs">
       <DependentUpon>AddPatientDetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -399,6 +413,20 @@
     </Compile>
     <Compile Include="AddTaluk.aspx.designer.cs">
       <DependentUpon>AddTaluk.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddUsers.aspx.cs">
+      <DependentUpon>AddUsers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddUsers.aspx.designer.cs">
+      <DependentUpon>AddUsers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddVaccination.aspx.cs">
+      <DependentUpon>AddVaccination.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddVaccination.aspx.designer.cs">
+      <DependentUpon>AddVaccination.aspx</DependentUpon>
     </Compile>
     <Compile Include="AddVillages.aspx.cs">
       <DependentUpon>AddVillages.aspx</DependentUpon>
@@ -431,6 +459,20 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DiseaseReport.aspx.cs">
+      <DependentUpon>DiseaseReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DiseaseReport.aspx.designer.cs">
+      <DependentUpon>DiseaseReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DrugsReport.aspx.cs">
+      <DependentUpon>DrugsReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DrugsReport.aspx.designer.cs">
+      <DependentUpon>DrugsReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="DrugStockDetails.aspx.cs">
       <DependentUpon>DrugStockDetails.aspx</DependentUpon>
@@ -603,6 +645,20 @@
     </Compile>
     <Compile Include="MStates\Insert.aspx.designer.cs">
       <DependentUpon>Insert.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PatientPrescription.aspx.cs">
+      <DependentUpon>PatientPrescription.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PatientPrescription.aspx.designer.cs">
+      <DependentUpon>PatientPrescription.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PatientReport.aspx.cs">
+      <DependentUpon>PatientReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PatientReport.aspx.designer.cs">
+      <DependentUpon>PatientReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
