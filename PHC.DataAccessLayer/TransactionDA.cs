@@ -601,7 +601,7 @@ namespace PHC.DataAccessLayer
             IUnitOfWork work = null;
             using (work = GetUOW.GetUOWInstance)
             {
-                DrugStockDetail drugstock = new GenericRepository<DrugStockDetail>(work).FindBy(n => n.DrugStockID== DrugStockDetail.DrugStockID).FirstOrDefault();
+                DrugStockDetail drugstock = new GenericRepository<DrugStockDetail>(work).FindBy(n => n.DrugStockID == DrugStockDetail.DrugStockID).FirstOrDefault();
 
                 if (drugstock != null)
                 {
@@ -716,12 +716,12 @@ namespace PHC.DataAccessLayer
                 try
                 {
                     return new GenericRepository<PatientDetail>(work)
-                        .FindBy(d=>d.PHCID==PHCID)
-                        .OrderByDescending(p=>p.LastModifiedDate)
+                        .FindBy(d => d.PHCID == PHCID)
+                        .OrderByDescending(p => p.LastModifiedDate)
                         .Take(50)
                         .ToList();
-                    
-                    
+
+
                 }
                 catch (Exception ex)
                 {
@@ -767,7 +767,7 @@ namespace PHC.DataAccessLayer
                     return null;
                     throw ex;
                 }
-            }            
+            }
         }
 
 
@@ -788,5 +788,17 @@ namespace PHC.DataAccessLayer
             }
         }
 
+
+
+        public bool AddUser(User userObj)
+        {
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                new GenericRepository<User>(work).Add(userObj);
+                work.Save();
+            }
+            return true;
+        }
     }
 }

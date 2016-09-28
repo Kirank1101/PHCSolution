@@ -79,6 +79,9 @@ namespace PHC.BAInterfaces.Business
 
         List<BloodGroupDTO> GetBloodGroup();
 
+        ResultDTO AddUser(string PHCID, string stateId, string districtId, string talukId, string villageId, string password,
+            string userId, string emailId,string userName);
+
 
     }
 }

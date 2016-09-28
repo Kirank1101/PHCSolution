@@ -93,5 +93,6 @@ namespace PHC.DAInterfaces.DataAccess
 
         List<MVillage> getMVillage(string PHCID);
         PatientEC GetPatientEC(string PatientID);
+        bool AddUser(User userObj);
     }
 }

@@ -641,5 +641,33 @@ namespace PHC.Business
             return lstBloodGroup;
         }
 
+
+
+        public ResultDTO AddUser(string PHCID, string stateId, string districtId, string talukId, string villageId, string password, string userId, string emailId, string userName)
+        {
+            User userObj = new User();
+            userObj.UserID = CommonUtil.CreateUniqueID("U");
+            userObj.Password = password;
+            userObj.LoginID = PHCID;
+            userObj.LastModifiedDate = DateTime.Now;
+            userObj.ObsInd = "N";
+            UserMap userMapObj = new DataAccess.UserMap();
+            userMapObj.UserMapID = CommonUtil.CreateUniqueID("UM");
+            userMapObj.UserID = userObj.UserID;
+            userMapObj.PHCID = PHCID;
+            userMapObj.StateID = stateId;
+            userMapObj.DistrictID = districtId;
+            userMapObj.TalukID = talukId;
+            userMapObj.VillageID = villageId;
+            userMapObj.DisplayName = userName;
+            userMapObj.LastModifiedBy = "System";
+            userMapObj.LastModifiedDate = DateTime.Now;
+            userMapObj.ObsInd = "N";
+            userObj.UserMaps.Add(userMapObj);
+            if (objDA.AddUser(userObj))
+                return new ResultDTO() { IsSuccess = true, Message = "Successfully Saved." };
+            else
+                return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Saved." };
+        }
     }
 }
