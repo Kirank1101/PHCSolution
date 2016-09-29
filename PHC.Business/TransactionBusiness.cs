@@ -678,5 +678,67 @@ namespace PHC.Business
             else
                 return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Saved." };
         }
+        public List<MVillageDTO> GetMVillage(string PHCID)
+        {
+            List<MVillage> lstMVillage = objDA.GetMVillage(PHCID);
+            List<MVillageDTO> lstMVillageDTO = new List<MVillageDTO>();
+            if (lstMVillage != null)
+                foreach (MVillage MVillage in lstMVillage)
+                {
+                    MVillageDTO MVillageDTO = new MVillageDTO();
+                    MVillageDTO.VillageID = MVillage.VillageID;
+                    MVillageDTO.VillageName = MVillage.Name;
+                    MVillageDTO.PHCID = MVillage.PHCID;
+                    lstMVillageDTO.Add(MVillageDTO);
+                }
+            return lstMVillageDTO;
+        }
+        public ResultDTO DeleteMVillage(string VillageID,string PHCID)
+        {
+            if (objDA.DeleteVillage(VillageID,PHCID))
+                return new ResultDTO() { IsSuccess = true, Message = "Successfully Deleted." };
+            else
+                return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Deleted." };
+        }
+        public ResultDTO SaveMVillage(string VillageName,string PHCID)
+        {
+
+            MVillage MVillage = new MVillage();
+            MVillage.VillageID = CommonUtil.CreateUniqueID("V");
+            MVillage.PHCID = PHCID;
+            MVillage.Name = VillageName;
+            MVillage.LastModifiedBy = "System";
+            MVillage.LastModifiedDate = DateTime.Now;
+            MVillage.ObsInd = "N";
+            MVillage checkVillage = objDA.CheckVillage(PHCID,VillageName);
+            if (checkVillage == null)
+            {
+                if (objDA.AddMVillage(MVillage))
+                    return new ResultDTO() { IsSuccess = true, Message = "Successfully Saved." };
+                else
+                    return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Saved." };
+            }
+            else
+                return new ResultDTO() { IsSuccess = false, Message = "Village already exist." };
+        }
+        public ResultDTO UpdateMVillage(string VillageID, string PHCID, string VillageName)
+        {
+            MVillage MVillage = new MVillage();
+            MVillage.VillageID = VillageID;
+            MVillage.PHCID = PHCID;
+            MVillage.Name = VillageName;
+            string checkVillageExist = objDA.CheckVillageforUpdate(VillageID, PHCID, VillageName);
+            if (string.IsNullOrEmpty(checkVillageExist))
+            {
+                if (objDA.UpdateVillageDetail(MVillage))
+                    return new ResultDTO() { IsSuccess = true, Message = "Successfully Updated." };
+                else
+                    return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Updated." };
+            }
+            else
+            {
+                return new ResultDTO() { IsSuccess = false, Message = checkVillageExist };
+            }
+        }
     }
 }

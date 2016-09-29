@@ -98,5 +98,17 @@ namespace PHC.DAInterfaces.DataAccess
         string CheeckPatientName(string PatientName, string ECNumber, string PHCID);
 
         string CheckPatientNameAndECNumberforUpdate(string PatientID, string ECNumber, string PatientName, string PHCID);
+
+        List<MVillage> GetMVillage(string PHCID);
+
+        bool DeleteVillage(string VillageID, string PHCID);
+
+        bool AddMVillage(MVillage MVillage);
+
+        MVillage CheckVillage(string PHCID, string VillageName);
+
+        string CheckVillageforUpdate(string VillageID, string PHCID, string VillageName);
+
+        bool UpdateVillageDetail(MVillage MVillage);
     }
 }

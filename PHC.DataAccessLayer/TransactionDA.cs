@@ -824,10 +824,10 @@ namespace PHC.DataAccessLayer
                     {
                         if (!string.IsNullOrEmpty(ECNumber))
                         {
-                           PatientEC PEC = new GenericRepository<PatientEC>(work)
-                                .FindBy(d => d.PatientID != PatientID && d.ECNumber == ECNumber && d.PHCID == PHCID && d.ObsInd == No)
-                                .FirstOrDefault();
-                            if (PEC != null && PEC.ECNumber==ECNumber)
+                            PatientEC PEC = new GenericRepository<PatientEC>(work)
+                                 .FindBy(d => d.PatientID != PatientID && d.ECNumber == ECNumber && d.PHCID == PHCID && d.ObsInd == No)
+                                 .FirstOrDefault();
+                            if (PEC != null && PEC.ECNumber == ECNumber)
                             {
                                 return "EC number already exist";
                             }
@@ -851,6 +851,112 @@ namespace PHC.DataAccessLayer
                 work.Save();
             }
             return true;
+        }
+        public List<MVillage> GetMVillage(string PHCID)
+        {
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                try
+                {
+                    return new GenericRepository<MVillage>(work)
+                        .FindBy(p => p.PHCID == PHCID && p.ObsInd == No)
+                        .OrderByDescending(p => p.LastModifiedDate)
+                        .ToList();
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                    throw ex;
+                }
+            }
+        }
+        public bool DeleteVillage(string VillageID, string PHCID)
+        {
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                MVillage MVillage = new GenericRepository<MVillage>(work).FindBy(n => n.VillageID == VillageID && n.PHCID == PHCID).FirstOrDefault();
+                if (MVillage != null)
+                {
+                    MVillage.ObsInd = yes;
+                    MVillage.LastModifiedBy = "System";
+                    MVillage.LastModifiedDate = DateTime.Now;
+                    work.Save();
+                }
+            }
+            return true;
+        }
+        public bool AddMVillage(MVillage MVillage)
+        {
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                new GenericRepository<MVillage>(work).Add(MVillage);
+                work.Save();
+            }
+            return true;
+        }
+        public MVillage CheckVillage(string PHCID, string VillageName)
+        {
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                try
+                {
+                    return new GenericRepository<MVillage>(work)
+                        .FindBy(n => n.PHCID == PHCID && n.Name == VillageName && n.ObsInd == No)
+                        .FirstOrDefault();
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                    throw ex;
+                }
+            }
+        }
+        public string CheckVillageforUpdate(string VillageID, string PHCID, string VillageName)
+        {
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                try
+                {
+                    MVillage MVillage = new MVillage();
+                    MVillage = new GenericRepository<MVillage>(work)
+                        .FindBy(d => d.VillageID != VillageID && d.Name == VillageName && d.PHCID == PHCID && d.ObsInd == No)
+                        .FirstOrDefault();
+                    if (MVillage != null && MVillage.Name == VillageName)
+                        return "Village Name exist";
+                    else
+                        return string.Empty;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+        public bool UpdateVillageDetail(MVillage MVillage)
+        {
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                MVillage mVillage = new GenericRepository<MVillage>(work).FindBy(n => n.VillageID == MVillage.VillageID && n.PHCID == MVillage.PHCID).FirstOrDefault();
+
+                if (mVillage != null)
+                {
+                    //con.Edit(empobj);
+                    mVillage.Name = MVillage.Name;
+                    mVillage.LastModifiedBy = "System";
+                    mVillage.LastModifiedDate = DateTime.Now;
+                    work.Save();
+
+                    return true;
+                }
+                else
+                    return false;
+            }
         }
     }
 }

@@ -39,6 +39,7 @@ namespace PHC.BAInterfaces.DataTransfer
     {
         public string VillageID { get; set; }
         public string VillageName { get; set; }
+        public string PHCID { get; set; }
     }
     public class UserDTO
     {
