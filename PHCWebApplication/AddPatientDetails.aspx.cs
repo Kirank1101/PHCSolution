@@ -14,7 +14,8 @@ namespace WebApplication5
     public partial class AddPatientDetails : System.Web.UI.Page
     {
         ITransactionBusiness objITransactionBusiness = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-
+        string VSPatientID = PHCConstatnt.VSPatientID;
+        string VSECNo = PHCConstatnt.VSECNo;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -38,7 +39,6 @@ namespace WebApplication5
             btnUpdate.Visible = false;
             btnSave.Visible = true;
         }
-
         private void PopulateData()
         {
 
@@ -68,7 +68,6 @@ namespace WebApplication5
 
 
         }
-
         private void BindBloodGroup()
         {
             List<BloodGroupDTO> lstbloodgroup = objITransactionBusiness.GetBloodGroup();
@@ -92,12 +91,14 @@ namespace WebApplication5
         }
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            ResultDTO resultDTO = objITransactionBusiness.SavePatientDetails(PHCConstatnt.PHCID, txtPatientName.Text, txtECNo.Text, Convert.ToInt16(txtAge.Text), txtDOB.Text, GetGender(), ddlBloodGroup.SelectedItem.Text, ddlVillage.SelectedValue,txtAddress.Text, txtContactNo.Text, txtPhoneNo.Text);
+            ResultDTO resultDTO = objITransactionBusiness.SavePatientDetails(PHCConstatnt.PHCID, txtPatientName.Text, txtECNo.Text, Convert.ToInt16(txtAge.Text), txtDOB.Text, GetGender(), ddlBloodGroup.SelectedItem.Text, ddlVillage.SelectedValue, txtAddress.Text, txtContactNo.Text, txtPhoneNo.Text);
             if (resultDTO.IsSuccess)
             {
                 pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessBackGroundColor);
                 lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessForeColor);
                 lblstatus.Text = resultDTO.Message;
+                this.PageReset();
+                this.PopulateData();
             }
             else
             {
@@ -105,9 +106,7 @@ namespace WebApplication5
                 lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorForeColor);
                 lblstatus.Text = resultDTO.Message;
             }
-            this.PopulateData();
         }
-
         private string GetGender()
         {
             if (rbMale.Checked)
@@ -119,14 +118,21 @@ namespace WebApplication5
         }
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
-            string PatientID = ViewState["PatientID"].ToString();
-
-            ResultDTO resultDTO = objITransactionBusiness.UpdatePatientDetail(PHCConstatnt.PHCID, PatientID, txtPatientName.Text, txtECNo.Text, Convert.ToInt16(txtAge.Text), txtDOB.Text, GetGender(), ddlBloodGroup.SelectedItem.Text, ddlVillage.SelectedValue, txtAddress.Text, txtContactNo.Text, txtPhoneNo.Text);
-
+            string PatientID = ViewState[VSPatientID].ToString();
+            string ECno = ViewState[VSECNo].ToString();
+            ResultDTO resultDTO = new ResultDTO();
+            if ((!string.IsNullOrEmpty(ECno) && !string.IsNullOrEmpty(txtECNo.Text)) || string.IsNullOrEmpty(ECno))
+                resultDTO = objITransactionBusiness.UpdatePatientDetail(PHCConstatnt.PHCID, PatientID, txtPatientName.Text, txtECNo.Text, Convert.ToInt16(txtAge.Text), txtDOB.Text, GetGender(), ddlBloodGroup.SelectedItem.Text, ddlVillage.SelectedValue, txtAddress.Text, txtContactNo.Text, txtPhoneNo.Text);
+            else
+            {
+                resultDTO.IsSuccess = false;
+                resultDTO.Message = "EC Number is Required";
+            }
             if (resultDTO.IsSuccess)
             {
-                ViewState["PatientID"] = null;
+                ViewState[VSPatientID] = null;
                 PageReset();
+                this.PopulateData();
                 //pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessBackGroundColor);
                 //lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessForeColor);
                 //lblstatus.Text = resultDTO.Message;
@@ -137,11 +143,12 @@ namespace WebApplication5
                 //lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorForeColor);
                 //lblstatus.Text = resultDTO.Message;
             }
-            this.PopulateData();
         }
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             PageReset();
+            ViewState[VSPatientID] = null;
+            ViewState[VSECNo] = null;
         }
         protected void DeleteRecord(object sender, ListViewDeleteEventArgs e)
         {
@@ -181,17 +188,22 @@ namespace WebApplication5
                 Label lblAge = (Label)e.Item.FindControl("lblAge");
                 Label lblDOB = (Label)e.Item.FindControl("lblDOB");
                 Label lblPlace = (Label)e.Item.FindControl("lblPlace");
-                Label lblContactNo= (Label)e.Item.FindControl("lblContactNo");
+                Label lblContactNo = (Label)e.Item.FindControl("lblContactNo");
                 Label lblRefPhoneNo = (Label)e.Item.FindControl("lblRefPhoneNo");
                 Label lblAddress = (Label)e.Item.FindControl("lblAddress");
                 Label lblVillageID = (Label)e.Item.FindControl("lblVillageID");
-               
-                    
+
+
                 string PatientID = lblPatientID.Text;
                 btnSave.Visible = false;
                 btnUpdate.Visible = true;
                 txtPatientName.Text = lblPatientName.Text;
                 txtECNo.Text = lblECNumber.Text;
+                if (!string.IsNullOrEmpty(txtECNo.Text))
+                    ViewState[VSECNo] = txtECNo.Text;
+                else
+                    ViewState[VSECNo] = null;
+
                 ddlBloodGroup.SelectedValue = lblBloodGroup.Text;
                 if (lblGender.Text == PHCConstatnt.Male)
                     rbMale.Checked = true;
@@ -206,7 +218,7 @@ namespace WebApplication5
 
                 txtContactNo.Text = lblContactNo.Text;
                 txtPhoneNo.Text = lblRefPhoneNo.Text;
-                ViewState["PatientID"] = PatientID;
+                ViewState[VSPatientID] = PatientID;
             }
         }
 

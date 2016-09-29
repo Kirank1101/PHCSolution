@@ -94,5 +94,9 @@ namespace PHC.DAInterfaces.DataAccess
         List<MVillage> getMVillage(string PHCID);
         PatientEC GetPatientEC(string PatientID);
         bool AddUser(User userObj);
+        //to Check PatientName exist in DB 
+        bool GetPatient(string PatientName, string PHCID);
+
+        string GetPatient(string PatientID, string ECNumber, string PatientName, string PHCID);
     }
 }

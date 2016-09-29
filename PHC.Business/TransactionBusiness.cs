@@ -104,7 +104,7 @@ namespace PHC.Business
             Disease.LastModifiedDate = DateTime.Now;
             Disease.ObsInd = "N";
             MDisease checkdisease = objDA.GetMDiseases(DiseaseName);
-            if (checkdisease != null)
+            if (checkdisease == null)
             {
                 if (objDA.AddMDisease(Disease))
                     return new ResultDTO() { IsSuccess = true, Message = "Successfully Saved." };
@@ -494,10 +494,16 @@ namespace PHC.Business
                 PatientDetail.PatientECs.Add(patientec);
             }
 
-            if (objDA.AddPatientDetails(PatientDetail))
-                return new ResultDTO() { IsSuccess = true, Message = "Successfully Saved." };
+            bool checkPatientExist = objDA.GetPatient(PatientName, PatientDetail.PHCID);
+            if (!checkPatientExist)
+            {
+                if (objDA.AddPatientDetails(PatientDetail))
+                    return new ResultDTO() { IsSuccess = true, Message = "Successfully Saved." };
+                else
+                    return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Saved." };
+            }
             else
-                return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Saved." };
+                return new ResultDTO() { IsSuccess = false, Message = "Patient Name already exist." };
         }
 
         public ResultDTO UpdatePatientDetail(string PHCID, string PatientID, string PatientName, string ECNumber, short Age, string DOB, string Gender, string BloodGroup, string VillageID, string Address, string ContactNo, string PhoneNo)
@@ -539,11 +545,18 @@ namespace PHC.Business
                 patientec.ObsInd = "N";
                 PatientDetail.PatientECs.Add(patientec);
             }
-
-            if (objDA.UpdatePatientDetail(PatientDetail))
-                return new ResultDTO() { IsSuccess = true, Message = "Successfully Updated." };
+            string checkPatientExist = objDA.GetPatient(PatientDetail.PatientID,ECNumber, PatientName, PatientDetail.PHCID);
+            if (string.IsNullOrEmpty(checkPatientExist))
+            {
+                if (objDA.UpdatePatientDetail(PatientDetail))
+                    return new ResultDTO() { IsSuccess = true, Message = "Successfully Updated." };
+                else
+                    return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Updated." };
+            }
             else
-                return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Updated." };
+            {
+                return new ResultDTO() { IsSuccess = false, Message = checkPatientExist };
+            }
         }
         public ResultDTO DeletePatientDetail(string PatientID)
         {
@@ -552,7 +565,6 @@ namespace PHC.Business
             else
                 return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Deleted." };
         }
-
         public List<PatientDetailDTO> GetPatientDetail(string PHCID)
         {
 
@@ -587,7 +599,6 @@ namespace PHC.Business
                 }
             return lstPatientDetailDTO;
         }
-
         public List<MVillageDTO> GetMVillages(string PHCID)
         {
             List<MVillage> lstMVillage = objDA.getMVillage(PHCID);
@@ -602,7 +613,6 @@ namespace PHC.Business
                 }
             return lstMVillageDTO;
         }
-
         public List<BloodGroupDTO> GetBloodGroup()
         {
             List<BloodGroupDTO> lstBloodGroup = new List<BloodGroupDTO>();
@@ -640,9 +650,6 @@ namespace PHC.Business
             lstBloodGroup.Add(bg7);
             return lstBloodGroup;
         }
-
-
-
         public ResultDTO AddUser(string PHCID, string stateId, string districtId, string talukId, string villageId, string password, string userId, string emailId, string userName)
         {
             User userObj = new User();

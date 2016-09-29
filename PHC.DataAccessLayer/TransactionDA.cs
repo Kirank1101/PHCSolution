@@ -584,7 +584,6 @@ namespace PHC.DataAccessLayer
                 }
             }
         }
-
         public bool AddDrugStock(DrugStockDetail DrugStockDetail)
         {
             IUnitOfWork work = null;
@@ -595,7 +594,6 @@ namespace PHC.DataAccessLayer
             }
             return true;
         }
-
         public bool UpdateDrugStock(DrugStockDetail DrugStockDetail)
         {
             IUnitOfWork work = null;
@@ -623,8 +621,6 @@ namespace PHC.DataAccessLayer
                     return false;
             }
         }
-
-
         public bool DeleteDrugStock(string DrugStockID)
         {
             IUnitOfWork work = null;
@@ -639,8 +635,6 @@ namespace PHC.DataAccessLayer
             }
             return true;
         }
-
-
         public bool UpdatePatientDetail(PatientDetail PatientDetail)
         {
             IUnitOfWork work = null;
@@ -694,8 +688,6 @@ namespace PHC.DataAccessLayer
                     return false;
             }
         }
-
-
         public bool AddPatientDetails(PatientDetail PatientDetail)
         {
 
@@ -707,7 +699,6 @@ namespace PHC.DataAccessLayer
             }
             return true;
         }
-
         public List<PatientDetail> GetPatientDetail(string PHCID)
         {
             IUnitOfWork work = null;
@@ -730,7 +721,6 @@ namespace PHC.DataAccessLayer
                 }
             }
         }
-
         public string GetVillageName(string VillageID)
         {
             IUnitOfWork work = null;
@@ -748,8 +738,6 @@ namespace PHC.DataAccessLayer
                 }
             }
         }
-
-
         public List<MVillage> getMVillage(string PHCID)
         {
             IUnitOfWork work = null;
@@ -769,8 +757,6 @@ namespace PHC.DataAccessLayer
                 }
             }
         }
-
-
         public PatientEC GetPatientEC(string PatientID)
         {
             IUnitOfWork work = null;
@@ -787,9 +773,60 @@ namespace PHC.DataAccessLayer
                 }
             }
         }
+        public bool GetPatient(string PatientName, string PHCID)
+        {
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                try
+                {
+                    PatientDetail PD = new GenericRepository<PatientDetail>(work)
+                        .FindBy(d => d.Name == PatientName && d.PHCID == PHCID && d.ObsInd == No)
+                        .FirstOrDefault();
+                    if (PD != null && PD.Name == PatientName)
+                        return true;
+                    else
+                        return false;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+        public string GetPatient(string PatientID, string ECNumber, string PatientName, string PHCID)
+        {
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                try
+                {
+                    PatientDetail PD = new PatientDetail();
+                    PD = new GenericRepository<PatientDetail>(work)
+                        .FindBy(d => d.PatientID != PatientID && d.Name == PatientName && d.PHCID == PHCID && d.ObsInd == No)
+                        .FirstOrDefault();
+                    if (PD != null && PD.Name == PatientName)
+                        return "Patient Name exist";
+                    else
+                    {
+                        //if (!string.IsNullOrEmpty(ECNumber))
+                        //{
+                        //    PD = new GenericRepository<PatientEC>(work)
+                        //        .FindBy(d => d.PatientID != PatientID && d.ECNumber == ECNumber && d.PHCID == PHCID && d.ObsInd == No)
+                        //        .FirstOrDefault();
+                        //    if (PD != null && PD.Name == PatientName)
+                        //    { }
+                        //}
+                        return string.Empty;
+                    }
 
-
-
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
         public bool AddUser(User userObj)
         {
             IUnitOfWork work = null;

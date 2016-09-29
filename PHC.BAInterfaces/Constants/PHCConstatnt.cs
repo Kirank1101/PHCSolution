@@ -19,5 +19,7 @@ namespace PHC.BAInterfaces.Constants
         public const string Male = "M";
         public const string FeMale = "F";
         public const string VSVillages = "VSVillages";
+        public const string VSPatientID = "PatientID";
+        public const string VSECNo = "VSECNo";
     }
 }
