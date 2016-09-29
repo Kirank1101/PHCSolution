@@ -84,10 +84,19 @@
     <Compile Include="MDrug.cs">
       <DependentUpon>PHCModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="MEducation.cs">
+      <DependentUpon>PHCModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="MLabTest.cs">
       <DependentUpon>PHCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="MPHC.cs">
+      <DependentUpon>PHCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MReligion.cs">
+      <DependentUpon>PHCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MScheme.cs">
       <DependentUpon>PHCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="MState.cs">
@@ -130,6 +139,9 @@
       <DependentUpon>PHCModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SubCenter.cs">
+      <DependentUpon>PHCModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="User.cs">
       <DependentUpon>PHCModel.tt</DependentUpon>
     </Compile>

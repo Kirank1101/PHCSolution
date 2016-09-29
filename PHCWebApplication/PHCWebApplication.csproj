@@ -164,12 +164,17 @@
     <Content Include="Account\ResetPasswordConfirmation.aspx" />
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
+    <Content Include="AddCaste.aspx" />
     <Content Include="AddDiseases.aspx" />
     <Content Include="AddDrugs.aspx" />
+    <Content Include="AddEducation.aspx" />
     <Content Include="AddLabTests.aspx" />
     <Content Include="AddMC.aspx" />
     <Content Include="AddPatientDetails.aspx" />
     <Content Include="AddPHC.aspx" />
+    <Content Include="AddReligion.aspx" />
+    <Content Include="AddScheme.aspx" />
+    <Content Include="AddSubCenter.aspx" />
     <Content Include="AddTaluk.aspx" />
     <Content Include="AddUsers.aspx" />
     <Content Include="AddVaccination.aspx" />
@@ -365,6 +370,13 @@
     <Compile Include="Account\VerifyPhoneNumber.aspx.designer.cs">
       <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AddCaste.aspx.cs">
+      <DependentUpon>AddCaste.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddCaste.aspx.designer.cs">
+      <DependentUpon>AddCaste.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AddDiseases.aspx.cs">
       <DependentUpon>AddDiseases.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -378,6 +390,13 @@
     </Compile>
     <Compile Include="AddDrugs.aspx.designer.cs">
       <DependentUpon>AddDrugs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddEducation.aspx.cs">
+      <DependentUpon>AddEducation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddEducation.aspx.designer.cs">
+      <DependentUpon>AddEducation.aspx</DependentUpon>
     </Compile>
     <Compile Include="AddLabTests.aspx.cs">
       <DependentUpon>AddLabTests.aspx</DependentUpon>
@@ -406,6 +425,27 @@
     </Compile>
     <Compile Include="AddPHC.aspx.designer.cs">
       <DependentUpon>AddPHC.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddReligion.aspx.cs">
+      <DependentUpon>AddReligion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddReligion.aspx.designer.cs">
+      <DependentUpon>AddReligion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddScheme.aspx.cs">
+      <DependentUpon>AddScheme.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddScheme.aspx.designer.cs">
+      <DependentUpon>AddScheme.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddSubCenter.aspx.cs">
+      <DependentUpon>AddSubCenter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddSubCenter.aspx.designer.cs">
+      <DependentUpon>AddSubCenter.aspx</DependentUpon>
     </Compile>
     <Compile Include="AddTaluk.aspx.cs">
       <DependentUpon>AddTaluk.aspx</DependentUpon>

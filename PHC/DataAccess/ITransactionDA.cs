@@ -110,5 +110,53 @@ namespace PHC.DAInterfaces.DataAccess
         string CheckVillageforUpdate(string VillageID, string PHCID, string VillageName);
 
         bool UpdateVillageDetail(MVillage MVillage);
+
+        MScheme checkSchemeName(string SchemeName);
+
+        bool AddMScheme(MScheme MScheme);
+
+        MReligion checkReligionName(string ReligionName);
+
+        bool AddMReligion(MReligion MReligion);
+
+        SubCenter checkSubCenterName(string PHCID, string SubCenterName);
+
+        bool AddSubCenter(SubCenter SubCenter);
+
+        MEducation checkEducationName(string EducationName);
+
+        bool AddMEducation(MEducation MEducation);
+
+        List<MScheme> GetMSchemes();
+
+        List<MReligion> GetMReligions();
+
+        List<MEducation> GetMEducations();
+
+        List<SubCenter> GetSubCenter(string PHCID);
+
+        string CheckSchemforUpdate(string SchemeID, string SchemeName);
+
+        bool UpdateSchemeDetail(MScheme MScheme);
+
+        string CheckReligionforUpdate(string ReligionID, string ReligionName);
+
+        bool UpdateReligionDetail(MReligion MReligion);
+
+        string CheckEducationforUpdate(string EducationID, string EducationName);
+
+        bool UpdateEducationDetail(MEducation MEducation);
+
+        bool UpdateSubCenterDetail(SubCenter SubCenter);
+
+        string CheckSubCenterforUpdate(string SubCenterID, string PHCID, string SubCenterName);
+
+        bool DeleteMScheme(string SchemeID);
+
+        bool DeleteReligion(string ReligionID);
+
+        bool DeleteEducation(string EducationID);
+
+        bool DeleteSubCenter(string SubCenterID, string PHCID);
     }
 }

@@ -199,7 +199,7 @@ namespace PHC.Business
         public ResultDTO SaveMLabTest(string LabTestName)
         {
             MLabTest LabTest = new MLabTest();
-            LabTest.LabTestID = "LabTestID1";
+            LabTest.LabTestID = CommonUtil.CreateUniqueID("LT");
             LabTest.StateID = "Karnataka";
             LabTest.Name = LabTestName;
             LabTest.LastModifiedBy = "System";
@@ -370,8 +370,6 @@ namespace PHC.Business
                 }
             return lstTalukDTO;
         }
-
-
         public ResultDTO UpdateMPHC(string PHCID, string PHCName)
         {
             MPHC PHC = new MPHC();
@@ -385,8 +383,6 @@ namespace PHC.Business
             else
                 return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Updated." };
         }
-
-
         public List<DrugStockDTO> GetDrugPurchaseDetail(string PHCID)
         {
             List<DrugStockDetail> lstDrugStockDetail = objDA.GetDrugPurchaseDetail(PHCID);
@@ -410,7 +406,6 @@ namespace PHC.Business
                 }
             return lstDrugStockDTO;
         }
-
         public ResultDTO SaveDrugStock(string DrugID, string PHCID, Int16 Quantity, string BatchNo, string MfDate, string ExpDate, string PurchaseDate)
         {
             DrugStockDetail DrugStockDetail = new DrugStockDetail();
@@ -430,7 +425,6 @@ namespace PHC.Business
             else
                 return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Saved." };
         }
-
         public ResultDTO UpdateDrugStock(string DrugStockID, string DrugID, string PHCID, Int16 Quantity, string BatchNo, string MfDate, string ExpDate, string PurchaseDate)
         {
             DrugStockDetail DrugStockDetail = new DrugStockDetail();
@@ -448,7 +442,6 @@ namespace PHC.Business
             else
                 return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Updated." };
         }
-
         public ResultDTO DeleteDrugStock(string DrugStockID)
         {
             if (objDA.DeleteDrugStock(DrugStockID))
@@ -456,8 +449,6 @@ namespace PHC.Business
             else
                 return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Deleted." };
         }
-
-
         public ResultDTO SavePatientDetails(string PHCID, string PatientName, string ECNumber, short Age, string DOB, string Gender, string BloodGroup, string VillageID, string Address, string ContactNo, string PhoneNo)
         {
             PatientDetail PatientDetail = new PatientDetail();
@@ -506,7 +497,6 @@ namespace PHC.Business
             else
                 return new ResultDTO() { IsSuccess = false, Message = checkPatientExist};
         }
-
         public ResultDTO UpdatePatientDetail(string PHCID, string PatientID, string PatientName, string ECNumber, short Age, string DOB, string Gender, string BloodGroup, string VillageID, string Address, string ContactNo, string PhoneNo)
         {
             PatientDetail PatientDetail = new PatientDetail();
@@ -740,5 +730,251 @@ namespace PHC.Business
                 return new ResultDTO() { IsSuccess = false, Message = checkVillageExist };
             }
         }
+
+        public ResultDTO SaveMScheme(string SchemeName)
+        {
+            MScheme MScheme = new MScheme();
+            MScheme.SchemeID = CommonUtil.CreateUniqueID("SCHM");
+            MScheme.StateID = "Karnataka";
+            MScheme.Name = SchemeName;
+            MScheme.LastModifiedBy = "System";
+            MScheme.LastModifiedDate = DateTime.Now;
+            MScheme.ObsInd = "N";
+            MScheme checkSchemeName = objDA.checkSchemeName(SchemeName);
+            if (checkSchemeName == null)
+            {
+                if (objDA.AddMScheme(MScheme))
+                    return new ResultDTO() { IsSuccess = true, Message = "Successfully Saved." };
+                else
+                    return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Saved." };
+            }
+            else
+                return new ResultDTO() { IsSuccess = false, Message = "Scheme already exist." };
+        }
+        public List<MSchemeDTO> GetMScheme()
+        {
+            List<MScheme> lstScheme = objDA.GetMSchemes();
+            List<MSchemeDTO> lstSchemeDTO = new List<MSchemeDTO>();
+            if (lstScheme != null)
+                foreach (MScheme Scheme in lstScheme)
+                {
+                    MSchemeDTO SchemeDTO = new MSchemeDTO();
+                    SchemeDTO.SchemeID = Scheme.SchemeID;
+                    SchemeDTO.SchemeName = Scheme.Name;
+                    SchemeDTO.StateID = StateIDConstant;
+                    lstSchemeDTO.Add(SchemeDTO);
+                }
+            return lstSchemeDTO;
+        }
+        public ResultDTO DeleteMScheme(string SchemeID)
+        {
+            if (objDA.DeleteMScheme(SchemeID))
+                return new ResultDTO() { IsSuccess = true, Message = "Successfully Deleted." };
+            else
+                return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Deleted." };
+        }
+        public ResultDTO UpdateMScheme(string SchemeID, string SchemeName)
+        {
+            MScheme MScheme = new MScheme();
+            MScheme.SchemeID = SchemeID;
+            MScheme.Name = SchemeName;
+            string checkSchemeExist = objDA.CheckSchemforUpdate(SchemeID, SchemeName);
+            if (string.IsNullOrEmpty(checkSchemeExist))
+            {
+                if (objDA.UpdateSchemeDetail(MScheme))
+                    return new ResultDTO() { IsSuccess = true, Message = "Successfully Updated." };
+                else
+                    return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Updated." };
+            }
+            else
+            {
+                return new ResultDTO() { IsSuccess = false, Message = checkSchemeExist };
+            }
+        }
+
+        public ResultDTO SaveMReligion(string ReligionName)
+        {
+            MReligion MReligion = new MReligion();
+            MReligion.ReligionID = CommonUtil.CreateUniqueID("Relg");
+            MReligion.StateID = "Karnataka";
+            MReligion.ReligionName = ReligionName;
+            MReligion.LastModifiedBy = "System";
+            MReligion.LastModifiedDate = DateTime.Now;
+            MReligion.ObsInd = "N";
+            MReligion checkReligionName = objDA.checkReligionName(ReligionName);
+            if (checkReligionName == null)
+            {
+                if (objDA.AddMReligion(MReligion))
+                    return new ResultDTO() { IsSuccess = true, Message = "Successfully Saved." };
+                else
+                    return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Saved." };
+            }
+            else
+                return new ResultDTO() { IsSuccess = false, Message = "Religion already exist." };
+        }
+        public List<MReligionDTO> GetMReligion()
+        {
+            List<MReligion> lstReligion = objDA.GetMReligions();
+            List<MReligionDTO> lstReligionDTO = new List<MReligionDTO>();
+            if (lstReligion != null)
+                foreach (MReligion Religion in lstReligion)
+                {
+                    MReligionDTO ReligionDTO = new MReligionDTO();
+                    ReligionDTO.ReligionID = Religion.ReligionID;
+                    ReligionDTO.ReligionName = Religion.ReligionName;
+                    ReligionDTO.StateID = StateIDConstant;
+                    lstReligionDTO.Add(ReligionDTO);
+                }
+            return lstReligionDTO;
+        }
+        public ResultDTO UpdateMReligion(string ReligionID, string ReligionName)
+        {
+            MReligion MReligion = new MReligion();
+            MReligion.ReligionID = ReligionID;
+            MReligion.ReligionName = ReligionName;
+            string checkReligionExist = objDA.CheckReligionforUpdate(ReligionID, ReligionName);
+            if (string.IsNullOrEmpty(checkReligionExist))
+            {
+                if (objDA.UpdateReligionDetail(MReligion))
+                    return new ResultDTO() { IsSuccess = true, Message = "Successfully Updated." };
+                else
+                    return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Updated." };
+            }
+            else
+            {
+                return new ResultDTO() { IsSuccess = false, Message = checkReligionExist };
+            }
+        }
+        public ResultDTO DeleteMReligion(string ReligionID)
+        {
+            if (objDA.DeleteReligion(ReligionID))
+                return new ResultDTO() { IsSuccess = true, Message = "Successfully Deleted." };
+            else
+                return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Deleted." };
+        }
+
+        public ResultDTO SaveMEducation(string EducationName)
+        {
+            MEducation MEducation = new MEducation();
+            MEducation.EducationID = CommonUtil.CreateUniqueID("EDUC");
+            MEducation.StateID = "Karnataka";
+            MEducation.Name = EducationName;
+            MEducation.LastModifiedBy = "System";
+            MEducation.LastModifiedDate = DateTime.Now;
+            MEducation.ObsInd = "N";
+            MEducation checkEducationName = objDA.checkEducationName(EducationName);
+            if (checkEducationName == null)
+            {
+                if (objDA.AddMEducation(MEducation))
+                    return new ResultDTO() { IsSuccess = true, Message = "Successfully Saved." };
+                else
+                    return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Saved." };
+            }
+            else
+                return new ResultDTO() { IsSuccess = false, Message = "Education Name already exist." };
+        }
+        public List<MEducationDTO> GetMEducation()
+        {
+            List<MEducation> lstEducation = objDA.GetMEducations();
+            List<MEducationDTO> lstEducationDTO = new List<MEducationDTO>();
+            if (lstEducation != null)
+                foreach (MEducation Education in lstEducation)
+                {
+                    MEducationDTO EducationDTO = new MEducationDTO();
+                    EducationDTO.EducationID = Education.EducationID;
+                    EducationDTO.EducationName = Education.Name;
+                    EducationDTO.StateID = StateIDConstant;
+                    lstEducationDTO.Add(EducationDTO);
+                }
+            return lstEducationDTO;
+        }
+        public ResultDTO UpdateMEducation(string EducationID, string EducationName)
+        {
+            MEducation MEducation = new MEducation();
+            MEducation.EducationID = EducationID;
+            MEducation.Name = EducationName;
+            string checkEducationExist = objDA.CheckEducationforUpdate(EducationID, EducationName);
+            if (string.IsNullOrEmpty(checkEducationExist))
+            {
+                if (objDA.UpdateEducationDetail(MEducation))
+                    return new ResultDTO() { IsSuccess = true, Message = "Successfully Updated." };
+                else
+                    return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Updated." };
+            }
+            else
+            {
+                return new ResultDTO() { IsSuccess = false, Message = checkEducationExist };
+            }
+        }
+        public ResultDTO DeleteMEducation(string EducationID)
+        {
+            if (objDA.DeleteEducation(EducationID))
+                return new ResultDTO() { IsSuccess = true, Message = "Successfully Deleted." };
+            else
+                return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Deleted." };
+        }
+
+        public ResultDTO SaveSubCenter(string PHCID, string SubCenterName)
+        {
+            SubCenter SubCenter = new SubCenter();
+            SubCenter.SubCenterID = CommonUtil.CreateUniqueID("SUBC");
+            SubCenter.PHCID = PHCID;
+            SubCenter.Name = SubCenterName;
+            SubCenter.LastModifiedBy = "System";
+            SubCenter.LastModifiedDate = DateTime.Now;
+            SubCenter.ObsInd = "N";
+            SubCenter checkSubCenterName = objDA.checkSubCenterName(PHCID, SubCenterName);
+            if (checkSubCenterName == null)
+            {
+                if (objDA.AddSubCenter(SubCenter))
+                    return new ResultDTO() { IsSuccess = true, Message = "Successfully Saved." };
+                else
+                    return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Saved." };
+            }
+            else
+                return new ResultDTO() { IsSuccess = false, Message = "SubCenter already exist." };
+        }
+        public List<SubCenterDTO> GetSubCenter(string PHCID)
+        {
+            List<SubCenter> lstSubCenter = objDA.GetSubCenter(PHCID);
+            List<SubCenterDTO> lstSubCenterDTO = new List<SubCenterDTO>();
+            if (lstSubCenter != null)
+                foreach (SubCenter SubCenter in lstSubCenter)
+                {
+                    SubCenterDTO SubCenterDTO = new SubCenterDTO();
+                    SubCenterDTO.SubCenterID = SubCenter.SubCenterID;
+                    SubCenterDTO.SubCenterName = SubCenter.Name;
+                    SubCenterDTO.PHCID = SubCenter.PHCID;
+                    lstSubCenterDTO.Add(SubCenterDTO);
+                }
+            return lstSubCenterDTO;
+        }
+        public ResultDTO UpdateSubCenter(string PHCID, string SubCenterID, string SubCenterName)
+        {
+            SubCenter SubCenter = new SubCenter();
+            SubCenter.SubCenterID = SubCenterID;
+            SubCenter.Name = SubCenterName;
+            SubCenter.PHCID = PHCID;
+            string checkSubCenterExist = objDA.CheckSubCenterforUpdate(SubCenterID, PHCID, SubCenterName);
+            if (string.IsNullOrEmpty(checkSubCenterExist))
+            {
+                if (objDA.UpdateSubCenterDetail(SubCenter))
+                    return new ResultDTO() { IsSuccess = true, Message = "Successfully Updated." };
+                else
+                    return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Updated." };
+            }
+            else
+            {
+                return new ResultDTO() { IsSuccess = false, Message = checkSubCenterExist };
+            }
+        }
+        public ResultDTO DeleteSubCenter(string PHCID, string SubCenterID)
+        {
+            if (objDA.DeleteSubCenter(SubCenterID, PHCID))
+                return new ResultDTO() { IsSuccess = true, Message = "Successfully Deleted." };
+            else
+                return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Deleted." };
+        }
+
     }
 }

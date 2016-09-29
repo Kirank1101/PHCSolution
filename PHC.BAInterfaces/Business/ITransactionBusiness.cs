@@ -54,7 +54,28 @@ namespace PHC.BAInterfaces.Business
         List<MVillageDTO> GetMVillage(string PHCID);
         ResultDTO DeleteMVillage(string VillageID,string PHCID);
         ResultDTO SaveMVillage(string VillageName, string PHCID);
-
         ResultDTO UpdateMVillage(string VillageID, string PHCID, string VillageName);
+
+        ResultDTO SaveMScheme(string SchemeName);
+        List<MSchemeDTO> GetMScheme();
+        ResultDTO UpdateMScheme(string SchemeID, string SchemeName); 
+        ResultDTO DeleteMScheme(string SchemeID);
+
+        ResultDTO SaveMReligion(string ReligionName);
+        List<MReligionDTO> GetMReligion();
+        ResultDTO UpdateMReligion(string ReligionID, string ReligionName);
+        ResultDTO DeleteMReligion(string ReligionID);
+
+        ResultDTO SaveSubCenter(string PHCID, string SubCenterName);
+        List<SubCenterDTO> GetSubCenter(string PHCID);
+        ResultDTO UpdateSubCenter(string PHCID, string SubCenterID, string SubCenterName);
+        ResultDTO DeleteSubCenter(string PHCID, string SubCenterID);
+
+        ResultDTO SaveMEducation(string EducationName); 
+        List<MEducationDTO> GetMEducation();
+        ResultDTO UpdateMEducation(string EducationID, string EducationName);
+        ResultDTO DeleteMEducation(string EducationID);
+
+        
     }
 }

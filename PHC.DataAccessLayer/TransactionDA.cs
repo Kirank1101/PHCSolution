@@ -958,5 +958,235 @@ namespace PHC.DataAccessLayer
                     return false;
             }
         }
+
+
+        public MScheme checkSchemeName(string SchemeName)
+        {
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                try
+                {
+                    return new GenericRepository<MScheme>(work)
+                        .FindBy(n => n.Name == SchemeName && n.ObsInd == No)
+                        .FirstOrDefault();
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                    throw ex;
+                }
+            }
+        }
+        public bool AddMScheme(MScheme MScheme)
+        {
+            throw new NotImplementedException();
+        }
+        public string CheckSchemforUpdate(string SchemeID, string SchemeName)
+        {
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                try
+                {
+                    MScheme MScheme = new MScheme();
+                    MScheme = new GenericRepository<MScheme>(work)
+                        .FindBy(d => d.SchemeID != SchemeID && d.Name == SchemeName && d.ObsInd == No)
+                        .FirstOrDefault();
+                    if (MScheme != null && MScheme.Name == SchemeName)
+                        return "Scheme Name exist";
+                    else
+                        return string.Empty;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+        public List<MScheme> GetMSchemes()
+        {
+            throw new NotImplementedException();
+        }
+        public bool UpdateSchemeDetail(MScheme MScheme)
+        {
+            throw new NotImplementedException();
+        }
+        public bool DeleteMScheme(string SchemeID)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public MReligion checkReligionName(string ReligionName)
+        {
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                try
+                {
+                    return new GenericRepository<MReligion>(work)
+                        .FindBy(n => n.ReligionName == ReligionName && n.ObsInd == No)
+                        .FirstOrDefault();
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                    throw ex;
+                }
+            }
+        }
+        public string CheckReligionforUpdate(string ReligionID, string ReligionName)
+        {
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                try
+                {
+                    MReligion MReligion = new MReligion();
+                    MReligion = new GenericRepository<MReligion>(work)
+                        .FindBy(d => d.ReligionID != ReligionID && d.ReligionName == ReligionName && d.ObsInd == No)
+                        .FirstOrDefault();
+                    if (MReligion != null && MReligion.ReligionName == ReligionName)
+                        return "Religion Name exist";
+                    else
+                        return string.Empty;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+        public List<MReligion> GetMReligions()
+        {
+            throw new NotImplementedException();
+        }
+        public bool AddMReligion(MReligion MReligion)
+        {
+            throw new NotImplementedException();
+        }
+        public bool UpdateReligionDetail(MReligion MReligion)
+        {
+            throw new NotImplementedException();
+        }
+        public bool DeleteReligion(string ReligionID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public MEducation checkEducationName(string EducationName)
+        {
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                try
+                {
+                    return new GenericRepository<MEducation>(work)
+                        .FindBy(n => n.Name == EducationName && n.ObsInd == No)
+                        .FirstOrDefault();
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                    throw ex;
+                }
+            }
+        }
+        public string CheckEducationforUpdate(string EducationID, string EducationName)
+        {
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                try
+                {
+                    MEducation MEducation = new MEducation();
+                    MEducation = new GenericRepository<MEducation>(work)
+                        .FindBy(d => d.EducationID != EducationID && d.Name == EducationName && d.ObsInd == No)
+                        .FirstOrDefault();
+                    if (MEducation != null && MEducation.Name == EducationName)
+                        return "Education Name exist";
+                    else
+                        return string.Empty;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+        public List<MEducation> GetMEducations()
+        {
+            throw new NotImplementedException();
+        }
+        public bool AddMEducation(MEducation MEducation)
+        {
+            throw new NotImplementedException();
+        }
+        public bool UpdateEducationDetail(MEducation MEducation)
+        {
+            throw new NotImplementedException();
+        }
+        public bool DeleteEducation(string EducationID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public SubCenter checkSubCenterName(string PHCID, string SubCenterName)
+        {
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                try
+                {
+                    return new GenericRepository<SubCenter>(work)
+                        .FindBy(n => n.Name == SubCenterName && n.PHCID==PHCID && n.ObsInd == No)
+                        .FirstOrDefault();
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                    throw ex;
+                }
+            }
+        }
+        public string CheckSubCenterforUpdate(string SubCenterID, string PHCID, string SubCenterName)
+        {
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                try
+                {
+                    SubCenter SubCenter = new SubCenter();
+                    SubCenter = new GenericRepository<SubCenter>(work)
+                        .FindBy(d => d.SubCenterID != SubCenterID && d.Name == SubCenterName && d.PHCID==PHCID && d.ObsInd == No)
+                        .FirstOrDefault();
+                    if (SubCenter != null && SubCenter.Name == SubCenterName)
+                        return "SubCenter already exist";
+                    else
+                        return string.Empty;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+        public List<SubCenter> GetSubCenter(string PHCID)
+        {
+            throw new NotImplementedException();
+        }
+        public bool AddSubCenter(SubCenter SubCenter)
+        {
+            throw new NotImplementedException();
+        }
+        public bool UpdateSubCenterDetail(SubCenter SubCenter)
+        {
+            throw new NotImplementedException();
+        }
+        public bool DeleteSubCenter(string SubCenterID, string PHCID)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

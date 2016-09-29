@@ -69,6 +69,9 @@
                                     <a href="AddVaccination">Add Vaccination</a>
                                 </li>
                                 <li>
+                                    <a href="AddSubCenter">Add SubCenter</a>
+                                </li>
+                                <li>
                                     <a href="AddVillages">Add Village</a>
                                 </li>
                                 <li>
@@ -79,6 +82,9 @@
                                 </li>
                                 <li>
                                     <a href="DrugStockDetails">Add DrugStock</a>
+                                </li>
+                                <li>
+                                    <a href="AddCaste">Add Caste</a>
                                 </li>
                             </ul>
                         </li>
@@ -121,6 +127,9 @@
                                 </li>
                                 <li>
                                     <a href="AddPHC">Add PHC</a>
+                                </li>
+                                <li>
+                                    <a href="AddReligion">Add Religion</a>
                                 </li>
                             </ul>
                         </li>

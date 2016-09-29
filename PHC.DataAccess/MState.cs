@@ -21,6 +21,9 @@ namespace PHC.DataAccess
             this.MLabTests = new HashSet<MLabTest>();
             this.UserMaps = new HashSet<UserMap>();
             this.MDrugs = new HashSet<MDrug>();
+            this.MEducations = new HashSet<MEducation>();
+            this.MReligions = new HashSet<MReligion>();
+            this.MSchemes = new HashSet<MScheme>();
         }
     
         public string StateID { get; set; }
@@ -34,5 +37,8 @@ namespace PHC.DataAccess
         public virtual ICollection<MLabTest> MLabTests { get; set; }
         public virtual ICollection<UserMap> UserMaps { get; set; }
         public virtual ICollection<MDrug> MDrugs { get; set; }
+        public virtual ICollection<MEducation> MEducations { get; set; }
+        public virtual ICollection<MReligion> MReligions { get; set; }
+        public virtual ICollection<MScheme> MSchemes { get; set; }
     }
 }

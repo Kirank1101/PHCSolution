@@ -324,5 +324,53 @@
         <ScalarProperty Name="Id" ColumnName="RoleId" />
       </EndProperty>
     </AssociationSetMapping>
+    <EntitySetMapping Name="MEducations">
+      <EntityTypeMapping TypeName="PHCSolutionsModel.MEducation">
+        <MappingFragment StoreEntitySet="MEducation">
+          <ScalarProperty Name="ObsInd" ColumnName="ObsInd" />
+          <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+          <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="StateID" ColumnName="StateID" />
+          <ScalarProperty Name="EducationID" ColumnName="EducationID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MReligions">
+      <EntityTypeMapping TypeName="PHCSolutionsModel.MReligion">
+        <MappingFragment StoreEntitySet="MReligion">
+          <ScalarProperty Name="ObsInd" ColumnName="ObsInd" />
+          <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+          <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+          <ScalarProperty Name="ReligionName" ColumnName="ReligionName" />
+          <ScalarProperty Name="StateID" ColumnName="StateID" />
+          <ScalarProperty Name="ReligionID" ColumnName="ReligionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MSchemes">
+      <EntityTypeMapping TypeName="PHCSolutionsModel.MScheme">
+        <MappingFragment StoreEntitySet="MScheme">
+          <ScalarProperty Name="ObsInd" ColumnName="ObsInd" />
+          <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+          <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="StateID" ColumnName="StateID" />
+          <ScalarProperty Name="SchemeID" ColumnName="SchemeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubCenters">
+      <EntityTypeMapping TypeName="PHCSolutionsModel.SubCenter">
+        <MappingFragment StoreEntitySet="SubCenter">
+          <ScalarProperty Name="ObsInd" ColumnName="ObsInd" />
+          <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+          <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="PHCID" ColumnName="PHCID" />
+          <ScalarProperty Name="SubCenterID" ColumnName="SubCenterID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

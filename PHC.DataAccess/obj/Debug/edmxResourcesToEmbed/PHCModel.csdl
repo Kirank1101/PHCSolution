@@ -108,6 +108,7 @@
     <NavigationProperty Name="DrugStockDetails" Relationship="PHCSolutionsModel.FK_DrugStockDetails_MPHC" FromRole="MPHC" ToRole="DrugStockDetail" />
     <NavigationProperty Name="PatientECs" Relationship="PHCSolutionsModel.FK__PatientEC__PHCID__59063A47" FromRole="MPHC" ToRole="PatientEC" />
     <NavigationProperty Name="PatientMCs" Relationship="PHCSolutionsModel.FK__PatientMC__PHCID__59FA5E80" FromRole="MPHC" ToRole="PatientMC" />
+    <NavigationProperty Name="SubCenters" Relationship="PHCSolutionsModel.FK_SubCenter_MPHC" FromRole="MPHC" ToRole="SubCenter" />
   </EntityType>
   <EntityType Name="MState">
     <Key>
@@ -123,6 +124,9 @@
     <NavigationProperty Name="MLabTests" Relationship="Self.FK_MLabTest_MState" FromRole="MState" ToRole="MLabTest" />
     <NavigationProperty Name="UserMaps" Relationship="Self.FK_UserMap_MState" FromRole="MState" ToRole="UserMap" />
     <NavigationProperty Name="MDrugs" Relationship="PHCSolutionsModel.FK__MDrugs__StateID__571DF1D5" FromRole="MState" ToRole="MDrug" />
+    <NavigationProperty Name="MEducations" Relationship="PHCSolutionsModel.FK_MEducation_MState" FromRole="MState" ToRole="MEducation" />
+    <NavigationProperty Name="MReligions" Relationship="PHCSolutionsModel.FK_MReligion_MState" FromRole="MState" ToRole="MReligion" />
+    <NavigationProperty Name="MSchemes" Relationship="PHCSolutionsModel.FK_MScheme_MState" FromRole="MState" ToRole="MScheme" />
   </EntityType>
   <EntityType Name="MTaluk">
     <Key>
@@ -782,6 +786,26 @@
       <End EntitySet="MPHCs" Role="MPHC" />
       <End EntitySet="PatientMCs" Role="PatientMC" />
     </AssociationSet>
+    <EntitySet Name="MEducations" EntityType="PHCSolutionsModel.MEducation" />
+    <EntitySet Name="MReligions" EntityType="PHCSolutionsModel.MReligion" />
+    <EntitySet Name="MSchemes" EntityType="PHCSolutionsModel.MScheme" />
+    <EntitySet Name="SubCenters" EntityType="PHCSolutionsModel.SubCenter" />
+    <AssociationSet Name="FK_MEducation_MState" Association="PHCSolutionsModel.FK_MEducation_MState">
+      <End Role="MState" EntitySet="MStates" />
+      <End Role="MEducation" EntitySet="MEducations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubCenter_MPHC" Association="PHCSolutionsModel.FK_SubCenter_MPHC">
+      <End Role="MPHC" EntitySet="MPHCs" />
+      <End Role="SubCenter" EntitySet="SubCenters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MReligion_MState" Association="PHCSolutionsModel.FK_MReligion_MState">
+      <End Role="MState" EntitySet="MStates" />
+      <End Role="MReligion" EntitySet="MReligions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MScheme_MState" Association="PHCSolutionsModel.FK_MScheme_MState">
+      <End Role="MState" EntitySet="MStates" />
+      <End Role="MScheme" EntitySet="MSchemes" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="C__MigrationHistory">
     <Key>
@@ -961,6 +985,102 @@
       </Principal>
       <Dependent Role="PatientMC">
         <PropertyRef Name="PHCID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="MEducation">
+    <Key>
+      <PropertyRef Name="EducationID" />
+    </Key>
+    <Property Name="EducationID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="StateID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="LastModifiedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ObsInd" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="MState" Relationship="PHCSolutionsModel.FK_MEducation_MState" FromRole="MEducation" ToRole="MState" />
+  </EntityType>
+  <EntityType Name="MReligion">
+    <Key>
+      <PropertyRef Name="ReligionID" />
+    </Key>
+    <Property Name="ReligionID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="StateID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ReligionName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="LastModifiedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ObsInd" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="MState" Relationship="PHCSolutionsModel.FK_MReligion_MState" FromRole="MReligion" ToRole="MState" />
+  </EntityType>
+  <EntityType Name="MScheme">
+    <Key>
+      <PropertyRef Name="SchemeID" />
+    </Key>
+    <Property Name="SchemeID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="StateID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="LastModifiedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ObsInd" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="MState" Relationship="PHCSolutionsModel.FK_MScheme_MState" FromRole="MScheme" ToRole="MState" />
+  </EntityType>
+  <EntityType Name="SubCenter">
+    <Key>
+      <PropertyRef Name="SubCenterID" />
+    </Key>
+    <Property Name="SubCenterID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PHCID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="LastModifiedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ObsInd" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="MPHC" Relationship="PHCSolutionsModel.FK_SubCenter_MPHC" FromRole="SubCenter" ToRole="MPHC" />
+  </EntityType>
+  <Association Name="FK_MEducation_MState">
+    <End Type="PHCSolutionsModel.MState" Role="MState" Multiplicity="1" />
+    <End Type="PHCSolutionsModel.MEducation" Role="MEducation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MState">
+        <PropertyRef Name="StateID" />
+      </Principal>
+      <Dependent Role="MEducation">
+        <PropertyRef Name="StateID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubCenter_MPHC">
+    <End Type="PHCSolutionsModel.MPHC" Role="MPHC" Multiplicity="1" />
+    <End Type="PHCSolutionsModel.SubCenter" Role="SubCenter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MPHC">
+        <PropertyRef Name="PHCID" />
+      </Principal>
+      <Dependent Role="SubCenter">
+        <PropertyRef Name="PHCID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MReligion_MState">
+    <End Type="PHCSolutionsModel.MState" Role="MState" Multiplicity="1" />
+    <End Type="PHCSolutionsModel.MReligion" Role="MReligion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MState">
+        <PropertyRef Name="StateID" />
+      </Principal>
+      <Dependent Role="MReligion">
+        <PropertyRef Name="StateID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MScheme_MState">
+    <End Type="PHCSolutionsModel.MState" Role="MState" Multiplicity="1" />
+    <End Type="PHCSolutionsModel.MScheme" Role="MScheme" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MState">
+        <PropertyRef Name="StateID" />
+      </Principal>
+      <Dependent Role="MScheme">
+        <PropertyRef Name="StateID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

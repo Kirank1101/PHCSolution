@@ -1,28 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl" Alias="Self" Namespace="PHCSolutionsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008">
+<Schema Namespace="PHCSolutionsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
   <EntityType Name="__MigrationHistory">
     <Key>
       <PropertyRef Name="MigrationId" />
       <PropertyRef Name="ContextKey" />
     </Key>
-    <Property Name="MigrationId" Nullable="false" MaxLength="150" Type="nvarchar" />
-    <Property Name="ContextKey" Nullable="false" MaxLength="300" Type="nvarchar" />
-    <Property Name="Model" Nullable="false" Type="varbinary(max)" />
-    <Property Name="ProductVersion" Nullable="false" MaxLength="32" Type="nvarchar" />
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
   </EntityType>
   <EntityType Name="AspNetRoles">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Nullable="false" MaxLength="128" Type="nvarchar" />
-    <Property Name="Name" Nullable="false" MaxLength="256" Type="nvarchar" />
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
   </EntityType>
   <EntityType Name="AspNetUserClaims">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-    <Property Name="UserId" Nullable="false" MaxLength="128" Type="nvarchar" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
     <Property Name="ClaimType" Type="nvarchar(max)" />
     <Property Name="ClaimValue" Type="nvarchar(max)" />
   </EntityType>
@@ -32,279 +32,323 @@
       <PropertyRef Name="ProviderKey" />
       <PropertyRef Name="UserId" />
     </Key>
-    <Property Name="LoginProvider" Nullable="false" MaxLength="128" Type="nvarchar" />
-    <Property Name="ProviderKey" Nullable="false" MaxLength="128" Type="nvarchar" />
-    <Property Name="UserId" Nullable="false" MaxLength="128" Type="nvarchar" />
+    <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
   </EntityType>
   <EntityType Name="AspNetUserRoles">
     <Key>
       <PropertyRef Name="UserId" />
       <PropertyRef Name="RoleId" />
     </Key>
-    <Property Name="UserId" Nullable="false" MaxLength="128" Type="nvarchar" />
-    <Property Name="RoleId" Nullable="false" MaxLength="128" Type="nvarchar" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
   </EntityType>
   <EntityType Name="AspNetUsers">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Nullable="false" MaxLength="128" Type="nvarchar" />
-    <Property Name="Email" MaxLength="256" Type="nvarchar" />
-    <Property Name="EmailConfirmed" Nullable="false" Type="bit" />
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="256" />
+    <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
     <Property Name="PasswordHash" Type="nvarchar(max)" />
     <Property Name="SecurityStamp" Type="nvarchar(max)" />
     <Property Name="PhoneNumber" Type="nvarchar(max)" />
-    <Property Name="PhoneNumberConfirmed" Nullable="false" Type="bit" />
-    <Property Name="TwoFactorEnabled" Nullable="false" Type="bit" />
+    <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
     <Property Name="LockoutEndDateUtc" Type="datetime" />
-    <Property Name="LockoutEnabled" Nullable="false" Type="bit" />
-    <Property Name="AccessFailedCount" Nullable="false" Type="int" />
-    <Property Name="UserName" Nullable="false" MaxLength="256" Type="nvarchar" />
+    <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
   </EntityType>
   <EntityType Name="DrugsIssued">
     <Key>
       <PropertyRef Name="DrugsID" />
     </Key>
-    <Property Name="DrugsID" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="PHCID" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="DrugID" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="Quantity" Nullable="false" Type="smallint" />
-    <Property Name="Dosage" Nullable="false" MaxLength="20" Type="nvarchar" />
-    <Property Name="LastModifiedBy" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="LastModifiedDate" Nullable="false" Type="datetime" />
-    <Property Name="ObsInd" Nullable="false" MaxLength="1" Type="char" />
-    <Property Name="PrescriptionID" Nullable="false" MaxLength="50" Type="nvarchar" />
+    <Property Name="DrugsID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PHCID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DrugID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Quantity" Type="smallint" Nullable="false" />
+    <Property Name="Dosage" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ObsInd" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="PrescriptionID" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="DrugStockDetails">
     <Key>
       <PropertyRef Name="DrugStockID" />
     </Key>
-    <Property Name="DrugStockID" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="DrugID" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="PHCID" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="Quantity" Nullable="false" Type="smallint" />
-    <Property Name="BatchNo" MaxLength="200" Type="nvarchar" />
-    <Property Name="ManufactureDate" Nullable="false" Type="datetime" />
-    <Property Name="ExpiryDate" Nullable="false" Type="datetime" />
-    <Property Name="PurchaseDate" Nullable="false" Type="datetime" />
-    <Property Name="LastModifiedBy" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="LastModifiedDate" Nullable="false" Type="datetime" />
-    <Property Name="ObsInd" Nullable="false" MaxLength="1" Type="char" />
+    <Property Name="DrugStockID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DrugID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PHCID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Quantity" Type="smallint" Nullable="false" />
+    <Property Name="BatchNo" Type="nvarchar" MaxLength="200" />
+    <Property Name="ManufactureDate" Type="datetime" Nullable="false" />
+    <Property Name="ExpiryDate" Type="datetime" Nullable="false" />
+    <Property Name="PurchaseDate" Type="datetime" Nullable="false" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ObsInd" Type="char" MaxLength="1" Nullable="false" />
   </EntityType>
   <EntityType Name="LabTestDetails">
     <Key>
       <PropertyRef Name="LabTestDetailID" />
     </Key>
-    <Property Name="LabTestDetailID" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="PatientPrescriptionID" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="LabTestID" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="PHCID" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="Result" MaxLength="50" Type="nvarchar" />
-    <Property Name="Remarks" MaxLength="200" Type="nvarchar" />
-    <Property Name="LastModifiedBy" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="LastModifiedDate" Nullable="false" Type="datetime" />
-    <Property Name="ObsInd" Nullable="false" MaxLength="1" Type="char" />
+    <Property Name="LabTestDetailID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PatientPrescriptionID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LabTestID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PHCID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Result" Type="nvarchar" MaxLength="50" />
+    <Property Name="Remarks" Type="nvarchar" MaxLength="200" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ObsInd" Type="char" MaxLength="1" Nullable="false" />
   </EntityType>
   <EntityType Name="MDisease">
     <Key>
       <PropertyRef Name="DiseaseID" />
     </Key>
-    <Property Name="DiseaseID" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="StateID" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="Name" Nullable="false" MaxLength="100" Type="nvarchar" />
-    <Property Name="LastModifiedBy" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="LastModifiedDate" Nullable="false" Type="datetime" />
-    <Property Name="ObsInd" Nullable="false" MaxLength="1" Type="char" />
+    <Property Name="DiseaseID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="StateID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ObsInd" Type="char" MaxLength="1" Nullable="false" />
   </EntityType>
   <EntityType Name="MDistrict">
     <Key>
       <PropertyRef Name="DistrictID" />
     </Key>
-    <Property Name="DistrictID" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="StateID" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="Name" Nullable="false" MaxLength="200" Type="nvarchar" />
-    <Property Name="LastModifiedBy" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="LastModifiedDate" Nullable="false" Type="datetime" />
-    <Property Name="ObsInd" Nullable="false" MaxLength="1" Type="char" />
+    <Property Name="DistrictID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="StateID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ObsInd" Type="char" MaxLength="1" Nullable="false" />
   </EntityType>
   <EntityType Name="MDrugs">
     <Key>
       <PropertyRef Name="DrugID" />
     </Key>
-    <Property Name="DrugID" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="StateID" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="Name" Nullable="false" MaxLength="200" Type="nvarchar" />
-    <Property Name="LastModifiedBy" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="LastModifiedDate" Nullable="false" Type="datetime" />
-    <Property Name="ObsInd" Nullable="false" MaxLength="1" Type="char" />
+    <Property Name="DrugID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="StateID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ObsInd" Type="char" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MEducation">
+    <Key>
+      <PropertyRef Name="EducationID" />
+    </Key>
+    <Property Name="EducationID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="StateID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ObsInd" Type="char" MaxLength="1" Nullable="false" />
   </EntityType>
   <EntityType Name="MLabTest">
     <Key>
       <PropertyRef Name="LabTestID" />
     </Key>
-    <Property Name="LabTestID" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="StateID" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="Name" Nullable="false" MaxLength="100" Type="nvarchar" />
-    <Property Name="LastModifiedBy" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="LastModifiedDate" Nullable="false" Type="datetime" />
-    <Property Name="ObsInd" Nullable="false" MaxLength="1" Type="char" />
+    <Property Name="LabTestID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="StateID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ObsInd" Type="char" MaxLength="1" Nullable="false" />
   </EntityType>
   <EntityType Name="MPHC">
     <Key>
       <PropertyRef Name="PHCID" />
     </Key>
-    <Property Name="PHCID" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="TalukID" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="Name" Nullable="false" MaxLength="200" Type="nvarchar" />
-    <Property Name="LastModifiedBy" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="LastModifiedDate" Nullable="false" Type="datetime" />
-    <Property Name="ObsInd" Nullable="false" MaxLength="1" Type="char" />
+    <Property Name="PHCID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TalukID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ObsInd" Type="char" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MReligion">
+    <Key>
+      <PropertyRef Name="ReligionID" />
+    </Key>
+    <Property Name="ReligionID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="StateID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ReligionName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ObsInd" Type="char" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MScheme">
+    <Key>
+      <PropertyRef Name="SchemeID" />
+    </Key>
+    <Property Name="SchemeID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="StateID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ObsInd" Type="char" MaxLength="1" Nullable="false" />
   </EntityType>
   <EntityType Name="MState">
     <Key>
       <PropertyRef Name="StateID" />
     </Key>
-    <Property Name="StateID" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="Name" Nullable="false" MaxLength="200" Type="nvarchar" />
-    <Property Name="LastModifiedBy" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="LastModifiedDate" Nullable="false" Type="datetime" />
-    <Property Name="ObsInd" Nullable="false" MaxLength="1" Type="char" />
+    <Property Name="StateID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ObsInd" Type="char" MaxLength="1" Nullable="false" />
   </EntityType>
   <EntityType Name="MTaluk">
     <Key>
       <PropertyRef Name="TalukID" />
     </Key>
-    <Property Name="TalukID" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="DistrictID" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="Name" Nullable="false" MaxLength="200" Type="nvarchar" />
-    <Property Name="LastModifiedBy" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="LastModifiedDate" Nullable="false" Type="datetime" />
-    <Property Name="ObsInd" Nullable="false" MaxLength="1" Type="char" />
+    <Property Name="TalukID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DistrictID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ObsInd" Type="char" MaxLength="1" Nullable="false" />
   </EntityType>
   <EntityType Name="MVillage">
     <Key>
       <PropertyRef Name="VillageID" />
     </Key>
-    <Property Name="VillageID" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="PHCID" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="Name" Nullable="false" MaxLength="200" Type="nvarchar" />
-    <Property Name="LastModifiedBy" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="LastModifiedDate" Nullable="false" Type="datetime" />
-    <Property Name="ObsInd" Nullable="false" MaxLength="1" Type="char" />
+    <Property Name="VillageID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PHCID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ObsInd" Type="char" MaxLength="1" Nullable="false" />
   </EntityType>
   <EntityType Name="PatientAddress">
     <Key>
       <PropertyRef Name="PatientAddressID" />
     </Key>
-    <Property Name="PatientAddressID" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="PatientID" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="Address" MaxLength="50" Type="nvarchar" />
-    <Property Name="PhoneNo" MaxLength="13" Type="nvarchar" />
-    <Property Name="ContactNo" MaxLength="13" Type="nvarchar" />
-    <Property Name="LastModifiedBy" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="LastModifiedDate" Nullable="false" Type="datetime" />
-    <Property Name="ObsInd" Nullable="false" MaxLength="1" Type="char" />
-    <Property Name="VillageID" Nullable="false" MaxLength="50" Type="nvarchar" />
+    <Property Name="PatientAddressID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PatientID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" />
+    <Property Name="PhoneNo" Type="nvarchar" MaxLength="13" />
+    <Property Name="ContactNo" Type="nvarchar" MaxLength="13" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ObsInd" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="VillageID" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="PatientDetails">
     <Key>
       <PropertyRef Name="PatientID" />
     </Key>
-    <Property Name="PatientID" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="PHCID" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="Name" Nullable="false" MaxLength="100" Type="nvarchar" />
-    <Property Name="age" Nullable="false" Type="smallint" />
+    <Property Name="PatientID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PHCID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="age" Type="smallint" Nullable="false" />
     <Property Name="DOB" Type="datetime" />
-    <Property Name="Sex" Nullable="false" MaxLength="1" Type="char" />
-    <Property Name="BloodGroup" MaxLength="3" Type="nvarchar" />
-    <Property Name="LastModifiedBy" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="LastModifiedDate" Nullable="false" Type="datetime" />
-    <Property Name="ObsInd" Nullable="false" MaxLength="1" Type="char" />
+    <Property Name="Sex" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="BloodGroup" Type="nvarchar" MaxLength="3" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ObsInd" Type="char" MaxLength="1" Nullable="false" />
   </EntityType>
   <EntityType Name="PatientEC">
     <Key>
       <PropertyRef Name="PatientECID" />
     </Key>
-    <Property Name="PatientECID" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="ECNumber" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="PatientID" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="LastModifiedBy" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="LastModifiedDate" Nullable="false" Type="datetime" />
-    <Property Name="ObsInd" Nullable="false" MaxLength="1" Type="char" />
-    <Property Name="PHCID" Nullable="false" MaxLength="50" Type="nvarchar" />
+    <Property Name="PatientECID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ECNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PatientID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ObsInd" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="PHCID" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="PatientMC">
     <Key>
       <PropertyRef Name="PatientMCID" />
     </Key>
-    <Property Name="PatientMCID" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="PHCID" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="PatientID" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="PatientECID" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="MCNumber" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="LMP" Nullable="false" Type="datetime" />
-    <Property Name="EDD" Nullable="false" Type="datetime" />
-    <Property Name="LastModifiedBy" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="LastModifiedDate" Nullable="false" Type="datetime" />
-    <Property Name="ObsInd" Nullable="false" MaxLength="1" Type="char" />
+    <Property Name="PatientMCID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PHCID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PatientID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PatientECID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MCNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LMP" Type="datetime" Nullable="false" />
+    <Property Name="EDD" Type="datetime" Nullable="false" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ObsInd" Type="char" MaxLength="1" Nullable="false" />
   </EntityType>
   <EntityType Name="PatientPrescription">
     <Key>
       <PropertyRef Name="PrescriptionID" />
     </Key>
-    <Property Name="PrescriptionID" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="PatientID" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="PHCID" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="DiseaseID" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="Description" MaxLength="100" Type="nvarchar" />
-    <Property Name="LastModifiedBy" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="LastModifiedDate" Nullable="false" Type="datetime" />
-    <Property Name="ObsInd" Nullable="false" MaxLength="1" Type="char" />
+    <Property Name="PrescriptionID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PatientID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PHCID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DiseaseID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ObsInd" Type="char" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SubCenter">
+    <Key>
+      <PropertyRef Name="SubCenterID" />
+    </Key>
+    <Property Name="SubCenterID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PHCID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ObsInd" Type="char" MaxLength="1" Nullable="false" />
   </EntityType>
   <EntityType Name="UserDetails">
     <Key>
       <PropertyRef Name="UserDetailID" />
     </Key>
-    <Property Name="UserDetailID" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="UserID" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="Name" Nullable="false" MaxLength="100" Type="nvarchar" />
-    <Property Name="Address1" MaxLength="100" Type="nvarchar" />
-    <Property Name="Address2" MaxLength="100" Type="nvarchar" />
-    <Property Name="MobileNo" Nullable="false" MaxLength="13" Type="nvarchar" />
-    <Property Name="LastModifiedBy" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="LastModifiedDate" Nullable="false" Type="datetime" />
-    <Property Name="ObsInd" Nullable="false" MaxLength="1" Type="char" />
+    <Property Name="UserDetailID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Address1" Type="nvarchar" MaxLength="100" />
+    <Property Name="Address2" Type="nvarchar" MaxLength="100" />
+    <Property Name="MobileNo" Type="nvarchar" MaxLength="13" Nullable="false" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ObsInd" Type="char" MaxLength="1" Nullable="false" />
   </EntityType>
   <EntityType Name="UserMap">
     <Key>
       <PropertyRef Name="UserMapID" />
     </Key>
-    <Property Name="UserMapID" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="UserID" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="StateID" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="DistrictID" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="TalukID" MaxLength="50" Type="nvarchar" />
-    <Property Name="PHCID" MaxLength="50" Type="nvarchar" />
-    <Property Name="VillageID" MaxLength="50" Type="nvarchar" />
-    <Property Name="DisplayName" MaxLength="100" Type="nvarchar" />
-    <Property Name="LastModifiedBy" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="LastModifiedDate" Nullable="false" Type="datetime" />
-    <Property Name="ObsInd" Nullable="false" MaxLength="1" Type="char" />
+    <Property Name="UserMapID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="StateID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DistrictID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TalukID" Type="nvarchar" MaxLength="50" />
+    <Property Name="PHCID" Type="nvarchar" MaxLength="50" />
+    <Property Name="VillageID" Type="nvarchar" MaxLength="50" />
+    <Property Name="DisplayName" Type="nvarchar" MaxLength="100" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ObsInd" Type="char" MaxLength="1" Nullable="false" />
   </EntityType>
   <EntityType Name="Users">
     <Key>
       <PropertyRef Name="UserID" />
     </Key>
-    <Property Name="UserID" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="LoginID" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="Password" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="LastModifiedBy" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="LastModifiedDate" Nullable="false" Type="datetime" />
-    <Property Name="ObsInd" Nullable="false" MaxLength="1" Type="char" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LoginID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ObsInd" Type="char" MaxLength="1" Nullable="false" />
   </EntityType>
   <Association Name="FK__DrugsIssu__DrugI__38996AB5">
-    <End Type="Self.MDrugs" Multiplicity="1" Role="MDrugs" />
-    <End Type="Self.DrugsIssued" Multiplicity="*" Role="DrugsIssued" />
+    <End Role="MDrugs" Type="Self.MDrugs" Multiplicity="1" />
+    <End Role="DrugsIssued" Type="Self.DrugsIssued" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="MDrugs">
         <PropertyRef Name="DrugID" />
@@ -315,8 +359,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__DrugsIssu__Presc__3D5E1FD2">
-    <End Type="Self.PatientPrescription" Multiplicity="1" Role="PatientPrescription" />
-    <End Type="Self.DrugsIssued" Multiplicity="*" Role="DrugsIssued" />
+    <End Role="PatientPrescription" Type="Self.PatientPrescription" Multiplicity="1" />
+    <End Role="DrugsIssued" Type="Self.DrugsIssued" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="PatientPrescription">
         <PropertyRef Name="PrescriptionID" />
@@ -327,8 +371,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__MDrugs__StateID__571DF1D5">
-    <End Type="Self.MState" Multiplicity="1" Role="MState" />
-    <End Type="Self.MDrugs" Multiplicity="*" Role="MDrugs" />
+    <End Role="MState" Type="Self.MState" Multiplicity="1" />
+    <End Role="MDrugs" Type="Self.MDrugs" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="MState">
         <PropertyRef Name="StateID" />
@@ -339,8 +383,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__PatientAd__Villa__5812160E">
-    <End Type="Self.MVillage" Multiplicity="1" Role="MVillage" />
-    <End Type="Self.PatientAddress" Multiplicity="*" Role="PatientAddress" />
+    <End Role="MVillage" Type="Self.MVillage" Multiplicity="1" />
+    <End Role="PatientAddress" Type="Self.PatientAddress" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="MVillage">
         <PropertyRef Name="VillageID" />
@@ -351,8 +395,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__PatientEC__PHCID__59063A47">
-    <End Type="Self.MPHC" Multiplicity="1" Role="MPHC" />
-    <End Type="Self.PatientEC" Multiplicity="*" Role="PatientEC" />
+    <End Role="MPHC" Type="Self.MPHC" Multiplicity="1" />
+    <End Role="PatientEC" Type="Self.PatientEC" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="MPHC">
         <PropertyRef Name="PHCID" />
@@ -363,8 +407,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__PatientPr__Disea__4316F928">
-    <End Type="Self.MDisease" Multiplicity="1" Role="MDisease" />
-    <End Type="Self.PatientPrescription" Multiplicity="*" Role="PatientPrescription" />
+    <End Role="MDisease" Type="Self.MDisease" Multiplicity="1" />
+    <End Role="PatientPrescription" Type="Self.PatientPrescription" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="MDisease">
         <PropertyRef Name="DiseaseID" />
@@ -375,10 +419,10 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-    <End Type="Self.AspNetUsers" Multiplicity="1" Role="AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
-    <End Type="Self.AspNetUserClaims" Multiplicity="*" Role="AspNetUserClaims" />
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="AspNetUsers">
         <PropertyRef Name="Id" />
@@ -389,10 +433,10 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-    <End Type="Self.AspNetUsers" Multiplicity="1" Role="AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
-    <End Type="Self.AspNetUserLogins" Multiplicity="*" Role="AspNetUserLogins" />
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="AspNetUsers">
         <PropertyRef Name="Id" />
@@ -403,10 +447,10 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
-    <End Type="Self.AspNetRoles" Multiplicity="1" Role="AspNetRoles">
+    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
-    <End Type="Self.AspNetUserRoles" Multiplicity="*" Role="AspNetUserRoles" />
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="AspNetRoles">
         <PropertyRef Name="Id" />
@@ -417,10 +461,10 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
-    <End Type="Self.AspNetUsers" Multiplicity="1" Role="AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
-    <End Type="Self.AspNetUserRoles" Multiplicity="*" Role="AspNetUserRoles" />
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="AspNetUsers">
         <PropertyRef Name="Id" />
@@ -431,8 +475,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_DrugsIssued_MPHC">
-    <End Type="Self.MPHC" Multiplicity="1" Role="MPHC" />
-    <End Type="Self.DrugsIssued" Multiplicity="*" Role="DrugsIssued" />
+    <End Role="MPHC" Type="Self.MPHC" Multiplicity="1" />
+    <End Role="DrugsIssued" Type="Self.DrugsIssued" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="MPHC">
         <PropertyRef Name="PHCID" />
@@ -443,8 +487,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_DrugStockDetails_MDrugs">
-    <End Type="Self.MDrugs" Multiplicity="1" Role="MDrugs" />
-    <End Type="Self.DrugStockDetails" Multiplicity="*" Role="DrugStockDetails" />
+    <End Role="MDrugs" Type="Self.MDrugs" Multiplicity="1" />
+    <End Role="DrugStockDetails" Type="Self.DrugStockDetails" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="MDrugs">
         <PropertyRef Name="DrugID" />
@@ -455,8 +499,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_DrugStockDetails_MPHC">
-    <End Type="Self.MPHC" Multiplicity="1" Role="MPHC" />
-    <End Type="Self.DrugStockDetails" Multiplicity="*" Role="DrugStockDetails" />
+    <End Role="MPHC" Type="Self.MPHC" Multiplicity="1" />
+    <End Role="DrugStockDetails" Type="Self.DrugStockDetails" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="MPHC">
         <PropertyRef Name="PHCID" />
@@ -467,8 +511,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_LabTestDetails_MLabTest">
-    <End Type="Self.MLabTest" Multiplicity="1" Role="MLabTest" />
-    <End Type="Self.LabTestDetails" Multiplicity="*" Role="LabTestDetails" />
+    <End Role="MLabTest" Type="Self.MLabTest" Multiplicity="1" />
+    <End Role="LabTestDetails" Type="Self.LabTestDetails" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="MLabTest">
         <PropertyRef Name="LabTestID" />
@@ -479,8 +523,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_LabTestDetails_MPHC">
-    <End Type="Self.MPHC" Multiplicity="1" Role="MPHC" />
-    <End Type="Self.LabTestDetails" Multiplicity="*" Role="LabTestDetails" />
+    <End Role="MPHC" Type="Self.MPHC" Multiplicity="1" />
+    <End Role="LabTestDetails" Type="Self.LabTestDetails" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="MPHC">
         <PropertyRef Name="PHCID" />
@@ -491,8 +535,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_LabTestDetails_PatientPrescription">
-    <End Type="Self.PatientPrescription" Multiplicity="1" Role="PatientPrescription" />
-    <End Type="Self.LabTestDetails" Multiplicity="*" Role="LabTestDetails" />
+    <End Role="PatientPrescription" Type="Self.PatientPrescription" Multiplicity="1" />
+    <End Role="LabTestDetails" Type="Self.LabTestDetails" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="PatientPrescription">
         <PropertyRef Name="PrescriptionID" />
@@ -503,8 +547,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_MDisease_MState">
-    <End Type="Self.MState" Multiplicity="1" Role="MState" />
-    <End Type="Self.MDisease" Multiplicity="*" Role="MDisease" />
+    <End Role="MState" Type="Self.MState" Multiplicity="1" />
+    <End Role="MDisease" Type="Self.MDisease" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="MState">
         <PropertyRef Name="StateID" />
@@ -515,8 +559,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_MDistrict_MState">
-    <End Type="Self.MState" Multiplicity="1" Role="MState" />
-    <End Type="Self.MDistrict" Multiplicity="*" Role="MDistrict" />
+    <End Role="MState" Type="Self.MState" Multiplicity="1" />
+    <End Role="MDistrict" Type="Self.MDistrict" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="MState">
         <PropertyRef Name="StateID" />
@@ -526,9 +570,21 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_MEducation_MState">
+    <End Role="MState" Type="Self.MState" Multiplicity="1" />
+    <End Role="MEducation" Type="Self.MEducation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MState">
+        <PropertyRef Name="StateID" />
+      </Principal>
+      <Dependent Role="MEducation">
+        <PropertyRef Name="StateID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_MLabTest_MState">
-    <End Type="Self.MState" Multiplicity="1" Role="MState" />
-    <End Type="Self.MLabTest" Multiplicity="*" Role="MLabTest" />
+    <End Role="MState" Type="Self.MState" Multiplicity="1" />
+    <End Role="MLabTest" Type="Self.MLabTest" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="MState">
         <PropertyRef Name="StateID" />
@@ -539,8 +595,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_MPHC_MTaluk">
-    <End Type="Self.MTaluk" Multiplicity="1" Role="MTaluk" />
-    <End Type="Self.MPHC" Multiplicity="*" Role="MPHC" />
+    <End Role="MTaluk" Type="Self.MTaluk" Multiplicity="1" />
+    <End Role="MPHC" Type="Self.MPHC" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="MTaluk">
         <PropertyRef Name="TalukID" />
@@ -550,9 +606,33 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_MReligion_MState">
+    <End Role="MState" Type="Self.MState" Multiplicity="1" />
+    <End Role="MReligion" Type="Self.MReligion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MState">
+        <PropertyRef Name="StateID" />
+      </Principal>
+      <Dependent Role="MReligion">
+        <PropertyRef Name="StateID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MScheme_MState">
+    <End Role="MState" Type="Self.MState" Multiplicity="1" />
+    <End Role="MScheme" Type="Self.MScheme" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MState">
+        <PropertyRef Name="StateID" />
+      </Principal>
+      <Dependent Role="MScheme">
+        <PropertyRef Name="StateID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_MTaluk_MDistrict">
-    <End Type="Self.MDistrict" Multiplicity="1" Role="MDistrict" />
-    <End Type="Self.MTaluk" Multiplicity="*" Role="MTaluk" />
+    <End Role="MDistrict" Type="Self.MDistrict" Multiplicity="1" />
+    <End Role="MTaluk" Type="Self.MTaluk" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="MDistrict">
         <PropertyRef Name="DistrictID" />
@@ -563,8 +643,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_MVillage_MPHC">
-    <End Type="Self.MPHC" Multiplicity="1" Role="MPHC" />
-    <End Type="Self.MVillage" Multiplicity="*" Role="MVillage" />
+    <End Role="MPHC" Type="Self.MPHC" Multiplicity="1" />
+    <End Role="MVillage" Type="Self.MVillage" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="MPHC">
         <PropertyRef Name="PHCID" />
@@ -575,8 +655,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_PatientAddress_PatientDetails">
-    <End Type="Self.PatientDetails" Multiplicity="1" Role="PatientDetails" />
-    <End Type="Self.PatientAddress" Multiplicity="*" Role="PatientAddress" />
+    <End Role="PatientDetails" Type="Self.PatientDetails" Multiplicity="1" />
+    <End Role="PatientAddress" Type="Self.PatientAddress" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="PatientDetails">
         <PropertyRef Name="PatientID" />
@@ -587,8 +667,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_PatientDetails_MPHC">
-    <End Type="Self.MPHC" Multiplicity="1" Role="MPHC" />
-    <End Type="Self.PatientDetails" Multiplicity="*" Role="PatientDetails" />
+    <End Role="MPHC" Type="Self.MPHC" Multiplicity="1" />
+    <End Role="PatientDetails" Type="Self.PatientDetails" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="MPHC">
         <PropertyRef Name="PHCID" />
@@ -599,8 +679,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_PatientEC_PatientDetails">
-    <End Type="Self.PatientDetails" Multiplicity="1" Role="PatientDetails" />
-    <End Type="Self.PatientEC" Multiplicity="*" Role="PatientEC" />
+    <End Role="PatientDetails" Type="Self.PatientDetails" Multiplicity="1" />
+    <End Role="PatientEC" Type="Self.PatientEC" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="PatientDetails">
         <PropertyRef Name="PatientID" />
@@ -611,8 +691,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_PatientMC_MPHC">
-    <End Type="Self.MPHC" Multiplicity="1" Role="MPHC" />
-    <End Type="Self.PatientMC" Multiplicity="*" Role="PatientMC" />
+    <End Role="MPHC" Type="Self.MPHC" Multiplicity="1" />
+    <End Role="PatientMC" Type="Self.PatientMC" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="MPHC">
         <PropertyRef Name="PHCID" />
@@ -623,8 +703,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_PatientMC_PatientDetails">
-    <End Type="Self.PatientDetails" Multiplicity="1" Role="PatientDetails" />
-    <End Type="Self.PatientMC" Multiplicity="*" Role="PatientMC" />
+    <End Role="PatientDetails" Type="Self.PatientDetails" Multiplicity="1" />
+    <End Role="PatientMC" Type="Self.PatientMC" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="PatientDetails">
         <PropertyRef Name="PatientID" />
@@ -635,8 +715,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_PatientMC_PatientEC">
-    <End Type="Self.PatientEC" Multiplicity="1" Role="PatientEC" />
-    <End Type="Self.PatientMC" Multiplicity="*" Role="PatientMC" />
+    <End Role="PatientEC" Type="Self.PatientEC" Multiplicity="1" />
+    <End Role="PatientMC" Type="Self.PatientMC" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="PatientEC">
         <PropertyRef Name="PatientECID" />
@@ -647,8 +727,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_PatientPrescription_MPHC">
-    <End Type="Self.MPHC" Multiplicity="1" Role="MPHC" />
-    <End Type="Self.PatientPrescription" Multiplicity="*" Role="PatientPrescription" />
+    <End Role="MPHC" Type="Self.MPHC" Multiplicity="1" />
+    <End Role="PatientPrescription" Type="Self.PatientPrescription" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="MPHC">
         <PropertyRef Name="PHCID" />
@@ -659,8 +739,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_PatientPrescription_PatientDetails">
-    <End Type="Self.PatientDetails" Multiplicity="1" Role="PatientDetails" />
-    <End Type="Self.PatientPrescription" Multiplicity="*" Role="PatientPrescription" />
+    <End Role="PatientDetails" Type="Self.PatientDetails" Multiplicity="1" />
+    <End Role="PatientPrescription" Type="Self.PatientPrescription" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="PatientDetails">
         <PropertyRef Name="PatientID" />
@@ -670,9 +750,21 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_SubCenter_MPHC">
+    <End Role="MPHC" Type="Self.MPHC" Multiplicity="1" />
+    <End Role="SubCenter" Type="Self.SubCenter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MPHC">
+        <PropertyRef Name="PHCID" />
+      </Principal>
+      <Dependent Role="SubCenter">
+        <PropertyRef Name="PHCID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_UserDetails_UserDetails">
-    <End Type="Self.Users" Multiplicity="1" Role="Users" />
-    <End Type="Self.UserDetails" Multiplicity="*" Role="UserDetails" />
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Users">
         <PropertyRef Name="UserID" />
@@ -683,8 +775,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_UserMap_MDistrict">
-    <End Type="Self.MDistrict" Multiplicity="1" Role="MDistrict" />
-    <End Type="Self.UserMap" Multiplicity="*" Role="UserMap" />
+    <End Role="MDistrict" Type="Self.MDistrict" Multiplicity="1" />
+    <End Role="UserMap" Type="Self.UserMap" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="MDistrict">
         <PropertyRef Name="DistrictID" />
@@ -695,8 +787,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_UserMap_MPHC">
-    <End Type="Self.MPHC" Multiplicity="0..1" Role="MPHC" />
-    <End Type="Self.UserMap" Multiplicity="*" Role="UserMap" />
+    <End Role="MPHC" Type="Self.MPHC" Multiplicity="0..1" />
+    <End Role="UserMap" Type="Self.UserMap" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="MPHC">
         <PropertyRef Name="PHCID" />
@@ -707,8 +799,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_UserMap_MState">
-    <End Type="Self.MState" Multiplicity="1" Role="MState" />
-    <End Type="Self.UserMap" Multiplicity="*" Role="UserMap" />
+    <End Role="MState" Type="Self.MState" Multiplicity="1" />
+    <End Role="UserMap" Type="Self.UserMap" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="MState">
         <PropertyRef Name="StateID" />
@@ -719,8 +811,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_UserMap_MTaluk">
-    <End Type="Self.MTaluk" Multiplicity="0..1" Role="MTaluk" />
-    <End Type="Self.UserMap" Multiplicity="*" Role="UserMap" />
+    <End Role="MTaluk" Type="Self.MTaluk" Multiplicity="0..1" />
+    <End Role="UserMap" Type="Self.UserMap" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="MTaluk">
         <PropertyRef Name="TalukID" />
@@ -731,8 +823,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_UserMap_MVillage">
-    <End Type="Self.MVillage" Multiplicity="0..1" Role="MVillage" />
-    <End Type="Self.UserMap" Multiplicity="*" Role="UserMap" />
+    <End Role="MVillage" Type="Self.MVillage" Multiplicity="0..1" />
+    <End Role="UserMap" Type="Self.UserMap" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="MVillage">
         <PropertyRef Name="VillageID" />
@@ -743,8 +835,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_UserMap_Users">
-    <End Type="Self.Users" Multiplicity="1" Role="Users" />
-    <End Type="Self.UserMap" Multiplicity="*" Role="UserMap" />
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="UserMap" Type="Self.UserMap" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Users">
         <PropertyRef Name="UserID" />
@@ -767,8 +859,11 @@
     <EntitySet Name="MDisease" EntityType="Self.MDisease" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MDistrict" EntityType="Self.MDistrict" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MDrugs" EntityType="Self.MDrugs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MEducation" EntityType="Self.MEducation" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MLabTest" EntityType="Self.MLabTest" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MPHC" EntityType="Self.MPHC" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MReligion" EntityType="Self.MReligion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MScheme" EntityType="Self.MScheme" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MState" EntityType="Self.MState" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MTaluk" EntityType="Self.MTaluk" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MVillage" EntityType="Self.MVillage" Schema="dbo" store:Type="Tables" />
@@ -777,156 +872,173 @@
     <EntitySet Name="PatientEC" EntityType="Self.PatientEC" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PatientMC" EntityType="Self.PatientMC" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PatientPrescription" EntityType="Self.PatientPrescription" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SubCenter" EntityType="Self.SubCenter" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserDetails" EntityType="Self.UserDetails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserMap" EntityType="Self.UserMap" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__DrugsIssu__DrugI__38996AB5" Association="Self.FK__DrugsIssu__DrugI__38996AB5">
-      <End EntitySet="MDrugs" Role="MDrugs" />
-      <End EntitySet="DrugsIssued" Role="DrugsIssued" />
+      <End Role="MDrugs" EntitySet="MDrugs" />
+      <End Role="DrugsIssued" EntitySet="DrugsIssued" />
     </AssociationSet>
     <AssociationSet Name="FK__DrugsIssu__Presc__3D5E1FD2" Association="Self.FK__DrugsIssu__Presc__3D5E1FD2">
-      <End EntitySet="PatientPrescription" Role="PatientPrescription" />
-      <End EntitySet="DrugsIssued" Role="DrugsIssued" />
+      <End Role="PatientPrescription" EntitySet="PatientPrescription" />
+      <End Role="DrugsIssued" EntitySet="DrugsIssued" />
     </AssociationSet>
     <AssociationSet Name="FK__MDrugs__StateID__571DF1D5" Association="Self.FK__MDrugs__StateID__571DF1D5">
-      <End EntitySet="MState" Role="MState" />
-      <End EntitySet="MDrugs" Role="MDrugs" />
+      <End Role="MState" EntitySet="MState" />
+      <End Role="MDrugs" EntitySet="MDrugs" />
     </AssociationSet>
     <AssociationSet Name="FK__PatientAd__Villa__5812160E" Association="Self.FK__PatientAd__Villa__5812160E">
-      <End EntitySet="MVillage" Role="MVillage" />
-      <End EntitySet="PatientAddress" Role="PatientAddress" />
+      <End Role="MVillage" EntitySet="MVillage" />
+      <End Role="PatientAddress" EntitySet="PatientAddress" />
     </AssociationSet>
     <AssociationSet Name="FK__PatientEC__PHCID__59063A47" Association="Self.FK__PatientEC__PHCID__59063A47">
-      <End EntitySet="MPHC" Role="MPHC" />
-      <End EntitySet="PatientEC" Role="PatientEC" />
+      <End Role="MPHC" EntitySet="MPHC" />
+      <End Role="PatientEC" EntitySet="PatientEC" />
     </AssociationSet>
     <AssociationSet Name="FK__PatientPr__Disea__4316F928" Association="Self.FK__PatientPr__Disea__4316F928">
-      <End EntitySet="MDisease" Role="MDisease" />
-      <End EntitySet="PatientPrescription" Role="PatientPrescription" />
+      <End Role="MDisease" EntitySet="MDisease" />
+      <End Role="PatientPrescription" EntitySet="PatientPrescription" />
     </AssociationSet>
     <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-      <End EntitySet="AspNetUsers" Role="AspNetUsers" />
-      <End EntitySet="AspNetUserClaims" Role="AspNetUserClaims" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
     </AssociationSet>
     <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-      <End EntitySet="AspNetUsers" Role="AspNetUsers" />
-      <End EntitySet="AspNetUserLogins" Role="AspNetUserLogins" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
     </AssociationSet>
     <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
-      <End EntitySet="AspNetRoles" Role="AspNetRoles" />
-      <End EntitySet="AspNetUserRoles" Role="AspNetUserRoles" />
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
     </AssociationSet>
     <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
-      <End EntitySet="AspNetUsers" Role="AspNetUsers" />
-      <End EntitySet="AspNetUserRoles" Role="AspNetUserRoles" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
     </AssociationSet>
     <AssociationSet Name="FK_DrugsIssued_MPHC" Association="Self.FK_DrugsIssued_MPHC">
-      <End EntitySet="MPHC" Role="MPHC" />
-      <End EntitySet="DrugsIssued" Role="DrugsIssued" />
+      <End Role="MPHC" EntitySet="MPHC" />
+      <End Role="DrugsIssued" EntitySet="DrugsIssued" />
     </AssociationSet>
     <AssociationSet Name="FK_DrugStockDetails_MDrugs" Association="Self.FK_DrugStockDetails_MDrugs">
-      <End EntitySet="MDrugs" Role="MDrugs" />
-      <End EntitySet="DrugStockDetails" Role="DrugStockDetails" />
+      <End Role="MDrugs" EntitySet="MDrugs" />
+      <End Role="DrugStockDetails" EntitySet="DrugStockDetails" />
     </AssociationSet>
     <AssociationSet Name="FK_DrugStockDetails_MPHC" Association="Self.FK_DrugStockDetails_MPHC">
-      <End EntitySet="MPHC" Role="MPHC" />
-      <End EntitySet="DrugStockDetails" Role="DrugStockDetails" />
+      <End Role="MPHC" EntitySet="MPHC" />
+      <End Role="DrugStockDetails" EntitySet="DrugStockDetails" />
     </AssociationSet>
     <AssociationSet Name="FK_LabTestDetails_MLabTest" Association="Self.FK_LabTestDetails_MLabTest">
-      <End EntitySet="MLabTest" Role="MLabTest" />
-      <End EntitySet="LabTestDetails" Role="LabTestDetails" />
+      <End Role="MLabTest" EntitySet="MLabTest" />
+      <End Role="LabTestDetails" EntitySet="LabTestDetails" />
     </AssociationSet>
     <AssociationSet Name="FK_LabTestDetails_MPHC" Association="Self.FK_LabTestDetails_MPHC">
-      <End EntitySet="MPHC" Role="MPHC" />
-      <End EntitySet="LabTestDetails" Role="LabTestDetails" />
+      <End Role="MPHC" EntitySet="MPHC" />
+      <End Role="LabTestDetails" EntitySet="LabTestDetails" />
     </AssociationSet>
     <AssociationSet Name="FK_LabTestDetails_PatientPrescription" Association="Self.FK_LabTestDetails_PatientPrescription">
-      <End EntitySet="PatientPrescription" Role="PatientPrescription" />
-      <End EntitySet="LabTestDetails" Role="LabTestDetails" />
+      <End Role="PatientPrescription" EntitySet="PatientPrescription" />
+      <End Role="LabTestDetails" EntitySet="LabTestDetails" />
     </AssociationSet>
     <AssociationSet Name="FK_MDisease_MState" Association="Self.FK_MDisease_MState">
-      <End EntitySet="MState" Role="MState" />
-      <End EntitySet="MDisease" Role="MDisease" />
+      <End Role="MState" EntitySet="MState" />
+      <End Role="MDisease" EntitySet="MDisease" />
     </AssociationSet>
     <AssociationSet Name="FK_MDistrict_MState" Association="Self.FK_MDistrict_MState">
-      <End EntitySet="MState" Role="MState" />
-      <End EntitySet="MDistrict" Role="MDistrict" />
+      <End Role="MState" EntitySet="MState" />
+      <End Role="MDistrict" EntitySet="MDistrict" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MEducation_MState" Association="Self.FK_MEducation_MState">
+      <End Role="MState" EntitySet="MState" />
+      <End Role="MEducation" EntitySet="MEducation" />
     </AssociationSet>
     <AssociationSet Name="FK_MLabTest_MState" Association="Self.FK_MLabTest_MState">
-      <End EntitySet="MState" Role="MState" />
-      <End EntitySet="MLabTest" Role="MLabTest" />
+      <End Role="MState" EntitySet="MState" />
+      <End Role="MLabTest" EntitySet="MLabTest" />
     </AssociationSet>
     <AssociationSet Name="FK_MPHC_MTaluk" Association="Self.FK_MPHC_MTaluk">
-      <End EntitySet="MTaluk" Role="MTaluk" />
-      <End EntitySet="MPHC" Role="MPHC" />
+      <End Role="MTaluk" EntitySet="MTaluk" />
+      <End Role="MPHC" EntitySet="MPHC" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MReligion_MState" Association="Self.FK_MReligion_MState">
+      <End Role="MState" EntitySet="MState" />
+      <End Role="MReligion" EntitySet="MReligion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MScheme_MState" Association="Self.FK_MScheme_MState">
+      <End Role="MState" EntitySet="MState" />
+      <End Role="MScheme" EntitySet="MScheme" />
     </AssociationSet>
     <AssociationSet Name="FK_MTaluk_MDistrict" Association="Self.FK_MTaluk_MDistrict">
-      <End EntitySet="MDistrict" Role="MDistrict" />
-      <End EntitySet="MTaluk" Role="MTaluk" />
+      <End Role="MDistrict" EntitySet="MDistrict" />
+      <End Role="MTaluk" EntitySet="MTaluk" />
     </AssociationSet>
     <AssociationSet Name="FK_MVillage_MPHC" Association="Self.FK_MVillage_MPHC">
-      <End EntitySet="MPHC" Role="MPHC" />
-      <End EntitySet="MVillage" Role="MVillage" />
+      <End Role="MPHC" EntitySet="MPHC" />
+      <End Role="MVillage" EntitySet="MVillage" />
     </AssociationSet>
     <AssociationSet Name="FK_PatientAddress_PatientDetails" Association="Self.FK_PatientAddress_PatientDetails">
-      <End EntitySet="PatientDetails" Role="PatientDetails" />
-      <End EntitySet="PatientAddress" Role="PatientAddress" />
+      <End Role="PatientDetails" EntitySet="PatientDetails" />
+      <End Role="PatientAddress" EntitySet="PatientAddress" />
     </AssociationSet>
     <AssociationSet Name="FK_PatientDetails_MPHC" Association="Self.FK_PatientDetails_MPHC">
-      <End EntitySet="MPHC" Role="MPHC" />
-      <End EntitySet="PatientDetails" Role="PatientDetails" />
+      <End Role="MPHC" EntitySet="MPHC" />
+      <End Role="PatientDetails" EntitySet="PatientDetails" />
     </AssociationSet>
     <AssociationSet Name="FK_PatientEC_PatientDetails" Association="Self.FK_PatientEC_PatientDetails">
-      <End EntitySet="PatientDetails" Role="PatientDetails" />
-      <End EntitySet="PatientEC" Role="PatientEC" />
+      <End Role="PatientDetails" EntitySet="PatientDetails" />
+      <End Role="PatientEC" EntitySet="PatientEC" />
     </AssociationSet>
     <AssociationSet Name="FK_PatientMC_MPHC" Association="Self.FK_PatientMC_MPHC">
-      <End EntitySet="MPHC" Role="MPHC" />
-      <End EntitySet="PatientMC" Role="PatientMC" />
+      <End Role="MPHC" EntitySet="MPHC" />
+      <End Role="PatientMC" EntitySet="PatientMC" />
     </AssociationSet>
     <AssociationSet Name="FK_PatientMC_PatientDetails" Association="Self.FK_PatientMC_PatientDetails">
-      <End EntitySet="PatientDetails" Role="PatientDetails" />
-      <End EntitySet="PatientMC" Role="PatientMC" />
+      <End Role="PatientDetails" EntitySet="PatientDetails" />
+      <End Role="PatientMC" EntitySet="PatientMC" />
     </AssociationSet>
     <AssociationSet Name="FK_PatientMC_PatientEC" Association="Self.FK_PatientMC_PatientEC">
-      <End EntitySet="PatientEC" Role="PatientEC" />
-      <End EntitySet="PatientMC" Role="PatientMC" />
+      <End Role="PatientEC" EntitySet="PatientEC" />
+      <End Role="PatientMC" EntitySet="PatientMC" />
     </AssociationSet>
     <AssociationSet Name="FK_PatientPrescription_MPHC" Association="Self.FK_PatientPrescription_MPHC">
-      <End EntitySet="MPHC" Role="MPHC" />
-      <End EntitySet="PatientPrescription" Role="PatientPrescription" />
+      <End Role="MPHC" EntitySet="MPHC" />
+      <End Role="PatientPrescription" EntitySet="PatientPrescription" />
     </AssociationSet>
     <AssociationSet Name="FK_PatientPrescription_PatientDetails" Association="Self.FK_PatientPrescription_PatientDetails">
-      <End EntitySet="PatientDetails" Role="PatientDetails" />
-      <End EntitySet="PatientPrescription" Role="PatientPrescription" />
+      <End Role="PatientDetails" EntitySet="PatientDetails" />
+      <End Role="PatientPrescription" EntitySet="PatientPrescription" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubCenter_MPHC" Association="Self.FK_SubCenter_MPHC">
+      <End Role="MPHC" EntitySet="MPHC" />
+      <End Role="SubCenter" EntitySet="SubCenter" />
     </AssociationSet>
     <AssociationSet Name="FK_UserDetails_UserDetails" Association="Self.FK_UserDetails_UserDetails">
-      <End EntitySet="Users" Role="Users" />
-      <End EntitySet="UserDetails" Role="UserDetails" />
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserDetails" EntitySet="UserDetails" />
     </AssociationSet>
     <AssociationSet Name="FK_UserMap_MDistrict" Association="Self.FK_UserMap_MDistrict">
-      <End EntitySet="MDistrict" Role="MDistrict" />
-      <End EntitySet="UserMap" Role="UserMap" />
+      <End Role="MDistrict" EntitySet="MDistrict" />
+      <End Role="UserMap" EntitySet="UserMap" />
     </AssociationSet>
     <AssociationSet Name="FK_UserMap_MPHC" Association="Self.FK_UserMap_MPHC">
-      <End EntitySet="MPHC" Role="MPHC" />
-      <End EntitySet="UserMap" Role="UserMap" />
+      <End Role="MPHC" EntitySet="MPHC" />
+      <End Role="UserMap" EntitySet="UserMap" />
     </AssociationSet>
     <AssociationSet Name="FK_UserMap_MState" Association="Self.FK_UserMap_MState">
-      <End EntitySet="MState" Role="MState" />
-      <End EntitySet="UserMap" Role="UserMap" />
+      <End Role="MState" EntitySet="MState" />
+      <End Role="UserMap" EntitySet="UserMap" />
     </AssociationSet>
     <AssociationSet Name="FK_UserMap_MTaluk" Association="Self.FK_UserMap_MTaluk">
-      <End EntitySet="MTaluk" Role="MTaluk" />
-      <End EntitySet="UserMap" Role="UserMap" />
+      <End Role="MTaluk" EntitySet="MTaluk" />
+      <End Role="UserMap" EntitySet="UserMap" />
     </AssociationSet>
     <AssociationSet Name="FK_UserMap_MVillage" Association="Self.FK_UserMap_MVillage">
-      <End EntitySet="MVillage" Role="MVillage" />
-      <End EntitySet="UserMap" Role="UserMap" />
+      <End Role="MVillage" EntitySet="MVillage" />
+      <End Role="UserMap" EntitySet="UserMap" />
     </AssociationSet>
     <AssociationSet Name="FK_UserMap_Users" Association="Self.FK_UserMap_Users">
-      <End EntitySet="Users" Role="Users" />
-      <End EntitySet="UserMap" Role="UserMap" />
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserMap" EntitySet="UserMap" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

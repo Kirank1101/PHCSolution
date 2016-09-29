@@ -13,7 +13,7 @@ namespace PHC.DataAccess
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class PHCSolutions : DbContext,IUnitOfWork 
+    public partial class PHCSolutions : DbContext,IUnitOfWork
     {
         public PHCSolutions()
             : base("name=PHCSolutions")
@@ -51,6 +51,10 @@ namespace PHC.DataAccess
         public DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public DbSet<AspNetUser> AspNetUsers { get; set; }
         public DbSet<DrugStockDetail> DrugStockDetails { get; set; }
+        public DbSet<MEducation> MEducations { get; set; }
+        public DbSet<MReligion> MReligions { get; set; }
+        public DbSet<MScheme> MSchemes { get; set; }
+        public DbSet<SubCenter> SubCenters { get; set; }
 
         public void Save()
         {
