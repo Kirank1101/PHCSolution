@@ -160,6 +160,7 @@
     <EntitySetMapping Name="PatientECs">
       <EntityTypeMapping TypeName="PHCSolutionsModel.PatientEC">
         <MappingFragment StoreEntitySet="PatientEC">
+          <ScalarProperty Name="PHCID" ColumnName="PHCID" />
           <ScalarProperty Name="PatientECID" ColumnName="PatientECID" />
           <ScalarProperty Name="ECNumber" ColumnName="ECNumber" />
           <ScalarProperty Name="PatientID" ColumnName="PatientID" />
@@ -172,11 +173,11 @@
     <EntitySetMapping Name="PatientMCs">
       <EntityTypeMapping TypeName="PHCSolutionsModel.PatientMC">
         <MappingFragment StoreEntitySet="PatientMC">
-          <ScalarProperty Name="PatientMC1" ColumnName="PatientMC" />
+          <ScalarProperty Name="PatientMCID" ColumnName="PatientMCID" />
+          <ScalarProperty Name="PHCID" ColumnName="PHCID" />
           <ScalarProperty Name="PatientID" ColumnName="PatientID" />
           <ScalarProperty Name="PatientECID" ColumnName="PatientECID" />
           <ScalarProperty Name="MCNumber" ColumnName="MCNumber" />
-          <ScalarProperty Name="MCIssued" ColumnName="MCIssued" />
           <ScalarProperty Name="LMP" ColumnName="LMP" />
           <ScalarProperty Name="EDD" ColumnName="EDD" />
           <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />

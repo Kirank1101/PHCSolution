@@ -14,11 +14,11 @@ namespace PHC.DataAccess
     
     public partial class PatientMC
     {
-        public string PatientMC1 { get; set; }
+        public string PatientMCID { get; set; }
+        public string PHCID { get; set; }
         public string PatientID { get; set; }
         public string PatientECID { get; set; }
         public string MCNumber { get; set; }
-        public string MCIssued { get; set; }
         public System.DateTime LMP { get; set; }
         public System.DateTime EDD { get; set; }
         public string LastModifiedBy { get; set; }
@@ -27,5 +27,6 @@ namespace PHC.DataAccess
     
         public virtual PatientDetail PatientDetail { get; set; }
         public virtual PatientEC PatientEC { get; set; }
+        public virtual MPHC MPHC { get; set; }
     }
 }

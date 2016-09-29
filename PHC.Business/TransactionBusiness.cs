@@ -487,6 +487,7 @@ namespace PHC.Business
                 PatientEC patientec = new PatientEC();
                 patientec.PatientECID = CommonUtil.CreateUniqueID("PEC");
                 patientec.PatientID = PatientDetail.PatientID;
+                patientec.PHCID = PatientDetail.PHCID;
                 patientec.ECNumber = ECNumber;
                 patientec.LastModifiedBy = "System";
                 patientec.LastModifiedDate = DateTime.Now;
@@ -494,8 +495,8 @@ namespace PHC.Business
                 PatientDetail.PatientECs.Add(patientec);
             }
 
-            bool checkPatientExist = objDA.GetPatient(PatientName, PatientDetail.PHCID);
-            if (!checkPatientExist)
+            String checkPatientExist = objDA.CheeckPatientName(PatientName,ECNumber, PatientDetail.PHCID);
+            if (string.IsNullOrEmpty(checkPatientExist))
             {
                 if (objDA.AddPatientDetails(PatientDetail))
                     return new ResultDTO() { IsSuccess = true, Message = "Successfully Saved." };
@@ -503,7 +504,7 @@ namespace PHC.Business
                     return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Saved." };
             }
             else
-                return new ResultDTO() { IsSuccess = false, Message = "Patient Name already exist." };
+                return new ResultDTO() { IsSuccess = false, Message = checkPatientExist};
         }
 
         public ResultDTO UpdatePatientDetail(string PHCID, string PatientID, string PatientName, string ECNumber, short Age, string DOB, string Gender, string BloodGroup, string VillageID, string Address, string ContactNo, string PhoneNo)
@@ -539,13 +540,14 @@ namespace PHC.Business
                 PatientEC patientec = new PatientEC();
                 patientec.PatientECID = CommonUtil.CreateUniqueID("PEC");
                 patientec.PatientID = PatientDetail.PatientID;
+                patientec.PHCID = PatientDetail.PHCID;
                 patientec.ECNumber = ECNumber;
                 patientec.LastModifiedBy = "System";
                 patientec.LastModifiedDate = DateTime.Now;
                 patientec.ObsInd = "N";
                 PatientDetail.PatientECs.Add(patientec);
             }
-            string checkPatientExist = objDA.GetPatient(PatientDetail.PatientID,ECNumber, PatientName, PatientDetail.PHCID);
+            string checkPatientExist = objDA.CheckPatientNameAndECNumberforUpdate(PatientDetail.PatientID,ECNumber, PatientName, PatientDetail.PHCID);
             if (string.IsNullOrEmpty(checkPatientExist))
             {
                 if (objDA.UpdatePatientDetail(PatientDetail))

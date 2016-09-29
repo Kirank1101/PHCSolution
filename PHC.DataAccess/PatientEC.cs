@@ -25,8 +25,10 @@ namespace PHC.DataAccess
         public string LastModifiedBy { get; set; }
         public System.DateTime LastModifiedDate { get; set; }
         public string ObsInd { get; set; }
+        public string PHCID { get; set; }
     
         public virtual PatientDetail PatientDetail { get; set; }
         public virtual ICollection<PatientMC> PatientMCs { get; set; }
+        public virtual MPHC MPHC { get; set; }
     }
 }

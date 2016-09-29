@@ -18,7 +18,7 @@
         <EntityTypeShape EntityType="PHCSolutionsModel.PatientAddress" Width="1.5" PointX="12" PointY="12.25" IsExpanded="true" />
         <EntityTypeShape EntityType="PHCSolutionsModel.PatientDetail" Width="1.5" PointX="9.75" PointY="13.5" IsExpanded="true" />
         <EntityTypeShape EntityType="PHCSolutionsModel.PatientEC" Width="1.5" PointX="12" PointY="16" IsExpanded="true" />
-        <EntityTypeShape EntityType="PHCSolutionsModel.PatientMC" Width="1.5" PointX="14.25" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PHCSolutionsModel.PatientMC" PointX="14.25" PointY="15.75" Width="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="PHCSolutionsModel.PatientPrescription" Width="1.5" PointX="12" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PHCSolutionsModel.UserDetail" Width="1.5" PointX="15" PointY="1.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PHCSolutionsModel.UserMap" Width="1.5" PointX="15" PointY="10.125" IsExpanded="true" />
@@ -45,9 +45,9 @@
         <AssociationConnector Association="PHCSolutionsModel.FK_UserMap_MVillage" ManuallyRouted="false" />
         <AssociationConnector Association="PHCSolutionsModel.FK_PatientAddress_PatientDetails" ManuallyRouted="false" />
         <AssociationConnector Association="PHCSolutionsModel.FK_PatientEC_PatientDetails" ManuallyRouted="false" />
-        <AssociationConnector Association="PHCSolutionsModel.FK_PatientMC_PatientDetails" ManuallyRouted="false" />
+        <AssociationConnector ManuallyRouted="false" Association="PHCSolutionsModel.FK_PatientMC_PatientDetails" />
         <AssociationConnector Association="PHCSolutionsModel.FK_PatientPrescription_PatientDetails" ManuallyRouted="false" />
-        <AssociationConnector Association="PHCSolutionsModel.FK_PatientMC_PatientEC" ManuallyRouted="false" />
+        <AssociationConnector ManuallyRouted="false" Association="PHCSolutionsModel.FK_PatientMC_PatientEC" />
         <AssociationConnector Association="PHCSolutionsModel.FK_UserDetails_UserDetails" ManuallyRouted="false" />
         <AssociationConnector Association="PHCSolutionsModel.FK_UserMap_Users" ManuallyRouted="false" />
         <EntityTypeShape EntityType="PHCSolutionsModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" />
@@ -63,6 +63,8 @@
         <AssociationConnector Association="PHCSolutionsModel.FK__MDrugs__StateID__571DF1D5" />
         <AssociationConnector Association="PHCSolutionsModel.AspNetUserRoles" />
         <AssociationConnector Association="PHCSolutionsModel.FK__PatientAd__Villa__5812160E" />
+        <AssociationConnector Association="PHCSolutionsModel.FK__PatientEC__PHCID__59063A47" />
+        <AssociationConnector Association="PHCSolutionsModel.FK__PatientMC__PHCID__59FA5E80" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

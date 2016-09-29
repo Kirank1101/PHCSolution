@@ -35,6 +35,7 @@ namespace WebApplication5
             rbMale.Checked = false;
             rbFemale.Checked = false;
             txtContactNo.Text = string.Empty;
+            txtAddress.Text = string.Empty;
             txtPhoneNo.Text = string.Empty;
             btnUpdate.Visible = false;
             btnSave.Visible = true;
@@ -59,12 +60,12 @@ namespace WebApplication5
             List<MVillageDTO> lstMVillageDTO = ViewstateVillages;
             if (lstMVillageDTO != null && lstMVillageDTO.Count > 0)
             {
-                ddlVillage.DataSource = lstMVillageDTO;
-                ddlVillage.DataBind();
-                ddlVillage.Items.Insert(0, "Select Village");
+                ddlVillages.DataSource = lstMVillageDTO;
+                ddlVillages.DataBind();
+                ddlVillages.Items.Insert(0, "Select Village");
             }
             else
-                ddlVillage.Items.Insert(0, "Select Village");
+                ddlVillages.Items.Insert(0, "Select Village");
 
 
         }
@@ -91,7 +92,7 @@ namespace WebApplication5
         }
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            ResultDTO resultDTO = objITransactionBusiness.SavePatientDetails(PHCConstatnt.PHCID, txtPatientName.Text, txtECNo.Text, Convert.ToInt16(txtAge.Text), txtDOB.Text, GetGender(), ddlBloodGroup.SelectedItem.Text, ddlVillage.SelectedValue, txtAddress.Text, txtContactNo.Text, txtPhoneNo.Text);
+            ResultDTO resultDTO = objITransactionBusiness.SavePatientDetails(PHCConstatnt.PHCID, txtPatientName.Text, txtECNo.Text, Convert.ToInt16(txtAge.Text), txtDOB.Text, GetGender(), ddlBloodGroup.SelectedItem.Text, ddlVillages.SelectedValue, txtAddress.Text, txtContactNo.Text, txtPhoneNo.Text);
             if (resultDTO.IsSuccess)
             {
                 pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessBackGroundColor);
@@ -118,11 +119,11 @@ namespace WebApplication5
         }
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
-            string PatientID = ViewState[VSPatientID].ToString();
-            string ECno = ViewState[VSECNo].ToString();
+            string PatientID =Convert.ToString(ViewState[VSPatientID]);
+            string ECno = Convert.ToString( ViewState[VSECNo]);
             ResultDTO resultDTO = new ResultDTO();
             if ((!string.IsNullOrEmpty(ECno) && !string.IsNullOrEmpty(txtECNo.Text)) || string.IsNullOrEmpty(ECno))
-                resultDTO = objITransactionBusiness.UpdatePatientDetail(PHCConstatnt.PHCID, PatientID, txtPatientName.Text, txtECNo.Text, Convert.ToInt16(txtAge.Text), txtDOB.Text, GetGender(), ddlBloodGroup.SelectedItem.Text, ddlVillage.SelectedValue, txtAddress.Text, txtContactNo.Text, txtPhoneNo.Text);
+                resultDTO = objITransactionBusiness.UpdatePatientDetail(PHCConstatnt.PHCID, PatientID, txtPatientName.Text, txtECNo.Text, Convert.ToInt16(txtAge.Text), txtDOB.Text, GetGender(), ddlBloodGroup.SelectedItem.Text, ddlVillages.SelectedValue, txtAddress.Text, txtContactNo.Text, txtPhoneNo.Text);
             else
             {
                 resultDTO.IsSuccess = false;
@@ -130,6 +131,7 @@ namespace WebApplication5
             }
             if (resultDTO.IsSuccess)
             {
+                ViewState[VSECNo] = null;
                 ViewState[VSPatientID] = null;
                 PageReset();
                 this.PopulateData();
@@ -213,7 +215,7 @@ namespace WebApplication5
                 txtAge.Text = lblAge.Text;
                 txtDOB.Text = lblDOB.Text;
                 BindVillages();
-                ddlVillage.SelectedValue = lblVillageID.Text;
+                ddlVillages.SelectedValue = lblVillageID.Text;
                 txtAddress.Text = lblAddress.Text;
 
                 txtContactNo.Text = lblContactNo.Text;

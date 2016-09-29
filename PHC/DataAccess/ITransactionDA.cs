@@ -95,8 +95,8 @@ namespace PHC.DAInterfaces.DataAccess
         PatientEC GetPatientEC(string PatientID);
         bool AddUser(User userObj);
         //to Check PatientName exist in DB 
-        bool GetPatient(string PatientName, string PHCID);
+        string CheeckPatientName(string PatientName, string ECNumber, string PHCID);
 
-        string GetPatient(string PatientID, string ECNumber, string PatientName, string PHCID);
+        string CheckPatientNameAndECNumberforUpdate(string PatientID, string ECNumber, string PatientName, string PHCID);
     }
 }

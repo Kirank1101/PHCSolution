@@ -106,6 +106,8 @@
     <NavigationProperty Name="PatientPrescriptions" Relationship="Self.FK_PatientPrescription_MPHC" FromRole="MPHC" ToRole="PatientPrescription" />
     <NavigationProperty Name="UserMaps" Relationship="Self.FK_UserMap_MPHC" FromRole="MPHC" ToRole="UserMap" />
     <NavigationProperty Name="DrugStockDetails" Relationship="PHCSolutionsModel.FK_DrugStockDetails_MPHC" FromRole="MPHC" ToRole="DrugStockDetail" />
+    <NavigationProperty Name="PatientECs" Relationship="PHCSolutionsModel.FK__PatientEC__PHCID__59063A47" FromRole="MPHC" ToRole="PatientEC" />
+    <NavigationProperty Name="PatientMCs" Relationship="PHCSolutionsModel.FK__PatientMC__PHCID__59FA5E80" FromRole="MPHC" ToRole="PatientMC" />
   </EntityType>
   <EntityType Name="MState">
     <Key>
@@ -198,23 +200,26 @@
     <Property Name="ObsInd" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
     <NavigationProperty Name="PatientDetail" Relationship="Self.FK_PatientEC_PatientDetails" FromRole="PatientEC" ToRole="PatientDetails" />
     <NavigationProperty Name="PatientMCs" Relationship="Self.FK_PatientMC_PatientEC" FromRole="PatientEC" ToRole="PatientMC" />
+    <Property Name="PHCID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="MPHC" Relationship="PHCSolutionsModel.FK__PatientEC__PHCID__59063A47" FromRole="PatientEC" ToRole="MPHC" />
   </EntityType>
   <EntityType Name="PatientMC">
     <Key>
-      <PropertyRef Name="PatientMC1" />
+      <PropertyRef Name="PatientMCID" />
     </Key>
-    <Property Name="PatientMC1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="PatientID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="PatientECID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="MCNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="MCIssued" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
-    <Property Name="LMP" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="EDD" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="LastModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="ObsInd" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="PatientMCID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="PHCID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="PatientID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="PatientECID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="MCNumber" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="LMP" Nullable="false" Precision="3" Type="DateTime" />
+    <Property Name="EDD" Nullable="false" Precision="3" Type="DateTime" />
+    <Property Name="LastModifiedBy" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="LastModifiedDate" Nullable="false" Precision="3" Type="DateTime" />
+    <Property Name="ObsInd" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" Type="String" />
     <NavigationProperty Name="PatientDetail" Relationship="Self.FK_PatientMC_PatientDetails" FromRole="PatientMC" ToRole="PatientDetails" />
     <NavigationProperty Name="PatientEC" Relationship="Self.FK_PatientMC_PatientEC" FromRole="PatientMC" ToRole="PatientEC" />
+    <NavigationProperty Name="MPHC" Relationship="PHCSolutionsModel.FK__PatientMC__PHCID__59FA5E80" FromRole="PatientMC" ToRole="MPHC" />
   </EntityType>
   <EntityType Name="PatientPrescription">
     <Key>
@@ -549,8 +554,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_PatientMC_PatientDetails">
-    <End Role="PatientDetails" Type="Self.PatientDetail" Multiplicity="1" />
-    <End Role="PatientMC" Type="Self.PatientMC" Multiplicity="*" />
+    <End Type="Self.PatientDetail" Multiplicity="1" Role="PatientDetails" />
+    <End Type="Self.PatientMC" Multiplicity="*" Role="PatientMC" />
     <ReferentialConstraint>
       <Principal Role="PatientDetails">
         <PropertyRef Name="PatientID" />
@@ -573,8 +578,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_PatientMC_PatientEC">
-    <End Role="PatientEC" Type="Self.PatientEC" Multiplicity="1" />
-    <End Role="PatientMC" Type="Self.PatientMC" Multiplicity="*" />
+    <End Type="Self.PatientEC" Multiplicity="1" Role="PatientEC" />
+    <End Type="Self.PatientMC" Multiplicity="*" Role="PatientMC" />
     <ReferentialConstraint>
       <Principal Role="PatientEC">
         <PropertyRef Name="PatientECID" />
@@ -716,16 +721,16 @@
       <End Role="PatientEC" EntitySet="PatientECs" />
     </AssociationSet>
     <AssociationSet Name="FK_PatientMC_PatientDetails" Association="Self.FK_PatientMC_PatientDetails">
-      <End Role="PatientDetails" EntitySet="PatientDetails" />
-      <End Role="PatientMC" EntitySet="PatientMCs" />
+      <End EntitySet="PatientDetails" Role="PatientDetails" />
+      <End EntitySet="PatientMCs" Role="PatientMC" />
     </AssociationSet>
     <AssociationSet Name="FK_PatientPrescription_PatientDetails" Association="Self.FK_PatientPrescription_PatientDetails">
       <End Role="PatientDetails" EntitySet="PatientDetails" />
       <End Role="PatientPrescription" EntitySet="PatientPrescriptions" />
     </AssociationSet>
     <AssociationSet Name="FK_PatientMC_PatientEC" Association="Self.FK_PatientMC_PatientEC">
-      <End Role="PatientEC" EntitySet="PatientECs" />
-      <End Role="PatientMC" EntitySet="PatientMCs" />
+      <End EntitySet="PatientECs" Role="PatientEC" />
+      <End EntitySet="PatientMCs" Role="PatientMC" />
     </AssociationSet>
     <AssociationSet Name="FK_UserDetails_UserDetails" Association="Self.FK_UserDetails_UserDetails">
       <End Role="Users" EntitySet="Users" />
@@ -768,6 +773,14 @@
     <AssociationSet Name="FK__PatientAd__Villa__5812160E" Association="PHCSolutionsModel.FK__PatientAd__Villa__5812160E">
       <End Role="MVillage" EntitySet="MVillages" />
       <End Role="PatientAddress" EntitySet="PatientAddresses" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PatientEC__PHCID__59063A47" Association="PHCSolutionsModel.FK__PatientEC__PHCID__59063A47">
+      <End Role="MPHC" EntitySet="MPHCs" />
+      <End Role="PatientEC" EntitySet="PatientECs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PatientMC__PHCID__59FA5E80" Association="PHCSolutionsModel.FK__PatientMC__PHCID__59FA5E80">
+      <End EntitySet="MPHCs" Role="MPHC" />
+      <End EntitySet="PatientMCs" Role="PatientMC" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="C__MigrationHistory">
@@ -924,6 +937,30 @@
       </Principal>
       <Dependent Role="PatientAddress">
         <PropertyRef Name="VillageID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PatientEC__PHCID__59063A47">
+    <End Type="PHCSolutionsModel.MPHC" Role="MPHC" Multiplicity="1" />
+    <End Type="PHCSolutionsModel.PatientEC" Role="PatientEC" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MPHC">
+        <PropertyRef Name="PHCID" />
+      </Principal>
+      <Dependent Role="PatientEC">
+        <PropertyRef Name="PHCID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PatientMC__PHCID__59FA5E80">
+    <End Type="PHCSolutionsModel.MPHC" Multiplicity="1" Role="MPHC" />
+    <End Type="PHCSolutionsModel.PatientMC" Multiplicity="*" Role="PatientMC" />
+    <ReferentialConstraint>
+      <Principal Role="MPHC">
+        <PropertyRef Name="PHCID" />
+      </Principal>
+      <Dependent Role="PatientMC">
+        <PropertyRef Name="PHCID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

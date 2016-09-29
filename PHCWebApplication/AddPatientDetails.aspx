@@ -38,7 +38,7 @@
 
     <div id="divAddPatientDetail" runat="server">
 
-        <asp:ValidationSummary ID="PatientDetailValidation" runat="server" CssClass="alert alert-danger" />
+        <asp:ValidationSummary ID="PatientDetailValidation" runat="server" CssClass="alert alert-danger" ValidationGroup="PatientDetailSave"    />
         <table>
             <tr>
                 <td>
@@ -105,7 +105,7 @@
                     <asp:Label runat="server" CssClass="control-label" Text="BloodGroup"></asp:Label></td>
                 <td>
                     <div style="width: 250px">
-                        <asp:DropDownList ID="ddlBloodGroup" DataTextField="BloodGroupID" DataValueField="BloodGroupName" CssClass="form-control"
+                        <asp:DropDownList ID="ddlBloodGroup" DataTextField="BloodGroupName" DataValueField="BloodGroupID" CssClass="form-control"
                             runat="server">
                         </asp:DropDownList>
                     </div>
@@ -120,14 +120,15 @@
                     <asp:Label runat="server" CssClass="control-label" Text="Place"></asp:Label></td>
                 <td>
                     <div style="width: 250px">
-                        <asp:DropDownList ID="ddlVillage" DataTextField="VillageName" DataValueField="VillageID" CssClass="form-control"
+                        <asp:DropDownList ID="ddlVillages" DataTextField="VillageName" DataValueField="VillageID" CssClass="form-control"
                             runat="server">
                         </asp:DropDownList>
-
                     </div>
                 </td>
-                <td><asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ValidationGroup="PatientDetailSave"
-                        ErrorMessage="Please Select Place" InitialValue="Select Place" ControlToValidate="ddlVillage">*</asp:RequiredFieldValidator></td>
+                <td>
+                    <asp:RequiredFieldValidator ID="RFV" runat="server" ValidationGroup="PatientDetailSave"
+                        ErrorMessage="Please Select Village" InitialValue="Select Village" ControlToValidate="ddlVillages">*</asp:RequiredFieldValidator>
+                </td>
             </tr>
             <tr>
                 <td>

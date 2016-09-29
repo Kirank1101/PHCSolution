@@ -773,20 +773,33 @@ namespace PHC.DataAccessLayer
                 }
             }
         }
-        public bool GetPatient(string PatientName, string PHCID)
+        public string CheeckPatientName(string PatientName, string ECNumber, string PHCID)
         {
             IUnitOfWork work = null;
             using (work = GetUOW.GetUOWInstance)
             {
                 try
                 {
-                    PatientDetail PD = new GenericRepository<PatientDetail>(work)
+                    PatientDetail PD = new PatientDetail();
+                    PD = new GenericRepository<PatientDetail>(work)
                         .FindBy(d => d.Name == PatientName && d.PHCID == PHCID && d.ObsInd == No)
                         .FirstOrDefault();
                     if (PD != null && PD.Name == PatientName)
-                        return true;
+                        return "Patient Name exist";
                     else
-                        return false;
+                    {
+                        if (!string.IsNullOrEmpty(ECNumber))
+                        {
+                            PatientEC PEC = new GenericRepository<PatientEC>(work)
+                                 .FindBy(d => d.ECNumber == ECNumber && d.PHCID == PHCID && d.ObsInd == No)
+                                 .FirstOrDefault();
+                            if (PEC != null && PEC.ECNumber == ECNumber)
+                            {
+                                return "EC number already exist";
+                            }
+                        }
+                        return string.Empty;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -794,7 +807,7 @@ namespace PHC.DataAccessLayer
                 }
             }
         }
-        public string GetPatient(string PatientID, string ECNumber, string PatientName, string PHCID)
+        public string CheckPatientNameAndECNumberforUpdate(string PatientID, string ECNumber, string PatientName, string PHCID)
         {
             IUnitOfWork work = null;
             using (work = GetUOW.GetUOWInstance)
@@ -809,14 +822,16 @@ namespace PHC.DataAccessLayer
                         return "Patient Name exist";
                     else
                     {
-                        //if (!string.IsNullOrEmpty(ECNumber))
-                        //{
-                        //    PD = new GenericRepository<PatientEC>(work)
-                        //        .FindBy(d => d.PatientID != PatientID && d.ECNumber == ECNumber && d.PHCID == PHCID && d.ObsInd == No)
-                        //        .FirstOrDefault();
-                        //    if (PD != null && PD.Name == PatientName)
-                        //    { }
-                        //}
+                        if (!string.IsNullOrEmpty(ECNumber))
+                        {
+                           PatientEC PEC = new GenericRepository<PatientEC>(work)
+                                .FindBy(d => d.PatientID != PatientID && d.ECNumber == ECNumber && d.PHCID == PHCID && d.ObsInd == No)
+                                .FirstOrDefault();
+                            if (PEC != null && PEC.ECNumber==ECNumber)
+                            {
+                                return "EC number already exist";
+                            }
+                        }
                         return string.Empty;
                     }
 
