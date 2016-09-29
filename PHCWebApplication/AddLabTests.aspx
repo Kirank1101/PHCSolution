@@ -2,24 +2,23 @@
     Inherits="WebApplication5.AddLabTests"  %>
 
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
-
-    <script type="text/javascript">
-        function WebForm_OnSubmit() {
-            if (typeof (ValidatorOnSubmit) == "function" && ValidatorOnSubmit() == false) {
-                for (var i in Page_Validators) {
-                    try {
-                        var control = document.getElementById(Page_Validators[i].controltovalidate);
-                        if (!Page_Validators[i].isvalid) {
-                            control.className = "form-control ErrorControl";
-                        } else {
-                            control.className = "";
-                        }
-                    } catch (e) { }
-                }
-                return false;
+<script type="text/javascript">
+    function WebForm_OnSubmit() {
+        if (typeof (ValidatorOnSubmit) == "function" && ValidatorOnSubmit() == false) {
+            for (var i in Page_Validators) {
+                try {
+                    var control = document.getElementById(Page_Validators[i].controltovalidate);
+                    if (!Page_Validators[i].isvalid) {
+                        control.className = "form-control ErrorControl";
+                    } else {
+                        control.className = "form-control";
+                    }
+                } catch (e) { }
             }
-            return true;
+            return false;
         }
+        return true;
+    }
     </script>
     <style type="text/css">
         .ErrorControl {
@@ -37,7 +36,7 @@
 
     <div id="divLabTest" runat="server">
 
-        <asp:ValidationSummary ID="LabTestValidation" runat="server" CssClass="alert alert-danger" />
+        <asp:ValidationSummary ID="LabTestValidation" runat="server" CssClass="alert alert-danger" ValidationGroup="LabTestValidation"/>
         <table>
             <tr>
                 <td style="width: 103px">
@@ -49,7 +48,7 @@
                 </td>
                 <td>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
-                        ErrorMessage="Disease required" ControlToValidate="txtLabTestName" ValidationGroup="LabTestValidation">*</asp:RequiredFieldValidator></td>
+                        ErrorMessage="LabTest Name required" ControlToValidate="txtLabTestName" ValidationGroup="LabTestValidation" ForeColor="Red">*</asp:RequiredFieldValidator></td>
                 <td style="width: 136px">
                     <asp:Button ID="btnSave" runat="server" Text="Save" CssClass="btn btn-default" OnClick="btnSave_Click"  ValidationGroup="LabTestValidation"/>
                 </td>

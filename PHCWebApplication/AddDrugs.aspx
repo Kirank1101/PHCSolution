@@ -1,24 +1,23 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AddDrugs.aspx.cs" Inherits="WebApplication5.AddDrugs" MasterPageFile="~/Site.Master" %>
 
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
-
-    <script type="text/javascript">
-        function WebForm_OnSubmit() {
-            if (typeof (ValidatorOnSubmit) == "function" && ValidatorOnSubmit() == false) {
-                for (var i in Page_Validators) {
-                    try {
-                        var control = document.getElementById(Page_Validators[i].controltovalidate);
-                        if (!Page_Validators[i].isvalid) {
-                            control.className = "form-control ErrorControl";
-                        } else {
-                            control.className = "";
-                        }
-                    } catch (e) { }
-                }
-                return false;
+<script type="text/javascript">
+    function WebForm_OnSubmit() {
+        if (typeof (ValidatorOnSubmit) == "function" && ValidatorOnSubmit() == false) {
+            for (var i in Page_Validators) {
+                try {
+                    var control = document.getElementById(Page_Validators[i].controltovalidate);
+                    if (!Page_Validators[i].isvalid) {
+                        control.className = "form-control ErrorControl";
+                    } else {
+                        control.className = "form-control";
+                    }
+                } catch (e) { }
             }
-            return true;
+            return false;
         }
+        return true;
+    }
     </script>
     <style type="text/css">
         .ErrorControl {
@@ -36,7 +35,7 @@
 
     <div id="divAddDrugs" runat="server">
 
-        <asp:ValidationSummary ID="DrugValidation" runat="server" CssClass="alert alert-danger" />
+        <asp:ValidationSummary ID="DrugValidation" runat="server" CssClass="alert alert-danger" ValidationGroup="DrugSave"/>
         <table>
             <tr>
                 <td style="width: 103px">
@@ -48,9 +47,7 @@
                 </td>
                 <td>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ValidationGroup="DrugSave"
-                        ErrorMessage="DrugName required" ControlToValidate="txtDrugName">*</asp:RequiredFieldValidator></td>
-            </tr>
-            <tr>
+                        ErrorMessage="DrugName required" ControlToValidate="txtDrugName" ForeColor="Red">*</asp:RequiredFieldValidator></td>
                 <td style="width: 136px">
                     <asp:Button ID="btnAdd" runat="server" Text="Save" CssClass="btn btn-default" OnClick="btnSave_Click" ValidationGroup="DrugSave" />
                 </td>
@@ -76,7 +73,7 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th style="color: #428bca">
+                                            <th style="color: #428bca" >
                                                 <asp:LinkButton Text="Drug Name" CommandName="Sort" CommandArgument="DrugName" runat="Server" />
                                             </th>
                                             <th style="color: #428bca">Action
@@ -90,7 +87,7 @@
                             </LayoutTemplate>
                             <ItemTemplate>
                                 <tr>
-                                    <td>
+                                    <td >
                                         <%# Eval("DrugName") %>
                                     </td>
                                     <td>

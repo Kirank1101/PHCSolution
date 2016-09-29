@@ -56,7 +56,9 @@ namespace WebApplication5
             }
             else
             {
-
+                LVPHCDetails.Items.Clear();
+                LVPHCDetails.DataSource = null;
+                LVPHCDetails.DataBind();
             }
         }
         const string VSDistrict = "VSDistrict";

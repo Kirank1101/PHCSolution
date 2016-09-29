@@ -1419,7 +1419,7 @@ th {
 
 .table {
   margin-bottom: 20px;
-    margin-right: 159px;
+    margin-right: 221px;
 }
 
 .table thead > tr > th,
@@ -1638,9 +1638,11 @@ table th[class*="col-"] {
 }
 
 fieldset {
-  padding: 0;
-  margin: 0;
-  border: 0;
+  border-style: none;
+    border-color: inherit;
+    border-width: 0;
+    padding: 0;
+    margin: 0 255px 0 0;
 }
 
 legend {

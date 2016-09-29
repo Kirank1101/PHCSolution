@@ -2,7 +2,6 @@
 
 
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
-
     <script type="text/javascript">
         function WebForm_OnSubmit() {
             if (typeof (ValidatorOnSubmit) == "function" && ValidatorOnSubmit() == false) {
@@ -12,7 +11,7 @@
                         if (!Page_Validators[i].isvalid) {
                             control.className = "form-control ErrorControl";
                         } else {
-                            control.className = "";
+                            control.className = "form-control";
                         }
                     } catch (e) { }
                 }
@@ -37,7 +36,7 @@
 
     <div id="divAddTaluk" runat="server">
 
-        <asp:ValidationSummary ID="TalukValidation" runat="server" CssClass="alert alert-danger" />
+        <asp:ValidationSummary ID="TalukValidation" runat="server" CssClass="alert alert-danger" ValidationGroup="DrugSave"/>
         <table>
             <tr>
                 <td style="width: 103px">
@@ -52,7 +51,7 @@
                 </td>
                 <td>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ValidationGroup="DrugSave"
-                        ErrorMessage="DrugName required" InitialValue="Select District" ControlToValidate="ddlDistrictNames">*</asp:RequiredFieldValidator></td>
+                        ErrorMessage="DrugName required" InitialValue="Select District" ControlToValidate="ddlDistrictNames" ForeColor="Red">*</asp:RequiredFieldValidator></td>
             </tr>
             <tr>
                 <td style="width: 103px">

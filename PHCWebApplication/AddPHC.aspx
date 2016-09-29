@@ -1,24 +1,23 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AddPHC.aspx.cs" Inherits="WebApplication5.AddPHC" MasterPageFile="~/Site.Master" %>
 
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
-
-    <script type="text/javascript">
-        function WebForm_OnSubmit() {
-            if (typeof (ValidatorOnSubmit) == "function" && ValidatorOnSubmit() == false) {
-                for (var i in Page_Validators) {
-                    try {
-                        var control = document.getElementById(Page_Validators[i].controltovalidate);
-                        if (!Page_Validators[i].isvalid) {
-                            control.className = "form-control ErrorControl";
-                        } else {
-                            control.className = "";
-                        }
-                    } catch (e) { }
-                }
-                return false;
+<script type="text/javascript">
+    function WebForm_OnSubmit() {
+        if (typeof (ValidatorOnSubmit) == "function" && ValidatorOnSubmit() == false) {
+            for (var i in Page_Validators) {
+                try {
+                    var control = document.getElementById(Page_Validators[i].controltovalidate);
+                    if (!Page_Validators[i].isvalid) {
+                        control.className = "form-control ErrorControl";
+                    } else {
+                        control.className = "form-control";
+                    }
+                } catch (e) { }
             }
-            return true;
+            return false;
         }
+        return true;
+    }
     </script>
     <style type="text/css">
         .ErrorControl {
@@ -36,7 +35,7 @@
 
     <div id="divAddPHC" runat="server">
 
-        <asp:ValidationSummary ID="PHCValidation" runat="server" CssClass="alert alert-danger" />
+        <asp:ValidationSummary ID="PHCValidation" runat="server" CssClass="alert alert-danger" ValidationGroup="PHCSave"/>
         <table>
             <tr>
                 <td style="width: 103px">
@@ -51,7 +50,7 @@
                 </td>
                 <td>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ValidationGroup="PHCSave"
-                        ErrorMessage="District required" InitialValue="Select District" ControlToValidate="ddlDistrictNames">*</asp:RequiredFieldValidator></td>
+                        ErrorMessage="District required" InitialValue="Select District" ControlToValidate="ddlDistrictNames" ForeColor="Red">*</asp:RequiredFieldValidator></td>
             </tr>
             <tr>
                 <td style="width: 103px">
@@ -66,7 +65,7 @@
                 </td>
                 <td>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ValidationGroup="PHCSave"
-                        ErrorMessage="Taluk required" InitialValue="Select Taluk" ControlToValidate="ddlTalukNames">*</asp:RequiredFieldValidator></td>
+                        ErrorMessage="Taluk required" InitialValue="Select Taluk" ControlToValidate="ddlTalukNames" ForeColor="Red">*</asp:RequiredFieldValidator></td>
             </tr>
             <tr>
                 <td style="width: 103px">
@@ -78,7 +77,7 @@
                 </td>
                 <td>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ValidationGroup="PHCSave"
-                        ErrorMessage="PHC Name required" ControlToValidate="txtPHCName">*</asp:RequiredFieldValidator></td>
+                        ErrorMessage="PHC Name required" ControlToValidate="txtPHCName" ForeColor="Red">*</asp:RequiredFieldValidator></td>
             </tr>
             <tr>
                 <td colspan="3">

@@ -50,7 +50,9 @@ namespace WebApplication5
             }
             else
             {
-
+                ListView1.Items.Clear();
+                ListView1.DataSource = null;
+                ListView1.DataBind();
             }
         }
         protected void EditRecord(object sender, ListViewEditEventArgs e)

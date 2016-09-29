@@ -47,8 +47,11 @@ namespace WebApplication5
                 ListView1.DataSource = lstdisease;
                 ListView1.DataBind();
             }
-            else { 
-            
+            else
+            {
+                ListView1.DataSource = null;
+                ListView1.DataBind();
+                DPLV1.DataBind();
             }
         }
         protected void EditRecord(object sender, ListViewEditEventArgs e)

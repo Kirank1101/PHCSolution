@@ -13,7 +13,7 @@
                         if (!Page_Validators[i].isvalid) {
                             control.className = "form-control ErrorControl";
                         } else {
-                            control.className = "";
+                            control.className = "form-control";
                         }
                     } catch (e) { }
                 }

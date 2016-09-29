@@ -3,24 +3,23 @@
 <%@ Register TagPrefix="FriendlyUrls" Namespace="Microsoft.AspNet.FriendlyUrls" %>
 
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
-
-    <script type="text/javascript">
-        function WebForm_OnSubmit() {
-            if (typeof (ValidatorOnSubmit) == "function" && ValidatorOnSubmit() == false) {
-                for (var i in Page_Validators) {
-                    try {
-                        var control = document.getElementById(Page_Validators[i].controltovalidate);
-                        if (!Page_Validators[i].isvalid) {
-                            control.className = "form-control ErrorControl";
-                        } else {
-                            control.className = "";
-                        }
-                    } catch (e) { }
-                }
-                return false;
+<script type="text/javascript">
+    function WebForm_OnSubmit() {
+        if (typeof (ValidatorOnSubmit) == "function" && ValidatorOnSubmit() == false) {
+            for (var i in Page_Validators) {
+                try {
+                    var control = document.getElementById(Page_Validators[i].controltovalidate);
+                    if (!Page_Validators[i].isvalid) {
+                        control.className = "form-control ErrorControl";
+                    } else {
+                        control.className = "form-control";
+                    }
+                } catch (e) { }
             }
-            return true;
+            return false;
         }
+        return true;
+    }
     </script>
     <style type="text/css">
         .ErrorControl {
@@ -38,7 +37,7 @@
 
     <div id="divpatientsearch" runat="server">
 
-        <asp:ValidationSummary ID="DiseaseValidation" runat="server" CssClass="alert alert-danger" />
+        <asp:ValidationSummary ID="DiseaseValidation" runat="server" CssClass="alert alert-danger" ValidationGroup="DisesaseValidationgroup"/>
         <table>
             <tr>
                 <td style="width: 103px">
@@ -50,7 +49,7 @@
                 </td>
                 <td>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
-                        ErrorMessage="Disease required" ControlToValidate="txtnewDiseaseName" ValidationGroup="DisesaseValidationgroup">*</asp:RequiredFieldValidator></td>
+                        ErrorMessage="Disease required" ControlToValidate="txtnewDiseaseName" ValidationGroup="DisesaseValidationgroup" ForeColor="Red">*</asp:RequiredFieldValidator></td>
                 <td style="width: 136px">
                     <asp:Button ID="btnAdd" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btnAdd_Click" ValidationGroup="DisesaseValidationgroup"/>
                 </td>
