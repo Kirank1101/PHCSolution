@@ -978,10 +978,6 @@ namespace PHC.DataAccessLayer
                 }
             }
         }
-        public bool AddMScheme(MScheme MScheme)
-        {
-            throw new NotImplementedException();
-        }
         public string CheckSchemforUpdate(string SchemeID, string SchemeName)
         {
             IUnitOfWork work = null;
@@ -1006,15 +1002,69 @@ namespace PHC.DataAccessLayer
         }
         public List<MScheme> GetMSchemes()
         {
-            throw new NotImplementedException();
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                try
+                {
+                    return new GenericRepository<MScheme>(work)
+                        .FindBy(p => p.ObsInd == No)
+                        .OrderByDescending(p => p.LastModifiedDate)
+                        .ToList();
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                    throw ex;
+                }
+            }
+        }
+        public bool AddMScheme(MScheme MScheme)
+        {
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                new GenericRepository<MScheme>(work).Add(MScheme);
+                work.Save();
+            }
+            return true;
         }
         public bool UpdateSchemeDetail(MScheme MScheme)
         {
-            throw new NotImplementedException();
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                MScheme mScheme = new GenericRepository<MScheme>(work).FindBy(n => n.SchemeID == MScheme.SchemeID).FirstOrDefault();
+
+                if (mScheme != null)
+                {
+                    //con.Edit(empobj);
+                    mScheme.Name = MScheme.Name;
+                    mScheme.LastModifiedBy = "System";
+                    mScheme.LastModifiedDate = DateTime.Now;
+                    work.Save();
+
+                    return true;
+                }
+                else
+                    return false;
+            }
         }
         public bool DeleteMScheme(string SchemeID)
         {
-            throw new NotImplementedException();
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                MScheme MScheme = new GenericRepository<MScheme>(work).FindBy(n => n.SchemeID == SchemeID).FirstOrDefault();
+                if (MScheme != null)
+                {
+                    MScheme.ObsInd = yes;
+                    MScheme.LastModifiedBy = "System";
+                    MScheme.LastModifiedDate = DateTime.Now;
+                    work.Save();
+                }
+            }
+            return true;
         }
 
 
@@ -1060,19 +1110,69 @@ namespace PHC.DataAccessLayer
         }
         public List<MReligion> GetMReligions()
         {
-            throw new NotImplementedException();
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                try
+                {
+                    return new GenericRepository<MReligion>(work)
+                        .FindBy(p => p.ObsInd == No)
+                        .OrderByDescending(p => p.LastModifiedDate)
+                        .ToList();
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                    throw ex;
+                }
+            }
         }
         public bool AddMReligion(MReligion MReligion)
         {
-            throw new NotImplementedException();
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                new GenericRepository<MReligion>(work).Add(MReligion);
+                work.Save();
+            }
+            return true;
         }
         public bool UpdateReligionDetail(MReligion MReligion)
         {
-            throw new NotImplementedException();
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                MReligion mReligion = new GenericRepository<MReligion>(work).FindBy(n => n.ReligionID == MReligion.ReligionID).FirstOrDefault();
+
+                if (mReligion != null)
+                {
+                    //con.Edit(empobj);
+                    mReligion.ReligionName = MReligion.ReligionName;
+                    mReligion.LastModifiedBy = "System";
+                    mReligion.LastModifiedDate = DateTime.Now;
+                    work.Save();
+
+                    return true;
+                }
+                else
+                    return false;
+            }
         }
         public bool DeleteReligion(string ReligionID)
         {
-            throw new NotImplementedException();
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                MReligion MReligion = new GenericRepository<MReligion>(work).FindBy(n => n.ReligionID == ReligionID).FirstOrDefault();
+                if (MReligion != null)
+                {
+                    MReligion.ObsInd = yes;
+                    MReligion.LastModifiedBy = "System";
+                    MReligion.LastModifiedDate = DateTime.Now;
+                    work.Save();
+                }
+            }
+            return true;
         }
 
         public MEducation checkEducationName(string EducationName)
@@ -1117,19 +1217,69 @@ namespace PHC.DataAccessLayer
         }
         public List<MEducation> GetMEducations()
         {
-            throw new NotImplementedException();
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                try
+                {
+                    return new GenericRepository<MEducation>(work)
+                        .FindBy(p => p.ObsInd == No)
+                        .OrderByDescending(p => p.LastModifiedDate)
+                        .ToList();
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                    throw ex;
+                }
+            }
         }
         public bool AddMEducation(MEducation MEducation)
         {
-            throw new NotImplementedException();
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                new GenericRepository<MEducation>(work).Add(MEducation);
+                work.Save();
+            }
+            return true;
         }
         public bool UpdateEducationDetail(MEducation MEducation)
         {
-            throw new NotImplementedException();
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                MEducation mEducation = new GenericRepository<MEducation>(work).FindBy(n => n.EducationID == MEducation.EducationID).FirstOrDefault();
+
+                if (mEducation != null)
+                {
+                    //con.Edit(empobj);
+                    mEducation.Name = MEducation.Name;
+                    mEducation.LastModifiedBy = "System";
+                    mEducation.LastModifiedDate = DateTime.Now;
+                    work.Save();
+
+                    return true;
+                }
+                else
+                    return false;
+            }
         }
         public bool DeleteEducation(string EducationID)
         {
-            throw new NotImplementedException();
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                MEducation MEducation = new GenericRepository<MEducation>(work).FindBy(n => n.EducationID == EducationID).FirstOrDefault();
+                if (MEducation != null)
+                {
+                    MEducation.ObsInd = yes;
+                    MEducation.LastModifiedBy = "System";
+                    MEducation.LastModifiedDate = DateTime.Now;
+                    work.Save();
+                }
+            }
+            return true;
         }
 
         public SubCenter checkSubCenterName(string PHCID, string SubCenterName)
@@ -1140,7 +1290,7 @@ namespace PHC.DataAccessLayer
                 try
                 {
                     return new GenericRepository<SubCenter>(work)
-                        .FindBy(n => n.Name == SubCenterName && n.PHCID==PHCID && n.ObsInd == No)
+                        .FindBy(n => n.Name == SubCenterName && n.PHCID == PHCID && n.ObsInd == No)
                         .FirstOrDefault();
                 }
                 catch (Exception ex)
@@ -1159,7 +1309,7 @@ namespace PHC.DataAccessLayer
                 {
                     SubCenter SubCenter = new SubCenter();
                     SubCenter = new GenericRepository<SubCenter>(work)
-                        .FindBy(d => d.SubCenterID != SubCenterID && d.Name == SubCenterName && d.PHCID==PHCID && d.ObsInd == No)
+                        .FindBy(d => d.SubCenterID != SubCenterID && d.Name == SubCenterName && d.PHCID == PHCID && d.ObsInd == No)
                         .FirstOrDefault();
                     if (SubCenter != null && SubCenter.Name == SubCenterName)
                         return "SubCenter already exist";
@@ -1174,19 +1324,69 @@ namespace PHC.DataAccessLayer
         }
         public List<SubCenter> GetSubCenter(string PHCID)
         {
-            throw new NotImplementedException();
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                try
+                {
+                    return new GenericRepository<SubCenter>(work)
+                        .FindBy(p => p.PHCID == PHCID && p.ObsInd == No)
+                        .OrderByDescending(p => p.LastModifiedDate)
+                        .ToList();
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                    throw ex;
+                }
+            }
         }
         public bool AddSubCenter(SubCenter SubCenter)
         {
-            throw new NotImplementedException();
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                new GenericRepository<SubCenter>(work).Add(SubCenter);
+                work.Save();
+            }
+            return true;
         }
         public bool UpdateSubCenterDetail(SubCenter SubCenter)
         {
-            throw new NotImplementedException();
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                SubCenter subCenter = new GenericRepository<SubCenter>(work).FindBy(n => n.SubCenterID == SubCenter.SubCenterID && n.PHCID == SubCenter.PHCID).FirstOrDefault();
+
+                if (subCenter != null)
+                {
+                    //con.Edit(empobj);
+                    subCenter.Name = SubCenter.Name;
+                    subCenter.LastModifiedBy = "System";
+                    subCenter.LastModifiedDate = DateTime.Now;
+                    work.Save();
+
+                    return true;
+                }
+                else
+                    return false;
+            }
         }
         public bool DeleteSubCenter(string SubCenterID, string PHCID)
         {
-            throw new NotImplementedException();
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                SubCenter SubCenter = new GenericRepository<SubCenter>(work).FindBy(n => n.SubCenterID == SubCenterID && n.PHCID == PHCID).FirstOrDefault();
+                if (SubCenter != null)
+                {
+                    SubCenter.ObsInd = yes;
+                    SubCenter.LastModifiedBy = "System";
+                    SubCenter.LastModifiedDate = DateTime.Now;
+                    work.Save();
+                }
+            }
+            return true;
         }
     }
 }
