@@ -61,7 +61,7 @@ namespace WebApplication5
                 LVPHCDetails.DataBind();
             }
         }
-        const string VSDistrict = "VSDistrict";
+        const string VSDistrict = PHCConstatnt.VSDistrict;
         public List<MDistrictDTO> ViewstateDistricts
         {
             get

@@ -18,8 +18,16 @@ namespace PHC.BAInterfaces.Constants
         public const string PHCID = "MATTIKOTE20160927ceef73446a4d6c";
         public const string Male = "M";
         public const string FeMale = "F";
+
+
         public const string VSVillages = "VSVillages";
         public const string VSPatientID = "PatientID";
         public const string VSECNo = "VSECNo";
+        public const string VSDistrict = "VSDistrict";
+        public const string VSDisease = "VSDisease";
+        public const string VSDrugs = "VSDrugs";
+        public const string DrugIssueID = "DrugIssueID";
+        public const string VSDrugName = "VSDrugName";
+
     }
 }

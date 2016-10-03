@@ -976,5 +976,11 @@ namespace PHC.Business
                 return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Deleted." };
         }
 
+
+
+        public PatientDetailDTO GeTPatientInfo(string p)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

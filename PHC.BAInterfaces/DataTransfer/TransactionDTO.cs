@@ -50,6 +50,7 @@ namespace PHC.BAInterfaces.DataTransfer
         public string LoginID { get; set; }
         public string ContactNo { get; set; }
     }
+    [Serializable]
     public class MDiseaseDTO
     {
         public string DiseaseID { get; set; }
@@ -60,6 +61,15 @@ namespace PHC.BAInterfaces.DataTransfer
     {
         public string DrugID { get; set; }
         public string DrugName { get; set; }        
+    }
+    [Serializable]
+    public class TempDrugsDTO
+    {
+        public string DrugIssueID { get; set; }
+        public string DrugID { get; set; }
+        public string DrugName { get; set; }
+        public int Quantity { get; set; }
+        public string Dosage { get; set; }
     }
     public class MLabTestDTO
     {

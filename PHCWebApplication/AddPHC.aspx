@@ -101,7 +101,7 @@
                             OnItemDeleting="DeleteRecord" OnItemCommand="LVPHCDetails_ItemCommand"
                             OnPagePropertiesChanging="LVPHCDetails_PagePropertiesChanging">
                             <EmptyDataTemplate>
-                                There are no entries found for MDrugs
+                                There are no entries found for PHC Add
                             </EmptyDataTemplate>
                             <LayoutTemplate>
                                 <table class="table">

@@ -76,6 +76,8 @@ namespace PHC.BAInterfaces.Business
         ResultDTO UpdateMEducation(string EducationID, string EducationName);
         ResultDTO DeleteMEducation(string EducationID);
 
-        
+
+
+        PatientDetailDTO GeTPatientInfo(string p);
     }
 }
