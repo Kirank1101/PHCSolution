@@ -71,6 +71,12 @@ namespace PHC.BAInterfaces.DataTransfer
         public int Quantity { get; set; }
         public string Dosage { get; set; }
     }
+    [Serializable]
+    public class TempLabTestDTO
+    {
+        public string LabTestID { get; set; }
+        public string LabTestName { get; set; }
+    }
     public class MLabTestDTO
     {
         public string LabTestID { get; set; }

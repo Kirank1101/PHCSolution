@@ -26,8 +26,10 @@ namespace PHC.BAInterfaces.Constants
         public const string VSDistrict = "VSDistrict";
         public const string VSDisease = "VSDisease";
         public const string VSDrugs = "VSDrugs";
-        public const string DrugIssueID = "DrugIssueID";
         public const string VSDrugName = "VSDrugName";
+        public const string VSLabTest = "VSLabTest";
 
+        public const string LabTestID = "LabTestID";
+        public const string DrugIssueID = "DrugIssueID";
     }
 }

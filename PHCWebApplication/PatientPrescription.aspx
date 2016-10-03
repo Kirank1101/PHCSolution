@@ -59,11 +59,11 @@
             </tr>
         </table>
     </div>
-    <table>
+    <table style="width: 50%">
         <tr>
             <td>
                 <div class="form-group">
-                    <table>
+                    <table style="width: 100%">
 
                         <tr>
                             <td>
@@ -81,29 +81,6 @@
                                         </td>
 
                                     </tr>
-                                </table>
-                            </td>
-                            <td>
-                                <table>
-                                    <tr>
-                                        <td class="auto-style1">
-                                            <div class="form-group">
-                                                <asp:Label ID="lblplac" runat="server" Text="Place:" CssClass="control-label"></asp:Label>
-                                            </div>
-                                        </td>
-                                        <td class="auto-style1">
-                                            <div class="form-group">
-                                                <asp:Label ID="lblVillage" runat="server" CssClass="control-label"></asp:Label>
-                                            </div>
-                                        </td>
-
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <table>
                                     <tr>
                                         <td>
                                             <div class="form-group">
@@ -122,6 +99,18 @@
                             <td>
                                 <table>
                                     <tr>
+                                        <td class="auto-style1">
+                                            <div class="form-group">
+                                                <asp:Label ID="lblplac" runat="server" Text="Place:" CssClass="control-label"></asp:Label>
+                                            </div>
+                                        </td>
+                                        <td class="auto-style1">
+                                            <div class="form-group">
+                                                <asp:Label ID="lblVillage" runat="server" CssClass="control-label"></asp:Label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <td>
                                             <div class="form-group">
                                                 <asp:Label ID="Label2" runat="server" Text="Blood Group:" CssClass="control-label"></asp:Label>
@@ -132,7 +121,6 @@
                                                 <asp:Label ID="lblbloodgroup" runat="server" CssClass="control-label"></asp:Label>
                                             </div>
                                         </td>
-
                                     </tr>
                                 </table>
                             </td>
@@ -235,8 +223,7 @@
                     <tr>
                         <td>
                             <asp:ListView ID="LVDrugs" runat="server" ItemPlaceholderID="itemPlaceHolder1" DataKeyNames="DrugIssueID"
-                                OnItemDeleting="DeleteRecord" OnItemCommand="LVDrugs_ItemCommand"
-                                OnPagePropertiesChanging="LVPHCDetails_PagePropertiesChanging">
+                                OnItemDeleting="DeleteRecord" OnItemCommand="LVDrugs_ItemCommand">
                                 <EmptyDataTemplate>
                                     There are no entries found for MDrugs
                                 </EmptyDataTemplate>
@@ -261,9 +248,7 @@
                                 </LayoutTemplate>
                                 <ItemTemplate>
                                     <tr>
-
                                         <td>
-
                                             <asp:Label runat="server" ID="lblDrugIssueID" Text='<%# Eval("DrugIssueID") %>' Visible="false"></asp:Label>
                                             <asp:Label runat="server" ID="lblDrugID" Text='<%# Eval("DrugID") %>' Visible="false"></asp:Label>
                                             <%# Eval("DrugName") %>
@@ -284,28 +269,108 @@
                                     </tr>
                                 </ItemTemplate>
                             </asp:ListView>
-
-                            <asp:DataPager ID="DPLV1" PageSize="5" runat="server" PagedControlID="LVDrugs">
-                                <Fields>
-                                    <asp:NextPreviousPagerField ShowLastPageButton="False" ShowNextPageButton="False" ButtonType="Button" ButtonCssClass="btn" />
-                                    <asp:NumericPagerField ButtonType="Button" NumericButtonCssClass="btn" CurrentPageLabelCssClass="btn disabled" NextPreviousButtonCssClass="btn" />
-                                    <asp:NextPreviousPagerField ShowFirstPageButton="False" ShowPreviousPageButton="False" ButtonType="Button" ButtonCssClass="btn" />
-                                </Fields>
-                            </asp:DataPager>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <fieldset>
-                                <legend>LabTest Details</legend>
-
-                            </fieldset>
                         </td>
                     </tr>
                 </table>
             </td>
         </tr>
-
     </table>
+    
+    <h3>Add LabTest</h3>
+    <br />
 
+    <div id="divAddLabTest" runat="server">
+
+        <table>
+            <tr>
+                <td style="width: 103px">
+                    <asp:Label runat="server" CssClass="control-label" Text="LabTest Name"></asp:Label></td>
+                <td>
+                    <div style="width: 250px">
+                        <asp:DropDownList ID="ddlLabTestNames" DataTextField="LabTestName" DataValueField="LabTestID"  CssClass="form-control"
+                            runat="server">
+                        </asp:DropDownList>
+
+                    </div>
+                </td>
+                <td>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ValidationGroup="LabTestSave"
+                        ErrorMessage="LabTest required" InitialValue="Select LabTest" ControlToValidate="ddlLabTestNames" ForeColor="Red">*</asp:RequiredFieldValidator></td>
+            </tr>
+            <tr>
+                <td style="width: 136px">
+                    <asp:Button ID="btnAdd" runat="server" Text="Save" CssClass="btn btn-default" OnClick="btnSave_Click" ValidationGroup="LabTestSave" />
+                </td>
+            </tr>
+        </table>
+
+        <br />
+        <br />
+        <table>
+            <tr>
+                <td>
+                    <fieldset>
+                        <legend>Taluk Details</legend>
+
+                        <asp:ListView ID="LVLabTest" runat="server" ItemPlaceholderID="itemPlaceHolder1" OnItemDataBound="OnItemDataBound"
+                            OnItemEditing="EditRecord" OnItemCanceling="CancelEditRecord" DataKeyNames="LabTestID"
+                            OnItemUpdating="UpdateRecord"
+                            OnItemDeleting="DeleteLabTest" >
+                            <EmptyDataTemplate>
+                                There are no entries found for MDrugs
+                            </EmptyDataTemplate>
+                            <LayoutTemplate>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th style="color: #428bca">
+                                                <asp:LinkButton Text="LabTest Name" CommandName="Sort" CommandArgument="LabTestName" runat="Server" />
+                                            </th>
+                                            <th style="color: #428bca">Action
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <asp:PlaceHolder ID="itemPlaceHolder1" runat="server"></asp:PlaceHolder>
+                                    </tbody>
+                                </table>
+                            </LayoutTemplate>
+                            <ItemTemplate>
+                                <tr>
+                                    <td>
+                                        <%# Eval("LabTestName") %>
+                                    </td>
+                                    <td>
+                                        <asp:LinkButton ID="lnkEdit" runat="server" Text="Edit" CommandName="Edit" />
+
+                                        <span onclick="return confirm('Are you sure to delete?')">
+                                            <asp:LinkButton ID="lnkDel" runat="server" Text="Delete" CommandName="Delete" />
+                                        </span>
+                                    </td>
+                                </tr>
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <tr style="background-color: #efefef;">
+                                    <td>
+                                        <asp:DropDownList ID="ddlLabTest" runat="server" DataTextField="LabTestName" DataValueField="LabTestID"  CssClass="form-control">
+                                        </asp:DropDownList>
+                                        <asp:Label ID="lblLabTestName" runat="server" Text='<%# Eval("LabTestName") %>' Visible="false"></asp:Label>
+
+                                    </td>
+                                    <td>
+                                        <asp:LinkButton ID="lnkUpdate" runat="server" Text="Update" CommandName="Update" ValidationGroup="Add2" />
+                                        <asp:LinkButton ID="lnkCancel" runat="server" Text="Cancel" CommandName="Cancel" />
+                                    </td>
+                                </tr>
+                            </EditItemTemplate>
+                        </asp:ListView>
+
+                    </fieldset>
+                    <br />
+                    <br />
+                </td>
+
+            </tr>
+        </table>
+    </div>
 </asp:Content>

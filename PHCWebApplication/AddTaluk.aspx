@@ -36,7 +36,7 @@
 
     <div id="divAddTaluk" runat="server">
 
-        <asp:ValidationSummary ID="TalukValidation" runat="server" CssClass="alert alert-danger" ValidationGroup="DrugSave"/>
+        <asp:ValidationSummary ID="TalukValidation" runat="server" CssClass="alert alert-danger" ValidationGroup="TalukSave"/>
         <table>
             <tr>
                 <td style="width: 103px">
@@ -50,7 +50,7 @@
                     </div>
                 </td>
                 <td>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ValidationGroup="DrugSave"
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ValidationGroup="TalukSave"
                         ErrorMessage="DrugName required" InitialValue="Select District" ControlToValidate="ddlDistrictNames" ForeColor="Red">*</asp:RequiredFieldValidator></td>
             </tr>
             <tr>
@@ -62,12 +62,12 @@
                     </div>
                 </td>
                 <td>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ValidationGroup="DrugSave"
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ValidationGroup="TalukSave"
                         ErrorMessage="DrugName required" ControlToValidate="txtTalukName">*</asp:RequiredFieldValidator></td>
             </tr>
             <tr>
                 <td style="width: 136px">
-                    <asp:Button ID="btnAdd" runat="server" Text="Save" CssClass="btn btn-default" OnClick="btnSave_Click" ValidationGroup="DrugSave" />
+                    <asp:Button ID="btnAdd" runat="server" Text="Save" CssClass="btn btn-default" OnClick="btnSave_Click" ValidationGroup="TalukSave" />
                 </td>
             </tr>
         </table>
@@ -85,7 +85,7 @@
                             OnItemUpdating="UpdateRecord"
                             OnItemDeleting="DeleteRecord" OnPagePropertiesChanging="LVTalukDetails_PagePropertiesChanging">
                             <EmptyDataTemplate>
-                                There are no entries found for MDrugs
+                                There are no entries found for Taluk
                             </EmptyDataTemplate>
                             <LayoutTemplate>
                                 <table class="table">

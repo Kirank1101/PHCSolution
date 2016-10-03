@@ -21,9 +21,12 @@ namespace PHCWebApplication
                 BindDisease();
                 BindddlDrugs();
                 BindLVDrugs();
-                PopulateData();
+                BindddlLabTest();
+                BindLVLabTest();
+               
                 btnUpdate.Visible = false;
                 btnSave.Visible = true;
+
             }
         }
 
@@ -49,10 +52,7 @@ namespace PHCWebApplication
             ddlDisease.DataBind();
             ddlDisease.Items.Insert(0, "---Select Disease---");
         }
-        private void PopulateData()
-        {
 
-        }
         protected void ResetPage()
         {
             lblage.Text = string.Empty;
@@ -60,10 +60,8 @@ namespace PHCWebApplication
             lblECNO.Text = string.Empty;
             lblVillage.Text = string.Empty;
         }
-
         const string VSDisease = PHCConstatnt.VSDisease;
         const string VSDrugs = PHCConstatnt.VSDrugs;
-
         const string VSDrugName = PHCConstatnt.VSDrugName;
         public List<MDrugsDTO> ViewstateDrugNames
         {
@@ -79,7 +77,6 @@ namespace PHCWebApplication
                 return (List<MDrugsDTO>)ViewState[VSDrugName];
             }
         }
-
         public List<MDiseaseDTO> ViewstateDisease
         {
             get
@@ -110,7 +107,6 @@ namespace PHCWebApplication
                 ViewState[VSDrugs] = value;
             }
         }
-
         private List<TempDrugsDTO> GetEmptyDrugsList()
         {
             List<TempDrugsDTO> lsttempdrug = new List<TempDrugsDTO>();
@@ -119,7 +115,6 @@ namespace PHCWebApplication
             lsttempdrug.Add(tempdrug);
             return lsttempdrug;
         }
-
         protected void btnSearch_Click(object sender, System.EventArgs e)
         {
             if (!string.IsNullOrEmpty(txtPatientName.Text.Trim()))
@@ -155,7 +150,6 @@ namespace PHCWebApplication
             BindLVDrugs();
             ResetDrugs();
         }
-
         private void ResetDrugs()
         {
             ViewState[PHCConstatnt.DrugIssueID] = null;
@@ -244,12 +238,112 @@ namespace PHCWebApplication
                 btnSave.Visible = false;
             }
         }
-        protected void LVPHCDetails_PagePropertiesChanging(object sender, PagePropertiesChangingEventArgs e)
+
+        #region LabTest
+        const string VSLabTest = PHCConstatnt.VSLabTest;
+        private void BindddlLabTest()
         {
-            this.DPLV1.SetPageProperties(e.StartRowIndex, e.MaximumRows, false);
-            PopulateData();
+            List<MLabTestDTO> lstMLabTestDTO = new List<MLabTestDTO>();
+            lstMLabTestDTO = objITransactionBusiness.GetMLabTest();
+            if (lstMLabTestDTO != null && lstMLabTestDTO.Count > 0)
+            {
+                ddlLabTestNames.DataSource = lstMLabTestDTO;
+                ddlLabTestNames.DataBind();
+                ddlLabTestNames.Items.Insert(0, "---Select LabTest---");
+            }
         }
+        public List<TempLabTestDTO> ViewstateLabTest
+        {
+            get
+            {
+                if (ViewState[VSLabTest] == null)
+                {
+                    List<TempLabTestDTO> lstTempLabTestDTO = new List<TempLabTestDTO>();
+                    ViewState[VSLabTest] = lstTempLabTestDTO;
+                }
+                return (List<TempLabTestDTO>)ViewState[VSLabTest];
+            }
+            set
+            {
+                ViewState[VSLabTest] = value;
+            }
+        }
+        private void BindLVLabTest()
+        {
+            LVLabTest.DataSource = ViewstateLabTest;
+            LVLabTest.DataBind();
+        }
+        protected void btnSave_Click(object sender, EventArgs e)
+        {
+            List<TempLabTestDTO> lsttempLab = new List<TempLabTestDTO>();
+            lsttempLab = ViewstateLabTest;
+            TempLabTestDTO TL = new TempLabTestDTO();
+            TL.LabTestID =  ddlLabTestNames.SelectedValue;
+            TL.LabTestName = ddlLabTestNames.SelectedItem.Text;
+            lsttempLab.Add(TL);
+            ViewstateLabTest = lsttempLab;
+            BindLVLabTest();
+            ResetLabs();
+        }
+        private void ResetLabs()
+        {
+            ViewState[PHCConstatnt.LabTestID] = null;
+            ddlLabTestNames.SelectedIndex = 0;
+        }
+        protected void EditRecord(object sender, ListViewEditEventArgs e)
+        {
+            LVLabTest.EditIndex = e.NewEditIndex;
+            this.BindLVLabTest();
+        }
+        protected void UpdateRecord(object sender, ListViewUpdateEventArgs e)
+        {
+            string LabTestID = ViewState[PHCConstatnt.LabTestID].ToString();
+            List<TempLabTestDTO> lsttemplabtest = new List<TempLabTestDTO>();
+            lsttemplabtest = ViewstateLabTest;
 
+            TempLabTestDTO td = lsttemplabtest.Where(p => p.LabTestID == LabTestID).FirstOrDefault();
+            td.LabTestName= Convert.ToString(ddlLabTestNames.SelectedItem);
+            ViewstateLabTest = lsttemplabtest;
 
+            //if (resultDTO.IsSuccess)
+            //{
+
+            BindLVLabTest();
+            ResetLabs();
+            
+        }
+        protected void CancelEditRecord(object sender, ListViewCancelEventArgs e)
+        {
+            LVLabTest.EditIndex = -1;
+            BindLVLabTest();
+        }
+        protected void DeleteLabTest(object sender, ListViewDeleteEventArgs e)
+        {
+            ResetLabs();
+            string LabTestID = LVDrugs.DataKeys[e.ItemIndex].Value.ToString();
+            List<TempLabTestDTO> llt = ViewstateLabTest;
+            TempLabTestDTO td = llt.Where(p => p.LabTestID == LabTestID).FirstOrDefault();
+            llt.Remove(td);
+            ViewstateLabTest = llt;
+            BindLVLabTest();
+
+        }
+        protected void OnItemDataBound(object sender, ListViewItemEventArgs e)
+        {
+            if (LVLabTest.EditIndex == (e.Item as ListViewDataItem).DataItemIndex)
+            {
+                DropDownList ddlLabTest = (e.Item.FindControl("ddlLabTest") as DropDownList);
+
+                List<MLabTestDTO> lstlabTest = new List<MLabTestDTO>();
+                lstlabTest = objITransactionBusiness.GetMLabTest();
+
+                ddlLabTest.DataSource = lstlabTest;
+                ddlLabTest.DataBind();
+                ddlLabTest.Items.Insert(0, new ListItem("Select LabTest", "0"));
+                Label lblLabTestName = (e.Item.FindControl("lblLabTestName") as Label);
+                ddlLabTest.Items.FindByText(lblLabTestName.Text).Selected = true;
+            }
+        }
+        #endregion
     }
 }
