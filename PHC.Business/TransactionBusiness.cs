@@ -486,7 +486,7 @@ namespace PHC.Business
                 PatientDetail.PatientECs.Add(patientec);
             }
 
-            String checkPatientExist = objDA.CheeckPatientName(PatientName,ECNumber, PatientDetail.PHCID);
+            String checkPatientExist = objDA.CheeckPatientName(PatientName, ECNumber, PatientDetail.PHCID);
             if (string.IsNullOrEmpty(checkPatientExist))
             {
                 if (objDA.AddPatientDetails(PatientDetail))
@@ -495,7 +495,7 @@ namespace PHC.Business
                     return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Saved." };
             }
             else
-                return new ResultDTO() { IsSuccess = false, Message = checkPatientExist};
+                return new ResultDTO() { IsSuccess = false, Message = checkPatientExist };
         }
         public ResultDTO UpdatePatientDetail(string PHCID, string PatientID, string PatientName, string ECNumber, short Age, string DOB, string Gender, string BloodGroup, string VillageID, string Address, string ContactNo, string PhoneNo)
         {
@@ -537,7 +537,7 @@ namespace PHC.Business
                 patientec.ObsInd = "N";
                 PatientDetail.PatientECs.Add(patientec);
             }
-            string checkPatientExist = objDA.CheckPatientNameAndECNumberforUpdate(PatientDetail.PatientID,ECNumber, PatientName, PatientDetail.PHCID);
+            string checkPatientExist = objDA.CheckPatientNameAndECNumberforUpdate(PatientDetail.PatientID, ECNumber, PatientName, PatientDetail.PHCID);
             if (string.IsNullOrEmpty(checkPatientExist))
             {
                 if (objDA.UpdatePatientDetail(PatientDetail))
@@ -683,14 +683,14 @@ namespace PHC.Business
                 }
             return lstMVillageDTO;
         }
-        public ResultDTO DeleteMVillage(string VillageID,string PHCID)
+        public ResultDTO DeleteMVillage(string VillageID, string PHCID)
         {
-            if (objDA.DeleteVillage(VillageID,PHCID))
+            if (objDA.DeleteVillage(VillageID, PHCID))
                 return new ResultDTO() { IsSuccess = true, Message = "Successfully Deleted." };
             else
                 return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Deleted." };
         }
-        public ResultDTO SaveMVillage(string VillageName,string PHCID)
+        public ResultDTO SaveMVillage(string VillageName, string PHCID)
         {
 
             MVillage MVillage = new MVillage();
@@ -700,7 +700,7 @@ namespace PHC.Business
             MVillage.LastModifiedBy = "System";
             MVillage.LastModifiedDate = DateTime.Now;
             MVillage.ObsInd = "N";
-            MVillage checkVillage = objDA.CheckVillage(PHCID,VillageName);
+            MVillage checkVillage = objDA.CheckVillage(PHCID, VillageName);
             if (checkVillage == null)
             {
                 if (objDA.AddMVillage(MVillage))
@@ -978,9 +978,67 @@ namespace PHC.Business
 
 
 
-        public PatientDetailDTO GeTPatientInfo(string p)
+        public PatientDetailDTO GeTPatientInfo(string PatientName,string PHCID)
         {
-            throw new NotImplementedException();
+            PatientDetail PD = objDA.GeTPatientInfo(PatientName, PHCID);
+            PatientDetailDTO patientDetailDTO = null;
+            if (PD != null) {
+                patientDetailDTO = new PatientDetailDTO();
+                patientDetailDTO.PatientID = PD.PatientID;
+                patientDetailDTO.PatientName = PD.Name;
+                patientDetailDTO.Age = PD.age;
+                patientDetailDTO.ECNumber = (PD.PatientECs.Count>0) ? PD.PatientECs.FirstOrDefault().ECNumber : string.Empty;
+                patientDetailDTO.Place = (PD.PatientAddresses.Count > 0) ? PD.PatientAddresses.FirstOrDefault().MVillage.Name : string.Empty;
+                patientDetailDTO.BloodGroup = PD.BloodGroup;
+            }
+            return patientDetailDTO;
+        }
+
+
+        public ResultDTO SavePatientPrescription(string PatientID, string PHCID, string DiseaseID, string Discription, List<TempDrugsDTO> lTD, List<TempLabTestDTO> lLT)
+        {
+            PatientPrescription PP = new PatientPrescription();
+            PP.PrescriptionID = CommonUtil.CreateUniqueID("PP");
+            PP.PatientID = PatientID;
+            PP.PHCID = PHCID;
+            PP.DiseaseID = DiseaseID;
+            PP.Description = Discription;
+            PP.LastModifiedBy = "System";
+            PP.LastModifiedDate = DateTime.Now;
+            PP.ObsInd = "N";
+
+            foreach (TempDrugsDTO item in lTD)
+            {
+                DrugsIssued DI = new DrugsIssued();
+                DI.DrugsID = CommonUtil.CreateUniqueID("DI");
+                DI.PHCID = PHCID;
+                DI.PrescriptionID = PP.PrescriptionID;
+                DI.DrugID = item.DrugID;
+                DI.Quantity = item.Quantity;
+                DI.Dosage = item.Dosage;
+                DI.LastModifiedBy = "System";
+                DI.LastModifiedDate = DateTime.Now;
+                DI.ObsInd = "N";
+                PP.DrugsIssueds.Add(DI);
+            }
+            if (lLT != null && lLT.Count > 0)
+                foreach (TempLabTestDTO item in lLT)
+                {
+                    LabTestDetail LT = new LabTestDetail();
+                    LT.LabTestDetailID = CommonUtil.CreateUniqueID("LT");
+                    LT.LabTestID = item.LabTestID;
+                    LT.PatientPrescriptionID = PP.PrescriptionID;
+                    LT.PHCID = PHCID;
+                    LT.LastModifiedBy = "System";
+                    LT.LastModifiedDate = DateTime.Now;
+                    LT.ObsInd = "N";
+                    PP.LabTestDetails.Add(LT);
+                }
+
+            if (objDA.AddPatientPrescription(PP))
+                return new ResultDTO() { IsSuccess = true, Message = "Successfully Saved." };
+            else
+                return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Saved." };
         }
     }
 }

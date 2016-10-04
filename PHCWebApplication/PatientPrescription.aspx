@@ -358,8 +358,8 @@
     <table style="width: 100%">
         <tr>
             <td>
-                <div  align="center">
-                    <asp:Button ID="btnsaveclose" runat="server" Text="Save and Close"  CssClass="btn btn-default" />
+                <div align="center">
+                    <asp:Button ID="btnsaveclose" runat="server" Text="Save and Close" CssClass="btn btn-default" OnClick="btnSaveClose_Click" />
                 </div>
             </td>
         </tr>

@@ -68,7 +68,7 @@ namespace PHC.BAInterfaces.DataTransfer
         public string DrugIssueID { get; set; }
         public string DrugID { get; set; }
         public string DrugName { get; set; }
-        public int Quantity { get; set; }
+        public Int16 Quantity { get; set; }
         public string Dosage { get; set; }
     }
     [Serializable]

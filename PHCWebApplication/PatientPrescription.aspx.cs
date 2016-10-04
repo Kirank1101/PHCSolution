@@ -23,7 +23,7 @@ namespace PHCWebApplication
                 BindLVDrugs();
                 BindddlLabTest();
                 BindLVLabTest();
-               
+
                 btnUpdate.Visible = false;
                 btnSave.Visible = true;
 
@@ -63,6 +63,7 @@ namespace PHCWebApplication
         const string VSDisease = PHCConstatnt.VSDisease;
         const string VSDrugs = PHCConstatnt.VSDrugs;
         const string VSDrugName = PHCConstatnt.VSDrugName;
+        const string VSPatientID = PHCConstatnt.VSPatientID;
         public List<MDrugsDTO> ViewstateDrugNames
         {
             get
@@ -107,6 +108,20 @@ namespace PHCWebApplication
                 ViewState[VSDrugs] = value;
             }
         }
+        public string ViewStatePatientID
+        {
+            get
+            {
+                if (ViewState[VSPatientID] == null)
+                    return string.Empty;
+                else
+                    return (string)ViewState[VSPatientID];
+            }
+            set
+            {
+                ViewState[VSPatientID] = value;
+            }
+        }
         private List<TempDrugsDTO> GetEmptyDrugsList()
         {
             List<TempDrugsDTO> lsttempdrug = new List<TempDrugsDTO>();
@@ -120,10 +135,11 @@ namespace PHCWebApplication
             if (!string.IsNullOrEmpty(txtPatientName.Text.Trim()))
             {
                 PatientDetailDTO PatientDetailDTO = new PatientDetailDTO();
-                PatientDetailDTO = objITransactionBusiness.GeTPatientInfo(txtPatientName.Text.Trim());
+                PatientDetailDTO = objITransactionBusiness.GeTPatientInfo(txtPatientName.Text.Trim(), PHCConstatnt.PHCID);
 
                 if (PatientDetailDTO != null)
                 {
+                    ViewStatePatientID = PatientDetailDTO.PatientID;
                     lblage.Text = Convert.ToString(PatientDetailDTO.Age);
                     lblbloodgroup.Text = PatientDetailDTO.BloodGroup;
                     lblVillage.Text = PatientDetailDTO.Place;
@@ -143,7 +159,7 @@ namespace PHCWebApplication
             TD.DrugIssueID = Convert.ToString(DateTime.Now);
             TD.DrugID = ddlDrugNames.SelectedValue;
             TD.DrugName = ddlDrugNames.SelectedItem.Text;
-            TD.Quantity = Convert.ToInt32(txtQuantity.Text);
+            TD.Quantity = Convert.ToInt16(txtQuantity.Text);
             TD.Dosage = txtDosage.Text;
             lsttempdrug.Add(TD);
             ViewstateDrugsIssues = lsttempdrug;
@@ -168,7 +184,7 @@ namespace PHCWebApplication
             TempDrugsDTO td = lsttempdrugs.Where(p => p.DrugIssueID == DrugIssueID).FirstOrDefault();
             td.DrugID = ddlDrugNames.SelectedValue;
             td.DrugName = Convert.ToString(ddlDrugNames.SelectedItem);
-            td.Quantity = Convert.ToInt32(txtQuantity.Text);
+            td.Quantity = Convert.ToInt16(txtQuantity.Text);
             td.Dosage = txtDosage.Text;
             ViewstateDrugsIssues = lsttempdrugs;
 
@@ -278,7 +294,7 @@ namespace PHCWebApplication
             List<TempLabTestDTO> lsttempLab = new List<TempLabTestDTO>();
             lsttempLab = ViewstateLabTest;
             TempLabTestDTO TL = new TempLabTestDTO();
-            TL.LabTestID =  ddlLabTestNames.SelectedValue;
+            TL.LabTestID = ddlLabTestNames.SelectedValue;
             TL.LabTestName = ddlLabTestNames.SelectedItem.Text;
             lsttempLab.Add(TL);
             ViewstateLabTest = lsttempLab;
@@ -302,7 +318,7 @@ namespace PHCWebApplication
             lsttemplabtest = ViewstateLabTest;
 
             TempLabTestDTO td = lsttemplabtest.Where(p => p.LabTestID == LabTestID).FirstOrDefault();
-            td.LabTestName= Convert.ToString(ddlLabTestNames.SelectedItem);
+            td.LabTestName = Convert.ToString(ddlLabTestNames.SelectedItem);
             ViewstateLabTest = lsttemplabtest;
 
             //if (resultDTO.IsSuccess)
@@ -310,7 +326,7 @@ namespace PHCWebApplication
 
             BindLVLabTest();
             ResetLabs();
-            
+
         }
         protected void CancelEditRecord(object sender, ListViewCancelEventArgs e)
         {
@@ -345,5 +361,26 @@ namespace PHCWebApplication
             }
         }
         #endregion
+        protected void btnSaveClose_Click(object sender, EventArgs e)
+        {
+            List<TempDrugsDTO> lTD = ViewstateDrugsIssues;
+            List<TempLabTestDTO> lLT = ViewstateLabTest;
+            if (lTD != null && lTD.Count > 0)
+            {
+                ResultDTO resultDTO = objITransactionBusiness.SavePatientPrescription(ViewStatePatientID, PHCConstatnt.PHCID, ddlDisease.SelectedValue, txtdescription.Text, lTD, lLT);
+                if (resultDTO.IsSuccess)
+                {
+                    pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessBackGroundColor);
+                    lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessForeColor);
+                    lblstatus.Text = resultDTO.Message;
+                }
+                else
+                {
+                    pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorBackGroundColor);
+                    lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorForeColor);
+                    lblstatus.Text = resultDTO.Message;
+                }
+            }
+        }
     }
 }

@@ -1388,5 +1388,36 @@ namespace PHC.DataAccessLayer
             }
             return true;
         }
+
+
+        public bool AddPatientPrescription(PatientPrescription PP)
+        {
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                new GenericRepository<PatientPrescription>(work).Add(PP);
+                work.Save();
+            }
+            return true;
+        }
+
+
+        public PatientDetail GeTPatientInfo(string PatientName, string PHCID)
+        {
+
+            IUnitOfWork work = null;
+            work = GetUOW.GetUOWInstance;
+            {
+                try
+                {
+                    return new GenericRepository<PatientDetail>(work).FindBy(d => d.Name== PatientName && d.PHCID==PHCID && d.ObsInd == No).SingleOrDefault();
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                    throw ex;
+                }
+            }            
+        }
     }
 }

@@ -158,5 +158,10 @@ namespace PHC.DAInterfaces.DataAccess
         bool DeleteEducation(string EducationID);
 
         bool DeleteSubCenter(string SubCenterID, string PHCID);
+
+        bool AddPatientPrescription(PatientPrescription PP);
+
+
+        PatientDetail GeTPatientInfo(string PatientName,string PHCID);
     }
 }
