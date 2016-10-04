@@ -23,7 +23,7 @@ namespace WebApplication5
         }
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            ResultDTO resultDTO = objITransactionBusiness.SaveMdisease(DateTime.Now.ToLongTimeString(), txtnewDiseaseName.Text);
+            ResultDTO resultDTO = objITransactionBusiness.SaveMdisease(txtnewDiseaseName.Text);
             if (resultDTO.IsSuccess)
             {
                 pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessBackGroundColor);

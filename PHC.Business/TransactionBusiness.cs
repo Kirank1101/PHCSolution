@@ -94,10 +94,10 @@ namespace PHC.Business
                 }
             return lstDiseaseDTO;
         }
-        public ResultDTO SaveMdisease(string DiseaseID, string DiseaseName)
+        public ResultDTO SaveMdisease(string DiseaseName)
         {
             MDisease Disease = new MDisease();
-            Disease.DiseaseID = DiseaseID;
+            Disease.DiseaseID = CommonUtil.CreateUniqueID("MD");
             Disease.Name = DiseaseName;
             Disease.StateID = "Karnataka";
             Disease.LastModifiedBy = "System";
@@ -256,7 +256,7 @@ namespace PHC.Business
         public ResultDTO SaveMTaluk(string DistrictID, string TalukName)
         {
             MTaluk MTaluk = new MTaluk();
-            MTaluk.TalukID = "LabTestID1";
+            MTaluk.TalukID = CommonUtil.CreateUniqueID("TN");
             MTaluk.DistrictID = DistrictID;
             MTaluk.Name = TalukName;
             MTaluk.LastModifiedBy = "System";

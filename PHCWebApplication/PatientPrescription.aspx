@@ -33,6 +33,7 @@
 
     <h4>Patient Prescription</h4>
     <div id="divpatientsearch" runat="server">
+        <asp:ValidationSummary ID="DiseaseValidation" runat="server" CssClass="alert alert-danger" ValidationGroup="PPSave" />
     </div>
     <table style="width: 100%">
         <tr>
@@ -46,9 +47,12 @@
                             <td style="width: 280px">
                                 <div class="col-sm-offset-0">
                                     <asp:TextBox ID="txtPatientName" runat="server" CssClass="form-control"></asp:TextBox>
+
                                 </div>
                             </td>
-
+                            <td>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ValidationGroup="PPSave"
+                                    ErrorMessage="Patient Name required" ControlToValidate="txtPatientName" ForeColor="Red">*</asp:RequiredFieldValidator></td>
                             <td>
                                 <div class="col-sm-offset-0 col-sm-10">
                                     <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-default" OnClick="btnSearch_Click" />
@@ -122,6 +126,7 @@
                 </div>
             </td>
             <td style="width: 50%">
+
                 <table>
                     <tr>
                         <td>
@@ -133,13 +138,16 @@
                                 <asp:DropDownList ID="ddlDisease" runat="server" CssClass="form-control"
                                     DataTextField="DiseaseName" DataValueField="DiseaseID">
                                 </asp:DropDownList>
+
                             </div>
                         </td>
+                        <td>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ValidationGroup="PPSave"
+                                ErrorMessage="Disease Name required" InitialValue="Select Disease" ControlToValidate="ddlDisease" ForeColor="Red">*</asp:RequiredFieldValidator></td>
                     </tr>
                     <tr>
                         <td>
                             <asp:Label runat="server" Text="Description" CssClass="control-label" />
-
                         </td>
 
                         <td style="width: 400px">
@@ -147,6 +155,7 @@
                                 <asp:TextBox ID="txtdescription" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
                             </div>
                         </td>
+                        <td></td>
                     </tr>
                 </table>
             </td>
@@ -173,7 +182,7 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ValidationGroup="PHCSave"
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ValidationGroup="DrugAdd"
                                             ErrorMessage="Drug required" InitialValue="Select Drug" ControlToValidate="ddlDrugNames" ForeColor="Red">*</asp:RequiredFieldValidator></td>
                                 </tr>
                                 <tr>
@@ -185,7 +194,7 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ValidationGroup="PHCSave"
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ValidationGroup="DrugAdd"
                                             ErrorMessage="Quantity required" ControlToValidate="txtQuantity" ForeColor="Red">*</asp:RequiredFieldValidator></td>
                                 </tr>
                                 <tr>
@@ -197,13 +206,13 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ValidationGroup="PHCSave"
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ValidationGroup="DrugAdd"
                                             ErrorMessage="Dosage required" ControlToValidate="txtDosage" ForeColor="Red">*</asp:RequiredFieldValidator></td>
                                 </tr>
                                 <tr>
                                     <td colspan="3">
-                                        <asp:Button ID="btnSave" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btnSaveDrug_Click" ValidationGroup="PHCSave" />
-                                        <asp:Button ID="btnUpdate" runat="server" Text="Update" CssClass="btn btn-default" OnClick="btnUpdateDrug_Click" ValidationGroup="PHCSave" />
+                                        <asp:Button ID="btnSave" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btnSaveDrug_Click" ValidationGroup="DrugAdd" />
+                                        <asp:Button ID="btnUpdate" runat="server" Text="Update" CssClass="btn btn-default" OnClick="btnUpdateDrug_Click" ValidationGroup="DrugAdd" />
 
                                         <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="btn btn-default" OnClick="btnCancelDrug_Click" />
                                     </td>
@@ -359,7 +368,7 @@
         <tr>
             <td>
                 <div align="center">
-                    <asp:Button ID="btnsaveclose" runat="server" Text="Save and Close" CssClass="btn btn-default" OnClick="btnSaveClose_Click" />
+                    <asp:Button ID="btnsaveclose" runat="server" Text="Save and Close" CssClass="btn btn-default" OnClick="btnSaveClose_Click" ValidationGroup="PPSave" />
                 </div>
             </td>
         </tr>

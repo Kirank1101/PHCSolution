@@ -373,6 +373,7 @@ namespace PHCWebApplication
                     pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessBackGroundColor);
                     lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessForeColor);
                     lblstatus.Text = resultDTO.Message;
+                    PageReset();
                 }
                 else
                 {
@@ -380,6 +381,35 @@ namespace PHCWebApplication
                     lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorForeColor);
                     lblstatus.Text = resultDTO.Message;
                 }
+            }
+            else
+            {
+                pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorBackGroundColor);
+                lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.WarningForeColor);
+                lblstatus.Text = "Please enter Mandator fields";
+            }
+        }
+
+        private void PageReset()
+        {
+            try
+            {
+                ViewStatePatientID = string.Empty;
+                ViewstateDrugsIssues = null;
+                ViewstateLabTest = null;
+                txtPatientName.Text = string.Empty;
+                txtDosage.Text = string.Empty;
+                txtQuantity.Text = string.Empty;
+                txtdescription.Text = string.Empty;
+                BindLVDrugs();
+                BindLVLabTest();
+                ResetDrugs();
+                ResetLabs();
+                BindDisease();                
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
     }
