@@ -50,7 +50,7 @@ namespace PHCWebApplication
         {
             ddlDisease.DataSource = ViewstateDisease;
             ddlDisease.DataBind();
-            ddlDisease.Items.Insert(0, "---Select Disease---");
+            ddlDisease.Items.Insert(0, "Select Disease");
         }
 
         protected void ResetPage()
@@ -249,7 +249,7 @@ namespace PHCWebApplication
             {
                 ddlLabTestNames.DataSource = lstMLabTestDTO;
                 ddlLabTestNames.DataBind();
-                ddlLabTestNames.Items.Insert(0, "---Select LabTest---");
+                ddlLabTestNames.Items.Insert(0, "Select LabTest");
             }
         }
         public List<TempLabTestDTO> ViewstateLabTest
