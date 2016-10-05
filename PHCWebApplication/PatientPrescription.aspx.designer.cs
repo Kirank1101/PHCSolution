@@ -76,15 +76,6 @@ namespace PHCWebApplication {
         protected global::System.Web.UI.WebControls.Button btnSearch;
         
         /// <summary>
-        /// lblECNO control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblECNO;
-        
-        /// <summary>
         /// lblECNumber control.
         /// </summary>
         /// <remarks>
@@ -92,15 +83,6 @@ namespace PHCWebApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblECNumber;
-        
-        /// <summary>
-        /// Label1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
         /// lblage control.
@@ -112,15 +94,6 @@ namespace PHCWebApplication {
         protected global::System.Web.UI.WebControls.Label lblage;
         
         /// <summary>
-        /// lblplac control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblplac;
-        
-        /// <summary>
         /// lblVillage control.
         /// </summary>
         /// <remarks>
@@ -128,15 +101,6 @@ namespace PHCWebApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblVillage;
-        
-        /// <summary>
-        /// Label2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
         /// lblbloodgroup control.
@@ -308,6 +272,15 @@ namespace PHCWebApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListView LVLabTest;
+        
+        /// <summary>
+        /// LVPatientVisit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView LVPatientVisit;
         
         /// <summary>
         /// btnsaveclose control.

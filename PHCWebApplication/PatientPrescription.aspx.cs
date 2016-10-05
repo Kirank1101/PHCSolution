@@ -23,10 +23,23 @@ namespace PHCWebApplication
                 BindLVDrugs();
                 BindddlLabTest();
                 BindLVLabTest();
-
                 btnUpdate.Visible = false;
                 btnSave.Visible = true;
 
+            }
+        }
+
+        private void BindPatientVisitHistory(string PatientID, string PHCID)
+        {
+            try
+            {
+                List<PatientVistiHistoryDTO> lstPVH = objITransactionBusiness.GetPatientVistHistory(PatientID, PHCID);
+                LVPatientVisit.DataSource = lstPVH;
+                LVPatientVisit.DataBind();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 
@@ -57,7 +70,7 @@ namespace PHCWebApplication
         {
             lblage.Text = string.Empty;
             lblbloodgroup.Text = string.Empty;
-            lblECNO.Text = string.Empty;
+            lblECNumber.Text = string.Empty;
             lblVillage.Text = string.Empty;
         }
         const string VSDisease = PHCConstatnt.VSDisease;
@@ -144,6 +157,8 @@ namespace PHCWebApplication
                     lblbloodgroup.Text = PatientDetailDTO.BloodGroup;
                     lblVillage.Text = PatientDetailDTO.Place;
                     lblECNumber.Text = PatientDetailDTO.ECNumber;
+                    BindPatientVisitHistory(PatientDetailDTO.PatientID, PatientDetailDTO.PHCID);
+
                 }
                 else
                     ResetPage();
@@ -405,7 +420,7 @@ namespace PHCWebApplication
                 BindLVLabTest();
                 ResetDrugs();
                 ResetLabs();
-                BindDisease();                
+                BindDisease();
             }
             catch (Exception ex)
             {

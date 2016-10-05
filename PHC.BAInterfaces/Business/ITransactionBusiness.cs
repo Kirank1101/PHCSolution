@@ -80,7 +80,9 @@ namespace PHC.BAInterfaces.Business
 
         PatientDetailDTO GeTPatientInfo(string PatientName,string PHCID);
 
-        ResultDTO SavePatientPrescription(string PatientID, string PHCID, string DiseaseID, string Discription, List<TempDrugsDTO> lTD, List<TempLabTestDTO> lLT);
+        ResultDTO SavePatientPrescription(string PatientID, string PHCID, string DiseaseID, string Description, List<TempDrugsDTO> lTD, List<TempLabTestDTO> lLT);
 
+
+        List<PatientVistiHistoryDTO> GetPatientVistHistory(string PatientID, string PHCID);
     }
 }

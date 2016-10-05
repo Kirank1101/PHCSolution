@@ -978,16 +978,18 @@ namespace PHC.Business
 
 
 
-        public PatientDetailDTO GeTPatientInfo(string PatientName,string PHCID)
+        public PatientDetailDTO GeTPatientInfo(string PatientName, string PHCID)
         {
             PatientDetail PD = objDA.GeTPatientInfo(PatientName, PHCID);
             PatientDetailDTO patientDetailDTO = null;
-            if (PD != null) {
+            if (PD != null)
+            {
                 patientDetailDTO = new PatientDetailDTO();
                 patientDetailDTO.PatientID = PD.PatientID;
                 patientDetailDTO.PatientName = PD.Name;
                 patientDetailDTO.Age = PD.age;
-                patientDetailDTO.ECNumber = (PD.PatientECs.Count>0) ? PD.PatientECs.FirstOrDefault().ECNumber : string.Empty;
+                patientDetailDTO.PHCID = PD.PHCID;
+                patientDetailDTO.ECNumber = (PD.PatientECs.Count > 0) ? PD.PatientECs.FirstOrDefault().ECNumber : string.Empty;
                 patientDetailDTO.Place = (PD.PatientAddresses.Count > 0) ? PD.PatientAddresses.FirstOrDefault().MVillage.Name : string.Empty;
                 patientDetailDTO.BloodGroup = PD.BloodGroup;
             }
@@ -995,14 +997,14 @@ namespace PHC.Business
         }
 
 
-        public ResultDTO SavePatientPrescription(string PatientID, string PHCID, string DiseaseID, string Discription, List<TempDrugsDTO> lTD, List<TempLabTestDTO> lLT)
+        public ResultDTO SavePatientPrescription(string PatientID, string PHCID, string DiseaseID, string Description, List<TempDrugsDTO> lTD, List<TempLabTestDTO> lLT)
         {
             PatientPrescription PP = new PatientPrescription();
             PP.PrescriptionID = CommonUtil.CreateUniqueID("PP");
             PP.PatientID = PatientID;
             PP.PHCID = PHCID;
             PP.DiseaseID = DiseaseID;
-            PP.Description = Discription;
+            PP.Description = Description;
             PP.LastModifiedBy = "System";
             PP.LastModifiedDate = DateTime.Now;
             PP.ObsInd = "N";
@@ -1039,6 +1041,53 @@ namespace PHC.Business
                 return new ResultDTO() { IsSuccess = true, Message = "Successfully Saved." };
             else
                 return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Saved." };
+        }
+
+
+        public List<PatientVistiHistoryDTO> GetPatientVistHistory(string PatientID, string PHCID)
+        {
+            List<PatientPrescription> lstPatientPrescription = objDA.GetPatientVistHistory(PatientID, PHCID);
+            List<PatientVistiHistoryDTO> lstPVHDTO = new List<PatientVistiHistoryDTO>();
+            if (lstPatientPrescription != null)
+                foreach (PatientPrescription PD in lstPatientPrescription)
+                {
+                    PatientVistiHistoryDTO PVHDTO = new PatientVistiHistoryDTO();
+                    PVHDTO.PatientID = PD.PatientID;
+                    PVHDTO.PatientName = PD.PatientDetail.Name;
+                    PVHDTO.PHCID = PD.PHCID;
+                    PVHDTO.DiseaseName = PD.MDisease.Name;
+                    PVHDTO.Description = PD.Description;
+                    PVHDTO.DrugName = GetDrugName(PD);
+                    PVHDTO.LabTestName = GetLabTestName(PD);
+                    lstPVHDTO.Add(PVHDTO);
+                }
+            return lstPVHDTO;
+        }
+
+        private string GetLabTestName(PatientPrescription PD)
+        {
+            PatientPrescription PP = PD;
+            List<LabTestDetail> lstLT = new List<LabTestDetail>();
+            string LabTestname = string.Empty;
+
+            if (PP.DrugsIssueds.Count > 0)
+                lstLT = PP.LabTestDetails.ToList();
+            foreach (LabTestDetail LTD in lstLT)
+                LabTestname += LTD.MLabTest.Name + ", " + Convert.ToString(LTD.Result) + ", " + LTD.Remarks + "\n";
+            return LabTestname;
+        }
+
+        private string GetDrugName(PatientPrescription PD)
+        {
+            PatientPrescription PP = PD;
+            List<DrugsIssued> lstDI = new List<DrugsIssued>();
+            string DrugsIssued = string.Empty;
+
+            if (PP.DrugsIssueds.Count > 0)
+                lstDI = PP.DrugsIssueds.ToList();
+            foreach (DrugsIssued DI in lstDI)
+                    DrugsIssued += DI.MDrug.Name + ", " + Convert.ToString(DI.Quantity) + ", " + DI.Dosage+"\n";
+            return DrugsIssued;
         }
     }
 }

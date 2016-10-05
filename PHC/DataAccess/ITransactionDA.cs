@@ -163,5 +163,7 @@ namespace PHC.DAInterfaces.DataAccess
 
 
         PatientDetail GeTPatientInfo(string PatientName,string PHCID);
+
+        List<PatientPrescription> GetPatientVistHistory(string PatientID, string PHCID);
     }
 }

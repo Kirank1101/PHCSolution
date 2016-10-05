@@ -98,6 +98,16 @@ namespace PHC.BAInterfaces.DataTransfer
         public string ContactNo { get; set; }
         public string ECNumber { get; set; }
     }
+    public class PatientVistiHistoryDTO
+    {
+        public string PatientID { get; set; }
+        public string PHCID { get; set; }
+        public string PatientName { get; set; }
+        public string DiseaseName { get; set; }
+        public string Description { get; set; }
+        public string DrugName { get; set; }
+        public string LabTestName { get; set; }
+    }
     public class DrugStockDTO
     {
         public string DrugStockID { get; set; }

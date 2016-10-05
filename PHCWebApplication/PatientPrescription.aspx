@@ -31,13 +31,14 @@
         <asp:Label ID="lblstatus" runat="server"></asp:Label>
     </asp:Panel>
 
-    <h4>Patient Prescription</h4>
     <div id="divpatientsearch" runat="server">
         <asp:ValidationSummary ID="DiseaseValidation" runat="server" CssClass="alert alert-danger" ValidationGroup="PPSave" />
     </div>
+
     <table style="width: 100%">
         <tr>
             <td style="width: 50%">
+                <h4>Patient Prescription</h4>
                 <div class="form-group">
                     <table style="width: 100%">
                         <tr>
@@ -61,6 +62,7 @@
                             </td>
                         </tr>
                     </table>
+                    <br />
                     <table style="width: 100%">
                         <tr>
                             <td>
@@ -68,25 +70,15 @@
                                     <tr>
                                         <td>
                                             <div class="form-group">
-                                                <asp:Label ID="lblECNO" runat="server" Text="ECNumber:" CssClass="control-label"></asp:Label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-group">
+                                                <b>ECNumber: </b>
                                                 <asp:Label ID="lblECNumber" runat="server" CssClass="control-label"></asp:Label>
                                             </div>
                                         </td>
-
                                     </tr>
                                     <tr>
                                         <td>
                                             <div class="form-group">
-                                                <asp:Label ID="Label1" runat="server" Text="Age:" CssClass="control-label">
-                                                </asp:Label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-group">
+                                                <b>Age: </b>
                                                 <asp:Label ID="lblage" runat="server" CssClass="control-label"></asp:Label>
                                             </div>
                                         </td>
@@ -98,11 +90,7 @@
                                     <tr>
                                         <td>
                                             <div class="form-group">
-                                                <asp:Label ID="lblplac" runat="server" Text="Place:" CssClass="control-label"></asp:Label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-group">
+                                                <b>Place: </b>
                                                 <asp:Label ID="lblVillage" runat="server" CssClass="control-label"></asp:Label>
                                             </div>
                                         </td>
@@ -110,11 +98,7 @@
                                     <tr>
                                         <td>
                                             <div class="form-group">
-                                                <asp:Label ID="Label2" runat="server" Text="Blood Group:" CssClass="control-label"></asp:Label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-group">
+                                                <b>Blood Group: </b>
                                                 <asp:Label ID="lblbloodgroup" runat="server" CssClass="control-label"></asp:Label>
                                             </div>
                                         </td>
@@ -125,43 +109,48 @@
                     </table>
                 </div>
             </td>
-            <td style="width: 50%">
-
+            <td style="width: 50%; vertical-align: top">
+                <h4>Patient Disease</h4>
                 <table>
                     <tr>
                         <td>
-                            <asp:Label runat="server" Text="Disease" CssClass="control-label" />
-                        </td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <asp:Label runat="server" Text="Disease" CssClass="control-label" />
+                                    </td>
 
-                        <td>
-                            <div class="col-sm-offset-0">
-                                <asp:DropDownList ID="ddlDisease" runat="server" CssClass="form-control"
-                                    DataTextField="DiseaseName" DataValueField="DiseaseID">
-                                </asp:DropDownList>
+                                    <td>
+                                        <div class="col-sm-offset-0">
+                                            <asp:DropDownList ID="ddlDisease" runat="server" CssClass="form-control"
+                                                DataTextField="DiseaseName" DataValueField="DiseaseID">
+                                            </asp:DropDownList>
 
-                            </div>
-                        </td>
-                        <td>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ValidationGroup="PPSave"
-                                ErrorMessage="Disease Name required" InitialValue="Select Disease" ControlToValidate="ddlDisease" ForeColor="Red">*</asp:RequiredFieldValidator></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:Label runat="server" Text="Description" CssClass="control-label" />
-                        </td>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ValidationGroup="PPSave"
+                                            ErrorMessage="Disease Name required" InitialValue="Select Disease" ControlToValidate="ddlDisease" ForeColor="Red">*</asp:RequiredFieldValidator></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <asp:Label runat="server" Text="Description" CssClass="control-label" />
+                                    </td>
 
-                        <td style="width: 400px">
-                            <div class="col-sm-offset-0">
-                                <asp:TextBox ID="txtdescription" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
-                            </div>
+                                    <td style="width: 400px">
+                                        <div class="col-sm-offset-0">
+                                            <asp:TextBox ID="txtdescription" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </table>
                         </td>
-                        <td></td>
                     </tr>
                 </table>
             </td>
         </tr>
     </table>
-    <br />
     <table style="width: 100%">
         <tr>
             <td style="width: 50%; vertical-align: top">
@@ -364,11 +353,61 @@
         </tr>
     </table>
     <br />
+    <h4>Patient Visit History</h4>
     <table style="width: 100%">
         <tr>
             <td>
+                <asp:ListView ID="LVPatientVisit" runat="server" ItemPlaceholderID="itemPlaceHolder1" >
+                    <EmptyDataTemplate>
+                        There are no entries found for MDrugs
+                    </EmptyDataTemplate>
+                    <LayoutTemplate>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th style="color: #428bca">
+                                        <asp:LinkButton Text="Disease Name" CommandName="Sort" CommandArgument="DiseaseName" runat="Server" />
+                                    </th>
+                                    <th style="color: #428bca">
+                                        <asp:LinkButton Text="Description" CommandName="Sort" CommandArgument="Description" runat="Server" />
+                                    </th>
+                                    <th style="color: #428bca">
+                                        <asp:LinkButton Text="Drugs Issued" CommandName="Sort" CommandArgument="DrugName" runat="Server" />
+                                    </th>
+                                    <th style="color: #428bca">
+                                        <asp:LinkButton Text="LabTest Result" CommandName="Sort" CommandArgument="LabTestName" runat="Server" />
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <asp:PlaceHolder ID="itemPlaceHolder1" runat="server"></asp:PlaceHolder>
+                            </tbody>
+                        </table>
+                    </LayoutTemplate>
+                    <ItemTemplate>
+                        <tr>
+                            <td>
+                                <%# Eval("DiseaseName") %>
+                            </td>
+                            <td>
+                                <%# Eval("Description") %>
+                            </td>
+                            <td>
+                                <%# Eval("DrugName") %>
+                            </td>
+                            <td>
+                                <%# Eval("LabTestName") %>
+                            </td>
+                        </tr>
+                    </ItemTemplate>
+                </asp:ListView>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
                 <div align="center">
-                    <asp:Button ID="btnsaveclose" runat="server" Text="Save and Close" CssClass="btn btn-default" OnClick="btnSaveClose_Click" ValidationGroup="PPSave" />
+                    <asp:Button ID="btnsaveclose" runat="server" Text="Save and Close" CssClass="btn btn-default" OnClick="btnSaveClose_Click" ValidationGroup="PPSave" Font-Bold="true" />
                 </div>
             </td>
         </tr>

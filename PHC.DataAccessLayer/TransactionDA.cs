@@ -1388,8 +1388,6 @@ namespace PHC.DataAccessLayer
             }
             return true;
         }
-
-
         public bool AddPatientPrescription(PatientPrescription PP)
         {
             IUnitOfWork work = null;
@@ -1400,8 +1398,6 @@ namespace PHC.DataAccessLayer
             }
             return true;
         }
-
-
         public PatientDetail GeTPatientInfo(string PatientName, string PHCID)
         {
 
@@ -1418,6 +1414,28 @@ namespace PHC.DataAccessLayer
                     throw ex;
                 }
             }            
+        }
+
+
+        public List<PatientPrescription> GetPatientVistHistory(string PatientID, string PHCID)
+        {
+            IUnitOfWork work = null;
+            work = GetUOW.GetUOWInstance;
+            {
+                try
+                {
+                    return new GenericRepository<PatientPrescription>(work)
+                        .FindBy(p => p.PHCID == PHCID && p.PatientID==PatientID && p.ObsInd == No)
+                        .OrderByDescending(p => p.LastModifiedDate)
+                        .ToList();
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                    throw ex;
+                }
+            }
+
         }
     }
 }
