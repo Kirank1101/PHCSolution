@@ -24,6 +24,7 @@ namespace PHC.DataAccess
             this.MEducations = new HashSet<MEducation>();
             this.MReligions = new HashSet<MReligion>();
             this.MSchemes = new HashSet<MScheme>();
+            this.MVaccinations = new HashSet<MVaccination>();
         }
     
         public string StateID { get; set; }
@@ -40,5 +41,6 @@ namespace PHC.DataAccess
         public virtual ICollection<MEducation> MEducations { get; set; }
         public virtual ICollection<MReligion> MReligions { get; set; }
         public virtual ICollection<MScheme> MSchemes { get; set; }
+        public virtual ICollection<MVaccination> MVaccinations { get; set; }
     }
 }

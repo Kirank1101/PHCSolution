@@ -14,6 +14,11 @@ namespace PHC.DataAccess
     
     public partial class MScheme
     {
+        public MScheme()
+        {
+            this.PHCTransactions = new HashSet<PHCTransaction>();
+        }
+    
         public string SchemeID { get; set; }
         public string StateID { get; set; }
         public string Name { get; set; }
@@ -22,5 +27,6 @@ namespace PHC.DataAccess
         public string ObsInd { get; set; }
     
         public virtual MState MState { get; set; }
+        public virtual ICollection<PHCTransaction> PHCTransactions { get; set; }
     }
 }

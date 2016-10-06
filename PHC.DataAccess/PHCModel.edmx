@@ -219,6 +219,20 @@
           <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
           <Property Name="ObsInd" Type="char" MaxLength="1" Nullable="false" />
         </EntityType>
+        <EntityType Name="MVaccination">
+          <Key>
+            <PropertyRef Name="VaccinationID" />
+          </Key>
+          <Property Name="VaccinationID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="StateID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProtectsAgainst" Type="nvarchar" MaxLength="2000" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="ObsInd" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="VaccinationFrom" Type="int" />
+          <Property Name="VaccinationTo" Type="int" />
+        </EntityType>
         <EntityType Name="MVillage">
           <Key>
             <PropertyRef Name="VillageID" />
@@ -299,6 +313,26 @@
           <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
           <Property Name="ObsInd" Type="char" MaxLength="1" Nullable="false" />
         </EntityType>
+        <EntityType Name="PHCTransaction">
+          <Key>
+            <PropertyRef Name="PHCTransactionID" />
+          </Key>
+          <Property Name="PHCTransactionID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PHCID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SchemeID" Type="nvarchar" MaxLength="50" />
+          <Property Name="PatientID" Type="nvarchar" MaxLength="50" />
+          <Property Name="ChequeNo" Type="nvarchar" MaxLength="30" />
+          <Property Name="ReceivedAmount" Type="money" />
+          <Property Name="SpentAmount" Type="money" />
+          <Property Name="ISDebited" Type="char" MaxLength="1" />
+          <Property Name="Description" Type="nvarchar" MaxLength="2000" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="ObsInd" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="HandOver" Type="nvarchar" MaxLength="100" />
+          <Property Name="ReceivedFrom" Type="nvarchar" MaxLength="100" />
+          <Property Name="TransactionType" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
         <EntityType Name="SubCenter">
           <Key>
             <PropertyRef Name="SubCenterID" />
@@ -347,6 +381,18 @@
           <Property Name="UserID" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="LoginID" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="ObsInd" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VaccinationHistory">
+          <Key>
+            <PropertyRef Name="VaccinationIssuedID" />
+          </Key>
+          <Property Name="VaccinationIssuedID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="VaccinationID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PHCID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="VaccinatedDate" Type="datetime" Nullable="false" />
           <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
           <Property Name="ObsInd" Type="char" MaxLength="1" Nullable="false" />
@@ -647,6 +693,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_MVaccination_MState">
+          <End Role="MState" Type="Self.MState" Multiplicity="1" />
+          <End Role="MVaccination" Type="Self.MVaccination" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MState">
+              <PropertyRef Name="StateID" />
+            </Principal>
+            <Dependent Role="MVaccination">
+              <PropertyRef Name="StateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_MVillage_MPHC">
           <End Role="MPHC" Type="Self.MPHC" Multiplicity="1" />
           <End Role="MVillage" Type="Self.MVillage" Multiplicity="*" />
@@ -755,6 +813,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PHCTransaction_MPHC">
+          <End Role="MPHC" Type="Self.MPHC" Multiplicity="1" />
+          <End Role="PHCTransaction" Type="Self.PHCTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MPHC">
+              <PropertyRef Name="PHCID" />
+            </Principal>
+            <Dependent Role="PHCTransaction">
+              <PropertyRef Name="PHCID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PHCTransaction_MScheme">
+          <End Role="MScheme" Type="Self.MScheme" Multiplicity="0..1" />
+          <End Role="PHCTransaction" Type="Self.PHCTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MScheme">
+              <PropertyRef Name="SchemeID" />
+            </Principal>
+            <Dependent Role="PHCTransaction">
+              <PropertyRef Name="SchemeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PHCTransaction_PatientDetails">
+          <End Role="PatientDetails" Type="Self.PatientDetails" Multiplicity="0..1" />
+          <End Role="PHCTransaction" Type="Self.PHCTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PatientDetails">
+              <PropertyRef Name="PatientID" />
+            </Principal>
+            <Dependent Role="PHCTransaction">
+              <PropertyRef Name="PatientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SubCenter_MPHC">
           <End Role="MPHC" Type="Self.MPHC" Multiplicity="1" />
           <End Role="SubCenter" Type="Self.SubCenter" Multiplicity="*" />
@@ -851,6 +945,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_VaccinationHistory_MPHC">
+          <End Role="MPHC" Type="Self.MPHC" Multiplicity="1" />
+          <End Role="VaccinationHistory" Type="Self.VaccinationHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MPHC">
+              <PropertyRef Name="PHCID" />
+            </Principal>
+            <Dependent Role="VaccinationHistory">
+              <PropertyRef Name="PHCID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VaccinationHistory_MVaccination">
+          <End Role="MVaccination" Type="Self.MVaccination" Multiplicity="1" />
+          <End Role="VaccinationHistory" Type="Self.VaccinationHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MVaccination">
+              <PropertyRef Name="VaccinationID" />
+            </Principal>
+            <Dependent Role="VaccinationHistory">
+              <PropertyRef Name="VaccinationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="PHCSolutionsModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
@@ -871,16 +989,19 @@
           <EntitySet Name="MScheme" EntityType="Self.MScheme" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MState" EntityType="Self.MState" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MTaluk" EntityType="Self.MTaluk" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MVaccination" EntityType="Self.MVaccination" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MVillage" EntityType="Self.MVillage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientAddress" EntityType="Self.PatientAddress" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientDetails" EntityType="Self.PatientDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientEC" EntityType="Self.PatientEC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientMC" EntityType="Self.PatientMC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientPrescription" EntityType="Self.PatientPrescription" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PHCTransaction" EntityType="Self.PHCTransaction" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubCenter" EntityType="Self.SubCenter" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserDetails" EntityType="Self.UserDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserMap" EntityType="Self.UserMap" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VaccinationHistory" EntityType="Self.VaccinationHistory" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__DrugsIssu__DrugI__38996AB5" Association="Self.FK__DrugsIssu__DrugI__38996AB5">
             <End Role="MDrugs" EntitySet="MDrugs" />
             <End Role="DrugsIssued" EntitySet="DrugsIssued" />
@@ -977,6 +1098,10 @@
             <End Role="MDistrict" EntitySet="MDistrict" />
             <End Role="MTaluk" EntitySet="MTaluk" />
           </AssociationSet>
+          <AssociationSet Name="FK_MVaccination_MState" Association="Self.FK_MVaccination_MState">
+            <End Role="MState" EntitySet="MState" />
+            <End Role="MVaccination" EntitySet="MVaccination" />
+          </AssociationSet>
           <AssociationSet Name="FK_MVillage_MPHC" Association="Self.FK_MVillage_MPHC">
             <End Role="MPHC" EntitySet="MPHC" />
             <End Role="MVillage" EntitySet="MVillage" />
@@ -1013,6 +1138,18 @@
             <End Role="PatientDetails" EntitySet="PatientDetails" />
             <End Role="PatientPrescription" EntitySet="PatientPrescription" />
           </AssociationSet>
+          <AssociationSet Name="FK_PHCTransaction_MPHC" Association="Self.FK_PHCTransaction_MPHC">
+            <End Role="MPHC" EntitySet="MPHC" />
+            <End Role="PHCTransaction" EntitySet="PHCTransaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PHCTransaction_MScheme" Association="Self.FK_PHCTransaction_MScheme">
+            <End Role="MScheme" EntitySet="MScheme" />
+            <End Role="PHCTransaction" EntitySet="PHCTransaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PHCTransaction_PatientDetails" Association="Self.FK_PHCTransaction_PatientDetails">
+            <End Role="PatientDetails" EntitySet="PatientDetails" />
+            <End Role="PHCTransaction" EntitySet="PHCTransaction" />
+          </AssociationSet>
           <AssociationSet Name="FK_SubCenter_MPHC" Association="Self.FK_SubCenter_MPHC">
             <End Role="MPHC" EntitySet="MPHC" />
             <End Role="SubCenter" EntitySet="SubCenter" />
@@ -1044,6 +1181,14 @@
           <AssociationSet Name="FK_UserMap_Users" Association="Self.FK_UserMap_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="UserMap" EntitySet="UserMap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VaccinationHistory_MPHC" Association="Self.FK_VaccinationHistory_MPHC">
+            <End Role="MPHC" EntitySet="MPHC" />
+            <End Role="VaccinationHistory" EntitySet="VaccinationHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VaccinationHistory_MVaccination" Association="Self.FK_VaccinationHistory_MVaccination">
+            <End Role="MVaccination" EntitySet="MVaccination" />
+            <End Role="VaccinationHistory" EntitySet="VaccinationHistory" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -1159,6 +1304,8 @@
           <NavigationProperty Name="PatientECs" Relationship="PHCSolutionsModel.FK__PatientEC__PHCID__59063A47" FromRole="MPHC" ToRole="PatientEC" />
           <NavigationProperty Name="PatientMCs" Relationship="PHCSolutionsModel.FK__PatientMC__PHCID__59FA5E80" FromRole="MPHC" ToRole="PatientMC" />
           <NavigationProperty Name="SubCenters" Relationship="PHCSolutionsModel.FK_SubCenter_MPHC" FromRole="MPHC" ToRole="SubCenter" />
+          <NavigationProperty Name="PHCTransactions" Relationship="PHCSolutionsModel.FK_PHCTransaction_MPHC" FromRole="MPHC" ToRole="PHCTransaction" />
+          <NavigationProperty Name="VaccinationHistories" Relationship="PHCSolutionsModel.FK_VaccinationHistory_MPHC" FromRole="MPHC" ToRole="VaccinationHistory" />
         </EntityType>
         <EntityType Name="MState">
           <Key>
@@ -1177,6 +1324,7 @@
           <NavigationProperty Name="MEducations" Relationship="PHCSolutionsModel.FK_MEducation_MState" FromRole="MState" ToRole="MEducation" />
           <NavigationProperty Name="MReligions" Relationship="PHCSolutionsModel.FK_MReligion_MState" FromRole="MState" ToRole="MReligion" />
           <NavigationProperty Name="MSchemes" Relationship="PHCSolutionsModel.FK_MScheme_MState" FromRole="MState" ToRole="MScheme" />
+          <NavigationProperty Name="MVaccinations" Relationship="PHCSolutionsModel.FK_MVaccination_MState" FromRole="MState" ToRole="MVaccination" />
         </EntityType>
         <EntityType Name="MTaluk">
           <Key>
@@ -1241,6 +1389,7 @@
           <NavigationProperty Name="PatientECs" Relationship="Self.FK_PatientEC_PatientDetails" FromRole="PatientDetails" ToRole="PatientEC" />
           <NavigationProperty Name="PatientMCs" Relationship="Self.FK_PatientMC_PatientDetails" FromRole="PatientDetails" ToRole="PatientMC" />
           <NavigationProperty Name="PatientPrescriptions" Relationship="Self.FK_PatientPrescription_PatientDetails" FromRole="PatientDetails" ToRole="PatientPrescription" />
+          <NavigationProperty Name="PHCTransactions" Relationship="PHCSolutionsModel.FK_PHCTransaction_PatientDetails" FromRole="PatientDetail" ToRole="PHCTransaction" />
         </EntityType>
         <EntityType Name="PatientEC">
           <Key>
@@ -1856,6 +2005,33 @@
             <End Role="MState" EntitySet="MStates" />
             <End Role="MScheme" EntitySet="MSchemes" />
           </AssociationSet>
+          <EntitySet Name="MVaccinations" EntityType="PHCSolutionsModel.MVaccination" />
+          <EntitySet Name="PHCTransactions" EntityType="PHCSolutionsModel.PHCTransaction" />
+          <EntitySet Name="VaccinationHistories" EntityType="PHCSolutionsModel.VaccinationHistory" />
+          <AssociationSet Name="FK_PHCTransaction_MPHC" Association="PHCSolutionsModel.FK_PHCTransaction_MPHC">
+            <End Role="MPHC" EntitySet="MPHCs" />
+            <End Role="PHCTransaction" EntitySet="PHCTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VaccinationHistory_MPHC" Association="PHCSolutionsModel.FK_VaccinationHistory_MPHC">
+            <End Role="MPHC" EntitySet="MPHCs" />
+            <End Role="VaccinationHistory" EntitySet="VaccinationHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PHCTransaction_MScheme" Association="PHCSolutionsModel.FK_PHCTransaction_MScheme">
+            <End Role="MScheme" EntitySet="MSchemes" />
+            <End Role="PHCTransaction" EntitySet="PHCTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MVaccination_MState" Association="PHCSolutionsModel.FK_MVaccination_MState">
+            <End Role="MState" EntitySet="MStates" />
+            <End Role="MVaccination" EntitySet="MVaccinations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VaccinationHistory_MVaccination" Association="PHCSolutionsModel.FK_VaccinationHistory_MVaccination">
+            <End Role="MVaccination" EntitySet="MVaccinations" />
+            <End Role="VaccinationHistory" EntitySet="VaccinationHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PHCTransaction_PatientDetails" Association="PHCSolutionsModel.FK_PHCTransaction_PatientDetails">
+            <End Role="PatientDetail" EntitySet="PatientDetails" />
+            <End Role="PHCTransaction" EntitySet="PHCTransactions" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="C__MigrationHistory">
           <Key>
@@ -2073,6 +2249,7 @@
           <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ObsInd" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="MState" Relationship="PHCSolutionsModel.FK_MScheme_MState" FromRole="MScheme" ToRole="MState" />
+          <NavigationProperty Name="PHCTransactions" Relationship="PHCSolutionsModel.FK_PHCTransaction_MScheme" FromRole="MScheme" ToRole="PHCTransaction" />
         </EntityType>
         <EntityType Name="SubCenter">
           <Key>
@@ -2131,6 +2308,131 @@
             </Principal>
             <Dependent Role="MScheme">
               <PropertyRef Name="StateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="MVaccination">
+          <Key>
+            <PropertyRef Name="VaccinationID" />
+          </Key>
+          <Property Name="VaccinationID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StateID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProtectsAgainst" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="LastModifiedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ObsInd" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="VaccinationFrom" Type="Int32" />
+          <Property Name="VaccinationTo" Type="Int32" />
+          <NavigationProperty Name="MState" Relationship="PHCSolutionsModel.FK_MVaccination_MState" FromRole="MVaccination" ToRole="MState" />
+          <NavigationProperty Name="VaccinationHistories" Relationship="PHCSolutionsModel.FK_VaccinationHistory_MVaccination" FromRole="MVaccination" ToRole="VaccinationHistory" />
+        </EntityType>
+        <EntityType Name="PHCTransaction">
+          <Key>
+            <PropertyRef Name="PHCTransactionID" />
+          </Key>
+          <Property Name="PHCTransactionID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PHCID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SchemeID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PatientID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ChequeNo" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="ReceivedAmount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="SpentAmount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ISDebited" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="MPHC" Relationship="PHCSolutionsModel.FK_PHCTransaction_MPHC" FromRole="PHCTransaction" ToRole="MPHC" />
+          <NavigationProperty Name="MScheme" Relationship="PHCSolutionsModel.FK_PHCTransaction_MScheme" FromRole="PHCTransaction" ToRole="MScheme" />
+          <NavigationProperty Name="PatientDetail" Relationship="PHCSolutionsModel.FK_PHCTransaction_PatientDetails" FromRole="PHCTransaction" ToRole="PatientDetail" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="LastModifiedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ObsInd" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="HandOver" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ReceivedFrom" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TransactionType" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VaccinationHistory">
+          <Key>
+            <PropertyRef Name="VaccinationIssuedID" />
+          </Key>
+          <Property Name="VaccinationIssuedID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VaccinationID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PHCID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VaccinatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModifiedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ObsInd" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="MPHC" Relationship="PHCSolutionsModel.FK_VaccinationHistory_MPHC" FromRole="VaccinationHistory" ToRole="MPHC" />
+          <NavigationProperty Name="MVaccination" Relationship="PHCSolutionsModel.FK_VaccinationHistory_MVaccination" FromRole="VaccinationHistory" ToRole="MVaccination" />
+        </EntityType>
+        <Association Name="FK_PHCTransaction_MPHC">
+          <End Type="PHCSolutionsModel.MPHC" Role="MPHC" Multiplicity="1" />
+          <End Type="PHCSolutionsModel.PHCTransaction" Role="PHCTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MPHC">
+              <PropertyRef Name="PHCID" />
+            </Principal>
+            <Dependent Role="PHCTransaction">
+              <PropertyRef Name="PHCID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VaccinationHistory_MPHC">
+          <End Type="PHCSolutionsModel.MPHC" Role="MPHC" Multiplicity="1" />
+          <End Type="PHCSolutionsModel.VaccinationHistory" Role="VaccinationHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MPHC">
+              <PropertyRef Name="PHCID" />
+            </Principal>
+            <Dependent Role="VaccinationHistory">
+              <PropertyRef Name="PHCID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PHCTransaction_MScheme">
+          <End Type="PHCSolutionsModel.MScheme" Role="MScheme" Multiplicity="0..1" />
+          <End Type="PHCSolutionsModel.PHCTransaction" Role="PHCTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MScheme">
+              <PropertyRef Name="SchemeID" />
+            </Principal>
+            <Dependent Role="PHCTransaction">
+              <PropertyRef Name="SchemeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MVaccination_MState">
+          <End Type="PHCSolutionsModel.MState" Role="MState" Multiplicity="1" />
+          <End Type="PHCSolutionsModel.MVaccination" Role="MVaccination" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MState">
+              <PropertyRef Name="StateID" />
+            </Principal>
+            <Dependent Role="MVaccination">
+              <PropertyRef Name="StateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VaccinationHistory_MVaccination">
+          <End Type="PHCSolutionsModel.MVaccination" Role="MVaccination" Multiplicity="1" />
+          <End Type="PHCSolutionsModel.VaccinationHistory" Role="VaccinationHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MVaccination">
+              <PropertyRef Name="VaccinationID" />
+            </Principal>
+            <Dependent Role="VaccinationHistory">
+              <PropertyRef Name="VaccinationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PHCTransaction_PatientDetails">
+          <End Type="PHCSolutionsModel.PatientDetail" Role="PatientDetail" Multiplicity="0..1" />
+          <End Type="PHCSolutionsModel.PHCTransaction" Role="PHCTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PatientDetail">
+              <PropertyRef Name="PatientID" />
+            </Principal>
+            <Dependent Role="PHCTransaction">
+              <PropertyRef Name="PatientID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2508,6 +2810,55 @@
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="PHCID" ColumnName="PHCID" />
                 <ScalarProperty Name="SubCenterID" ColumnName="SubCenterID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MVaccinations">
+            <EntityTypeMapping TypeName="PHCSolutionsModel.MVaccination">
+              <MappingFragment StoreEntitySet="MVaccination">
+                <ScalarProperty Name="VaccinationTo" ColumnName="VaccinationTo" />
+                <ScalarProperty Name="VaccinationFrom" ColumnName="VaccinationFrom" />
+                <ScalarProperty Name="ObsInd" ColumnName="ObsInd" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="ProtectsAgainst" ColumnName="ProtectsAgainst" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="StateID" ColumnName="StateID" />
+                <ScalarProperty Name="VaccinationID" ColumnName="VaccinationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PHCTransactions">
+            <EntityTypeMapping TypeName="PHCSolutionsModel.PHCTransaction">
+              <MappingFragment StoreEntitySet="PHCTransaction">
+                <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+                <ScalarProperty Name="ReceivedFrom" ColumnName="ReceivedFrom" />
+                <ScalarProperty Name="HandOver" ColumnName="HandOver" />
+                <ScalarProperty Name="ObsInd" ColumnName="ObsInd" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ISDebited" ColumnName="ISDebited" />
+                <ScalarProperty Name="SpentAmount" ColumnName="SpentAmount" />
+                <ScalarProperty Name="ReceivedAmount" ColumnName="ReceivedAmount" />
+                <ScalarProperty Name="ChequeNo" ColumnName="ChequeNo" />
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+                <ScalarProperty Name="SchemeID" ColumnName="SchemeID" />
+                <ScalarProperty Name="PHCID" ColumnName="PHCID" />
+                <ScalarProperty Name="PHCTransactionID" ColumnName="PHCTransactionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VaccinationHistories">
+            <EntityTypeMapping TypeName="PHCSolutionsModel.VaccinationHistory">
+              <MappingFragment StoreEntitySet="VaccinationHistory">
+                <ScalarProperty Name="ObsInd" ColumnName="ObsInd" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="VaccinatedDate" ColumnName="VaccinatedDate" />
+                <ScalarProperty Name="PHCID" ColumnName="PHCID" />
+                <ScalarProperty Name="VaccinationID" ColumnName="VaccinationID" />
+                <ScalarProperty Name="VaccinationIssuedID" ColumnName="VaccinationIssuedID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

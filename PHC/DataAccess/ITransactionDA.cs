@@ -165,5 +165,11 @@ namespace PHC.DAInterfaces.DataAccess
         PatientDetail GeTPatientInfo(string PatientName,string PHCID);
 
         List<PatientPrescription> GetPatientVistHistory(string PatientID, string PHCID);
+
+        PHCTransaction checkPHCOpeningBalance(string PHCID, string Description);
+
+        bool AddPHCTransaction(PHCTransaction PHCT);
+
+        List<PHCTransaction> GetPHCTransaction(string PHCID);
     }
 }

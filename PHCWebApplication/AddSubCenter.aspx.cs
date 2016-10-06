@@ -21,17 +21,17 @@ namespace PHCWebApplication
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            ResultDTO resultDTO = objITransactionBusiness.SaveSubCenter(PHCConstatnt.PHCID, txtSubCenterName.Text);
+            ResultDTO resultDTO = objITransactionBusiness.SaveSubCenter(PHCConstant.PHCID, txtSubCenterName.Text);
             if (resultDTO.IsSuccess)
             {
-                pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessBackGroundColor);
-                lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessForeColor);
+                pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.SuccessBackGroundColor);
+                lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.SuccessForeColor);
                 lblstatus.Text = resultDTO.Message;
             }
             else
             {
-                pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorBackGroundColor);
-                lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorForeColor);
+                pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.ErrorBackGroundColor);
+                lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.ErrorForeColor);
                 lblstatus.Text = resultDTO.Message;
             }
             this.PopulateData();
@@ -39,7 +39,7 @@ namespace PHCWebApplication
         private void PopulateData()
         {
             List<SubCenterDTO> lstSubCenterDTO = new List<SubCenterDTO>();
-            lstSubCenterDTO = objITransactionBusiness.GetSubCenter(PHCConstatnt.PHCID);
+            lstSubCenterDTO = objITransactionBusiness.GetSubCenter(PHCConstant.PHCID);
             if (lstSubCenterDTO != null && lstSubCenterDTO.Count > 0)
             {
                 ListView1.DataSource = lstSubCenterDTO;
@@ -58,7 +58,7 @@ namespace PHCWebApplication
             ListViewItem item = ListView1.Items[e.ItemIndex];
             TextBox txteReligionname = (TextBox)item.FindControl("txteReligionName");
 
-            ResultDTO resultDTO = objITransactionBusiness.UpdateSubCenter(PHCConstatnt.PHCID, ReligionID, txteReligionname.Text);
+            ResultDTO resultDTO = objITransactionBusiness.UpdateSubCenter(PHCConstant.PHCID, ReligionID, txteReligionname.Text);
             if (resultDTO.IsSuccess)
             {
                 //pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessBackGroundColor);
@@ -80,7 +80,7 @@ namespace PHCWebApplication
         {
 
             string SubCenterID = ListView1.DataKeys[e.ItemIndex].Value.ToString();
-            ResultDTO resultDTO = objITransactionBusiness.DeleteSubCenter(PHCConstatnt.PHCID, SubCenterID);
+            ResultDTO resultDTO = objITransactionBusiness.DeleteSubCenter(PHCConstant.PHCID, SubCenterID);
             if (resultDTO.IsSuccess)
             {
                 //pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessBackGroundColor);

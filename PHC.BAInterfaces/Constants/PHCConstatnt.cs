@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PHC.BAInterfaces.Constants
 {
-    public static class PHCConstatnt
+    public static class PHCConstant
     {
         public const string Save = "Successfully Saved..";
         public const string PasswordMissmatch = "Password and ConfirmPassword should be Same..";
@@ -31,5 +31,14 @@ namespace PHC.BAInterfaces.Constants
 
         public const string LabTestID = "LabTestID";
         public const string DrugIssueID = "DrugIssueID";
+
+        public const string HandOver = "Handover To";
+        public const string Received= "Received From";
+
+        public const string ErrorMessageHandOver = "Please Enter HandOver field";
+
+        public const string ErrorMessageReceived = "Please Enter Received field";
+
+        public const string PHCTransactionWarning = "Please Create Opening Balance Transaction";
     }
 }

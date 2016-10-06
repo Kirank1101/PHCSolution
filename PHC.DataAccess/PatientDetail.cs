@@ -20,6 +20,7 @@ namespace PHC.DataAccess
             this.PatientECs = new HashSet<PatientEC>();
             this.PatientMCs = new HashSet<PatientMC>();
             this.PatientPrescriptions = new HashSet<PatientPrescription>();
+            this.PHCTransactions = new HashSet<PHCTransaction>();
         }
     
         public string PatientID { get; set; }
@@ -38,5 +39,6 @@ namespace PHC.DataAccess
         public virtual ICollection<PatientEC> PatientECs { get; set; }
         public virtual ICollection<PatientMC> PatientMCs { get; set; }
         public virtual ICollection<PatientPrescription> PatientPrescriptions { get; set; }
+        public virtual ICollection<PHCTransaction> PHCTransactions { get; set; }
     }
 }

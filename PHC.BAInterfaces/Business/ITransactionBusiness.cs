@@ -84,5 +84,13 @@ namespace PHC.BAInterfaces.Business
 
 
         List<PatientVistiHistoryDTO> GetPatientVistHistory(string PatientID, string PHCID);
+
+        bool CheckPHCOpeningBalanceExist(string PHCID);
+
+        ResultDTO SavePHCOpeningBalance(string PHCID,decimal Amount);
+
+        List<PHCTransactionDTO> GetPHCTransactionDetails(string PHCID);
+
+        ResultDTO SavePHCTransaction(string PHCID, string TransactionType, string ReceiverorGiverName, string ChequeuNo, decimal Amount, string Description);
     }
 }

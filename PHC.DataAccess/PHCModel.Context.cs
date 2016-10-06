@@ -55,6 +55,9 @@ namespace PHC.DataAccess
         public DbSet<MReligion> MReligions { get; set; }
         public DbSet<MScheme> MSchemes { get; set; }
         public DbSet<SubCenter> SubCenters { get; set; }
+        public DbSet<MVaccination> MVaccinations { get; set; }
+        public DbSet<PHCTransaction> PHCTransactions { get; set; }
+        public DbSet<VaccinationHistory> VaccinationHistories { get; set; }
 
         public void Save()
         {

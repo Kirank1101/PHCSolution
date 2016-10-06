@@ -1437,5 +1437,59 @@ namespace PHC.DataAccessLayer
             }
 
         }
+
+
+        public PHCTransaction checkPHCOpeningBalance(string PHCID, string Description)
+        {
+            IUnitOfWork work = null;
+            work = GetUOW.GetUOWInstance;
+            {
+                try
+                {
+                    return new GenericRepository<PHCTransaction>(work)
+                        .FindBy(p => p.PHCID == PHCID && p.Description == Description && p.ObsInd == No)
+                        .OrderByDescending(p => p.LastModifiedDate)
+                        .FirstOrDefault();
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                    throw ex;
+                }
+            }
+
+        }
+
+        public bool AddPHCTransaction(PHCTransaction PHCT)
+        {
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                new GenericRepository<PHCTransaction>(work).Add(PHCT);
+                work.Save();
+            }
+            return true;
+        }
+
+
+        public List<PHCTransaction> GetPHCTransaction(string PHCID)
+        {
+            IUnitOfWork work = null;
+            work = GetUOW.GetUOWInstance;
+            {
+                try
+                {
+                    return new GenericRepository<PHCTransaction>(work)
+                        .FindBy(p => p.PHCID == PHCID && p.ObsInd == No)
+                        .OrderByDescending(p => p.LastModifiedDate)
+                        .ToList();
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                    throw ex;
+                }
+            }
+        }
     }
 }

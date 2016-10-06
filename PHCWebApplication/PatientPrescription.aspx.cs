@@ -73,10 +73,10 @@ namespace PHCWebApplication
             lblECNumber.Text = string.Empty;
             lblVillage.Text = string.Empty;
         }
-        const string VSDisease = PHCConstatnt.VSDisease;
-        const string VSDrugs = PHCConstatnt.VSDrugs;
-        const string VSDrugName = PHCConstatnt.VSDrugName;
-        const string VSPatientID = PHCConstatnt.VSPatientID;
+        const string VSDisease = PHCConstant.VSDisease;
+        const string VSDrugs = PHCConstant.VSDrugs;
+        const string VSDrugName = PHCConstant.VSDrugName;
+        const string VSPatientID = PHCConstant.VSPatientID;
         public List<MDrugsDTO> ViewstateDrugNames
         {
             get
@@ -148,7 +148,7 @@ namespace PHCWebApplication
             if (!string.IsNullOrEmpty(txtPatientName.Text.Trim()))
             {
                 PatientDetailDTO PatientDetailDTO = new PatientDetailDTO();
-                PatientDetailDTO = objITransactionBusiness.GeTPatientInfo(txtPatientName.Text.Trim(), PHCConstatnt.PHCID);
+                PatientDetailDTO = objITransactionBusiness.GeTPatientInfo(txtPatientName.Text.Trim(), PHCConstant.PHCID);
 
                 if (PatientDetailDTO != null)
                 {
@@ -183,7 +183,7 @@ namespace PHCWebApplication
         }
         private void ResetDrugs()
         {
-            ViewState[PHCConstatnt.DrugIssueID] = null;
+            ViewState[PHCConstant.DrugIssueID] = null;
             ddlDrugNames.SelectedIndex = 0;
             txtQuantity.Text = string.Empty;
             txtDosage.Text = string.Empty;
@@ -192,7 +192,7 @@ namespace PHCWebApplication
         }
         protected void btnUpdateDrug_Click(object sender, EventArgs e)
         {
-            string DrugIssueID = ViewState[PHCConstatnt.DrugIssueID].ToString();
+            string DrugIssueID = ViewState[PHCConstant.DrugIssueID].ToString();
             List<TempDrugsDTO> lsttempdrugs = new List<TempDrugsDTO>();
             lsttempdrugs = ViewstateDrugsIssues;
 
@@ -264,14 +264,14 @@ namespace PHCWebApplication
                 ddlDrugNames.SelectedValue = td.DrugID;
                 txtQuantity.Text = Convert.ToString(td.Quantity);
                 txtDosage.Text = td.Dosage;
-                ViewState[PHCConstatnt.DrugIssueID] = td.DrugIssueID;
+                ViewState[PHCConstant.DrugIssueID] = td.DrugIssueID;
                 btnUpdate.Visible = true;
                 btnSave.Visible = false;
             }
         }
 
         #region LabTest
-        const string VSLabTest = PHCConstatnt.VSLabTest;
+        const string VSLabTest = PHCConstant.VSLabTest;
         private void BindddlLabTest()
         {
             List<MLabTestDTO> lstMLabTestDTO = new List<MLabTestDTO>();
@@ -318,7 +318,7 @@ namespace PHCWebApplication
         }
         private void ResetLabs()
         {
-            ViewState[PHCConstatnt.LabTestID] = null;
+            ViewState[PHCConstant.LabTestID] = null;
             ddlLabTestNames.SelectedIndex = 0;
         }
         protected void EditRecord(object sender, ListViewEditEventArgs e)
@@ -328,7 +328,7 @@ namespace PHCWebApplication
         }
         protected void UpdateRecord(object sender, ListViewUpdateEventArgs e)
         {
-            string LabTestID = ViewState[PHCConstatnt.LabTestID].ToString();
+            string LabTestID = ViewState[PHCConstant.LabTestID].ToString();
             List<TempLabTestDTO> lsttemplabtest = new List<TempLabTestDTO>();
             lsttemplabtest = ViewstateLabTest;
 
@@ -382,25 +382,25 @@ namespace PHCWebApplication
             List<TempLabTestDTO> lLT = ViewstateLabTest;
             if (lTD != null && lTD.Count > 0)
             {
-                ResultDTO resultDTO = objITransactionBusiness.SavePatientPrescription(ViewStatePatientID, PHCConstatnt.PHCID, ddlDisease.SelectedValue, txtdescription.Text, lTD, lLT);
+                ResultDTO resultDTO = objITransactionBusiness.SavePatientPrescription(ViewStatePatientID, PHCConstant.PHCID, ddlDisease.SelectedValue, txtdescription.Text, lTD, lLT);
                 if (resultDTO.IsSuccess)
                 {
-                    pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessBackGroundColor);
-                    lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessForeColor);
+                    pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.SuccessBackGroundColor);
+                    lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.SuccessForeColor);
                     lblstatus.Text = resultDTO.Message;
                     PageReset();
                 }
                 else
                 {
-                    pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorBackGroundColor);
-                    lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorForeColor);
+                    pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.ErrorBackGroundColor);
+                    lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.ErrorForeColor);
                     lblstatus.Text = resultDTO.Message;
                 }
             }
             else
             {
-                pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorBackGroundColor);
-                lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.WarningForeColor);
+                pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.ErrorBackGroundColor);
+                lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.WarningForeColor);
                 lblstatus.Text = "Please enter Mandator fields";
             }
         }

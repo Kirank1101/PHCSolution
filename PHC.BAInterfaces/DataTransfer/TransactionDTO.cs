@@ -149,4 +149,14 @@ namespace PHC.BAInterfaces.DataTransfer
         public string StateID { get; set; }
         public String SchemeName { get; set; }
     }
+    public class PHCTransactionDTO
+    {
+        public string PHCTransactionID { get; set; }
+        public int SlNo { get; set; }
+        public string TransactionDetails { get; set; }
+        public double DebitedAmount { get; set; }
+        public double CreditedAmount { get; set; }
+        public string PHCID { get; set; }
+        public string TransactionDate { get; set; }
+    }
 }

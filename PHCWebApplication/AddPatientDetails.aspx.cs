@@ -14,8 +14,8 @@ namespace WebApplication5
     public partial class AddPatientDetails : System.Web.UI.Page
     {
         ITransactionBusiness objITransactionBusiness = BinderSingleton.Instance.GetInstance<ITransactionBusiness>();
-        string VSPatientID = PHCConstatnt.VSPatientID;
-        string VSECNo = PHCConstatnt.VSECNo;
+        string VSPatientID = PHCConstant.VSPatientID;
+        string VSECNo = PHCConstant.VSECNo;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -44,7 +44,7 @@ namespace WebApplication5
         {
 
             List<PatientDetailDTO> lstPatientDetailDTO = new List<PatientDetailDTO>();
-            lstPatientDetailDTO = objITransactionBusiness.GetPatientDetail(PHCConstatnt.PHCID);
+            lstPatientDetailDTO = objITransactionBusiness.GetPatientDetail(PHCConstant.PHCID);
             if (lstPatientDetailDTO != null && lstPatientDetailDTO.Count > 0)
             {
                 LVPatientDetailDetails.DataSource = lstPatientDetailDTO;
@@ -76,7 +76,7 @@ namespace WebApplication5
             ddlBloodGroup.DataBind();
             ddlBloodGroup.Items.Insert(0, "Select BloodGroup");
         }
-        const string VSVillages = PHCConstatnt.VSVillages;
+        const string VSVillages = PHCConstant.VSVillages;
         public List<MVillageDTO> ViewstateVillages
         {
             get
@@ -84,7 +84,7 @@ namespace WebApplication5
                 if (ViewState[VSVillages] == null)
                 {
                     List<MVillageDTO> lstMVillageDTO = new List<MVillageDTO>();
-                    lstMVillageDTO = objITransactionBusiness.GetMVillages(PHCConstatnt.PHCID);
+                    lstMVillageDTO = objITransactionBusiness.GetMVillages(PHCConstant.PHCID);
                     ViewState[VSVillages] = lstMVillageDTO;
                 }
                 return (List<MVillageDTO>)ViewState[VSVillages];
@@ -92,28 +92,28 @@ namespace WebApplication5
         }
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            ResultDTO resultDTO = objITransactionBusiness.SavePatientDetails(PHCConstatnt.PHCID, txtPatientName.Text, txtECNo.Text, Convert.ToInt16(txtAge.Text), txtDOB.Text, GetGender(), ddlBloodGroup.SelectedItem.Text, ddlVillages.SelectedValue, txtAddress.Text, txtContactNo.Text, txtPhoneNo.Text);
+            ResultDTO resultDTO = objITransactionBusiness.SavePatientDetails(PHCConstant.PHCID, txtPatientName.Text, txtECNo.Text, Convert.ToInt16(txtAge.Text), txtDOB.Text, GetGender(), ddlBloodGroup.SelectedItem.Text, ddlVillages.SelectedValue, txtAddress.Text, txtContactNo.Text, txtPhoneNo.Text);
             if (resultDTO.IsSuccess)
             {
-                pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessBackGroundColor);
-                lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessForeColor);
+                pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.SuccessBackGroundColor);
+                lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.SuccessForeColor);
                 lblstatus.Text = resultDTO.Message;
                 this.PageReset();
                 this.PopulateData();
             }
             else
             {
-                pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorBackGroundColor);
-                lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorForeColor);
+                pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.ErrorBackGroundColor);
+                lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.ErrorForeColor);
                 lblstatus.Text = resultDTO.Message;
             }
         }
         private string GetGender()
         {
             if (rbMale.Checked)
-                return PHCConstatnt.Male;
+                return PHCConstant.Male;
             else if (rbFemale.Checked)
-                return PHCConstatnt.FeMale;
+                return PHCConstant.FeMale;
             else
                 return string.Empty;
         }
@@ -123,7 +123,7 @@ namespace WebApplication5
             string ECno = Convert.ToString( ViewState[VSECNo]);
             ResultDTO resultDTO = new ResultDTO();
             if ((!string.IsNullOrEmpty(ECno) && !string.IsNullOrEmpty(txtECNo.Text)) || string.IsNullOrEmpty(ECno))
-                resultDTO = objITransactionBusiness.UpdatePatientDetail(PHCConstatnt.PHCID, PatientID, txtPatientName.Text, txtECNo.Text, Convert.ToInt16(txtAge.Text), txtDOB.Text, GetGender(), ddlBloodGroup.SelectedItem.Text, ddlVillages.SelectedValue, txtAddress.Text, txtContactNo.Text, txtPhoneNo.Text);
+                resultDTO = objITransactionBusiness.UpdatePatientDetail(PHCConstant.PHCID, PatientID, txtPatientName.Text, txtECNo.Text, Convert.ToInt16(txtAge.Text), txtDOB.Text, GetGender(), ddlBloodGroup.SelectedItem.Text, ddlVillages.SelectedValue, txtAddress.Text, txtContactNo.Text, txtPhoneNo.Text);
             else
             {
                 resultDTO.IsSuccess = false;
@@ -207,7 +207,7 @@ namespace WebApplication5
                     ViewState[VSECNo] = null;
 
                 ddlBloodGroup.SelectedValue = lblBloodGroup.Text;
-                if (lblGender.Text == PHCConstatnt.Male)
+                if (lblGender.Text == PHCConstant.Male)
                     rbMale.Checked = true;
                 else
                     rbFemale.Checked = true;

@@ -23,26 +23,26 @@ namespace WebApplication5
         }
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            ResultDTO resultDTO = objITransactionBusiness.SaveMVillage(txtVillageName.Text.ToUpper(),PHCConstatnt.PHCID);
+            ResultDTO resultDTO = objITransactionBusiness.SaveMVillage(txtVillageName.Text.ToUpper(),PHCConstant.PHCID);
             if (resultDTO.IsSuccess)
             {
-                pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessBackGroundColor);
-                lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessForeColor);
+                pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.SuccessBackGroundColor);
+                lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.SuccessForeColor);
                 lblstatus.Text = resultDTO.Message;
 
                 this.PopulateData();
             }
             else
             {
-                pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorBackGroundColor);
-                lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorForeColor);
+                pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.ErrorBackGroundColor);
+                lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.ErrorForeColor);
                 lblstatus.Text = resultDTO.Message;
             }
         }
         private void PopulateData()
         {
             List<MVillageDTO> lstVillage = new List<MVillageDTO>();
-            lstVillage = objITransactionBusiness.GetMVillage(PHCConstatnt.PHCID);
+            lstVillage = objITransactionBusiness.GetMVillage(PHCConstant.PHCID);
             if (lstVillage != null && lstVillage.Count > 0)
             {
                 ListView1.DataSource = lstVillage;
@@ -66,7 +66,7 @@ namespace WebApplication5
             ListViewItem item = ListView1.Items[e.ItemIndex];
             TextBox txteVillagename = (TextBox)item.FindControl("txteVillageName");
 
-            ResultDTO resultDTO = objITransactionBusiness.UpdateMVillage(VillageID, PHCConstatnt.PHCID, txteVillagename.Text.ToUpper());
+            ResultDTO resultDTO = objITransactionBusiness.UpdateMVillage(VillageID, PHCConstant.PHCID, txteVillagename.Text.ToUpper());
             if (resultDTO.IsSuccess)
             {
                 //pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessBackGroundColor);
@@ -94,7 +94,7 @@ namespace WebApplication5
         {
 
             string VillageID = ListView1.DataKeys[e.ItemIndex].Value.ToString();
-            ResultDTO resultDTO = objITransactionBusiness.DeleteMVillage(VillageID, PHCConstatnt.PHCID);
+            ResultDTO resultDTO = objITransactionBusiness.DeleteMVillage(VillageID, PHCConstant.PHCID);
             if (resultDTO.IsSuccess)
             {
                 //pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessBackGroundColor);

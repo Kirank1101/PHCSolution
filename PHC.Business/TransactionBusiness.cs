@@ -975,9 +975,6 @@ namespace PHC.Business
             else
                 return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Deleted." };
         }
-
-
-
         public PatientDetailDTO GeTPatientInfo(string PatientName, string PHCID)
         {
             PatientDetail PD = objDA.GeTPatientInfo(PatientName, PHCID);
@@ -995,8 +992,6 @@ namespace PHC.Business
             }
             return patientDetailDTO;
         }
-
-
         public ResultDTO SavePatientPrescription(string PatientID, string PHCID, string DiseaseID, string Description, List<TempDrugsDTO> lTD, List<TempLabTestDTO> lLT)
         {
             PatientPrescription PP = new PatientPrescription();
@@ -1042,8 +1037,6 @@ namespace PHC.Business
             else
                 return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Saved." };
         }
-
-
         public List<PatientVistiHistoryDTO> GetPatientVistHistory(string PatientID, string PHCID)
         {
             List<PatientPrescription> lstPatientPrescription = objDA.GetPatientVistHistory(PatientID, PHCID);
@@ -1063,7 +1056,6 @@ namespace PHC.Business
                 }
             return lstPVHDTO;
         }
-
         private string GetLabTestName(PatientPrescription PD)
         {
             PatientPrescription PP = PD;
@@ -1076,7 +1068,6 @@ namespace PHC.Business
                 LabTestname += LTD.MLabTest.Name + ", " + Convert.ToString(LTD.Result) + ", " + LTD.Remarks + "\n";
             return LabTestname;
         }
-
         private string GetDrugName(PatientPrescription PD)
         {
             PatientPrescription PP = PD;
@@ -1086,8 +1077,113 @@ namespace PHC.Business
             if (PP.DrugsIssueds.Count > 0)
                 lstDI = PP.DrugsIssueds.ToList();
             foreach (DrugsIssued DI in lstDI)
-                    DrugsIssued += DI.MDrug.Name + ", " + Convert.ToString(DI.Quantity) + ", " + DI.Dosage+"\n";
+                DrugsIssued += DI.MDrug.Name + ", " + Convert.ToString(DI.Quantity) + ", " + DI.Dosage + "\n";
             return DrugsIssued;
+        }
+        public bool CheckPHCOpeningBalanceExist(string PHCID)
+        {
+
+            PHCTransaction checkPHCOpeningBalance = objDA.checkPHCOpeningBalance(PHCID, "Opening Balance");
+            if (checkPHCOpeningBalance == null)
+                return false;
+            else
+                return true;
+        }
+        public ResultDTO SavePHCOpeningBalance(string PHCID, decimal Amount)
+        {
+            PHCTransaction PHCT = new PHCTransaction();
+            PHCT.PHCTransactionID = CommonUtil.CreateUniqueID("PHCT");
+            PHCT.PHCID = PHCID;
+            PHCT.Description = "Opening Balance";
+            PHCT.TransactionType = "C";
+            PHCT.ReceivedAmount = Amount;
+            PHCT.LastModifiedBy = "System";
+            PHCT.LastModifiedDate = DateTime.Now;
+
+            PHCT.ObsInd = "N";
+            PHCTransaction checkPHCOpeningBalance = objDA.checkPHCOpeningBalance(PHCID, PHCT.Description);
+            if (checkPHCOpeningBalance == null)
+            {
+                if (objDA.AddPHCTransaction(PHCT))
+                    return new ResultDTO() { IsSuccess = true, Message = "Successfully Saved." };
+                else
+                    return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Saved." };
+            }
+            else
+                return new ResultDTO() { IsSuccess = false, Message = "Opening Balance already alloted." };
+        }
+
+
+        public List<PHCTransactionDTO> GetPHCTransactionDetails(string PHCID)
+        {
+            List<PHCTransaction> lstPHCTransaction = objDA.GetPHCTransaction(PHCID);
+            List<PHCTransactionDTO> lstPHCTransactionDTO = new List<PHCTransactionDTO>();
+            if (lstPHCTransaction != null && lstPHCTransaction.Count > 0)
+            {
+                int i = 0;
+                foreach (PHCTransaction PT in lstPHCTransaction)
+                {
+                    i += 1;
+                    PHCTransactionDTO PHCTransactionDTO = new PHCTransactionDTO();
+                    PHCTransactionDTO.PHCTransactionID = PT.PHCTransactionID;
+                    PHCTransactionDTO.SlNo =i ;
+                    PHCTransactionDTO.PHCID = PT.PHCID;
+                    PHCTransactionDTO.TransactionDate = PT.LastModifiedDate.ToString("dd-MMM-yyyy hh:mm:ss tt");
+                    if (PT.TransactionType == "C")
+                    {
+                        if (!string.IsNullOrEmpty(PT.ReceivedFrom) && !string.IsNullOrEmpty(PT.ChequeNo))
+                            PHCTransactionDTO.TransactionDetails = PT.ReceivedFrom + ", " + PT.ChequeNo + ".";
+                        else
+                            PHCTransactionDTO.TransactionDetails = PT.Description;
+                        PHCTransactionDTO.CreditedAmount = Convert.ToDouble(PT.ReceivedAmount);
+                    }
+                    else
+                    {
+
+                        PHCTransactionDTO.TransactionDetails = PT.HandOver + ", " + PT.ChequeNo + ".";
+                        PHCTransactionDTO.DebitedAmount = Convert.ToDouble(PT.SpentAmount);
+                    }
+                    lstPHCTransactionDTO.Add(PHCTransactionDTO);
+                }
+            }
+            return lstPHCTransactionDTO;
+        }
+
+
+        public ResultDTO SavePHCTransaction(string PHCID, string TransactionType, string ReceiverorGiverName, string ChequeuNo, decimal Amount, string Description)
+        {
+            PHCTransaction PHCT = new PHCTransaction();
+            PHCT.PHCTransactionID = CommonUtil.CreateUniqueID("PHCT");
+            PHCT.PHCID = PHCID;
+            PHCT.Description = Description;
+
+            PHCT.TransactionType = TransactionType == "Credit" ? "C" : "D";
+            if (TransactionType == "Credit")
+            {
+                PHCT.ReceivedFrom = ReceiverorGiverName;
+                PHCT.TransactionType = "C";
+                PHCT.ReceivedAmount = Amount;
+            }
+            else
+            {
+                PHCT.HandOver = ReceiverorGiverName;
+                PHCT.TransactionType = "D";
+                PHCT.SpentAmount = Amount;
+            }
+            PHCT.LastModifiedBy = "System";
+            PHCT.LastModifiedDate = DateTime.Now;
+            PHCT.ObsInd = "N";
+
+            //PHCTransaction checkPHCOpeningBalance = objDA.checkPHCOpeningBalance(PHCID, PHCT.Description);
+            //if (checkPHCOpeningBalance == null)
+            //{
+            if (objDA.AddPHCTransaction(PHCT))
+                    return new ResultDTO() { IsSuccess = true, Message = "Successfully Saved." };
+                else
+                    return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Saved." };
+            //}
+            //else
+            //    return new ResultDTO() { IsSuccess = false, Message = "Opening Balance already alloted." };
         }
     }
 }

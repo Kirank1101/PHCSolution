@@ -1,23 +1,23 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AddPHC.aspx.cs" Inherits="WebApplication5.AddPHC" MasterPageFile="~/Site.Master" %>
 
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
-<script type="text/javascript">
-    function WebForm_OnSubmit() {
-        if (typeof (ValidatorOnSubmit) == "function" && ValidatorOnSubmit() == false) {
-            for (var i in Page_Validators) {
-                try {
-                    var control = document.getElementById(Page_Validators[i].controltovalidate);
-                    if (!Page_Validators[i].isvalid) {
-                        control.className = "form-control ErrorControl";
-                    } else {
-                        control.className = "form-control";
-                    }
-                } catch (e) { }
+    <script type="text/javascript">
+        function WebForm_OnSubmit() {
+            if (typeof (ValidatorOnSubmit) == "function" && ValidatorOnSubmit() == false) {
+                for (var i in Page_Validators) {
+                    try {
+                        var control = document.getElementById(Page_Validators[i].controltovalidate);
+                        if (!Page_Validators[i].isvalid) {
+                            control.className = "form-control ErrorControl";
+                        } else {
+                            control.className = "form-control";
+                        }
+                    } catch (e) { }
+                }
+                return false;
             }
-            return false;
+            return true;
         }
-        return true;
-    }
     </script>
     <style type="text/css">
         .ErrorControl {
@@ -35,7 +35,7 @@
 
     <div id="divAddPHC" runat="server">
 
-        <asp:ValidationSummary ID="PHCValidation" runat="server" CssClass="alert alert-danger" ValidationGroup="PHCSave"/>
+        <asp:ValidationSummary ID="PHCValidation" runat="server" CssClass="alert alert-danger" ValidationGroup="PHCSave" />
         <table>
             <tr>
                 <td style="width: 103px">
@@ -107,14 +107,11 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th style="color: #428bca">
-                                                District Name
+                                            <th style="color: #428bca">District Name
                                             </th>
-                                            <th style="color: #428bca">
-                                                Taluk Name
+                                            <th style="color: #428bca">Taluk Name
                                             </th>
-                                            <th style="color: #428bca">
-                                                PHC Name
+                                            <th style="color: #428bca">PHC Name
                                             </th>
                                             <th style="color: #428bca">Action
                                             </th>

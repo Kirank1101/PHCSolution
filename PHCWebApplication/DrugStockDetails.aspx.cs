@@ -48,7 +48,7 @@ namespace PHCWebApplication
         {
 
             List<DrugStockDTO> lstDrugStockDTO = new List<DrugStockDTO>();
-            lstDrugStockDTO = objITransactionBusiness.GetDrugPurchaseDetail(PHCConstatnt.PHCID);
+            lstDrugStockDTO = objITransactionBusiness.GetDrugPurchaseDetail(PHCConstant.PHCID);
             if (lstDrugStockDTO != null && lstDrugStockDTO.Count > 0)
             {
                 LVDrugsStockDetails.DataSource = lstDrugStockDTO;
@@ -76,17 +76,17 @@ namespace PHCWebApplication
         }
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            ResultDTO resultDTO = objITransactionBusiness.SaveDrugStock(ddlDrugNames.SelectedValue,PHCConstatnt.PHCID, Convert.ToInt16(txtQuantity.Text), txtBatchNo.Text, txtManufactureDate.Text, txtExpiryDate.Text, txtPurchaseDate.Text);
+            ResultDTO resultDTO = objITransactionBusiness.SaveDrugStock(ddlDrugNames.SelectedValue,PHCConstant.PHCID, Convert.ToInt16(txtQuantity.Text), txtBatchNo.Text, txtManufactureDate.Text, txtExpiryDate.Text, txtPurchaseDate.Text);
             if (resultDTO.IsSuccess)
             {
-                pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessBackGroundColor);
-                lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessForeColor);
+                pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.SuccessBackGroundColor);
+                lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.SuccessForeColor);
                 lblstatus.Text = resultDTO.Message;
             }
             else
             {
-                pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorBackGroundColor);
-                lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorForeColor);
+                pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.ErrorBackGroundColor);
+                lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.ErrorForeColor);
                 lblstatus.Text = resultDTO.Message;
             }
             this.PopulateData();
@@ -94,7 +94,7 @@ namespace PHCWebApplication
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
             string DrugStockID = ViewState["DrugStockID"].ToString();
-            ResultDTO resultDTO = objITransactionBusiness.UpdateDrugStock(DrugStockID, ddlDrugNames.SelectedValue,PHCConstatnt.PHCID, Convert.ToInt16(txtQuantity.Text), txtBatchNo.Text, txtManufactureDate.Text, txtExpiryDate.Text, txtPurchaseDate.Text);
+            ResultDTO resultDTO = objITransactionBusiness.UpdateDrugStock(DrugStockID, ddlDrugNames.SelectedValue,PHCConstant.PHCID, Convert.ToInt16(txtQuantity.Text), txtBatchNo.Text, txtManufactureDate.Text, txtExpiryDate.Text, txtPurchaseDate.Text);
 
             if (resultDTO.IsSuccess)
             {

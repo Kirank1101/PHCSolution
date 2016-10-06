@@ -26,6 +26,8 @@ namespace PHC.DataAccess
             this.PatientECs = new HashSet<PatientEC>();
             this.PatientMCs = new HashSet<PatientMC>();
             this.SubCenters = new HashSet<SubCenter>();
+            this.PHCTransactions = new HashSet<PHCTransaction>();
+            this.VaccinationHistories = new HashSet<VaccinationHistory>();
         }
     
         public string PHCID { get; set; }
@@ -46,5 +48,7 @@ namespace PHC.DataAccess
         public virtual ICollection<PatientEC> PatientECs { get; set; }
         public virtual ICollection<PatientMC> PatientMCs { get; set; }
         public virtual ICollection<SubCenter> SubCenters { get; set; }
+        public virtual ICollection<PHCTransaction> PHCTransactions { get; set; }
+        public virtual ICollection<VaccinationHistory> VaccinationHistories { get; set; }
     }
 }

@@ -214,6 +214,20 @@
     <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
     <Property Name="ObsInd" Type="char" MaxLength="1" Nullable="false" />
   </EntityType>
+  <EntityType Name="MVaccination">
+    <Key>
+      <PropertyRef Name="VaccinationID" />
+    </Key>
+    <Property Name="VaccinationID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="StateID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProtectsAgainst" Type="nvarchar" MaxLength="2000" Nullable="false" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ObsInd" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="VaccinationFrom" Type="int" />
+    <Property Name="VaccinationTo" Type="int" />
+  </EntityType>
   <EntityType Name="MVillage">
     <Key>
       <PropertyRef Name="VillageID" />
@@ -294,6 +308,26 @@
     <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
     <Property Name="ObsInd" Type="char" MaxLength="1" Nullable="false" />
   </EntityType>
+  <EntityType Name="PHCTransaction">
+    <Key>
+      <PropertyRef Name="PHCTransactionID" />
+    </Key>
+    <Property Name="PHCTransactionID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PHCID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="SchemeID" Type="nvarchar" MaxLength="50" />
+    <Property Name="PatientID" Type="nvarchar" MaxLength="50" />
+    <Property Name="ChequeNo" Type="nvarchar" MaxLength="30" />
+    <Property Name="ReceivedAmount" Type="money" />
+    <Property Name="SpentAmount" Type="money" />
+    <Property Name="ISDebited" Type="char" MaxLength="1" />
+    <Property Name="Description" Type="nvarchar" MaxLength="2000" Nullable="false" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ObsInd" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="HandOver" Type="nvarchar" MaxLength="100" />
+    <Property Name="ReceivedFrom" Type="nvarchar" MaxLength="100" />
+    <Property Name="TransactionType" Type="char" MaxLength="1" Nullable="false" />
+  </EntityType>
   <EntityType Name="SubCenter">
     <Key>
       <PropertyRef Name="SubCenterID" />
@@ -342,6 +376,18 @@
     <Property Name="UserID" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="LoginID" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ObsInd" Type="char" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VaccinationHistory">
+    <Key>
+      <PropertyRef Name="VaccinationIssuedID" />
+    </Key>
+    <Property Name="VaccinationIssuedID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="VaccinationID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PHCID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="VaccinatedDate" Type="datetime" Nullable="false" />
     <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
     <Property Name="ObsInd" Type="char" MaxLength="1" Nullable="false" />
@@ -642,6 +688,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_MVaccination_MState">
+    <End Role="MState" Type="Self.MState" Multiplicity="1" />
+    <End Role="MVaccination" Type="Self.MVaccination" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MState">
+        <PropertyRef Name="StateID" />
+      </Principal>
+      <Dependent Role="MVaccination">
+        <PropertyRef Name="StateID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_MVillage_MPHC">
     <End Role="MPHC" Type="Self.MPHC" Multiplicity="1" />
     <End Role="MVillage" Type="Self.MVillage" Multiplicity="*" />
@@ -750,6 +808,42 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_PHCTransaction_MPHC">
+    <End Role="MPHC" Type="Self.MPHC" Multiplicity="1" />
+    <End Role="PHCTransaction" Type="Self.PHCTransaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MPHC">
+        <PropertyRef Name="PHCID" />
+      </Principal>
+      <Dependent Role="PHCTransaction">
+        <PropertyRef Name="PHCID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PHCTransaction_MScheme">
+    <End Role="MScheme" Type="Self.MScheme" Multiplicity="0..1" />
+    <End Role="PHCTransaction" Type="Self.PHCTransaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MScheme">
+        <PropertyRef Name="SchemeID" />
+      </Principal>
+      <Dependent Role="PHCTransaction">
+        <PropertyRef Name="SchemeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PHCTransaction_PatientDetails">
+    <End Role="PatientDetails" Type="Self.PatientDetails" Multiplicity="0..1" />
+    <End Role="PHCTransaction" Type="Self.PHCTransaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PatientDetails">
+        <PropertyRef Name="PatientID" />
+      </Principal>
+      <Dependent Role="PHCTransaction">
+        <PropertyRef Name="PatientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_SubCenter_MPHC">
     <End Role="MPHC" Type="Self.MPHC" Multiplicity="1" />
     <End Role="SubCenter" Type="Self.SubCenter" Multiplicity="*" />
@@ -846,6 +940,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_VaccinationHistory_MPHC">
+    <End Role="MPHC" Type="Self.MPHC" Multiplicity="1" />
+    <End Role="VaccinationHistory" Type="Self.VaccinationHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MPHC">
+        <PropertyRef Name="PHCID" />
+      </Principal>
+      <Dependent Role="VaccinationHistory">
+        <PropertyRef Name="PHCID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VaccinationHistory_MVaccination">
+    <End Role="MVaccination" Type="Self.MVaccination" Multiplicity="1" />
+    <End Role="VaccinationHistory" Type="Self.VaccinationHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MVaccination">
+        <PropertyRef Name="VaccinationID" />
+      </Principal>
+      <Dependent Role="VaccinationHistory">
+        <PropertyRef Name="VaccinationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="PHCSolutionsModelStoreContainer">
     <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
@@ -866,16 +984,19 @@
     <EntitySet Name="MScheme" EntityType="Self.MScheme" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MState" EntityType="Self.MState" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MTaluk" EntityType="Self.MTaluk" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MVaccination" EntityType="Self.MVaccination" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MVillage" EntityType="Self.MVillage" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PatientAddress" EntityType="Self.PatientAddress" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PatientDetails" EntityType="Self.PatientDetails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PatientEC" EntityType="Self.PatientEC" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PatientMC" EntityType="Self.PatientMC" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PatientPrescription" EntityType="Self.PatientPrescription" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PHCTransaction" EntityType="Self.PHCTransaction" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SubCenter" EntityType="Self.SubCenter" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserDetails" EntityType="Self.UserDetails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserMap" EntityType="Self.UserMap" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VaccinationHistory" EntityType="Self.VaccinationHistory" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__DrugsIssu__DrugI__38996AB5" Association="Self.FK__DrugsIssu__DrugI__38996AB5">
       <End Role="MDrugs" EntitySet="MDrugs" />
       <End Role="DrugsIssued" EntitySet="DrugsIssued" />
@@ -972,6 +1093,10 @@
       <End Role="MDistrict" EntitySet="MDistrict" />
       <End Role="MTaluk" EntitySet="MTaluk" />
     </AssociationSet>
+    <AssociationSet Name="FK_MVaccination_MState" Association="Self.FK_MVaccination_MState">
+      <End Role="MState" EntitySet="MState" />
+      <End Role="MVaccination" EntitySet="MVaccination" />
+    </AssociationSet>
     <AssociationSet Name="FK_MVillage_MPHC" Association="Self.FK_MVillage_MPHC">
       <End Role="MPHC" EntitySet="MPHC" />
       <End Role="MVillage" EntitySet="MVillage" />
@@ -1008,6 +1133,18 @@
       <End Role="PatientDetails" EntitySet="PatientDetails" />
       <End Role="PatientPrescription" EntitySet="PatientPrescription" />
     </AssociationSet>
+    <AssociationSet Name="FK_PHCTransaction_MPHC" Association="Self.FK_PHCTransaction_MPHC">
+      <End Role="MPHC" EntitySet="MPHC" />
+      <End Role="PHCTransaction" EntitySet="PHCTransaction" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PHCTransaction_MScheme" Association="Self.FK_PHCTransaction_MScheme">
+      <End Role="MScheme" EntitySet="MScheme" />
+      <End Role="PHCTransaction" EntitySet="PHCTransaction" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PHCTransaction_PatientDetails" Association="Self.FK_PHCTransaction_PatientDetails">
+      <End Role="PatientDetails" EntitySet="PatientDetails" />
+      <End Role="PHCTransaction" EntitySet="PHCTransaction" />
+    </AssociationSet>
     <AssociationSet Name="FK_SubCenter_MPHC" Association="Self.FK_SubCenter_MPHC">
       <End Role="MPHC" EntitySet="MPHC" />
       <End Role="SubCenter" EntitySet="SubCenter" />
@@ -1039,6 +1176,14 @@
     <AssociationSet Name="FK_UserMap_Users" Association="Self.FK_UserMap_Users">
       <End Role="Users" EntitySet="Users" />
       <End Role="UserMap" EntitySet="UserMap" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VaccinationHistory_MPHC" Association="Self.FK_VaccinationHistory_MPHC">
+      <End Role="MPHC" EntitySet="MPHC" />
+      <End Role="VaccinationHistory" EntitySet="VaccinationHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VaccinationHistory_MVaccination" Association="Self.FK_VaccinationHistory_MVaccination">
+      <End Role="MVaccination" EntitySet="MVaccination" />
+      <End Role="VaccinationHistory" EntitySet="VaccinationHistory" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

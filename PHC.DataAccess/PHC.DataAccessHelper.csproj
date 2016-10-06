@@ -105,6 +105,9 @@
     <Compile Include="MTaluk.cs">
       <DependentUpon>PHCModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="MVaccination.cs">
+      <DependentUpon>PHCModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="MVillage.cs">
       <DependentUpon>PHCModel.tt</DependentUpon>
     </Compile>
@@ -138,6 +141,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PHCModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="PHCTransaction.cs">
+      <DependentUpon>PHCModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SubCenter.cs">
       <DependentUpon>PHCModel.tt</DependentUpon>
@@ -149,6 +155,9 @@
       <DependentUpon>PHCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="UserMap.cs">
+      <DependentUpon>PHCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VaccinationHistory.cs">
       <DependentUpon>PHCModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>

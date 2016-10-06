@@ -372,5 +372,54 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="MVaccinations">
+      <EntityTypeMapping TypeName="PHCSolutionsModel.MVaccination">
+        <MappingFragment StoreEntitySet="MVaccination">
+          <ScalarProperty Name="VaccinationTo" ColumnName="VaccinationTo" />
+          <ScalarProperty Name="VaccinationFrom" ColumnName="VaccinationFrom" />
+          <ScalarProperty Name="ObsInd" ColumnName="ObsInd" />
+          <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+          <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+          <ScalarProperty Name="ProtectsAgainst" ColumnName="ProtectsAgainst" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="StateID" ColumnName="StateID" />
+          <ScalarProperty Name="VaccinationID" ColumnName="VaccinationID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PHCTransactions">
+      <EntityTypeMapping TypeName="PHCSolutionsModel.PHCTransaction">
+        <MappingFragment StoreEntitySet="PHCTransaction">
+          <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+          <ScalarProperty Name="ReceivedFrom" ColumnName="ReceivedFrom" />
+          <ScalarProperty Name="HandOver" ColumnName="HandOver" />
+          <ScalarProperty Name="ObsInd" ColumnName="ObsInd" />
+          <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+          <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ISDebited" ColumnName="ISDebited" />
+          <ScalarProperty Name="SpentAmount" ColumnName="SpentAmount" />
+          <ScalarProperty Name="ReceivedAmount" ColumnName="ReceivedAmount" />
+          <ScalarProperty Name="ChequeNo" ColumnName="ChequeNo" />
+          <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+          <ScalarProperty Name="SchemeID" ColumnName="SchemeID" />
+          <ScalarProperty Name="PHCID" ColumnName="PHCID" />
+          <ScalarProperty Name="PHCTransactionID" ColumnName="PHCTransactionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VaccinationHistories">
+      <EntityTypeMapping TypeName="PHCSolutionsModel.VaccinationHistory">
+        <MappingFragment StoreEntitySet="VaccinationHistory">
+          <ScalarProperty Name="ObsInd" ColumnName="ObsInd" />
+          <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+          <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+          <ScalarProperty Name="VaccinatedDate" ColumnName="VaccinatedDate" />
+          <ScalarProperty Name="PHCID" ColumnName="PHCID" />
+          <ScalarProperty Name="VaccinationID" ColumnName="VaccinationID" />
+          <ScalarProperty Name="VaccinationIssuedID" ColumnName="VaccinationIssuedID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

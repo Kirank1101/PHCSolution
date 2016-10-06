@@ -205,6 +205,7 @@
     <Content Include="DynamicData\FieldTemplates\Url.ascx" />
     <Content Include="DynamicData\FieldTemplates\Url_Edit.ascx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="PHCOpeningBalance.aspx" />
     <Content Include="MStates\Default.aspx" />
     <Content Include="MStates\Delete.aspx" />
     <Content Include="MStates\Details.aspx" />
@@ -218,6 +219,7 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="PatientPrescription.aspx" />
     <Content Include="PatientReport.aspx" />
+    <Content Include="PHCTransaction.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -651,6 +653,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="PHCOpeningBalance.aspx.cs">
+      <DependentUpon>PHCOpeningBalance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PHCOpeningBalance.aspx.designer.cs">
+      <DependentUpon>PHCOpeningBalance.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MStates\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -699,6 +708,13 @@
     </Compile>
     <Compile Include="PatientReport.aspx.designer.cs">
       <DependentUpon>PatientReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PHCTransaction.aspx.cs">
+      <DependentUpon>PHCTransaction.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PHCTransaction.aspx.designer.cs">
+      <DependentUpon>PHCTransaction.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">

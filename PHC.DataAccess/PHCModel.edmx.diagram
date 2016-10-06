@@ -73,6 +73,15 @@
         <AssociationConnector Association="PHCSolutionsModel.FK_SubCenter_MPHC" />
         <AssociationConnector Association="PHCSolutionsModel.FK_MReligion_MState" />
         <AssociationConnector Association="PHCSolutionsModel.FK_MScheme_MState" />
+        <EntityTypeShape EntityType="PHCSolutionsModel.MVaccination" Width="1.5" PointX="3" PointY="29.625" />
+        <EntityTypeShape EntityType="PHCSolutionsModel.PHCTransaction" Width="1.5" PointX="12" PointY="20.25" />
+        <EntityTypeShape EntityType="PHCSolutionsModel.VaccinationHistory" Width="1.5" PointX="9.75" PointY="23" />
+        <AssociationConnector Association="PHCSolutionsModel.FK_PHCTransaction_MPHC" />
+        <AssociationConnector Association="PHCSolutionsModel.FK_VaccinationHistory_MPHC" />
+        <AssociationConnector Association="PHCSolutionsModel.FK_PHCTransaction_MScheme" />
+        <AssociationConnector Association="PHCSolutionsModel.FK_MVaccination_MState" />
+        <AssociationConnector Association="PHCSolutionsModel.FK_VaccinationHistory_MVaccination" />
+        <AssociationConnector Association="PHCSolutionsModel.FK_PHCTransaction_PatientDetails" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
