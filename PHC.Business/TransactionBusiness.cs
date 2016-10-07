@@ -7,6 +7,7 @@ using PHC.DAInterfaces.DataAccess;
 using PHC.DataAccess;
 using PHC.BAInterfaces.DataTransfer;
 using AllInOne.Common.Library.Util;
+using System.Globalization;
 namespace PHC.Business
 {
     public class TransactionBusiness : ITransactionBusiness
@@ -1255,6 +1256,32 @@ namespace PHC.Business
                 }
             }
             return lstPHCTransactionDTO;
+        }
+
+
+        public string CalculateBalanceAmount(string PHCID)
+        {
+            try
+            {
+                decimal amount =objDA.GetBalanceamount(PHCID);
+                return ConverDoubleMoneyToStringMoney(Convert.ToString(amount));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public string ConverDoubleMoneyToStringMoney(string Amount)
+        {
+            string money = string.Empty;
+            if (!string.IsNullOrEmpty(Amount))
+            {
+                decimal parsed = decimal.Parse(Amount, CultureInfo.InvariantCulture);
+                CultureInfo hindi = new CultureInfo("hi-IN");
+                money = string.Format(hindi, "{0:c}", parsed);
+            }
+            return money;
+
         }
     }
 }

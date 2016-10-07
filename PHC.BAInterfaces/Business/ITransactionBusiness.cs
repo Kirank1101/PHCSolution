@@ -98,5 +98,7 @@ namespace PHC.BAInterfaces.Business
         List<PHCTransactionDTO> GetPendingTransactionDetails(string PHCID);
 
         List<PHCTransactionDTO> GetPatientPendingTransaction(string PatientName, string PHCID);
+
+        string CalculateBalanceAmount(string PHCID);
     }
 }

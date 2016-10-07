@@ -177,5 +177,7 @@ namespace PHC.DAInterfaces.DataAccess
         List<PHCTransaction> GetPendingTransaction(string PHCID);
 
         List<PHCTransaction> GetPatientPendingTransaction(string PatientName, string PHCID);
+
+        decimal GetBalanceamount(string PHCID);
     }
 }

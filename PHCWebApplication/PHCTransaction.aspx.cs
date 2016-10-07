@@ -32,6 +32,7 @@ namespace PHCWebApplication
             {
                 LVPHCTransDetails.DataSource = lstphctran;
                 LVPHCTransDetails.DataBind();
+                lblbalanceamount.Text = objITransactionBusiness.CalculateBalanceAmount(PHCConstant.PHCID);
             }
             else
             {

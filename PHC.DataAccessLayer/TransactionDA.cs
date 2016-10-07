@@ -1515,7 +1515,7 @@ namespace PHC.DataAccessLayer
                 try
                 {
                     return new GenericRepository<PHCTransaction>(work)
-                        .FindBy(p => p.PHCID == PHCID && p.ISDebited != "Y" && p.TransactionType=="D"  && p.ObsInd == No)
+                        .FindBy(p => p.PHCID == PHCID && p.ISDebited != "Y" && p.TransactionType == "D" && p.ObsInd == No)
                         .OrderByDescending(p => p.LastModifiedDate)
                         .ToList();
                 }
@@ -1543,6 +1543,31 @@ namespace PHC.DataAccessLayer
                 catch (Exception ex)
                 {
                     return null;
+                    throw ex;
+                }
+            }
+        }
+        public decimal GetBalanceamount(string PHCID)
+        {
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                try
+                {
+                    decimal CreditAmount = new GenericRepository<PHCTransaction>(work)
+                        .FindBy(p => p.PHCID == PHCID && p.TransactionType == "C"  && p.ObsInd == No)
+                        .OrderByDescending(p => p.LastModifiedDate)
+                        .Sum(p => p.ReceivedAmount).Value;
+                    decimal DebitAmount = new GenericRepository<PHCTransaction>(work)
+                        .FindBy(p => p.PHCID == PHCID && p.TransactionType == "D" && p.ObsInd == No)
+                        .OrderByDescending(p => p.LastModifiedDate)
+                        .Sum(p => p.SpentAmount).Value;
+                    decimal OutstandingBalanceAmount = CreditAmount - DebitAmount;
+                    return OutstandingBalanceAmount;
+                }
+                catch (Exception ex)
+                {
+                    return 0;
                     throw ex;
                 }
             }

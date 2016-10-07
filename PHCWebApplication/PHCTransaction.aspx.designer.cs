@@ -31,6 +31,24 @@ namespace PHCWebApplication {
         protected global::System.Web.UI.WebControls.Label lblstatus;
         
         /// <summary>
+        /// lblbalmount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblbalmount;
+        
+        /// <summary>
+        /// lblbalanceamount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblbalanceamount;
+        
+        /// <summary>
         /// divPHCTransaction control.
         /// </summary>
         /// <remarks>

@@ -30,7 +30,8 @@
     </asp:Panel>
     <br />
 
-    <h3>PHC Transaction</h3>
+    <h3>PHC Transaction&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;             
+        <asp:Label ID="lblbalmount" runat="server" Text="BalanceAmount= "></asp:Label><asp:Label ID="lblbalanceamount" runat="server" ForeColor="#3a8f35"></asp:Label></h3>
     <br />
 
     <div id="divPHCTransaction" runat="server">
@@ -84,7 +85,7 @@
                         ErrorMessage="Please enter Cheque Number" ControlToValidate="txtChequeNo"
                         ValidationGroup="PHCTransactionValidation" ForeColor="Red">*</asp:RequiredFieldValidator></td>
             </tr>
-            
+
             <tr>
                 <td>
                     <asp:Label runat="server" CssClass="control-label" Text="Amount"></asp:Label></td>
@@ -137,7 +138,7 @@
                                             </th>
                                             <th style="color: #428bca; width: 200px">Credit Amount
                                             </th>
-                                            
+
                                             <th style="color: #428bca; width: 250px">Transaction Date
                                             </th>
                                         </tr>
