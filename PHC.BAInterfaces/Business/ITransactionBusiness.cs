@@ -92,5 +92,11 @@ namespace PHC.BAInterfaces.Business
         List<PHCTransactionDTO> GetPHCTransactionDetails(string PHCID);
 
         ResultDTO SavePHCTransaction(string PHCID, string TransactionType, string ReceiverorGiverName, string ChequeuNo, decimal Amount, string Description);
+
+        ResultDTO UpdateTransaction(string TransactionID, string PHCID);
+
+        List<PHCTransactionDTO> GetPendingTransactionDetails(string PHCID);
+
+        List<PHCTransactionDTO> GetPatientPendingTransaction(string PatientName, string PHCID);
     }
 }

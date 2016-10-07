@@ -168,6 +168,7 @@
     <Content Include="AddDiseases.aspx" />
     <Content Include="AddDrugs.aspx" />
     <Content Include="AddEducation.aspx" />
+    <Content Include="AddLabTestResult.aspx" />
     <Content Include="AddLabTests.aspx" />
     <Content Include="AddMC.aspx" />
     <Content Include="AddPatientDetails.aspx" />
@@ -179,6 +180,7 @@
     <Content Include="AddUsers.aspx" />
     <Content Include="AddVaccination.aspx" />
     <Content Include="AddVillages.aspx" />
+    <Content Include="ClearTransaction.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -400,6 +402,13 @@
     <Compile Include="AddEducation.aspx.designer.cs">
       <DependentUpon>AddEducation.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AddLabTestResult.aspx.cs">
+      <DependentUpon>AddLabTestResult.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddLabTestResult.aspx.designer.cs">
+      <DependentUpon>AddLabTestResult.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AddLabTests.aspx.cs">
       <DependentUpon>AddLabTests.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -488,6 +497,13 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="ClearTransaction.aspx.cs">
+      <DependentUpon>ClearTransaction.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ClearTransaction.aspx.designer.cs">
+      <DependentUpon>ClearTransaction.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

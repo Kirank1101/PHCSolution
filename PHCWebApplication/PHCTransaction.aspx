@@ -138,7 +138,7 @@
                                             <th style="color: #428bca; width: 200px">Credit Amount
                                             </th>
                                             
-                                            <th style="color: #428bca; width: 230px">Transaction Date
+                                            <th style="color: #428bca; width: 250px">Transaction Date
                                             </th>
                                         </tr>
                                     </thead>

@@ -153,6 +153,7 @@ namespace PHC.BAInterfaces.DataTransfer
     {
         public string PHCTransactionID { get; set; }
         public int SlNo { get; set; }
+        public string Name { get; set; }
         public string TransactionDetails { get; set; }
         public double DebitedAmount { get; set; }
         public double CreditedAmount { get; set; }

@@ -40,5 +40,7 @@ namespace PHC.BAInterfaces.Constants
         public const string ErrorMessageReceived = "Please Enter Received field";
 
         public const string PHCTransactionWarning = "Please Create Opening Balance Transaction";
+
+        public const string NoRecordExist = "No Record found for this search.";
     }
 }

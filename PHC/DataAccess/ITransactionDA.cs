@@ -171,5 +171,11 @@ namespace PHC.DAInterfaces.DataAccess
         bool AddPHCTransaction(PHCTransaction PHCT);
 
         List<PHCTransaction> GetPHCTransaction(string PHCID);
+
+        bool UpdatePHCTransaction(PHCTransaction PHCTransaction);
+
+        List<PHCTransaction> GetPendingTransaction(string PHCID);
+
+        List<PHCTransaction> GetPatientPendingTransaction(string PatientName, string PHCID);
     }
 }

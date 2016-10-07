@@ -1406,14 +1406,14 @@ namespace PHC.DataAccessLayer
             {
                 try
                 {
-                    return new GenericRepository<PatientDetail>(work).FindBy(d => d.Name== PatientName && d.PHCID==PHCID && d.ObsInd == No).SingleOrDefault();
+                    return new GenericRepository<PatientDetail>(work).FindBy(d => d.Name == PatientName && d.PHCID == PHCID && d.ObsInd == No).SingleOrDefault();
                 }
                 catch (Exception ex)
                 {
                     return null;
                     throw ex;
                 }
-            }            
+            }
         }
 
 
@@ -1425,7 +1425,7 @@ namespace PHC.DataAccessLayer
                 try
                 {
                     return new GenericRepository<PatientPrescription>(work)
-                        .FindBy(p => p.PHCID == PHCID && p.PatientID==PatientID && p.ObsInd == No)
+                        .FindBy(p => p.PHCID == PHCID && p.PatientID == PatientID && p.ObsInd == No)
                         .OrderByDescending(p => p.LastModifiedDate)
                         .ToList();
                 }
@@ -1435,10 +1435,7 @@ namespace PHC.DataAccessLayer
                     throw ex;
                 }
             }
-
         }
-
-
         public PHCTransaction checkPHCOpeningBalance(string PHCID, string Description)
         {
             IUnitOfWork work = null;
@@ -1459,7 +1456,6 @@ namespace PHC.DataAccessLayer
             }
 
         }
-
         public bool AddPHCTransaction(PHCTransaction PHCT)
         {
             IUnitOfWork work = null;
@@ -1470,8 +1466,6 @@ namespace PHC.DataAccessLayer
             }
             return true;
         }
-
-
         public List<PHCTransaction> GetPHCTransaction(string PHCID)
         {
             IUnitOfWork work = null;
@@ -1481,6 +1475,68 @@ namespace PHC.DataAccessLayer
                 {
                     return new GenericRepository<PHCTransaction>(work)
                         .FindBy(p => p.PHCID == PHCID && p.ObsInd == No)
+                        .OrderByDescending(p => p.LastModifiedDate)
+                        .ToList();
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                    throw ex;
+                }
+            }
+        }
+        public bool UpdatePHCTransaction(PHCTransaction PHCTransaction)
+        {
+
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                PHCTransaction pHCTransaction = new GenericRepository<PHCTransaction>(work).FindBy(n => n.PHCTransactionID == PHCTransaction.PHCTransactionID && n.PHCID == PHCTransaction.PHCID).FirstOrDefault();
+
+                if (pHCTransaction != null)
+                {
+                    //con.Edit(empobj);
+                    pHCTransaction.ISDebited = PHCTransaction.ISDebited;
+                    pHCTransaction.LastModifiedBy = "System";
+                    pHCTransaction.LastModifiedDate = DateTime.Now;
+                    work.Save();
+
+                    return true;
+                }
+                else
+                    return false;
+            }
+        }
+        public List<PHCTransaction> GetPendingTransaction(string PHCID)
+        {
+            IUnitOfWork work = null;
+            work = GetUOW.GetUOWInstance;
+            {
+                try
+                {
+                    return new GenericRepository<PHCTransaction>(work)
+                        .FindBy(p => p.PHCID == PHCID && p.ISDebited != "Y" && p.TransactionType=="D"  && p.ObsInd == No)
+                        .OrderByDescending(p => p.LastModifiedDate)
+                        .ToList();
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                    throw ex;
+                }
+            }
+        }
+
+
+        public List<PHCTransaction> GetPatientPendingTransaction(string PatientName, string PHCID)
+        {
+            IUnitOfWork work = null;
+            work = GetUOW.GetUOWInstance;
+            {
+                try
+                {
+                    return new GenericRepository<PHCTransaction>(work)
+                        .FindBy(p => p.PHCID == PHCID && p.ISDebited != "Y" && p.TransactionType == "D" && p.ObsInd == No && p.PatientDetail.Name == PatientName)
                         .OrderByDescending(p => p.LastModifiedDate)
                         .ToList();
                 }

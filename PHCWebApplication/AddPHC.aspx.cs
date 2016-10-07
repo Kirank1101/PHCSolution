@@ -84,6 +84,7 @@ namespace WebApplication5
                 pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.SuccessBackGroundColor);
                 lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.SuccessForeColor);
                 lblstatus.Text = resultDTO.Message;
+                this.PopulateData();
             }
             else
             {
@@ -91,7 +92,7 @@ namespace WebApplication5
                 lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.ErrorForeColor);
                 lblstatus.Text = resultDTO.Message;
             }
-            this.PopulateData();
+            
         }
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
