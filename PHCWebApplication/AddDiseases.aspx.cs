@@ -29,6 +29,7 @@ namespace WebApplication5
                 pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.SuccessBackGroundColor);
                 lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.SuccessForeColor);
                 lblstatus.Text = resultDTO.Message;
+                this.PopulateData();
             }
             else
             {
@@ -36,7 +37,6 @@ namespace WebApplication5
                 lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.ErrorForeColor);
                 lblstatus.Text = resultDTO.Message;
             }
-            this.PopulateData();
         }
         private void PopulateData()
         {
@@ -68,20 +68,19 @@ namespace WebApplication5
             ResultDTO resultDTO = objITransactionBusiness.UpdateMdisease(DiseaseID, txtdiseasename.Text);
             if (resultDTO.IsSuccess)
             {
-                //pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessBackGroundColor);
-                //lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessForeColor);
-                //lblstatus.Text = resultDTO.Message;
+                pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.SuccessBackGroundColor);
+                lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.SuccessForeColor);
+                lblstatus.Text = resultDTO.Message;
+                ListView1.EditIndex = -1;
+                this.PopulateData();
             }
             else
             {
-                //pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorBackGroundColor);
-                //lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorForeColor);
-                //lblstatus.Text = resultDTO.Message;
+                pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.ErrorBackGroundColor);
+                lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.ErrorForeColor);
+                lblstatus.Text = resultDTO.Message;
             }
-            //lblMessage.Text = "Record updated successfully !";
-            ListView1.EditIndex = -1;
-            // repopulate the data
-            this.PopulateData();
+            
         }
         protected void CancelEditRecord(object sender, ListViewCancelEventArgs e)
         {
@@ -99,6 +98,7 @@ namespace WebApplication5
                 pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.SuccessBackGroundColor);
                 lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.SuccessForeColor);
                 lblstatus.Text = resultDTO.Message;
+                this.PopulateData();
             }
             else
             {
@@ -106,7 +106,6 @@ namespace WebApplication5
                 lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.ErrorForeColor);
                 lblstatus.Text = resultDTO.Message;
             }
-            this.PopulateData();
         }
         protected void ListView1_PagePropertiesChanging(object sender, PagePropertiesChangingEventArgs e)
         {

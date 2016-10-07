@@ -63,20 +63,22 @@ namespace PHCWebApplication
             ResultDTO resultDTO = objITransactionBusiness.UpdateMReligion(ReligionID, txteReligionname.Text);
             if (resultDTO.IsSuccess)
             {
-                //pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessBackGroundColor);
-                //lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessForeColor);
-                //lblstatus.Text = resultDTO.Message;
+                pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.SuccessBackGroundColor);
+                lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.SuccessForeColor);
+                lblstatus.Text = resultDTO.Message;
+                ListView1.EditIndex = -1;
+                this.PopulateData();
             }
             else
             {
-                //pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorBackGroundColor);
-                //lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorForeColor);
-                //lblstatus.Text = resultDTO.Message;
+                pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.ErrorBackGroundColor);
+                lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.ErrorForeColor);
+                lblstatus.Text = resultDTO.Message;
             }
             //lblMessage.Text = "Record updated successfully !";
-            ListView1.EditIndex = -1;
+            
             // repopulate the data
-            this.PopulateData();
+            
         }
         protected void DeleteRecord(object sender, ListViewDeleteEventArgs e)
         {
@@ -85,17 +87,17 @@ namespace PHCWebApplication
             ResultDTO resultDTO = objITransactionBusiness.DeleteMReligion(ReligionID);
             if (resultDTO.IsSuccess)
             {
-                //pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessBackGroundColor);
-                //lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessForeColor);
-                //lblstatus.Text = resultDTO.Message;
+                pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.SuccessBackGroundColor);
+                lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.SuccessForeColor);
+                lblstatus.Text = resultDTO.Message;
+                this.PopulateData();
             }
             else
             {
-                //pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorBackGroundColor);
-                //lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorForeColor);
-                //lblstatus.Text = resultDTO.Message;
+                pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.ErrorBackGroundColor);
+                lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.ErrorForeColor);
+                lblstatus.Text = resultDTO.Message;
             }
-            this.PopulateData();
         }
         protected void CancelEditRecord(object sender, ListViewCancelEventArgs e)
         {

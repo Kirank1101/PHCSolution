@@ -55,6 +55,7 @@ namespace WebApplication5
                 pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.SuccessBackGroundColor);
                 lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.SuccessForeColor);
                 lblstatus.Text = resultDTO.Message;
+                this.PopulateData();
             }
             else
             {
@@ -62,7 +63,6 @@ namespace WebApplication5
                 lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.ErrorForeColor);
                 lblstatus.Text = resultDTO.Message;
             }
-            this.PopulateData();
         }
         protected void EditRecord(object sender, ListViewEditEventArgs e)
         {
@@ -79,20 +79,22 @@ namespace WebApplication5
             ResultDTO resultDTO = objITransactionBusiness.UpdateMTaluk(TalukID, ddlDistrict.SelectedValue, txteTalukName.Text);
             if (resultDTO.IsSuccess)
             {
-                //pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessBackGroundColor);
-                //lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessForeColor);
-                //lblstatus.Text = resultDTO.Message;
+                pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.SuccessBackGroundColor);
+                lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.SuccessForeColor);
+                lblstatus.Text = resultDTO.Message;
+                LVTalukDetails.EditIndex = -1;
+                this.PopulateData();
             }
             else
             {
-                //pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorBackGroundColor);
-                //lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorForeColor);
-                //lblstatus.Text = resultDTO.Message;
+                pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.ErrorBackGroundColor);
+                lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.ErrorForeColor);
+                lblstatus.Text = resultDTO.Message;
             }
             //lblMessage.Text = "Record updated successfully !";
-            LVTalukDetails.EditIndex = -1;
+            
             // repopulate the data
-            this.PopulateData();
+            
         }
         protected void CancelEditRecord(object sender, ListViewCancelEventArgs e)
         {
@@ -107,17 +109,17 @@ namespace WebApplication5
             ResultDTO resultDTO = objITransactionBusiness.DeleteMTaluk(TalukID);
             if (resultDTO.IsSuccess)
             {
-                //pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessBackGroundColor);
-                //lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessForeColor);
-                //lblstatus.Text = resultDTO.Message;
+                pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.SuccessBackGroundColor);
+                lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.SuccessForeColor);
+                lblstatus.Text = resultDTO.Message;
+                this.PopulateData();
             }
             else
             {
-                //pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorBackGroundColor);
-                //lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorForeColor);
-                //lblstatus.Text = resultDTO.Message;
+                pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.ErrorBackGroundColor);
+                lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.ErrorForeColor);
+                lblstatus.Text = resultDTO.Message;
             }
-            this.PopulateData();
         }
         protected void OnItemDataBound(object sender, ListViewItemEventArgs e)
         {

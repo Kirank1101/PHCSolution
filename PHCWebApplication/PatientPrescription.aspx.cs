@@ -203,22 +203,9 @@ namespace PHCWebApplication
             td.Dosage = txtDosage.Text;
             ViewstateDrugsIssues = lsttempdrugs;
 
-            //if (resultDTO.IsSuccess)
-            //{
-
             BindddlDrugs();
             BindLVDrugs();
             ResetDrugs();
-            //pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessBackGroundColor);
-            //lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessForeColor);
-            //lblstatus.Text = resultDTO.Message;
-            //}
-            //else
-            //{
-            //pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorBackGroundColor);
-            //lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorForeColor);
-            //lblstatus.Text = resultDTO.Message;
-            //}
 
         }
         protected void btnCancelDrug_Click(object sender, EventArgs e)
@@ -234,19 +221,6 @@ namespace PHCWebApplication
             ltd.Remove(td);
             ViewstateDrugsIssues = ltd;
             BindLVDrugs();
-            //if (resultDTO.IsSuccess)
-            //{
-            //    //pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessBackGroundColor);
-            //    //lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessForeColor);
-            //    //lblstatus.Text = resultDTO.Message;
-            //}
-            //else
-            //{
-            //    //pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorBackGroundColor);
-            //    //lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorForeColor);
-            //    //lblstatus.Text = resultDTO.Message;
-            //}
-            //this.PopulateData();
         }
         protected void LVDrugs_ItemCommand(object sender, ListViewCommandEventArgs e)
         {

@@ -55,7 +55,7 @@ namespace PHCWebApplication
                     pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.SuccessBackGroundColor);
                     lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.SuccessForeColor);
                     lblstatus.Text = resultDTO.Message;
-
+                    this.BindLVPHCTransDetails();
                 }
                 else
                 {

@@ -82,6 +82,7 @@ namespace PHCWebApplication
                 pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.SuccessBackGroundColor);
                 lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.SuccessForeColor);
                 lblstatus.Text = resultDTO.Message;
+                this.PopulateData();
             }
             else
             {
@@ -89,7 +90,6 @@ namespace PHCWebApplication
                 lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.ErrorForeColor);
                 lblstatus.Text = resultDTO.Message;
             }
-            this.PopulateData();
         }
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
@@ -99,17 +99,17 @@ namespace PHCWebApplication
             if (resultDTO.IsSuccess)
             {
                 ViewState["DrugStockID"] = null;
-                //pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessBackGroundColor);
-                //lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessForeColor);
-                //lblstatus.Text = resultDTO.Message;
+                pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.SuccessBackGroundColor);
+                lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.SuccessForeColor);
+                lblstatus.Text = resultDTO.Message;
+                this.PopulateData();
             }
             else
             {
-                //pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorBackGroundColor);
-                //lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorForeColor);
-                //lblstatus.Text = resultDTO.Message;
+                pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.ErrorBackGroundColor);
+                lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.ErrorForeColor);
+                lblstatus.Text = resultDTO.Message;
             }
-            this.PopulateData();
         }
         protected void btnCancel_Click(object sender, EventArgs e)
         {
@@ -122,17 +122,17 @@ namespace PHCWebApplication
             ResultDTO resultDTO = objITransactionBusiness.DeleteDrugStock(DrugStockID);
             if (resultDTO.IsSuccess)
             {
-                //pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessBackGroundColor);
-                //lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessForeColor);
-                //lblstatus.Text = resultDTO.Message;
+                pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.SuccessBackGroundColor);
+                lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.SuccessForeColor);
+                lblstatus.Text = resultDTO.Message;
+                this.PopulateData();
             }
             else
             {
-                //pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorBackGroundColor);
-                //lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorForeColor);
-                //lblstatus.Text = resultDTO.Message;
+                pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.ErrorBackGroundColor);
+                lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.ErrorForeColor);
+                lblstatus.Text = resultDTO.Message;
             }
-            this.PopulateData();
         }
         protected void LVDrugsStockDetails_PagePropertiesChanging(object sender, PagePropertiesChangingEventArgs e)
         {

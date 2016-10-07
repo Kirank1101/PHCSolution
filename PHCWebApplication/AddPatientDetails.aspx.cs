@@ -191,15 +191,15 @@ namespace WebApplication5
                 ViewState[VSPatientID] = null;
                 PageReset();
                 this.PopulateData();
-                //pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessBackGroundColor);
-                //lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessForeColor);
-                //lblstatus.Text = resultDTO.Message;
+                pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.SuccessBackGroundColor);
+                lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.SuccessForeColor);
+                lblstatus.Text = resultDTO.Message;
             }
             else
             {
-                //pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorBackGroundColor);
-                //lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorForeColor);
-                //lblstatus.Text = resultDTO.Message;
+                pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.ErrorBackGroundColor);
+                lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.ErrorForeColor);
+                lblstatus.Text = resultDTO.Message;
             }
         }
         protected void btnCancel_Click(object sender, EventArgs e)
@@ -215,17 +215,17 @@ namespace WebApplication5
             ResultDTO resultDTO = objITransactionBusiness.DeletePatientDetail(PatientID);
             if (resultDTO.IsSuccess)
             {
-                //pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessBackGroundColor);
-                //lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.SuccessForeColor);
-                //lblstatus.Text = resultDTO.Message;
+                pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.SuccessBackGroundColor);
+                lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.SuccessForeColor);
+                lblstatus.Text = resultDTO.Message;
+                this.PopulateData();
             }
             else
             {
-                //pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorBackGroundColor);
-                //lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstatnt.ErrorForeColor);
-                //lblstatus.Text = resultDTO.Message;
+                pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.ErrorBackGroundColor);
+                lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.ErrorForeColor);
+                lblstatus.Text = resultDTO.Message;
             }
-            this.PopulateData();
         }
         protected void LVPatientDetailDetails_PagePropertiesChanging(object sender, PagePropertiesChangingEventArgs e)
         {
