@@ -1477,7 +1477,7 @@ namespace PHC.DataAccessLayer
                 {
                     return new GenericRepository<PHCTransaction>(work)
                         .FindBy(p => p.PHCID == PHCID && p.ObsInd == No)
-                        .OrderByDescending(p => p.LastModifiedDate)
+                        .OrderByDescending(p => p.LastModifiedDate).Take(25)
                         .ToList();
                 }
                 catch (Exception ex)
