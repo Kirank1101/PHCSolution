@@ -22,6 +22,8 @@ namespace WebApplication5
             {
                 PageReset();
                 this.PopulateData();
+                rbUnmarried.Checked = true;
+                rbMale.Checked = true;
             }
         }
         private void PageReset()
@@ -34,8 +36,8 @@ namespace WebApplication5
             txtECNo.Text = string.Empty;
             txtAge.Text = string.Empty;
             txtDOB.Text = string.Empty;
-            rbMale.Checked = false;
-            rbFemale.Checked = false;
+            rbMale.Checked = true;
+            rbUnmarried.Checked = true;
             txtContactNo.Text = string.Empty;
             txtAddress.Text = string.Empty;
             txtPhoneNo.Text = string.Empty;
@@ -148,7 +150,7 @@ namespace WebApplication5
         }
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            ResultDTO resultDTO = objITransactionBusiness.SavePatientDetails(PHCConstant.PHCID, txtPatientName.Text, txtECNo.Text, Convert.ToInt16(txtAge.Text), txtDOB.Text, GetGender(), ddlBloodGroup.SelectedItem.Text, ddlVillages.SelectedValue, txtAddress.Text, txtContactNo.Text, txtPhoneNo.Text,ddlEducation.SelectedValue,ddlReligion.SelectedValue);
+            ResultDTO resultDTO = objITransactionBusiness.SavePatientDetails(PHCConstant.PHCID, txtPatientName.Text, txtECNo.Text, Convert.ToInt16(txtAge.Text), txtDOB.Text, GetGender(), ddlBloodGroup.SelectedItem.Text, ddlVillages.SelectedValue, txtAddress.Text, txtContactNo.Text, txtPhoneNo.Text, ddlEducation.SelectedValue, ddlReligion.SelectedValue, rbMarried.Checked ? "M" : "S", txtFatherName.Text, txtHusbandName.Text);
             if (resultDTO.IsSuccess)
             {
                 pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.SuccessBackGroundColor);
@@ -179,7 +181,7 @@ namespace WebApplication5
             string ECno = Convert.ToString( ViewState[VSECNo]);
             ResultDTO resultDTO = new ResultDTO();
             if ((!string.IsNullOrEmpty(ECno) && !string.IsNullOrEmpty(txtECNo.Text)) || string.IsNullOrEmpty(ECno))
-                resultDTO = objITransactionBusiness.UpdatePatientDetail(PHCConstant.PHCID, PatientID, txtPatientName.Text, txtECNo.Text, Convert.ToInt16(txtAge.Text), txtDOB.Text, GetGender(), ddlBloodGroup.SelectedItem.Text, ddlVillages.SelectedValue, txtAddress.Text, txtContactNo.Text, txtPhoneNo.Text,ddlEducation.SelectedValue,ddlReligion.SelectedValue);
+                resultDTO = objITransactionBusiness.UpdatePatientDetail(PHCConstant.PHCID, PatientID, txtPatientName.Text, txtECNo.Text, Convert.ToInt16(txtAge.Text), txtDOB.Text, GetGender(), ddlBloodGroup.SelectedItem.Text, ddlVillages.SelectedValue, txtAddress.Text, txtContactNo.Text, txtPhoneNo.Text, ddlEducation.SelectedValue, ddlReligion.SelectedValue, rbMarried.Checked? "M" : "S", txtFatherName.Text, txtHusbandName.Text);
             else
             {
                 resultDTO.IsSuccess = false;
@@ -253,7 +255,9 @@ namespace WebApplication5
 
                 Label lblEducationID = (Label)e.Item.FindControl("lblEducationID");
                 Label lblReligionID = (Label)e.Item.FindControl("lblReligionID");
-
+                Label lblIsMarried = (Label)e.Item.FindControl("lblIsMarried");
+                Label lblHusbandName = (Label)e.Item.FindControl("lblHusbandName");
+                Label lblFatherName = (Label)e.Item.FindControl("lblFatherName");
                 string PatientID = lblPatientID.Text;
                 btnSave.Visible = false;
                 btnUpdate.Visible = true;
@@ -270,6 +274,13 @@ namespace WebApplication5
                 else
                     rbFemale.Checked = true;
 
+                if (lblIsMarried.Text == PHCConstant.Married)
+                    rbMale.Checked=true;
+                else if (lblIsMarried.Text == PHCConstant.Single)
+                    rbUnmarried.Checked=true;
+
+                txtHusbandName.Text = lblHusbandName.Text;
+                txtFatherName.Text = lblFatherName.Text;
                 txtAge.Text = lblAge.Text;
                 txtDOB.Text = lblDOB.Text;
                 BindVillages();

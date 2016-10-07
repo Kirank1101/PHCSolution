@@ -99,7 +99,38 @@
                     </div>
                 </td>
             </tr>
+               <tr>
+                <td>
+                    <asp:Label runat="server" CssClass="control-label" Text="Marital Status"></asp:Label></td>
+                <td>
+                    <div style="width: 250px">
+                        <asp:RadioButton ID="rbMarried" Text="Married" runat="server" GroupName="marritalstatus" />
+                        <asp:RadioButton ID="rbUnmarried" Text="Single" runat="server" GroupName="marritalstatus" />
+                    </div>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <asp:Label runat="server" CssClass="control-label" Text="FatherName"></asp:Label></td>
+                <td>
+                    <div style="width: 250px">
+                        <asp:TextBox ID="txtFatherName" runat="server" MaxLength="100" CssClass="form-control"></asp:TextBox>
 
+                    </div>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <asp:Label runat="server" CssClass="control-label" Text="HusbandName"></asp:Label></td>
+                <td>
+                    <div style="width: 250px">
+                        <asp:TextBox ID="txtHusbandName" runat="server" MaxLength="100" CssClass="form-control"></asp:TextBox>
+
+                    </div>
+                </td>
+            </tr>
             <tr>
                 <td>
                     <asp:Label runat="server" CssClass="control-label" Text="BloodGroup"></asp:Label></td>
@@ -254,6 +285,9 @@
                                         <asp:Label runat="server" ID="lblVillageID" Text='<%# Eval("VillageID") %>' Visible="false"></asp:Label>
                                         <asp:Label runat="server" ID="lblEducationID" Text='<%# Eval("EducationID") %>' Visible="false"></asp:Label>
                                         <asp:Label runat="server" ID="lblReligionID" Text='<%# Eval("ReligionID") %>' Visible="false"></asp:Label>
+                                        <asp:Label runat="server" ID="lblIsMarried" Text='<%# Eval("IsMarried") %>' Visible="false"></asp:Label>
+                                        <asp:Label runat="server" ID="lblHusbandName" Text='<%# Eval("HusbandName") %>' Visible="false"></asp:Label>
+                                        <asp:Label runat="server" ID="lblFatherName" Text='<%# Eval("FatherName") %>' Visible="false"></asp:Label>
                                         <asp:Label runat="server" ID="lblPatientName" Text='<%# Eval("PatientName") %>'></asp:Label>
                                     </td>
                                     <td>

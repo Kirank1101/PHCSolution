@@ -269,9 +269,9 @@
     <Property Name="ObsInd" Type="char" MaxLength="1" Nullable="false" />
     <Property Name="ReligionID" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="EducationID" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="dependentName" Type="nvarchar" MaxLength="100" Nullable="false" />
-    <Property Name="RelationType" Type="char" MaxLength="1" Nullable="false" />
     <Property Name="IsMarried" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="HusbandName" Type="nvarchar" MaxLength="100" />
+    <Property Name="FatherName" Type="nvarchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="PatientEC">
     <Key>

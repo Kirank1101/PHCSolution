@@ -199,9 +199,9 @@
     <Property Name="EducationID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="MEducation" Relationship="PHCSolutionsModel.FK__PatientDe__Educa__787EE5A0" FromRole="PatientDetail" ToRole="MEducation" />
     <NavigationProperty Name="MReligion" Relationship="PHCSolutionsModel.FK__PatientDe__Relig__778AC167" FromRole="PatientDetail" ToRole="MReligion" />
-    <Property Name="dependentName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="RelationType" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
     <Property Name="IsMarried" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="HusbandName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="FatherName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="PatientEC">
     <Key>

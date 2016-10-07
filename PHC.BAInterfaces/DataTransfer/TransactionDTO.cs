@@ -115,6 +115,9 @@ namespace PHC.BAInterfaces.DataTransfer
         public string RefPhoneNo { get; set; }
         public string ContactNo { get; set; }
         public string ECNumber { get; set; }
+        public string IsMarried { get; set; }
+        public string HusbandName { get; set; }
+        public string FatherName { get; set; }
     }
     public class PatientVistiHistoryDTO
     {

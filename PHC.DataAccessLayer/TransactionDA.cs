@@ -652,6 +652,9 @@ namespace PHC.DataAccessLayer
                     PD.BloodGroup = PatientDetail.BloodGroup;
                     PD.EducationID = PatientDetail.EducationID;
                     PD.ReligionID = PatientDetail.ReligionID;
+                    PD.IsMarried = PatientDetail.IsMarried;
+                    PD.FatherName = PatientDetail.FatherName;
+                    PD.HusbandName = PatientDetail.HusbandName;
                     PD.LastModifiedBy = "System";
                     PD.LastModifiedDate = DateTime.Now;
                     PatientAddress PA = PD.PatientAddresses.FirstOrDefault();

@@ -130,6 +130,42 @@ namespace WebApplication5 {
         protected global::System.Web.UI.WebControls.RadioButton rbFemale;
         
         /// <summary>
+        /// rbMarried control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbMarried;
+        
+        /// <summary>
+        /// rbUnmarried control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbUnmarried;
+        
+        /// <summary>
+        /// txtFatherName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFatherName;
+        
+        /// <summary>
+        /// txtHusbandName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtHusbandName;
+        
+        /// <summary>
         /// ddlBloodGroup control.
         /// </summary>
         /// <remarks>

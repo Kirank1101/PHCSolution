@@ -45,5 +45,8 @@ namespace PHC.BAInterfaces.Constants
         public const string PHCTransactionWarning = "Please Create Opening Balance Transaction";
 
         public const string NoRecordExist = "No Record found for this search.";
+
+        public const string Married = "M";
+        public const string Single = "S";
     }
 }

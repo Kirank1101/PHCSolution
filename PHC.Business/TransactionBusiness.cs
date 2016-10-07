@@ -450,7 +450,7 @@ namespace PHC.Business
             else
                 return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Deleted." };
         }
-        public ResultDTO SavePatientDetails(string PHCID, string PatientName, string ECNumber, short Age, string DOB, string Gender, string BloodGroup, string VillageID, string Address, string ContactNo, string PhoneNo,string EducationID,string ReligionID)
+        public ResultDTO SavePatientDetails(string PHCID, string PatientName, string ECNumber, short Age, string DOB, string Gender, string BloodGroup, string VillageID, string Address, string ContactNo, string PhoneNo, string EducationID, string ReligionID, string MarritalStatus, string FatherName, string HusbandName)
         {
             PatientDetail PatientDetail = new PatientDetail();
             PatientDetail.PatientID = CommonUtil.CreateUniqueID("P");
@@ -462,6 +462,9 @@ namespace PHC.Business
             PatientDetail.BloodGroup = BloodGroup;
             PatientDetail.EducationID = EducationID;
             PatientDetail.ReligionID = ReligionID;
+            PatientDetail.IsMarried = MarritalStatus;
+            PatientDetail.HusbandName = HusbandName;
+            PatientDetail.FatherName = FatherName;
             PatientDetail.LastModifiedBy = "System";
             PatientDetail.LastModifiedDate = DateTime.Now;
             PatientDetail.ObsInd = "N";
@@ -501,7 +504,7 @@ namespace PHC.Business
             else
                 return new ResultDTO() { IsSuccess = false, Message = checkPatientExist };
         }
-        public ResultDTO UpdatePatientDetail(string PHCID, string PatientID, string PatientName, string ECNumber, short Age, string DOB, string Gender, string BloodGroup, string VillageID, string Address, string ContactNo, string PhoneNo, string EducationID, string ReligionID)
+        public ResultDTO UpdatePatientDetail(string PHCID, string PatientID, string PatientName, string ECNumber, short Age, string DOB, string Gender, string BloodGroup, string VillageID, string Address, string ContactNo, string PhoneNo, string EducationID, string ReligionID, string MarritalStatus, string FatherName, string HusbandName)
         {
             PatientDetail PatientDetail = new PatientDetail();
             PatientDetail.PatientID = PatientID;
@@ -514,6 +517,9 @@ namespace PHC.Business
             PatientDetail.LastModifiedBy = "System";
             PatientDetail.EducationID = EducationID;
             PatientDetail.ReligionID = ReligionID;
+            PatientDetail.IsMarried = MarritalStatus;
+            PatientDetail.HusbandName = HusbandName;
+            PatientDetail.FatherName = FatherName;
             PatientAddress PatientAddres = new DataAccess.PatientAddress();
             PatientAddres.PatientID = PatientID;
             PatientAddres.VillageID = VillageID;
@@ -583,6 +589,9 @@ namespace PHC.Business
                     patientDetailDTO.EducationName = PatientDetail.MEducation.Name;
                     patientDetailDTO.ReligionID = PatientDetail.ReligionID;
                     patientDetailDTO.ReligionName = PatientDetail.MReligion.ReligionName;
+                    patientDetailDTO.IsMarried = PatientDetail.IsMarried;
+                    patientDetailDTO.FatherName = PatientDetail.FatherName;
+                    patientDetailDTO.HusbandName = PatientDetail.HusbandName;
                     PatientAddress PA = new PatientAddress();
                     PA = PatientDetail.PatientAddresses.FirstOrDefault();
                     patientDetailDTO.Address = PA.Address;
