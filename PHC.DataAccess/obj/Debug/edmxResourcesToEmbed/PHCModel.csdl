@@ -195,6 +195,10 @@
     <NavigationProperty Name="PatientMCs" Relationship="Self.FK_PatientMC_PatientDetails" FromRole="PatientDetails" ToRole="PatientMC" />
     <NavigationProperty Name="PatientPrescriptions" Relationship="Self.FK_PatientPrescription_PatientDetails" FromRole="PatientDetails" ToRole="PatientPrescription" />
     <NavigationProperty Name="PHCTransactions" Relationship="PHCSolutionsModel.FK_PHCTransaction_PatientDetails" FromRole="PatientDetail" ToRole="PHCTransaction" />
+    <Property Name="ReligionID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EducationID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="MEducation" Relationship="PHCSolutionsModel.FK__PatientDe__Educa__787EE5A0" FromRole="PatientDetail" ToRole="MEducation" />
+    <NavigationProperty Name="MReligion" Relationship="PHCSolutionsModel.FK__PatientDe__Relig__778AC167" FromRole="PatientDetail" ToRole="MReligion" />
   </EntityType>
   <EntityType Name="PatientEC">
     <Key>
@@ -837,6 +841,14 @@
       <End Role="PatientDetail" EntitySet="PatientDetails" />
       <End Role="PHCTransaction" EntitySet="PHCTransactions" />
     </AssociationSet>
+    <AssociationSet Name="FK__PatientDe__Educa__787EE5A0" Association="PHCSolutionsModel.FK__PatientDe__Educa__787EE5A0">
+      <End Role="MEducation" EntitySet="MEducations" />
+      <End Role="PatientDetail" EntitySet="PatientDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PatientDe__Relig__778AC167" Association="PHCSolutionsModel.FK__PatientDe__Relig__778AC167">
+      <End Role="MReligion" EntitySet="MReligions" />
+      <End Role="PatientDetail" EntitySet="PatientDetails" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="C__MigrationHistory">
     <Key>
@@ -1030,6 +1042,7 @@
     <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="ObsInd" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
     <NavigationProperty Name="MState" Relationship="PHCSolutionsModel.FK_MEducation_MState" FromRole="MEducation" ToRole="MState" />
+    <NavigationProperty Name="PatientDetails" Relationship="PHCSolutionsModel.FK__PatientDe__Educa__787EE5A0" FromRole="MEducation" ToRole="PatientDetail" />
   </EntityType>
   <EntityType Name="MReligion">
     <Key>
@@ -1042,6 +1055,7 @@
     <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="ObsInd" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
     <NavigationProperty Name="MState" Relationship="PHCSolutionsModel.FK_MReligion_MState" FromRole="MReligion" ToRole="MState" />
+    <NavigationProperty Name="PatientDetails" Relationship="PHCSolutionsModel.FK__PatientDe__Relig__778AC167" FromRole="MReligion" ToRole="PatientDetail" />
   </EntityType>
   <EntityType Name="MScheme">
     <Key>
@@ -1238,6 +1252,30 @@
       </Principal>
       <Dependent Role="PHCTransaction">
         <PropertyRef Name="PatientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PatientDe__Educa__787EE5A0">
+    <End Type="PHCSolutionsModel.MEducation" Role="MEducation" Multiplicity="1" />
+    <End Type="PHCSolutionsModel.PatientDetail" Role="PatientDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MEducation">
+        <PropertyRef Name="EducationID" />
+      </Principal>
+      <Dependent Role="PatientDetail">
+        <PropertyRef Name="EducationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PatientDe__Relig__778AC167">
+    <End Type="PHCSolutionsModel.MReligion" Role="MReligion" Multiplicity="1" />
+    <End Type="PHCSolutionsModel.PatientDetail" Role="PatientDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MReligion">
+        <PropertyRef Name="ReligionID" />
+      </Principal>
+      <Dependent Role="PatientDetail">
+        <PropertyRef Name="ReligionID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

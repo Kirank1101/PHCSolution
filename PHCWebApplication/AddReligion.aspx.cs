@@ -17,7 +17,8 @@ namespace PHCWebApplication
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+                this.PopulateData();
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
@@ -28,6 +29,7 @@ namespace PHCWebApplication
                 pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.SuccessBackGroundColor);
                 lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.SuccessForeColor);
                 lblstatus.Text = resultDTO.Message;
+                this.PopulateData();
             }
             else
             {
@@ -35,7 +37,6 @@ namespace PHCWebApplication
                 lblstatus.ForeColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.ErrorForeColor);
                 lblstatus.Text = resultDTO.Message;
             }
-            this.PopulateData();
         }
         private void PopulateData()
         {

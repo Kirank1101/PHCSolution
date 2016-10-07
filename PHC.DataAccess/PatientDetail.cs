@@ -33,6 +33,8 @@ namespace PHC.DataAccess
         public string LastModifiedBy { get; set; }
         public System.DateTime LastModifiedDate { get; set; }
         public string ObsInd { get; set; }
+        public string ReligionID { get; set; }
+        public string EducationID { get; set; }
     
         public virtual MPHC MPHC { get; set; }
         public virtual ICollection<PatientAddress> PatientAddresses { get; set; }
@@ -40,5 +42,7 @@ namespace PHC.DataAccess
         public virtual ICollection<PatientMC> PatientMCs { get; set; }
         public virtual ICollection<PatientPrescription> PatientPrescriptions { get; set; }
         public virtual ICollection<PHCTransaction> PHCTransactions { get; set; }
+        public virtual MEducation MEducation { get; set; }
+        public virtual MReligion MReligion { get; set; }
     }
 }

@@ -144,6 +144,8 @@
     <EntitySetMapping Name="PatientDetails">
       <EntityTypeMapping TypeName="PHCSolutionsModel.PatientDetail">
         <MappingFragment StoreEntitySet="PatientDetails">
+          <ScalarProperty Name="EducationID" ColumnName="EducationID" />
+          <ScalarProperty Name="ReligionID" ColumnName="ReligionID" />
           <ScalarProperty Name="PatientID" ColumnName="PatientID" />
           <ScalarProperty Name="PHCID" ColumnName="PHCID" />
           <ScalarProperty Name="Name" ColumnName="Name" />

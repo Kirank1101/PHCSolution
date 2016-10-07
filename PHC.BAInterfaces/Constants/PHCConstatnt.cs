@@ -21,6 +21,9 @@ namespace PHC.BAInterfaces.Constants
 
 
         public const string VSVillages = "VSVillages";
+        public const string VSEducation = "VSEducation";
+        public const string VSReligion = "VSReligion";
+        
         public const string VSPatientID = "PatientID";
         public const string VSECNo = "VSECNo";
         public const string VSDistrict = "VSDistrict";

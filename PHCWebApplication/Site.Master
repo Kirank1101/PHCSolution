@@ -84,7 +84,13 @@
                                     <a href="DrugStockDetails">Add DrugStock</a>
                                 </li>
                                 <li>
-                                    <a href="AddCaste">Add Caste</a>
+                                    <a href="AddReligion">Add Religion</a>
+                                </li>
+                                <li>
+                                    <a href="AddEducation">Add Education</a>
+                                </li>
+                                <li>
+                                    <a href="PHCOpeningBalance">Add OpeningBalance</a>
                                 </li>
                             </ul>
                         </li>
@@ -96,6 +102,13 @@
                                 <li>
                                     <a href="PatientPrescription">Patient Prescription</a>
                                 </li>
+                                <li>
+                                    <a href="PHCTransaction">PHC Transaction</a>
+                                </li>
+                                <li>
+                                    <a href="ClearTransaction">Clear Transaction</a>
+                                </li>
+                                
                             </ul>
                         </li>
                         <li class="dropdown">

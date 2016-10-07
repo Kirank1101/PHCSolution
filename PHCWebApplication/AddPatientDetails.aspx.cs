@@ -28,6 +28,8 @@ namespace WebApplication5
         {
             this.BindVillages();
             this.BindBloodGroup();
+            this.BindReligion();
+            this.BindEducation();
             txtPatientName.Text = string.Empty;
             txtECNo.Text = string.Empty;
             txtAge.Text = string.Empty;
@@ -39,6 +41,32 @@ namespace WebApplication5
             txtPhoneNo.Text = string.Empty;
             btnUpdate.Visible = false;
             btnSave.Visible = true;
+        }
+        private void BindEducation()
+        {
+            List<MEducationDTO> lstMEducationDTO = ViewstateEducation;
+            if (lstMEducationDTO != null && lstMEducationDTO.Count > 0)
+            {
+                ddlEducation.DataSource = lstMEducationDTO;
+                ddlEducation.DataBind();
+                ddlEducation.Items.Insert(0, "Select Education");
+            }
+            else
+                ddlEducation.Items.Insert(0, "Select Education");
+
+        }
+        private void BindReligion()
+        {
+            List<MReligionDTO> lstMReligionDTO = ViewstateReligion;
+            if (lstMReligionDTO != null && lstMReligionDTO.Count > 0)
+            {
+                ddlReligion.DataSource = lstMReligionDTO;
+                ddlReligion.DataBind();
+                ddlReligion.Items.Insert(0, "Select Religion");
+            }
+            else
+                ddlReligion.Items.Insert(0, "Select Religion");
+
         }
         private void PopulateData()
         {
@@ -90,9 +118,37 @@ namespace WebApplication5
                 return (List<MVillageDTO>)ViewState[VSVillages];
             }
         }
+        const string VSEducation = PHCConstant.VSEducation;
+        public List<MEducationDTO> ViewstateEducation
+        {
+            get
+            {
+                if (ViewState[VSEducation] == null)
+                {
+                    List<MEducationDTO> lstMEducationDTO = new List<MEducationDTO>();
+                    lstMEducationDTO = objITransactionBusiness.GetMEducation();
+                    ViewState[VSEducation] = lstMEducationDTO;
+                }
+                return (List<MEducationDTO>)ViewState[VSEducation];
+            }
+        }
+        const string VSReligion = PHCConstant.VSReligion;
+        public List<MReligionDTO> ViewstateReligion
+        {
+            get
+            {
+                if (ViewState[VSReligion] == null)
+                {
+                    List<MReligionDTO> lstMReligionDTO = new List<MReligionDTO>();
+                    lstMReligionDTO = objITransactionBusiness.GetMReligion();
+                    ViewState[VSReligion] = lstMReligionDTO;
+                }
+                return (List<MReligionDTO>)ViewState[VSReligion];
+            }
+        }
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            ResultDTO resultDTO = objITransactionBusiness.SavePatientDetails(PHCConstant.PHCID, txtPatientName.Text, txtECNo.Text, Convert.ToInt16(txtAge.Text), txtDOB.Text, GetGender(), ddlBloodGroup.SelectedItem.Text, ddlVillages.SelectedValue, txtAddress.Text, txtContactNo.Text, txtPhoneNo.Text);
+            ResultDTO resultDTO = objITransactionBusiness.SavePatientDetails(PHCConstant.PHCID, txtPatientName.Text, txtECNo.Text, Convert.ToInt16(txtAge.Text), txtDOB.Text, GetGender(), ddlBloodGroup.SelectedItem.Text, ddlVillages.SelectedValue, txtAddress.Text, txtContactNo.Text, txtPhoneNo.Text,ddlEducation.SelectedValue,ddlReligion.SelectedValue);
             if (resultDTO.IsSuccess)
             {
                 pnlstatus.BackColor = System.Drawing.ColorTranslator.FromHtml(PHCConstant.SuccessBackGroundColor);
@@ -123,7 +179,7 @@ namespace WebApplication5
             string ECno = Convert.ToString( ViewState[VSECNo]);
             ResultDTO resultDTO = new ResultDTO();
             if ((!string.IsNullOrEmpty(ECno) && !string.IsNullOrEmpty(txtECNo.Text)) || string.IsNullOrEmpty(ECno))
-                resultDTO = objITransactionBusiness.UpdatePatientDetail(PHCConstant.PHCID, PatientID, txtPatientName.Text, txtECNo.Text, Convert.ToInt16(txtAge.Text), txtDOB.Text, GetGender(), ddlBloodGroup.SelectedItem.Text, ddlVillages.SelectedValue, txtAddress.Text, txtContactNo.Text, txtPhoneNo.Text);
+                resultDTO = objITransactionBusiness.UpdatePatientDetail(PHCConstant.PHCID, PatientID, txtPatientName.Text, txtECNo.Text, Convert.ToInt16(txtAge.Text), txtDOB.Text, GetGender(), ddlBloodGroup.SelectedItem.Text, ddlVillages.SelectedValue, txtAddress.Text, txtContactNo.Text, txtPhoneNo.Text,ddlEducation.SelectedValue,ddlReligion.SelectedValue);
             else
             {
                 resultDTO.IsSuccess = false;
@@ -195,6 +251,8 @@ namespace WebApplication5
                 Label lblAddress = (Label)e.Item.FindControl("lblAddress");
                 Label lblVillageID = (Label)e.Item.FindControl("lblVillageID");
 
+                Label lblEducationID = (Label)e.Item.FindControl("lblEducationID");
+                Label lblReligionID = (Label)e.Item.FindControl("lblReligionID");
 
                 string PatientID = lblPatientID.Text;
                 btnSave.Visible = false;
@@ -216,6 +274,12 @@ namespace WebApplication5
                 txtDOB.Text = lblDOB.Text;
                 BindVillages();
                 ddlVillages.SelectedValue = lblVillageID.Text;
+
+                BindReligion();
+                ddlReligion.SelectedValue = lblReligionID.Text;
+                BindEducation();
+                ddlEducation.SelectedValue = lblEducationID.Text;
+                
                 txtAddress.Text = lblAddress.Text;
 
                 txtContactNo.Text = lblContactNo.Text;

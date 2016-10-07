@@ -38,7 +38,7 @@
 
     <div id="divAddPatientDetail" runat="server">
 
-        <asp:ValidationSummary ID="PatientDetailValidation" runat="server" CssClass="alert alert-danger" ValidationGroup="PatientDetailSave"    />
+        <asp:ValidationSummary ID="PatientDetailValidation" runat="server" CssClass="alert alert-danger" ValidationGroup="PatientDetailSave" />
         <table>
             <tr>
                 <td>
@@ -115,6 +115,37 @@
                         ErrorMessage="Please Select BloodGroup" InitialValue="Select BloodGroup" ControlToValidate="ddlBloodGroup">*</asp:RequiredFieldValidator>
                 </td>
             </tr>
+             <tr>
+                <td>
+                    <asp:Label runat="server" CssClass="control-label" Text="Religion"></asp:Label></td>
+                <td>
+                    <div style="width: 250px">
+                        <asp:DropDownList ID="ddlReligion" DataTextField="ReligionName" DataValueField="ReligionID" CssClass="form-control"
+                            runat="server">
+                        </asp:DropDownList>
+                    </div>
+                </td>
+                <td>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ValidationGroup="PatientDetailSave"
+                        ErrorMessage="Please Select Religion" InitialValue="Select Religion" ControlToValidate="ddlReligion">*</asp:RequiredFieldValidator>
+                </td>
+            </tr>
+             <tr>
+                <td>
+                    <asp:Label runat="server" CssClass="control-label" Text="Education"></asp:Label></td>
+                <td>
+                    <div style="width: 250px">
+                        <asp:DropDownList ID="ddlEducation" DataTextField="EducationName" DataValueField="EducationID" CssClass="form-control"
+                            runat="server">
+                        </asp:DropDownList>
+                    </div>
+                </td>
+                <td>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ValidationGroup="PatientDetailSave"
+                        ErrorMessage="Please Select Education" InitialValue="Select Education" ControlToValidate="ddlEducation">*</asp:RequiredFieldValidator>
+                </td>
+            </tr>
+
             <tr>
                 <td>
                     <asp:Label runat="server" CssClass="control-label" Text="Place"></asp:Label></td>
@@ -172,7 +203,7 @@
 
         <br />
         <br />
-        <table>
+        <table style="width: 100%">
             <tr>
                 <td>
                     <fieldset>
@@ -187,9 +218,9 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th style="color: #428bca">Patient Name
+                                            <th style="color: #428bca;width:200px">Name
                                             </th>
-                                            <th style="color: #428bca">E.C. Number
+                                            <th style="color: #428bca">E.C. No
                                             </th>
                                             <th style="color: #428bca">BloodGroup
                                             </th>
@@ -205,7 +236,7 @@
                                             </th>
                                             <th style="color: #428bca">Contact No
                                             </th>
-                                            <th style="color: #428bca">Alt Contact No
+                                            <th style="color: #428bca; width:300px">Alt Contact No
                                             </th>
                                         </tr>
                                     </thead>
@@ -221,6 +252,8 @@
                                         <asp:Label runat="server" ID="lblPHCID" Text='<%# Eval("PHCID") %>' Visible="false"></asp:Label>
                                         <asp:Label runat="server" ID="lblPatientID" Text='<%# Eval("PatientID") %>' Visible="false"></asp:Label>
                                         <asp:Label runat="server" ID="lblVillageID" Text='<%# Eval("VillageID") %>' Visible="false"></asp:Label>
+                                        <asp:Label runat="server" ID="lblEducationID" Text='<%# Eval("EducationID") %>' Visible="false"></asp:Label>
+                                        <asp:Label runat="server" ID="lblReligionID" Text='<%# Eval("ReligionID") %>' Visible="false"></asp:Label>
                                         <asp:Label runat="server" ID="lblPatientName" Text='<%# Eval("PatientName") %>'></asp:Label>
                                     </td>
                                     <td>
@@ -247,7 +280,7 @@
                                     <td>
                                         <asp:Label runat="server" ID="lblContactNo" Text='<%# Eval("ContactNo") %>'></asp:Label>
                                     </td>
-                                    
+
                                     <td>
                                         <asp:Label runat="server" ID="lblRefPhoneNo" Text='<%# Eval("RefPhoneNo") %>'></asp:Label>
                                     </td>

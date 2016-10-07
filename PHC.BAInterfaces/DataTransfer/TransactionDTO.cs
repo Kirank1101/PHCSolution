@@ -41,6 +41,20 @@ namespace PHC.BAInterfaces.DataTransfer
         public string VillageName { get; set; }
         public string PHCID { get; set; }
     }
+    [Serializable]
+    public class MEducationDTO
+    {
+        public string EducationID { get; set; }
+        public string EducationName { get; set; }
+        public string StateID { get; set; }
+    }
+    [Serializable]
+    public class MReligionDTO
+    {
+        public string ReligionID { get; set; }
+        public string ReligionName { get; set; }
+        public string StateID { get; set; }
+    }
     public class UserDTO
     {
         public string UserID { get; set; }
@@ -91,6 +105,10 @@ namespace PHC.BAInterfaces.DataTransfer
         public DateTime? DOB { get; set; }
         public string Gender { get; set; }
         public string BloodGroup { get; set; }
+        public string EducationID { get; set; }
+        public string EducationName { get; set; }
+        public string ReligionID { get; set; }
+        public string ReligionName { get; set; }
         public string Place { get; set; }
         public string VillageID { get; set; }
         public string Address { get; set; }
@@ -125,23 +143,11 @@ namespace PHC.BAInterfaces.DataTransfer
         public string BloodGroupID { get; set; }
         public string BloodGroupName { get; set; }
     }
-    public class MReligionDTO
-    {
-        public string ReligionID { get; set; }
-        public string StateID { get; set; }
-        public string ReligionName { get; set; }
-    }
     public class SubCenterDTO
     {
         public string SubCenterID { get; set; }
         public string PHCID { get; set; }
         public string SubCenterName { get; set; }
-    }
-    public class MEducationDTO
-    {
-        public string EducationID { get; set; }
-        public string StateID { get; set; }
-        public string EducationName { get; set; }
     }
     public class MSchemeDTO
     {

@@ -82,6 +82,8 @@
         <AssociationConnector Association="PHCSolutionsModel.FK_MVaccination_MState" />
         <AssociationConnector Association="PHCSolutionsModel.FK_VaccinationHistory_MVaccination" />
         <AssociationConnector Association="PHCSolutionsModel.FK_PHCTransaction_PatientDetails" />
+        <AssociationConnector Association="PHCSolutionsModel.FK__PatientDe__Educa__787EE5A0" />
+        <AssociationConnector Association="PHCSolutionsModel.FK__PatientDe__Relig__778AC167" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

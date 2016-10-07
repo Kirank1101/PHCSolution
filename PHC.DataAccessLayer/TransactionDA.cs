@@ -650,6 +650,8 @@ namespace PHC.DataAccessLayer
                     PD.DOB = PatientDetail.DOB;
                     PD.Sex = PatientDetail.Sex;
                     PD.BloodGroup = PatientDetail.BloodGroup;
+                    PD.EducationID = PatientDetail.EducationID;
+                    PD.ReligionID = PatientDetail.ReligionID;
                     PD.LastModifiedBy = "System";
                     PD.LastModifiedDate = DateTime.Now;
                     PatientAddress PA = PD.PatientAddresses.FirstOrDefault();
@@ -1224,7 +1226,7 @@ namespace PHC.DataAccessLayer
                 {
                     return new GenericRepository<MEducation>(work)
                         .FindBy(p => p.ObsInd == No)
-                        .OrderByDescending(p => p.LastModifiedDate)
+                        .OrderBy(p => p.LastModifiedDate)
                         .ToList();
                 }
                 catch (Exception ex)

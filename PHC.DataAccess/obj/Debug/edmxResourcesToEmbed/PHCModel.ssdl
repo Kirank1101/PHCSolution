@@ -267,6 +267,8 @@
     <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
     <Property Name="ObsInd" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="ReligionID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="EducationID" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="PatientEC">
     <Key>
@@ -437,6 +439,30 @@
       </Principal>
       <Dependent Role="PatientAddress">
         <PropertyRef Name="VillageID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PatientDe__Educa__787EE5A0">
+    <End Role="MEducation" Type="Self.MEducation" Multiplicity="1" />
+    <End Role="PatientDetails" Type="Self.PatientDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MEducation">
+        <PropertyRef Name="EducationID" />
+      </Principal>
+      <Dependent Role="PatientDetails">
+        <PropertyRef Name="EducationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PatientDe__Relig__778AC167">
+    <End Role="MReligion" Type="Self.MReligion" Multiplicity="1" />
+    <End Role="PatientDetails" Type="Self.PatientDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MReligion">
+        <PropertyRef Name="ReligionID" />
+      </Principal>
+      <Dependent Role="PatientDetails">
+        <PropertyRef Name="ReligionID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1012,6 +1038,14 @@
     <AssociationSet Name="FK__PatientAd__Villa__5812160E" Association="Self.FK__PatientAd__Villa__5812160E">
       <End Role="MVillage" EntitySet="MVillage" />
       <End Role="PatientAddress" EntitySet="PatientAddress" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PatientDe__Educa__787EE5A0" Association="Self.FK__PatientDe__Educa__787EE5A0">
+      <End Role="MEducation" EntitySet="MEducation" />
+      <End Role="PatientDetails" EntitySet="PatientDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PatientDe__Relig__778AC167" Association="Self.FK__PatientDe__Relig__778AC167">
+      <End Role="MReligion" EntitySet="MReligion" />
+      <End Role="PatientDetails" EntitySet="PatientDetails" />
     </AssociationSet>
     <AssociationSet Name="FK__PatientEC__PHCID__59063A47" Association="Self.FK__PatientEC__PHCID__59063A47">
       <End Role="MPHC" EntitySet="MPHC" />
