@@ -274,6 +274,9 @@
           <Property Name="ObsInd" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="ReligionID" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="EducationID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="dependentName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="RelationType" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="IsMarried" Type="char" MaxLength="1" Nullable="false" />
         </EntityType>
         <EntityType Name="PatientEC">
           <Key>
@@ -1428,6 +1431,9 @@
           <Property Name="EducationID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="MEducation" Relationship="PHCSolutionsModel.FK__PatientDe__Educa__787EE5A0" FromRole="PatientDetail" ToRole="MEducation" />
           <NavigationProperty Name="MReligion" Relationship="PHCSolutionsModel.FK__PatientDe__Relig__778AC167" FromRole="PatientDetail" ToRole="MReligion" />
+          <Property Name="dependentName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RelationType" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="IsMarried" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
         </EntityType>
         <EntityType Name="PatientEC">
           <Key>
@@ -2657,6 +2663,9 @@
           <EntitySetMapping Name="PatientDetails">
             <EntityTypeMapping TypeName="PHCSolutionsModel.PatientDetail">
               <MappingFragment StoreEntitySet="PatientDetails">
+                <ScalarProperty Name="IsMarried" ColumnName="IsMarried" />
+                <ScalarProperty Name="RelationType" ColumnName="RelationType" />
+                <ScalarProperty Name="dependentName" ColumnName="dependentName" />
                 <ScalarProperty Name="EducationID" ColumnName="EducationID" />
                 <ScalarProperty Name="ReligionID" ColumnName="ReligionID" />
                 <ScalarProperty Name="PatientID" ColumnName="PatientID" />

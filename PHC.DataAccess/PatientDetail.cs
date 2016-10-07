@@ -35,6 +35,9 @@ namespace PHC.DataAccess
         public string ObsInd { get; set; }
         public string ReligionID { get; set; }
         public string EducationID { get; set; }
+        public string dependentName { get; set; }
+        public string RelationType { get; set; }
+        public string IsMarried { get; set; }
     
         public virtual MPHC MPHC { get; set; }
         public virtual ICollection<PatientAddress> PatientAddresses { get; set; }
