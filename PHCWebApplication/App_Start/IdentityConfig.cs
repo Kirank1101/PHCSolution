@@ -46,6 +46,7 @@ namespace PHCWebApplication
         public string TalukId { get; set; }
         public string DistrictId { get; set; }
         public string VillageId { get; set; }
+        public string PHCID { get; set; }
     }
 
     public class CustomUserManager : UserManager<CustomUser>
@@ -92,7 +93,10 @@ namespace PHCWebApplication
         public Task CreateAsync(CustomUser user)
         {
             // TODO
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+
+            objITransactionBusiness.AddUser(user.PHCID, user.StateId, user.DistrictId, user.TalukId, user.VillageId, user.Password, user.PHCID, user.EmailId, user.UserName);
+            return FindByIdAsync(user.PHCID);
         }
 
         public Task UpdateAsync(CustomUser user)
