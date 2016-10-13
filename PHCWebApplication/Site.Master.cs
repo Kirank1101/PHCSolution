@@ -6,6 +6,12 @@ using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin.Security;
+using System;
+using System.Web;
+using System.Web.UI.WebControls;
 
 namespace PHCWebApplication
 {
@@ -54,6 +60,7 @@ namespace PHCWebApplication
                 // Set Anti-XSRF token
                 ViewState[AntiXsrfTokenKey] = Page.ViewStateUserKey;
                 ViewState[AntiXsrfUserNameKey] = Context.User.Identity.Name ?? String.Empty;
+               
             }
             else
             {
@@ -68,7 +75,14 @@ namespace PHCWebApplication
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if(!Page.IsPostBack)
+            {
+                if (!Context.GetOwinContext().Authentication.User.Identity.IsAuthenticated)
+                {
+                    //Response.Redirect("~/Account/Login.aspx");                   
+                }
+           
+            }
         }
 
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
