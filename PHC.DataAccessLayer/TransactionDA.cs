@@ -847,12 +847,14 @@ namespace PHC.DataAccessLayer
                 }
             }
         }
-        public bool AddUser(User userObj)
+        public bool AddUser(User userObj, UserMap userMapObj, MPHC objMPHC)
         {
             IUnitOfWork work = null;
             using (work = GetUOW.GetUOWInstance)
             {
                 new GenericRepository<User>(work).Add(userObj);
+                new GenericRepository<MPHC>(work).Add(objMPHC);
+                new GenericRepository<UserMap>(work).Add(userMapObj);
                 work.Save();
             }
             return true;
@@ -1576,6 +1578,39 @@ namespace PHC.DataAccessLayer
                     throw ex;
                 }
             }
+        }
+
+
+        public User FindById(string userId)
+        {
+            IUnitOfWork work = null;
+            work = GetUOW.GetUOWInstance;
+            {
+                try
+                {
+                    return new GenericRepository<User>(work)
+                        .FindBy(p => p.LoginID  == userId)
+                        .OrderByDescending(p => p.LastModifiedDate)
+                        .FirstOrDefault();
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                    throw ex;
+                }
+            }
+        }
+
+
+        public bool AddPHC(MPHC objMPHC)
+        {
+            IUnitOfWork work = null;
+            using (work = GetUOW.GetUOWInstance)
+            {
+                new GenericRepository<MPHC>(work).Add(objMPHC);
+                work.Save();
+            }
+            return true;
         }
     }
 }

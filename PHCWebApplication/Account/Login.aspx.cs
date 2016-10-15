@@ -5,6 +5,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Owin;
 using PHCWebApplication.Models;
+using PHC.Binder.BackEnd;
+using PHC.BAInterfaces.Business;
+using PHC.DataAccess;
 
 namespace PHCWebApplication.Account
 {
@@ -23,13 +26,35 @@ namespace PHCWebApplication.Account
             }
         }
 
+        private CustomUser ToCustomUser(User user)
+        {
+            if (user is User)
+            {
+
+                return new CustomUser
+
+                {
+
+                    Id = user.UserID,
+
+
+
+                    UserName = user.LoginID
+
+                };
+            }
+            return null;
+
+        }
+
+
         protected void LogIn(object sender, EventArgs e)
         {
             if (IsValid)
             {
                 // Validate the user password
-                var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-                var signinManager = Context.GetOwinContext().GetUserManager<ApplicationSignInManager>();
+                var manager = Context.GetOwinContext().GetUserManager<CustomUserManager>();
+                var signinManager = Context.GetOwinContext().GetUserManager<CustomSignInManager>();
 
                 // This doen't count login failures towards account lockout
                 // To enable password failures to trigger lockout, change to shouldLockout: true
@@ -38,7 +63,9 @@ namespace PHCWebApplication.Account
                 switch (result)
                 {
                     case SignInStatus.Success:
-                        IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
+                        var user = ToCustomUser(BinderSingleton.Instance.GetInstance<ITransactionBusiness>().FindByIdAsync(Email.Text));
+                         signinManager.SignIn(user, isPersistent: false, rememberBrowser: false);
+                         IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
                         break;
                     case SignInStatus.LockedOut:
                         Response.Redirect("/Account/Lockout");

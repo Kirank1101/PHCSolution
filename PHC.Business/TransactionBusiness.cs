@@ -669,12 +669,13 @@ namespace PHC.Business
             userObj.Password = password;
             userObj.LoginID = PHCID;
             userObj.LastModifiedDate = DateTime.Now;
+            userObj.LastModifiedBy = "System";
             userObj.ObsInd = "N";
             UserMap userMapObj = new DataAccess.UserMap();
             userMapObj.UserMapID = CommonUtil.CreateUniqueID("UM");
             userMapObj.UserID = userObj.UserID;
             userMapObj.PHCID = PHCID;
-            userMapObj.StateID = stateId;
+            userMapObj.StateID = StateIDConstant;
             userMapObj.DistrictID = districtId;
             userMapObj.TalukID = talukId;
             userMapObj.VillageID = villageId;
@@ -682,8 +683,17 @@ namespace PHC.Business
             userMapObj.LastModifiedBy = "System";
             userMapObj.LastModifiedDate = DateTime.Now;
             userMapObj.ObsInd = "N";
-            userObj.UserMaps.Add(userMapObj);
-            if (objDA.AddUser(userObj))
+
+            MPHC objMPHC = new MPHC();
+            objMPHC.PHCID = PHCID;
+            objMPHC.TalukID = talukId ;
+            objMPHC.Name = PHCID;
+            objMPHC.LastModifiedBy = "System";
+            objMPHC.LastModifiedDate = DateTime.Now;
+            objMPHC.ObsInd = "N";
+
+           // userObj.UserMaps.Add(userMapObj);
+            if (objDA.AddUser(userObj, userMapObj, objMPHC))
                 return new ResultDTO() { IsSuccess = true, Message = "Successfully Saved." };
             else
                 return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Saved." };
@@ -1301,6 +1311,36 @@ namespace PHC.Business
             }
             return money;
 
+        }
+
+
+        public User FindByIdAsync(string userId)
+        {
+            return objDA.FindById(userId);
+        }
+
+
+        public ResultDTO AddPHC(string talukId, string PHCID)
+        {
+            try
+            {
+                MPHC objMPHC = new MPHC();
+                objMPHC.PHCID = PHCID;
+                objMPHC.TalukID = PHCID;
+                objMPHC.Name = "Y";
+                objMPHC.LastModifiedBy = "System";
+                objMPHC.LastModifiedDate = DateTime.Now;
+                objMPHC.ObsInd = "N";
+
+                if (objDA.AddPHC(objMPHC))
+                    return new ResultDTO() { IsSuccess = true, Message = "Successfully Updated." };
+                else
+                    return new ResultDTO() { IsSuccess = false, Message = "Unsuccessfully Updated." };
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

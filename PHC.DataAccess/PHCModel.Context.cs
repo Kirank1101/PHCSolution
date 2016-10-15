@@ -12,14 +12,12 @@ namespace PHC.DataAccess
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
-    public partial class PHCSolutions : DbContext,IUnitOfWork
+
+    public partial class PHCSolutions : DbContext, IUnitOfWork
     {
         public PHCSolutions()
             : base("name=PHCSolutions")
         {
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = true;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

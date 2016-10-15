@@ -93,7 +93,7 @@ namespace PHC.DAInterfaces.DataAccess
 
         List<MVillage> getMVillage(string PHCID);
         PatientEC GetPatientEC(string PatientID);
-        bool AddUser(User userObj);
+        bool AddUser(User userObj,UserMap userMapObj,MPHC objPHC);
         //to Check PatientName exist in DB 
         string CheeckPatientName(string PatientName, string ECNumber, string PHCID);
 
@@ -179,5 +179,9 @@ namespace PHC.DAInterfaces.DataAccess
         List<PHCTransaction> GetPatientPendingTransaction(string PatientName, string PHCID);
 
         decimal GetBalanceamount(string PHCID);
+
+        User FindById(string userId);
+
+        bool AddPHC(MPHC objMPHC);
     }
 }

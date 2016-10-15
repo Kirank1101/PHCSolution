@@ -51,6 +51,7 @@ namespace PHC.BAInterfaces.Business
         List<BloodGroupDTO> GetBloodGroup();
         ResultDTO AddUser(string PHCID, string stateId, string districtId, string talukId, string villageId, string password,
             string userId, string emailId,string userName);
+        User FindByIdAsync(string userId);
         List<MVillageDTO> GetMVillage(string PHCID);
         ResultDTO DeleteMVillage(string VillageID,string PHCID);
         ResultDTO SaveMVillage(string VillageName, string PHCID);
@@ -100,5 +101,7 @@ namespace PHC.BAInterfaces.Business
         List<PHCTransactionDTO> GetPatientPendingTransaction(string PatientName, string PHCID);
 
         string CalculateBalanceAmount(string PHCID);
+
+        ResultDTO AddPHC(string talukId, string PHCID);
     }
 }

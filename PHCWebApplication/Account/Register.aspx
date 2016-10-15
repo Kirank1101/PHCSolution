@@ -73,17 +73,7 @@
 
 
 
-        <div class="form-group">
-            <asp:Label AssociatedControlID="ddlVillage" runat="server" CssClass="col-md-2 control-label" Text="Village"></asp:Label><div class="col-md-10">
-
-                <asp:DropDownList ID="ddlVillage" DataTextField="DistrictName" DataValueField="DistrictID" CssClass="form-control"
-                    runat="server">
-                </asp:DropDownList>
-
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server"
-                    ErrorMessage="Village Selection is  required" InitialValue="Select Vilage" ControlToValidate="ddlVillage">*</asp:RequiredFieldValidator>
-            </div>
-        </div>
+        
 
 
         <div class="form-group">

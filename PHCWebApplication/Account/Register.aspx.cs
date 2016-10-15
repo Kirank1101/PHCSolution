@@ -43,7 +43,8 @@ namespace PHCWebApplication.Account
         {
             var manager = Context.GetOwinContext().GetUserManager<CustomUserManager>();
             var signInManager = Context.GetOwinContext().Get<CustomSignInManager>();
-            var user = new CustomUser() { UserName = Email.Text, EmailId = Email.Text };
+            var user = new CustomUser() { UserName = Email.Text, EmailId = Email.Text, PHCID = txtPHCID.Text.Trim(), DistrictId = ddlDistrictNames.SelectedValue, Id = txtPHCID.Text.Trim()
+            , Password=Password.Text.Trim(),TalukId=ddlTaluk.SelectedValue};
             IdentityResult result = manager.Create(user, Password.Text);
             if (result.Succeeded)
             {

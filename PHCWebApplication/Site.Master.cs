@@ -79,7 +79,7 @@ namespace PHCWebApplication
             {
                 if (!Context.GetOwinContext().Authentication.User.Identity.IsAuthenticated)
                 {
-                    //Response.Redirect("~/Account/Login.aspx");                   
+                    Response.Redirect("~/Account/Login.aspx");                   
                 }
            
             }

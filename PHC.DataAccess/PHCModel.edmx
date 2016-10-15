@@ -402,7 +402,7 @@
           <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
           <Property Name="ObsInd" Type="char" MaxLength="1" Nullable="false" />
         </EntityType>
-        <Association Name="FK__DrugsIssu__DrugI__38996AB5">
+        <Association Name="FK__DrugsIssu__DrugI__68487DD7">
           <End Role="MDrugs" Type="Self.MDrugs" Multiplicity="1" />
           <End Role="DrugsIssued" Type="Self.DrugsIssued" Multiplicity="*" />
           <ReferentialConstraint>
@@ -414,7 +414,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DrugsIssu__Presc__3D5E1FD2">
+        <Association Name="FK__DrugsIssu__Presc__693CA210">
           <End Role="PatientPrescription" Type="Self.PatientPrescription" Multiplicity="1" />
           <End Role="DrugsIssued" Type="Self.DrugsIssued" Multiplicity="*" />
           <ReferentialConstraint>
@@ -426,7 +426,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__MDrugs__StateID__571DF1D5">
+        <Association Name="FK__MDrugs__StateID__3E52440B">
           <End Role="MState" Type="Self.MState" Multiplicity="1" />
           <End Role="MDrugs" Type="Self.MDrugs" Multiplicity="*" />
           <ReferentialConstraint>
@@ -438,7 +438,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PatientAd__Villa__5812160E">
+        <Association Name="FK__PatientAd__Villa__59063A47">
           <End Role="MVillage" Type="Self.MVillage" Multiplicity="1" />
           <End Role="PatientAddress" Type="Self.PatientAddress" Multiplicity="*" />
           <ReferentialConstraint>
@@ -450,7 +450,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PatientDe__Educa__787EE5A0">
+        <Association Name="FK__PatientDe__Educa__4E88ABD4">
           <End Role="MEducation" Type="Self.MEducation" Multiplicity="1" />
           <End Role="PatientDetails" Type="Self.PatientDetails" Multiplicity="*" />
           <ReferentialConstraint>
@@ -462,7 +462,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PatientDe__Relig__778AC167">
+        <Association Name="FK__PatientDe__Relig__4F7CD00D">
           <End Role="MReligion" Type="Self.MReligion" Multiplicity="1" />
           <End Role="PatientDetails" Type="Self.PatientDetails" Multiplicity="*" />
           <ReferentialConstraint>
@@ -474,7 +474,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PatientEC__PHCID__59063A47">
+        <Association Name="FK__PatientEC__PHCID__5AEE82B9">
           <End Role="MPHC" Type="Self.MPHC" Multiplicity="1" />
           <End Role="PatientEC" Type="Self.PatientEC" Multiplicity="*" />
           <ReferentialConstraint>
@@ -486,7 +486,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PatientPr__Disea__4316F928">
+        <Association Name="FK__PatientPr__Disea__5FB337D6">
           <End Role="MDisease" Type="Self.MDisease" Multiplicity="1" />
           <End Role="PatientPrescription" Type="Self.PatientPrescription" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1031,35 +1031,35 @@
           <EntitySet Name="UserMap" EntityType="Self.UserMap" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VaccinationHistory" EntityType="Self.VaccinationHistory" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__DrugsIssu__DrugI__38996AB5" Association="Self.FK__DrugsIssu__DrugI__38996AB5">
+          <AssociationSet Name="FK__DrugsIssu__DrugI__68487DD7" Association="Self.FK__DrugsIssu__DrugI__68487DD7">
             <End Role="MDrugs" EntitySet="MDrugs" />
             <End Role="DrugsIssued" EntitySet="DrugsIssued" />
           </AssociationSet>
-          <AssociationSet Name="FK__DrugsIssu__Presc__3D5E1FD2" Association="Self.FK__DrugsIssu__Presc__3D5E1FD2">
+          <AssociationSet Name="FK__DrugsIssu__Presc__693CA210" Association="Self.FK__DrugsIssu__Presc__693CA210">
             <End Role="PatientPrescription" EntitySet="PatientPrescription" />
             <End Role="DrugsIssued" EntitySet="DrugsIssued" />
           </AssociationSet>
-          <AssociationSet Name="FK__MDrugs__StateID__571DF1D5" Association="Self.FK__MDrugs__StateID__571DF1D5">
+          <AssociationSet Name="FK__MDrugs__StateID__3E52440B" Association="Self.FK__MDrugs__StateID__3E52440B">
             <End Role="MState" EntitySet="MState" />
             <End Role="MDrugs" EntitySet="MDrugs" />
           </AssociationSet>
-          <AssociationSet Name="FK__PatientAd__Villa__5812160E" Association="Self.FK__PatientAd__Villa__5812160E">
+          <AssociationSet Name="FK__PatientAd__Villa__59063A47" Association="Self.FK__PatientAd__Villa__59063A47">
             <End Role="MVillage" EntitySet="MVillage" />
             <End Role="PatientAddress" EntitySet="PatientAddress" />
           </AssociationSet>
-          <AssociationSet Name="FK__PatientDe__Educa__787EE5A0" Association="Self.FK__PatientDe__Educa__787EE5A0">
+          <AssociationSet Name="FK__PatientDe__Educa__4E88ABD4" Association="Self.FK__PatientDe__Educa__4E88ABD4">
             <End Role="MEducation" EntitySet="MEducation" />
             <End Role="PatientDetails" EntitySet="PatientDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK__PatientDe__Relig__778AC167" Association="Self.FK__PatientDe__Relig__778AC167">
+          <AssociationSet Name="FK__PatientDe__Relig__4F7CD00D" Association="Self.FK__PatientDe__Relig__4F7CD00D">
             <End Role="MReligion" EntitySet="MReligion" />
             <End Role="PatientDetails" EntitySet="PatientDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK__PatientEC__PHCID__59063A47" Association="Self.FK__PatientEC__PHCID__59063A47">
+          <AssociationSet Name="FK__PatientEC__PHCID__5AEE82B9" Association="Self.FK__PatientEC__PHCID__5AEE82B9">
             <End Role="MPHC" EntitySet="MPHC" />
             <End Role="PatientEC" EntitySet="PatientEC" />
           </AssociationSet>
-          <AssociationSet Name="FK__PatientPr__Disea__4316F928" Association="Self.FK__PatientPr__Disea__4316F928">
+          <AssociationSet Name="FK__PatientPr__Disea__5FB337D6" Association="Self.FK__PatientPr__Disea__5FB337D6">
             <End Role="MDisease" EntitySet="MDisease" />
             <End Role="PatientPrescription" EntitySet="PatientPrescription" />
           </AssociationSet>

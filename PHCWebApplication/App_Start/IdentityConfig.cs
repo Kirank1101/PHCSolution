@@ -61,6 +61,16 @@ namespace PHCWebApplication
             var manager = new CustomUserManager(new CustomUserStore());
             return manager;
         }
+
+        public override Task<bool> CheckPasswordAsync(CustomUser user, string password)
+        {
+            return Task.Run(() => MyCheckPasswordAsync());
+        }
+
+        private bool MyCheckPasswordAsync()
+        {
+            return true;
+        }
     }
 
     public class CustomSignInManager : SignInManager<CustomUser, string>
@@ -74,6 +84,26 @@ namespace PHCWebApplication
         {
             return new CustomSignInManager(context.GetUserManager<CustomUserManager>(), context.Authentication);
         }
+
+
+
+        public virtual SignInStatus PasswordSignIn(string userName, string password, bool isPersistent, bool shouldLockout)
+        {
+            CustomUser user = this.UserManager.FindById(userName);
+            bool result = this.UserManager.CheckPassword(user, password);
+            if (!result)
+            {
+                return SignInStatus.Failure;
+            }
+            else
+            {
+                return SignInStatus.Success;
+            }
+
+
+
+        }
+
     }
 
     public class CustomUserStore : IUserStore<CustomUser>, IUserPasswordStore<CustomUser>
@@ -95,9 +125,11 @@ namespace PHCWebApplication
             // TODO
             //throw new NotImplementedException();
 
-            objITransactionBusiness.AddUser(user.PHCID, user.StateId, user.DistrictId, user.TalukId, user.VillageId, user.Password, user.PHCID, user.EmailId, user.UserName);
+            objITransactionBusiness.AddUser(user.PHCID, null, user.DistrictId, user.TalukId, null, user.Password, user.PHCID, user.EmailId, user.UserName);
             return FindByIdAsync(user.PHCID);
         }
+
+       
 
         public Task UpdateAsync(CustomUser user)
         {
@@ -113,13 +145,34 @@ namespace PHCWebApplication
 
         public async Task<CustomUser> FindByIdAsync(string userId)
         {
-            CustomUser user = null; //await this.database.Where(c => c.UserId == userId).FirstOrDefaultAsync();
+            CustomUser user = ToCustomUser(objITransactionBusiness.FindByIdAsync(userId)); //await this.database.Where(c => c.UserId == userId).FirstOrDefaultAsync();
             return user;
+        }
+
+        private CustomUser ToCustomUser(User user)
+        {
+            if (user is User)
+            {
+
+                return new CustomUser
+
+                {
+
+                    Id = user.UserID,
+
+
+
+                    UserName = user.LoginID
+
+                };
+            }
+            return null;
+
         }
 
         public async Task<CustomUser> FindByNameAsync(string userName)
         {
-            CustomUser user = null;// await this.database.CustomUsers.Where(c => c.UserName == userName).FirstOrDefaultAsync();
+            CustomUser user = ToCustomUser(objITransactionBusiness.FindByIdAsync(userName)); //await this.database.Where(c => c.UserId == userId).FirstOrDefaultAsync();
             return user;
         }
 
